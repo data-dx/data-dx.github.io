@@ -26,6 +26,10 @@ header {
 }
 
  body {
+     /*
+    background-color: black;
+    color: white;
+     */
     height:100%;
 	font-size:1.3rem;
 	font-family : DFKai-sb; /* 標楷體 */
@@ -104,7 +108,7 @@ nav ul li.selected {
 
 /*表格相關設定*/
 .trtitle {
-   background-color: #f1f1c1;
+   background-color: #f1f1c1;/*RGB(49,52,57);*/
 }
 
 /*表格有框線*/
@@ -146,6 +150,10 @@ table, th,td {
  width:80px;
 }
 
+  p {
+    text-indent: 2em; /* 將段落文字向右縮進兩個空格的距離 */
+  }
+
 .pad {
     padding: 0px 0px 0px 20px;
 }
@@ -158,6 +166,8 @@ table, th,td {
     padding:5px;
     background:#efefef;
 }
+
+
 
 
 .winimg {
@@ -207,3 +217,20 @@ list-style-type: decimal-leading-zero;
 .has_children{ cursor:pointer; width:300px;}
 .highlight{backgroung:#F60;}
 div dt{ display:none; width:300px; float:left;}
+
+.level-1 {
+  list-style-type: decimal; /* 阿拉伯數字 */
+}
+
+.level-2 {
+  list-style-type: decimal-leading-zero; /* 帶前導零的阿拉伯數字 */
+}
+
+.level-3 {
+  list-style-type: upper-roman; /* 大寫羅馬數字 */
+}
+
+.level-4 {
+  list-style-type: lower-roman; /* 小寫羅馬數字 */
+}
+  
