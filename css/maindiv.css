@@ -1,3 +1,25 @@
+.iframe-container,
+footer,
+.container-center {
+    width: 100%;
+    max-width: 1377px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1377px) {
+    .iframe-container,
+    footer,
+    .container-center {
+        width: 1377px;
+        margin: 0 auto;
+    }
+}
+
+iframe {
+    width: 100%;
+}
+
+
 .headlogo{
     margin: 0px 0px 0px 0px;
     width:48px;
