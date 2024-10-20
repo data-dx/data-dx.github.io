@@ -1,117 +1,128 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
-
-<head>
-    <title>資訊紀錄管理</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/maindiv.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/gtag.js"></script>
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 50 + 'px';
-        }
-    </script>
-        <style>
-        @media screen and (min-width: 1377px) {
-            .main-container {
-                width: 1377px;
-                margin: 0 auto;
+    <head>
+        <title>資訊紀錄管理</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="css/maindiv.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="js/gtag.js"></script>
+        <script>
+            function resizeIframe(obj) {
+                obj.style.height = obj.contentWindow.document.body.scrollHeight + 50 + "px";
             }
-        }
-    </style>
-</head>
+        </script>
+        <style>
+            @media screen and (min-width: 1377px) {
+                .main-container {
+                    width: 1377px;
+                    margin: 0 auto;
+                }
+            }
+        </style>
+    </head>
 
-<body>
-     <div class="container-center">  
-    <!-- 導覽列  -->
-    <nav class="navbar navbar-light navbar-expand-md">
-        <a href="latest_news.html" target="content"></a>
-        <a class="navbar-brand" href="latest_news.html" target="content"><B style="color:blue;font-size:40px;">資訊紀錄管理</B></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
-            <span class="navbar-toggler-icon"></span>
-            導覽列</button>
+    <body>
+        <div class="container-center">
+            <!-- 導覽列  -->
+            <nav class="navbar navbar-light navbar-expand-md">
+                <a href="latest_news.html" target="content"></a>
+                <a class="navbar-brand" href="latest_news.html" target="content"
+                    ><b style="color: blue; font-size: 40px">資訊紀錄管理</b></a
+                >
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+                    <span class="navbar-toggler-icon"></span>
+                    導覽列
+                </button>
 
-        <div class="collapse navbar-collapse" id="navbar1">
-            <ul class="navbar-nav mr-auto">
-                <!-- 
+                <div class="collapse navbar-collapse" id="navbar1">
+                    <ul class="navbar-nav mr-auto">
+                        <!-- 
                <li class="nav-item active"><a class="nav-link" href="#">支援服務</a></li> 
                -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">支援服務</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="Download.html" target="content">軟體下載</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">支援服務</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="Download.html" target="content">軟體下載</a>
 
+                                <a class="dropdown-item" href="Service.html" target="content">軟體維運</a>
+                                <a class="dropdown-item" href="contact_us.html" target="content">聯絡我們</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">使用說明</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/use/first.html" target="content">環境建置</a>
+                                <a class="dropdown-item" href="/use/base.html" target="content">基本操作說明</a>
+                                <a class="dropdown-item" href="/use/FileToImg.html" target="content">文件轉圖檔</a>
+                                <a class="dropdown-item" href="/use/FormSA.html" target="content">文件輸入介面設計</a>
+                                <a class="dropdown-item" href="use/PrintSelect.html" target="content">印表機選擇</a>
+                                <a class="dropdown-item" href="use/PrintUse.html" target="content">印表機操作說明</a>
+                            </div>
+                        </li>
 
-                        <a class="dropdown-item" href="Service.html" target="content">軟體維運</a>
-                        <a class="dropdown-item" href="contact_us.html" target="content">聯絡我們</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">使用說明</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/use/first.html" target="content">環境建置</a>
-                        <a class="dropdown-item" href="/use/base.html" target="content">基本操作說明</a>
-                        <a class="dropdown-item" href="/use/FileToImg.html" target="content">文件轉圖檔</a>
-                        <a class="dropdown-item" href="/use/FormSA.html" target="content">文件輸入介面設計</a>
-                        <a class="dropdown-item" href="use/PrintSelect.html" target="content">印表機選擇</a>
-                        <a class="dropdown-item" href="use/PrintUse.html" target="content">印表機操作說明</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">系統介面</a>
 
-                    </div>
-                </li>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="InfoRec/Architecture.html" target="content">系統架構</a>
+                                <a>---功能表-----</a>
+                                <a class="dropdown-item" href="InfoRec/MITCommon.html" target="content">常用</a>
+                                <a class="dropdown-item" href="InfoRec/MITdata.html" target="content">資料</a>
+                                <a class="dropdown-item" href="InfoRec/MITDoc.html" target="content">文件</a>
+                                <a class="dropdown-item" href="InfoRec/MITRecords.html" target="content">紀錄</a>
+                                <a>---工作頁-----</a>
+                                <a class="dropdown-item" href="InfoRec/Architecture_sheet.html" target="content"
+                                    >工作頁說明</a
+                                >
+                                <a>---輸入列印---</a>
+                                <a class="dropdown-item" href="InfoRec/Architecture_IO.html" target="content"
+                                    >輸入列印說明</a
+                                >
+                            </div>
+                        </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">系統介面</a>
-
-                    <div class="dropdown-menu">
-
-                        <a class="dropdown-item" href="InfoRec/Architecture.html" target="content">系統架構</a>
-                        <a>---功能表-----</a>
-                        <a class="dropdown-item" href="InfoRec/MITCommon.html" target="content">常用</a>
-                        <a class="dropdown-item" href="InfoRec/MITdata.html" target="content">資料</a>
-                        <a class="dropdown-item" href="InfoRec/MITDoc.html" target="content">文件</a>
-                        <a class="dropdown-item" href="InfoRec/MITRecords.html" target="content">紀錄</a>
-                        <a>---工作頁-----</a>
-                        <a class="dropdown-item" href="InfoRec/Architecture_sheet.html" target="content">工作頁說明</a>
-                        <a>---輸入列印---</a>
-                        <a class="dropdown-item" href="InfoRec/Architecture_IO.html" target="content">輸入列印說明</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">文件範例</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/sample/TWBank.html" target="content">臺灣金融業</a>
-                    </div>
-                </li>
-
-
-            </ul>
-
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">文件範例</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/sample/ES-FIN.html" target="content">SPAIN Banco</a>
+                                <a class="dropdown-item" href="/sample/HK-FIN.html" target="content">HK Financial</a>
+                                <a class="dropdown-item" href="/sample/JP-KIGY.html" target="content">日本企業</a>
+                                <a class="dropdown-item" href="/sample/TW-FIN.html" target="content">臺灣金融業</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </nav>
-    </div>
-    <!-- 內容 -->
-<div class="iframe-container">
-    <iframe title="內容" name="content" src="latest_news.html" height="1100" onload="resizeIframe(this)" style="overflow:hidden; width:100%; border-width:0;"></iframe>
-    </div>
-    <!-- 20200502
+        <!-- 內容 -->
+        <div class="iframe-container">
+            <iframe
+                title="內容"
+                name="content"
+                src="latest_news.html"
+                height="1100"
+                onload="resizeIframe(this)"
+                style="overflow: hidden; width: 100%; border-width: 0"></iframe>
+        </div>
+        <!-- 20200502
       移除scrolling="no" 
       加入height="1100"
      -->
 
-    <!-- 頁尾 -->
-     <div class="container-center">
-    <footer class="container-fluid">
-        <hr>
-        <p class="float-right"><a href="javascript:history.back()">回上一頁</a></p>
-        <p>&copy; 2024 資訊紀錄管理實驗室&middot;
-            <a href="copyright_notice.html" target="content">版權聲明</a> &middot;
-            <a href="contact_us.html" target="content">聯絡我們</a>
-        </p>
-    </footer>
-    </div>
-</body></html>
+        <!-- 頁尾 -->
+        <div class="container-center">
+            <footer class="container-fluid">
+                <hr />
+                <p class="float-right"><a href="javascript:history.back()">回上一頁</a></p>
+                <p>
+                    &copy; 2024 資訊紀錄管理實驗室&middot;
+                    <a href="copyright_notice.html" target="content">版權聲明</a> &middot;
+                    <a href="contact_us.html" target="content">聯絡我們</a>
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>
