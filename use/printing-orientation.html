@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <title>印表機操作說明｜InfoRec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 統一新版樣式 -->
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/gtag.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>印表機操作說明</h1>
+  <hr>
+
+  <p class="ir-lead">
+    若您想採購印表機，或想確認現有印表機是否能順利套印文件，
+    建議搭配 <a href="PrintSelect.html" target="content">印表機選擇</a> 一起參考。
+  </p>
+
+  <h2>一、了解印表機特性</h2>
+  <ol>
+    <li>
+      <strong>列印尺寸：</strong>
+      印表機可列印的最大寬度與長度。
+    </li>
+
+    <li>
+      <strong>列印方向：</strong>
+      <ul>
+        <li>
+          <strong>直向（圖1、圖2）：</strong>
+          印表機列印的文字方向與文件印刷字同向。
+        </li>
+        <li>
+          <strong>橫向（圖3、圖4）：</strong>
+          印表機列印文字方向與文件印刷字<strong>互相垂直</strong>（轉 90 度）。
+          <ul>
+            <li>
+              印表機若僅能列印 A4 寬度（210mm），但文件寬度大於 210mm、未超過 297mm，可改用橫印完成列印。
+            </li>
+            <li>
+              若文件在進紙過程容易造成列印歪斜，可嘗試改為橫印改善。
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>列印順序：</strong>
+      「先進先印」、「後進先印」會影響邊界設定。
+    </li>
+
+    <li>
+      <strong>列印面：</strong>
+      有編號的文件（如支票）需從編號小的文件開始列印時，
+      建議使用<strong>列印面朝上</strong>的印表機（圖1）較方便。
+    </li>
+  </ol>
+
+  <h2>二、直印與橫印示意</h2>
+
+  <div class="ir-card p-3 mb-4 text-center">
+    <img src="images/PrintUse02.png" width="120" height="120" alt="直印示意">
+    <div class="mt-2">圖1・直印：列印資料方向與文件印刷字相同</div>
+  </div>
+
+  <div class="ir-card p-3 mb-4 text-center">
+    <img src="images/PrintUse01.png" width="360" height="240" alt="直印方式">
+    <div class="mt-2">圖2・投入紙張時，使列印文字方向與文件印刷字一致</div>
+  </div>
+
+  <div class="ir-card p-3 mb-4 text-center">
+    <img src="images/PrintUse04.png" width="120" height="120" alt="橫印示意">
+    <div class="mt-2">圖3・橫印：列印方向與文件印刷字垂直（轉 90 度）</div>
+  </div>
+
+  <div class="ir-card p-3 mb-4 text-center">
+    <img src="images/PrintUse03.png" width="360" height="240" alt="橫印方式">
+    <div class="mt-2">圖4・投入紙張時，使列印方向與文件印刷字垂直（90 度）</div>
+  </div>
+
+  <!-- 在非 iframe 時顯示回首頁提示 -->
+  <script>
+    (function () {
+      if (window.top !== window.self) return;
+      var h1 = document.querySelector('h1');
+      if (!h1) return;
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分，' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+
+</body>
+</html>

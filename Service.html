@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>軟體維運｜InfoRec</title>
+
+  <link rel="stylesheet" href="css/site.css">
+  <script src="../js/redirect.js"></script>
+  <script src="js/gtag.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>軟體維運</h1>
+  <hr>
+
+  <p class="ir-lead">
+    偏務實的支援方式：先讓你能順利上手與穩定使用，再把問題逐步修到位。
+  </p>
+
+  <div class="ir-card p-3 p-md-4">
+    <div class="fw-semibold mb-2">免責聲明</div>
+    <ul class="mb-0">
+      <li>軟體是否符合您需求，請自行評估；系統產生之結果，請使用者自行確認。</li>
+      <li>我們會盡力、持續維護軟體，以確保其有效性。</li>
+      <li>若有建議事項，歡迎透過 Telegram 社群留言，我們會儘快回覆，請讓我們有服務的機會。</li>
+    </ul>
+  </div>
+
+  <!-- 不是 iframe 時，在標題下方插入「回首頁」提示 -->
+  <script>
+    (function () {
+      if (window.top !== window.self) return; // 在 iframe 裡就不要顯示
+
+      var h1 = document.querySelector('h1');
+      if (!h1) return;
+
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分，' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+
+</body>
+</html>

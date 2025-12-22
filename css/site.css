@@ -1,0 +1,909 @@
+:root{
+  --ir-maxw: 1080px;
+  --ir-radius: 18px;
+  --ir-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+/* 基本設定 */
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC",
+               Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  overflow: hidden;          /* 仍然只讓 iframe 捲動 */
+  display: flex;             /* ⭐ 讓整頁變成上下排列 */
+  flex-direction: column;    /* ⭐ 上：navbar / hero / 內容，下：footer */
+}
+
+
+/* layout container */
+.ir-container{
+  max-width: var(--ir-maxw);
+}
+
+/* === Hero 區塊 === */
+/* === Hero：壓縮高度，但內容完整，沒有捲軸 === */
+.ir-hero{
+  border-radius: var(--ir-radius);
+  box-shadow: var(--ir-shadow);
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(13,110,253,.18), transparent 55%),
+    radial-gradient(900px 500px at 90% 20%, rgba(32,201,151,.16), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92));
+
+  /* ⭐ 關鍵：改成比較小的 padding，不再用 max-height/overflow */
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+/* 標題 & 說明字，全部縮小一點 */
+.ir-hero h1{
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.25;
+  margin-bottom: .3rem;
+}
+
+.ir-hero .ir-muted{
+  font-size: .95rem;
+}
+
+/* 右邊那塊卡片：也縮小 padding，避免太高 */
+.ir-hero .ir-card{
+  padding: .7rem .9rem;
+}
+
+/* 卡片裡的按鈕也稍微縮小一點高度 */
+.ir-hero .ir-card .btn{
+  padding: .4rem .75rem;
+  font-size: .9rem;
+}
+
+/* 寬螢幕（桌機）：再壓一次，盡量接近你要的「1/3」 */
+@media (min-width: 992px){
+  .ir-hero{
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .ir-hero h1{
+    font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+  }
+
+  .ir-hero .ir-card{
+    padding: .65rem .8rem;
+  }
+}
+
+/* 高度比較矮（例如你把 Chrome 壓低）的時候，再壓一次 */
+@media (max-height: 800px){
+  .ir-hero{
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .ir-hero h1{
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  }
+
+  .ir-hero .ir-muted{
+    font-size: .9rem;
+  }
+}
+
+/* 高度「非常矮」的情況：保留最重要的東西，藏掉次要說明 */
+@media (max-height: 650px){
+  .ir-hero{
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  /* 隱藏副標，只留標籤 + 主標題 + 右邊按鈕 */
+  .ir-hero .ir-muted{
+    display: none;
+  }
+}
+
+
+/* hero 內卡片 */
+.ir-card{
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+.ir-muted{
+  color: rgba(0,0,0,.65);
+}
+
+/* 頁腳 */
+.ir-footer{
+  color: rgba(0,0,0,.6);
+  font-size: .95rem;
+}
+
+/* 小圓角標籤 */
+.ir-badge{
+  font-size: .85rem;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.7);
+}
+
+
+/* === 主內容結構（不要再玩 100vh、overflow:hidden）=== */
+
+.ir-main{
+  padding-top: .75rem;
+  padding-bottom: 2rem;
+  flex: 1;          /* ⭐ 撐滿 navbar 以下的空間 */
+  display: flex;    /* ⭐ 讓裡面的 .ir-main-inner 也能用 flex 排版 */
+}
+
+.ir-main-inner{
+  max-width: var(--ir-maxw);
+  flex: 1;                      /* ⭐ 撐滿 main */
+  display: flex;                /* ⭐ 直向排版 */
+  flex-direction: column;
+  padding-bottom: 0 !important; /* 你原本就有 */
+  margin-bottom: 0 !important;  /* 你原本就有 */
+}
+
+
+/* 工具列 */
+.ir-toolbar{
+  margin-bottom: .5rem;
+}
+
+/* iframe 區塊：當成一個「內容卡片」 */
+.ir-frame-wrap{
+  margin-bottom: 0.5rem;   /* 原本 1.5rem → 0.5rem，空隙直接少很多 */
+}
+
+
+/* ✅ iframe：正常高度、需要就自己捲動
+   外面 body 也可以捲 → 你一定看得到內容，不會被吃掉 */
+.ir-iframe{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: var(--ir-shadow);
+  background: #fff;
+  display: block;
+
+  /* ⭐ 再縮小一點高度 */
+  height: 50vh;
+  min-height: 280px;
+  overflow: auto;
+}
+
+
+@media (max-width: 575.98px){
+  .ir-hero{ border-radius: 16px; }
+  .ir-iframe{ border-radius: 14px; height: 65vh; }
+}
+
+/* --- iframe 裡面載入的內容頁樣式（use/、sample/ 那些） --- */
+.ir-page{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 18px 32px;
+}
+
+/* 標題區塊距離：h1 → hr → 第一段文字，一致 */
+.ir-page h1{
+  margin: 0 0 6px;
+  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.ir-page hr{
+  height: 0;
+  margin: 6px 0 10px;
+  border: none;
+  border-top: 1px solid #fff;
+  opacity: 1;
+}
+
+
+/* 第一段文字不要再被多推下去 */
+.ir-page p:first-of-type{
+  margin-top: 0;
+}
+
+/* 內容頁段落：統一縮排兩個中文字 + 字級、行高 */
+.ir-page p{
+  text-indent: 2em;
+  line-height: 1.75;
+  color: rgba(0,0,0,.82);
+  font-size: 1.05rem;
+}
+
+/* 列表項目跟段落一樣風格（但不縮排） */
+.ir-page li{
+  line-height: 1.75;
+  color: rgba(0,0,0,.82);
+  font-size: 1.05rem;
+}
+
+/* 引導段落（ir-lead）文字稍微淡一點、不縮排 */
+.ir-page .ir-lead{
+  font-size: 1.05rem;
+  color: rgba(0,0,0,.70);
+  text-indent: 0;
+}
+
+.ir-page h2{
+  font-size: 1.25rem;
+  margin-top: 22px;
+}
+
+
+/* 表格 */
+.ir-table{
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.ir-table th,
+.ir-table td{
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  text-align: left;
+  vertical-align: top;
+}
+.ir-table thead th{
+  background: rgba(0,0,0,.03);
+  font-weight: 650;
+}
+.ir-table tr:last-child td{
+  border-bottom: 0;
+}
+.ir-scroll-x{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================
+   專注閱讀模式（保留：但只是把 hero / footer 隱藏）
+   ========================= */
+body.ir-focus #heroBlock{
+  display: none !important;
+}
+body.ir-focus #footerBlock{
+  display: none !important;
+}
+
+
+/* =========================
+   Hero 在不同狀況下的高度調整
+   ========================= */
+
+/* 桌機：再緊一點，不要太高（大約再少一點高度） */
+@media (min-width: 992px){
+  .ir-hero{
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+  }
+  .ir-hero h1{
+    font-size: clamp(1.25rem, 2vw, 1.7rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: .35rem !important;
+  }
+  .ir-hero .fs-5{
+    font-size: .98rem !important;
+  }
+  .ir-hero .ir-card{
+    padding: .9rem 1rem !important;
+  }
+}
+
+/* 視窗高度較矮（你把 Chrome 壓低）時：再壓縮 hero */
+@media (max-height: 800px){
+  .ir-hero{
+    padding-top: 0.7rem !important;
+    padding-bottom: 0.7rem !important;
+  }
+}
+@media (max-height: 700px){
+  .ir-hero{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* 高度真的不夠時，隱藏副標，只留主標題＋右側按鈕 */
+  .ir-hero .ir-muted{
+    display: none !important;
+  }
+}
+
+
+/* =========================
+   Dark mode（跟隨系統）
+   ========================= */
+@media (prefers-color-scheme: dark){
+
+  body{
+    background-color: #0f1115 !important;
+    color: #e6e8ee;
+  }
+
+  /* Navbar */
+  .navbar{
+    background-color: #11141a !important;
+    border-bottom-color: rgba(255,255,255,.08) !important;
+  }
+
+  /* Hero */
+  .ir-hero{
+    background:
+      radial-gradient(1200px 600px at 10% 0%, rgba(56,139,253,.18), transparent 55%),
+      radial-gradient(900px 500px at 90% 20%, rgba(46,160,67,.16), transparent 50%),
+      linear-gradient(180deg, #161a22, #141821) !important;
+    color: #eef1f7;
+  }
+
+  .ir-muted{
+    color: rgba(230,232,238,.75) !important;
+  }
+
+  /* Card */
+  .ir-card{
+    background-color: #161a22 !important;
+    border-color: rgba(255,255,255,.08) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.6);
+  }
+
+  /* iframe */
+  .ir-iframe{
+    background-color: #0f1115;
+    border-color: rgba(255,255,255,.08);
+  }
+
+  /* Footer */
+  .ir-footer{
+    color: rgba(230,232,238,.65);
+  }
+
+  /* Buttons */
+  .btn-outline-secondary{
+    color: #e6e8ee;
+    border-color: rgba(255,255,255,.35);
+  }
+}
+
+
+/* =========================
+   手動指定主題（可選）
+   ========================= */
+body.theme-dark{
+  background-color: #0f1115;
+  color: #e6e8ee;
+}
+body.theme-light{
+  background-color: #f6f7fb;
+  color: #111;
+}
+
+
+/* =========================
+   Dark mode：外圍背景 + 文字對比 + Bootstrap 覆蓋
+   ========================= */
+@media (prefers-color-scheme: dark){
+
+  /* 外圍背景 */
+  html,
+  body,
+  body.bg-body-tertiary{
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(56,139,253,.12), transparent 55%),
+      radial-gradient(900px 500px at 85% 10%, rgba(46,160,67,.10), transparent 55%),
+      #0f1115 !important;
+    color: #e6e8ee !important;
+  }
+
+  /* Navbar + 導覽連結 */
+  .navbar{
+    background-color: #11141a !important;
+    border-bottom-color: rgba(255,255,255,.10) !important;
+  }
+  .navbar .navbar-brand,
+  .navbar .nav-link{
+    color: rgba(230,232,238,.92) !important;
+  }
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus{
+    color: #ffffff !important;
+  }
+  .navbar .dropdown-menu{
+    background-color: #141821 !important;
+    border-color: rgba(255,255,255,.10) !important;
+  }
+  .navbar .dropdown-item{
+    color: rgba(230,232,238,.90) !important;
+  }
+  .navbar .dropdown-item:hover{
+    background-color: rgba(255,255,255,.08) !important;
+    color: #fff !important;
+  }
+
+  /* hero 文字 */
+  .ir-hero{
+    color: #eef1f7 !important;
+  }
+  .ir-muted{
+    color: rgba(230,232,238,.75) !important;
+  }
+
+  /* 卡片 / list */
+  .ir-card,
+  .card,
+  .list-group-item{
+    background-color: #161a22 !important;
+    border-color: rgba(255,255,255,.10) !important;
+    color: rgba(230,232,238,.92) !important;
+  }
+
+  /* 內容頁文字 & 表格 */
+  .ir-page,
+  .ir-page p,
+  .ir-page li,
+  .ir-page h1,
+  .ir-page h2,
+  .ir-page h3,
+  .ir-page .ir-lead{
+    color: rgba(230,232,238,.92) !important;
+  }
+
+  .ir-table{
+    border-color: rgba(255,255,255,.10) !important;
+  }
+  .ir-table thead th{
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(230,232,238,.92) !important;
+  }
+  .ir-table td,
+  .ir-table th{
+    border-bottom-color: rgba(255,255,255,.08) !important;
+    color: rgba(230,232,238,.90) !important;
+  }
+
+  /* 連結顏色 */
+  a{
+    color: #79b8ff !important;
+  }
+  a:hover{
+    color: #a7d0ff !important;
+  }
+
+  /* iframe 外觀 */
+  .ir-iframe{
+    background-color: #0f1115 !important;
+    border-color: rgba(255,255,255,.10) !important;
+  }
+}
+
+
+/* =========================
+   Dark mode：按鈕 / badge
+   ========================= */
+@media (prefers-color-scheme: dark){
+
+  .btn-outline-secondary,
+  .btn-outline-light{
+    color: #eef1f7 !important;
+    border-color: rgba(255,255,255,.40) !important;
+    background: rgba(255,255,255,.06) !important;
+  }
+  .btn-outline-secondary:hover,
+  .btn-outline-light:hover{
+    background: rgba(255,255,255,.12) !important;
+    color: #ffffff  !important;
+  }
+
+  .btn-light{
+    background: rgba(255,255,255,.10) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: #ffffff !important;
+  }
+  .btn-light:hover{
+    background: rgba(255,255,255,.16) !important;
+  }
+
+  .ir-badge{
+    background: rgba(255,255,255,.10) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: rgba(255,255,255,.92) !important;
+  }
+}
+
+
+/* === Hero 下方內容區：自動變成第二個捲動區 === */
+.ir-content-wrap{
+  height: calc(100vh - 220px); /* 依你 hero + toolbar + footer 高度調整 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 2rem;
+}
+
+/* 內容頁（例如 latest.html）要可以自己捲動 */
+body.ir-content-body{
+  overflow-y: auto !important;
+  overflow-x: hidden;
+}
+
+
+/* === Footer：壓成一行，貼在最底部 === */
+#footerBlock{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: auto !important;    /* ⭐ 關鍵：把 footer 推到容器最底 */
+  margin-bottom: 0 !important;
+  line-height: 1 !important;
+  font-size: 0.8rem !important;
+  height: 1.5rem;                 /* 看起來就是一行高 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Footer 內部連結不要把行高撐開 */
+#footerBlock a{
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 .25rem !important;
+  font-size: 0.8rem !important;
+}
+
+
+/* 中間主內容：占滿 body 中間空間 */
+.ir-main{
+  flex: 1;           /* ⭐ 主內容撐滿 navbar 下面到 footer 上面 */
+  display: flex;
+}
+
+/* container 內再做一次直向排列，footer 在最下方 */
+.ir-main-inner{
+  max-width: var(--ir-maxw);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* === Footer 最終調整：只佔一行，貼在最底 === */
+
+/* 讓整頁成上下排列：上面內容，中間 iframe，下面 footer */
+body{
+  display: flex;
+  flex-direction: column;
+}
+
+/* 主內容區撐滿中間，底下不要再額外 padding */
+.ir-main{
+  flex: 1;
+  padding-bottom: 0;
+}
+
+/* container 內改成直向排列，footer 壓在最下 */
+.ir-main-inner{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* iframe 和 footer 間只留一點點空隙 */
+.ir-frame-wrap{
+  margin-bottom: 0.5rem;
+}
+
+/* Footer：高度壓到一行，而且一定顯示出來 */
+#footerBlock{
+  display: flex !important;         /* 把之前的 2025 display:none 蓋掉 */
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  height: 1.4rem;                   /* 看起來就是一行 */
+  font-size: 0.9rem !important;
+  line-height: 1 !important;  
+  border: none !important;
+}
+
+/* 裡面的連結也壓扁，不要再撐高 */ 
+#footerBlock a{
+  margin: 0 .3rem !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 0.9rem !important;
+}
+
+
+/* === 讓 iframe 吃掉更多高度，把 footer 壓到最下面 === */
+#contentFrame{
+  height: calc(100vh - 365px) !important;
+}
+
+
+/* 回首頁提示區塊 */
+.ir-outside-note{
+  font-size: .88rem;
+  margin: 4px 0 10px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,.04);
+  border-radius: 4px;
+  line-height: 1.3;
+}
+.ir-outside-note a{
+  margin-left: 4px;
+}
+
+
+/* === InfoRec 說明頁表格框線 === */
+.ir-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: .95rem;
+}
+
+.ir-page table th,
+.ir-page table td {
+  border: 1px solid #ccc;
+  padding: .45rem .6rem;
+}
+
+.ir-page table th {
+  background: #f4f4f4;
+  font-weight: 600;
+}
+
+.sub-title {
+  font-weight: 650;
+  font-size: 1.05rem;
+  margin: .4rem 0 .4rem;
+}
+
+h2.sub {
+  font-weight: 650;
+  font-size: 1.18rem;
+  margin: 1.1rem 0 .5rem;
+  color: #ddd;
+}
+
+.tbl-head {
+  background: #000;
+  color: #fff;
+  font-size: .97rem;
+  font-weight: 600;
+  padding: .45rem .6rem;
+  border-radius: 4px 4px 0 0;
+  margin: 1.2rem 0 .1rem;
+}
+
+/* === 統一 ir-page 內表格為暗黑風格 === */
+.ir-page table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .95rem;
+}
+
+.ir-page table th,
+.ir-page table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .45rem .6rem;
+}
+
+.ir-page table th {
+  font-weight: 600;
+}
+
+/* ====== 統一大綱樣式 ====== */
+
+/* 層級 1：一、二、三... */
+.ol-l1 {
+  list-style-type: cjk-ideographic;
+  margin: 0 0 1rem 1.8rem;
+}
+
+/* 層級 2：(一)(二)... */
+.ol-l2 {
+  list-style-type: none;
+  margin: 0 0 .8rem 2rem;
+  padding: 0;
+}
+.ol-l2 > li::before {
+  content: "（" counter(item, cjk-ideographic) "）";
+  counter-increment: item;
+  margin-right: .4rem;
+}
+.ol-l2 {
+  counter-reset: item;
+}
+
+/* 層級 3：1. 2. 3. */
+.ol-l3 {
+  list-style-type: decimal;
+  margin: 0 0 .8rem 2rem;
+}
+
+/* 無序清單 ● ○ */
+.ul-l1 {
+  list-style-type: disc;
+  margin: 0 0 .6rem 1.6rem;
+}
+.ul-l2 {
+  list-style-type: circle;
+  margin: 0 0 .4rem 2rem;
+}
+
+/* ===== International Outline Standard ===== */
+
+/* Level 1: 1. 2. 3. */
+.ol-l1 {
+  list-style-type: decimal;
+  margin: .6rem 0 .8rem 1.6rem;
+}
+
+/* Level 2: a. b. c. */
+.ol-l2 {
+  list-style-type: lower-alpha;
+  margin: .4rem 0 .7rem 2.2rem;
+}
+
+/* Level 3: i. ii. iii. */
+.ol-l3 {
+  list-style-type: lower-roman;
+  margin: .3rem 0 .6rem 2.8rem;
+}
+
+/* Unordered list level 1: ● */
+.ul-l1 {
+  list-style-type: disc;
+  margin: .4rem 0 .6rem 1.6rem;
+}
+
+/* Unordered list level 2: ○ */
+.ul-l2 {
+  list-style-type: circle;
+  margin: .3rem 0 .5rem 2rem;
+}
+
+/* 內容頁單獨開啟時，允許垂直捲動 */
+body.ir-page{
+  overflow-y: auto;
+}
+
+/* 讓頁面裡所有圖片不超出畫面寬度（等比縮小） */
+.ir-page img,
+.ir-page figure img,
+.ir-page img.winimg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== FIN 分頁導覽（通用） ===== */
+.ir-pager {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: .75rem 0 1rem;
+}
+
+.ir-page-link {
+  padding: .25rem .6rem;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .375rem;
+  text-decoration: none;
+  font-size: .9rem;
+  line-height: 1.2;
+  color: inherit;
+  background: rgba(255,255,255,.6);
+}
+
+.ir-page-link:hover {
+  background: rgba(0,0,0,.04);
+}
+
+.ir-page-link.is-active,
+.ir-page-link[aria-current="page"] {
+  background: #0d6efd;   /* Bootstrap primary */
+  border-color: #0d6efd;
+  color: #fff;
+}
+
+.ir-page-spacer {
+  flex: 1 1 auto;
+}
+
+.ir-page-link.is-nav {
+  font-weight: 600;
+}
+
+/* ===== FIN 分頁導覽（深色背景高對比版） ===== */
+.ir-pager {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: .75rem 0 1rem;
+}
+
+/* 一般頁碼 */
+.ir-page-link {
+  padding: .3rem .7rem;
+  border-radius: .375rem;
+  text-decoration: none;
+  font-size: .9rem;
+  line-height: 1.2;
+
+  /* 關鍵：深背景可讀 */
+  color: #ffffff;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+}
+
+.ir-page-link:hover {
+  background: rgba(255,255,255,.32);
+  color: #ffffff;
+}
+
+/* 目前頁 */
+.ir-page-link.is-active,
+.ir-page-link[aria-current="page"] {
+  background: #0d6efd;
+  border-color: #0d6efd;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* 上一組 / 下一組 */
+.ir-page-link.is-nav {
+  background: rgba(0,0,0,.45);
+  border-color: rgba(255,255,255,.45);
+  font-weight: 600;
+}
+
+.ir-page-link.is-nav:hover {
+  background: rgba(0,0,0,.65);
+}
+
+/* 中間撐開用 */
+.ir-page-spacer {
+  flex: 1 1 auto;
+}
+
+/* 文件索引清單：緊湊模式 */
+.ir-page .ol-l1 {
+  margin: .5rem 0 .75rem;
+  padding-left: 1.2rem;
+}
+
+.ir-page .ol-l1 li {
+  margin: .15rem 0;
+  line-height: 1.35;
+}
+
+.ir-page .ol-l1 a {
+  text-decoration: none;
+}
+
+.ir-page .ol-l1 a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>社群與資源｜InfoRec</title>
+
+  <link rel="stylesheet" href="css/site.css">
+  <script src="../js/redirect.js"></script>
+  <script src="js/gtag.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>社群與資源</h1>
+  <hr>
+
+  <p class="ir-lead">
+    歡迎加入社群一起討論：遇到問題、想要新增文件設定、或想交流使用心得都可以。
+  </p>
+
+  <section class="mb-4">
+    <div class="ir-card p-3 p-md-4">
+      <div class="fw-semibold mb-2">社群群組</div>
+      <ul class="mb-0">
+        <li>Line：<a href="https://line.me/ti/g2/Ds0lPW3QfxnH9c1lhDM4AJE-aIYUnTDGK97hRg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">加入</a></li>
+        <li>Telegram：<a href="https://t.me/Info_Rec" target="_blank" rel="noopener">加入</a></li>
+        <li>電子信箱：<a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-4">
+    <div class="ir-card p-3 p-md-4">
+      <div class="fw-semibold mb-2">資源</div>
+      <ul class="mb-0">
+        <li>為讓軟體不受地理位置限制，並測試跨區域支付能力，目前僅接受虛擬貨幣。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="ir-card p-3 p-md-4">
+      <div class="fw-semibold mb-2">備註</div>
+      <ol class="mb-0">
+        <li>
+          保固服務條款：
+          <ul>
+            <li>使用期限：無限制</li>
+            <li>保固：1 年，過保可購買延長保固</li>
+            <li>保固內容：軟體更新、現有文件設定更新、諮詢服務</li>
+            <li>文件設定：提供 400+設定檔免費下載，如缺少檔案可協助處理</li>
+            <li>優惠：即日起至 2025/03/31 提供 1 次專屬客製文件設定服務</li>
+            <li>介面語系：如需加入您的語言需求，請聯絡我們</li>
+          </ul>
+        </li>
+        <li>虛擬貨幣：在許多地區並非法定貨幣，但具備跨區域支付與交換便利性。</li>
+        <li>理念：以真實記錄轉數位化，並用數位資訊回饋現實決策。</li>
+        <li>激勵：若能獲得捐助，有助於投入更多資源改善軟體。</li>
+        <li>回饋：若獲得捐助，將提撥比例支援公益或免費工具專案。</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 自動插入「未在 iframe 時」的首頁提示 -->
+  <script>
+    (function () {
+      if (window.top !== window.self) return;
+      var h1 = document.querySelector('h1');
+      if (!h1) return;
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分，' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+
+</body>
+</html>

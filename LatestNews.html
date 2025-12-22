@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>最新消息｜InfoRec</title>
+
+  <link rel="stylesheet" href="css/site.css" />
+  <script src="../js/redirect.js"></script>
+  <script src="js/gtag.js"></script>
+</head>
+<body class="ir-content-body">
+  <main class="ir-page">
+    <h1>最新消息</h1>
+
+    <!-- 這裡由 JS 自動插入回首頁的小提示 -->
+
+    <hr />
+
+    <p>
+      為協助將資料、紀錄轉化為資訊，以利數位轉型。本網站提供「資訊紀錄管理工具」。本工具已經歷數百種文件（紙本或電子檔）數位化的考驗，無論文件的架構、內容為何，均能有效將記錄套印、處理及完成資料數位化蒐集。
+    </p>
+
+    <p>
+      本系統可以用於各式資料收集及文件套印（會計文件、金融業表單、一般行政文書、企業或政府機關提供內部或大眾填寫之文件…等）或進行資料收集（類 Google 表單）。
+    </p>
+
+    <p>
+      有關文件管理、套印內容、資料處理分析及套印方式，可由使用者任意組合自行設定，設定檔也可以匯出分享。
+    </p>
+
+    <h2 class="mt-4">2025 年發展目標</h2>
+
+    <div class="ir-card p-3 p-md-4">
+      <ol class="mb-0">
+        <li>
+          <strong>目標：</strong>
+          <ul>
+            <li>推廣：讓全世界有需要資料蒐集、套印的人員取得本系統。</li>
+            <li>虛擬貨幣支付：為測試虛擬貨幣支付是否可行，本軟體僅採用虛擬貨幣支付，如需合乎商業法規取得發票，將由當地的代理商進行處理。</li>
+            <li>說明文件：完善所有操作的說明及影片，以利更多人採用。</li>
+            <li>網路版：強化現有網路版的功能，以符合不同使用情境的需要。</li>
+          </ul>
+        </li>
+        <li>
+          <strong>多國語言：</strong>
+          軟體支援多國語言功能，並已提供繁體中文、簡體中文、英文供使用者切換。若需要其他語言，無論是日文、韓文、泰文、西班牙文、德文…，您都可以自行製作，或與我們聯絡由我們代勞，讓您用熟悉的語言介面使用本軟體。
+        </li>
+        <li>
+          <strong>系統介面說明：</strong>
+          將系統每一個使用者介面（UI）製作用戶入門說明，以方便使用者參照。
+        </li>
+        <li>
+          <strong>文件設定說明：</strong>
+          為方便說明讓使用者了解本系統，我們提供文件設定的說明。
+        </li>
+        <li>
+          <strong>社群：</strong>
+          請加入我們的社群，藉由社群的力量，您可以獲得社群回應，提供您使用軟體上的建議或討論。
+        </li>
+        <li>
+          <strong>專業支援：</strong>
+          對於希望直接使用軟體的人而言，我們提供付費的專業支援（經過驗證的第三方支援）。無論是指定文件的設計或強化功能及相關支援服務，都可以由專業支援廠商提供服務，您只要了解簡易操作，即可取得最大的效益。
+        </li>
+        <li>
+          加入社群或尋求專業支援，讓您簡化蒐集資料、列印文件、資料分析等工作，取得社群或專業支援廠商協助。
+        </li>
+      </ol>
+    </div>
+  </main>
+
+  <!-- 統一：不是 iframe 時，在 h1 後面插入「回首頁」 -->
+  <script>
+    (function () {
+      // 如果在 iframe 裡，就保持乾淨不要顯示提示
+      if (window.top !== window.self) return;
+
+      var h1 = document.querySelector('.ir-page h1');
+      if (!h1) return;
+
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分。' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+
+  <!-- 保留你原來的高度通知（如果 index 有在用就會生效） -->
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>版權聲明</title>
+  <!-- 改用新版 site.css -->
+  <link rel="stylesheet" href="css/site.css">
+  <script src="../js/redirect.js"></script>
+  <script src="js/gtag.js"></script>
+</head>
+<body>
+  <main class="ir-page">
+    <h1>版權聲明</h1>
+    <hr />
+    <div class="ir-card p-3 p-md-4">
+      <ol class="mb-0">
+        <li>本網站所提供之軟體或資料，其版權為開發者所有。</li>
+        <li>本軟體得使用於內部商業環境，如有跨機關或商業行為(如銷售、標案....等有收取費用或利益者)，提供其它企業、團體使用，必須取得開發者確認及授權。</li>
+        <li>本系統運作時，所使用之第三方軟體，如Firebird資料庫系統，ImageMagick、GhostScript、7zip、...等軟體，其版權分屬於該所有權公司所有。</li>
+      </ol>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
+</html>

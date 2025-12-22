@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>入門指南｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+  <script src="js/gtag.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>入門指南</h1>
+  <hr>
+
+  <p class="ir-lead">
+    以下為入門基本操作與流程：快速建立文件底圖、設定輸入欄位、列印並保存紀錄。
+    最新更新日期：2025/12/20。
+  </p>
+
+  <h2>一、安裝與啟動</h2>
+  <ol>
+    <li><b>下載 InfoRec 壓縮檔後解壓縮即可使用。</b></li>
+    <li>支援 Windows 全系列（含 Win11、LTSC）。</li>
+    <li>若 Windows 顯示不明發行者，可先允許執行或加入白名單。</li>
+  </ol>
+
+  <h2>二、產生文件底圖</h2>
+  <p>
+    為了能在畫面上定位欄位並套印，請先將紙本文件掃描或拍攝後：
+  </p>
+  <ul>
+    <li>將 PDF 轉檔為 PNG（推薦 300 DPI）。</li>
+    <li>透過「產生文件圖檔」工具裁切與調整大小。</li>
+  </ul>
+
+  <h2>三、建立文件資料</h2>
+  <ol>
+    <li>新增領域（如台灣、香港、國際）。</li>
+    <li>新增來源（如金融、行政、保險、教育）。</li>
+    <li>新增文件編號、版本及名稱。</li>
+  </ol>
+
+  <h2>四、設定表單輸入欄位</h2>
+  <ul>
+    <li>放置輸入元件（文字、下拉、日期）。</li>
+    <li>決定欄位位置、大小、群組。</li>
+    <li>加入資料驗證（如長度、格式、轉換、運算）。</li>
+  </ul>
+
+  <h2>五、輸入 → 套印 → 保存紀錄</h2>
+  <p>
+    完成設計後，可直接輸入資料，系統會：
+  </p>
+  <ul>
+    <li>填入文件底圖進行列印。</li>
+    <li>保存輸入內容供日後追溯。</li>
+    <li>支援查詢、月報、分類、追蹤。</li>
+  </ul>
+
+  <p class="ir-lead">
+    若您希望由我們代為設計文件設定或大量客製文件，請加入社群聯絡。
+  </p>
+
+  <!-- 自動插入「未在 iframe 時」的首頁提示 -->
+  <script>
+  (function () {
+    if (window.top !== window.self) return;
+    var h1 = document.querySelector('h1');
+    if (!h1) return;
+    var note = document.createElement('div');
+    note.className = 'ir-outside-note';
+    note.innerHTML =
+      '本頁為 InfoRec 使用指南的一部分，' +
+      '<a href="/index.html">回 InfoRec 首頁</a>';
+    h1.insertAdjacentElement('afterend', note);
+  })();
+  </script>
+
+</body>
+</html>

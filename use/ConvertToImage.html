@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>產生文件圖檔｜InfoRec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- 統一使用新版樣式 -->
+  <link rel="stylesheet" href="../css/site.css">
+ <script src="../js/redirect.js"></script>
+  <script src="../js/gtag.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>產生文件圖檔</h1>
+  <hr>
+
+  <!-- 第一段保留 margin-top:0，避免你覺得 hr 底下多一行 -->
+  <p style="margin-top:0;">
+    如果您要自行設計文件套印內容或收集文件上的輸入資料，在創建文件設定檔前，需將紙本文件轉換為電子圖檔(如png檔)，以利在上面佈建待輸入的文字或圖檔，也有助於使用者輸入資料時的參考(文件模式)，若有需要，也可以將輸入的資料與文件一同印出。
+  </p>
+
+  <strong>圖檔規格</strong>
+  <ol>
+    <li>格式：png圖檔。</li>
+    <li>編輯用：解析度設定為124dpi</li>
+    <li>列印用：解析度設定至少為300dpi</li>
+  </ol>
+
+  <p>
+    將文件轉成圖檔的方式很多，例如掃描文件、另存檔案、列印成檔案、或用剪截軟體等，說明如下：
+  </p>
+
+  <strong>一、直接轉成png圖檔：</strong>
+  <ol>
+    <li>紙本文件：用掃描設備掃描。使用事務機掃描時，以最清楚的方式掃描為png圖檔。</li>
+    <li>數位文件：doc、xls*、odt、pdf...等電子檔, 使用檔案編輯工具或列印工具轉換為png圖檔。</li>
+  </ol>
+
+  <strong>二、先轉成PDF檔再轉為png圖檔：</strong>
+  <p>
+    為追求便利性及取得高品質的圖檔，我們另外提供一個建議的流程及小工具，說明如下：
+  </p>
+  <ol>
+    <li><strong>轉成PDF</strong>
+      <ul>
+        <li>紙本文件：用掃描設備掃描。使用事務機掃描時，以最清楚的方式掃描為pdf檔案。</li>
+        <li>數位文件：doc、xls*、odt、pdf...等電子檔，可以使用編輯工具或列印工具直接轉換為pdf檔案。</li>
+      </ul>
+    </li>
+    <li><strong>安裝轉檔軟體：</strong>
+      <ul>
+        <li>imagemagick：可將PDF檔案或各種圖檔轉換成指定格式的圖檔，網址：
+          <a href="https://imagemagick.org/index.php" target="_blank">https://imagemagick.org/index.php</a>
+        </li>
+        <li>ghostscript：協助imagemagick將PDF檔案換成指定格式的圖檔，網址：
+          <a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank">
+            https://www.ghostscript.com/releases/gsdnld.html
+          </a>
+        </li>
+        <li>備註：請確認上面2個軟體，是否有設定在作業系統「環境變數」PATH中，以便在指令模式下，任何地方都可以執行</li>
+      </ul>
+    </li>
+
+    <li><strong>FileToImg：</strong>在「資訊紀錄管理工具」資料夾裏面，有1個FileToImg檔案，可以將pdf檔案轉成png檔案格式。</li>
+  </ol>
+
+  <!-- 同樣邏輯：不是 iframe 時才插入回首頁提示 -->
+  <script>
+    (function () {
+      if (window.top !== window.self) return;
+
+      var h1 = document.querySelector('h1');
+      if (!h1) return;
+
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分。' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+</body>
+</html>
