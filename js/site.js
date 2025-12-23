@@ -73,7 +73,7 @@ function setFocus(on){
         closeOffcanvasIfOpen();
 
         // ✅ 自動專注閱讀：Download / use / sample
-        setFocus(False);
+        setFocus(false);
 
         // ✅ 滾到內容區（避免覺得沒反應）
         try{
@@ -105,15 +105,6 @@ document.addEventListener('DOMContentLoaded', function(){
   bindFocusButton();
 });
 
-function adjustFrameHeight(){
-  const h = window.innerHeight;
-  document.querySelector('#contentFrame').style.height = (h - 360) + 'px';
-}
-
-window.addEventListener('resize', adjustFrameHeight);
-window.addEventListener('load', adjustFrameHeight);
-  
-  
 })();
 
 (function(){
