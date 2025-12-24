@@ -593,3 +593,69 @@ body.theme-light{
   background-color: #f6f7fb;
   color: #111;
 }
+
+
+/* =========================
+   修正：內容區(iframe)桌機自動吃滿剩餘高度
+   說明：先前高度被 JS 以 (vh-360) 寫死，CSS 改不動；
+         這裡改回由 flex 版面自動撐滿（不再猜 -365/-360）。
+   ========================= */
+.ir-main-inner{
+  /* 已是 flex-column；確保可縮放 */
+  min-height: 0;
+}
+
+#contentArea.ir-frame-wrap{
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: .25rem;
+}
+
+#contentFrame.ir-iframe{
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* 桌機：內容盡量放大 */
+@media (min-width: 992px){
+  #contentFrame.ir-iframe{
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+/* 全尺寸：讓版面變成「上面內容 + 中間 iframe + 底部 footer」 */
+html, body { height: 100%; }
+
+body.ir-page, body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 你的 iframe 區塊：吃滿剩餘空間 */
+#contentArea{
+  flex: 1 1 auto;
+  min-height: 0;        /* 很重要：避免把 footer 擠出畫面 */
+  overflow: hidden;
+}
+
+/* iframe 本體：撐滿 contentArea */
+#contentFrame{
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  border: 0;
+}
+
+/* footer 不要被壓縮 */
+footer, .ir-footer{
+  flex: 0 0 auto;
+}
+
+@supports (height: 100dvh){
+  body.ir-page, body{ min-height: 100dvh; }
+}
+
