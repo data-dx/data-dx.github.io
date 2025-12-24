@@ -659,3 +659,31 @@ footer, .ir-footer{
   body.ir-page, body{ min-height: 100dvh; }
 }
 
+/* =========================
+   Hero 高度再壓縮（桌機 + 手機）
+   目標：約原本的 1/2 ～ 1/3
+   ========================= */
+
+/* 限制 hero 最大高度，避免被撐太高 */
+.ir-hero{
+  max-height: 32vh;        /* 桌機約 1/3 螢幕 */
+  overflow: hidden;
+}
+
+/* row 的上下 gutter 太大，直接壓縮 */
+.ir-hero > .row{
+  --bs-gutter-y: 0.35rem;  /* 原本 g-3 約 1rem */
+}
+
+/* 標籤區塊（表單套印 / 文件設定 / 印表機）下方留白再縮 */
+.ir-hero .d-flex.mb-3{
+  margin-bottom: .4rem !important;
+}
+
+/* 手機：再更小一點 */
+@media (max-width: 575.98px){
+  .ir-hero{
+    max-height: 26vh;      /* 手機再縮 */
+  }
+}
+
