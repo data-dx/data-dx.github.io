@@ -54,7 +54,7 @@ function setFocus(on){
     // 你提到 Download/基本操作/範例特別需要大一點，就自動進入專注模式
     if(!src) return false;
     return (
-      src.indexOf('Download.html') >= 0 ||
+      src.indexOf('download.html') >= 0 ||
       src.indexOf('use/') === 0 ||
       src.indexOf('sample/') === 0
     );
