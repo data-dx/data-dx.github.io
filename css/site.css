@@ -666,7 +666,7 @@ footer, .ir-footer{
 
 /* 限制 hero 最大高度，避免被撐太高 */
 .ir-hero{
-  max-height: 32vh;        /* 桌機約 1/3 螢幕 */
+  max-height: 24vh;        /* 桌機約 1/3 螢幕 */
   overflow: hidden;
 }
 
