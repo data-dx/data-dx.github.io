@@ -687,3 +687,46 @@ footer, .ir-footer{
   }
 }
 
+/* === Hero 區「表格範例」dropdown：改成深色系，與導覽列一致 === */
+
+.ir-hero .dropdown-menu {
+  background-color: #1f2937;      /* 深藍灰，接近 navbar */
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  min-width: 220px;
+  max-width: 260px;
+  padding: 0.35rem 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* dropdown 文字 */
+.ir-hero .dropdown-item {
+  color: #e5e7eb;                 /* 淺灰白 */
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  white-space: nowrap;
+}
+
+/* hover / focus */
+.ir-hero .dropdown-item:hover,
+.ir-hero .dropdown-item:focus {
+  background-color: #374151;      /* hover 深一階 */
+  color: #ffffff;
+}
+
+/* 避免被 hero 裁掉 */
+.ir-hero {
+  overflow: visible;
+}
+
+/* Hero 區 dropdown badge：高度補回來（與其他 ir-badge 一致） */
+.ir-hero .dropdown-toggle.ir-badge {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+
+  /* 這兩行是補高度的關鍵 */
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
