@@ -7,8 +7,7 @@
 
   <!-- 統一使用新版樣式 -->
   <link rel="stylesheet" href="../css/site.css">
- <script src="../js/redirect.js"></script>
-  <script src="../js/ "></script>
+  <script src="../js/redirect.js"></script>
 </head>
 
 <body class="ir-page">
@@ -16,72 +15,67 @@
   <h1>產生文件圖檔</h1>
   <hr>
 
-  <!-- 第一段保留 margin-top:0，避免你覺得 hr 底下多一行 -->
+  <!-- 第一段保留 margin-top:0，避免 hr 底下多一行 -->
   <p style="margin-top:0;">
-    如果您要自行設計文件套印內容或收集文件上的輸入資料，在創建文件設定檔前，需將紙本文件轉換為電子圖檔(如png檔)，以利在上面佈建待輸入的文字或圖檔，也有助於使用者輸入資料時的參考(文件模式)，若有需要，也可以將輸入的資料與文件一同印出。
+   若您要自行設計文件套印內容或進行資料蒐集，在建立「文件設定檔」之前，
+  通常需要先將紙本或電子文件轉換為「底圖」（例如 PNG），
+  以便在底圖上配置輸入欄位（文字或圖章等），
+  並作為使用者輸入資料時的對照（文件模式）。
+  視需求，亦可將輸入資料與底圖一併列印輸出。
   </p>
 
-  <strong>圖檔規格</strong>
+  <strong>圖檔規格（建議）</strong>
   <ol>
-    <li>格式：png圖檔。</li>
-    <li>編輯用：解析度設定為124dpi</li>
-    <li>列印用：解析度設定至少為300dpi</li>
+    <li>格式：PNG 圖檔。</li>
+    <li>編輯用：解析度建議 124 DPI（便於畫面編輯與定位）。</li>
+    <li>列印用：解析度建議至少 300 DPI（確保輸出品質）。</li>
   </ol>
 
   <p>
-    將文件轉成圖檔的方式很多，例如掃描文件、另存檔案、列印成檔案、或用剪截軟體等，說明如下：
+    將文件轉成圖檔的方法很多，例如掃描、另存、列印成檔案，或使用截圖工具等，以下提供常見做法：
   </p>
 
-  <strong>一、直接轉成png圖檔：</strong>
+  <strong>一、直接轉成 PNG 圖檔</strong>
   <ol>
-    <li>紙本文件：用掃描設備掃描。使用事務機掃描時，以最清楚的方式掃描為png圖檔。</li>
-    <li>數位文件：doc、xls*、odt、pdf...等電子檔, 使用檔案編輯工具或列印工具轉換為png圖檔。</li>
+    <li>紙本文件：使用掃描設備掃描，並以較清晰設定輸出為 PNG。</li>
+    <li>電子文件：例如 DOC、XLS（或其他試算表）、ODT、PDF 等，可使用原始編輯工具或「列印成圖檔」方式輸出為 PNG。</li>
   </ol>
 
-  <strong>二、先轉成PDF檔再轉為png圖檔：</strong>
+  <strong>二、先轉成 PDF，再轉為 PNG（建議流程）</strong>
   <p>
-    為追求便利性及取得高品質的圖檔，我們另外提供一個建議的流程及小工具，說明如下：
+    若希望流程更穩定並取得較一致的輸出品質，可先將文件統一轉為 PDF，再由 PDF 轉為 PNG：
   </p>
+
   <ol>
-    <li><strong>轉成PDF</strong>
+    <li>
+      <strong>先轉成 PDF</strong>
       <ul>
-        <li>紙本文件：用掃描設備掃描。使用事務機掃描時，以最清楚的方式掃描為pdf檔案。</li>
-        <li>數位文件：doc、xls*、odt、pdf...等電子檔，可以使用編輯工具或列印工具直接轉換為pdf檔案。</li>
-      </ul>
-    </li>
-    <li><strong>安裝轉檔軟體：</strong>
-      <ul>
-        <li>imagemagick：可將PDF檔案或各種圖檔轉換成指定格式的圖檔，網址：
-          <a href="https://imagemagick.org/index.php" target="_blank">https://imagemagick.org/index.php</a>
-        </li>
-        <li>ghostscript：協助imagemagick將PDF檔案換成指定格式的圖檔，網址：
-          <a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank">
-            https://www.ghostscript.com/releases/gsdnld.html
-          </a>
-        </li>
-        <li>備註：請確認上面2個軟體，是否有設定在作業系統「環境變數」PATH中，以便在指令模式下，任何地方都可以執行</li>
+        <li>紙本文件：以掃描設備掃描，輸出為 PDF。</li>
+        <li>電子文件：DOC、XLS、ODT、PDF 等，可使用編輯工具或列印功能輸出為 PDF。</li>
       </ul>
     </li>
 
-    <li><strong>FileToImg：</strong>在「資訊紀錄管理工具」資料夾裏面，有1個FileToImg檔案，可以將pdf檔案轉成png檔案格式。</li>
+    <li>
+      <strong>安裝轉檔工具（選用）</strong>
+      <ul>
+        <li>
+          ImageMagick：可將 PDF 或各種圖檔轉換為指定格式圖檔。網址：
+          <a href="https://imagemagick.org/index.php" target="_blank" rel="noopener">https://imagemagick.org/index.php</a>
+        </li>
+        <li>
+          Ghostscript：供 ImageMagick 處理 PDF 轉圖之用。網址：
+          <a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank" rel="noopener">https://www.ghostscript.com/releases/gsdnld.html</a>
+        </li>
+        <li>備註：若需在命令列使用，請確認相關程式已正確安裝，且（如有需要）可在環境變數 PATH 中找到。</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>FileToImg（工具）</strong>：在「資訊紀錄管理工具」資料夾內提供 FileToImg，可將 PDF 轉成 PNG。
+    </li>
   </ol>
 
-  <!-- 同樣邏輯：不是 iframe 時才插入回首頁提示 -->
-  <script>
-    (function () {
-      if (window.top !== window.self) return;
 
-      var h1 = document.querySelector('h1');
-      if (!h1) return;
 
-      var note = document.createElement('div');
-      note.className = 'ir-outside-note';
-      note.innerHTML =
-        '本頁為 InfoRec 說明文件的一部分。' +
-        '<a href="/index.html">回 InfoRec 首頁</a>';
-
-      h1.insertAdjacentElement('afterend', note);
-    })();
-  </script>
 </body>
 </html>
