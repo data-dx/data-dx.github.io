@@ -1,3 +1,9 @@
 {
-    "livePreview.defaultPreviewPath": "/index.html"
+    "livePreview.defaultPreviewPath": "/index.html",
+    "workbench.editor.autoLockGroups": {
+        "workbench.editorinputs.searchEditorInput": true,
+        "workbench.input.interactive": true,
+        "notebookOutputEditor": true,
+        "default": true
+    }
 }
