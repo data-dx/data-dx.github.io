@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InfoRec 授權啟動</title>
+  <style>
+    body { font-family: system-ui, "Segoe UI", Arial; margin: 18px; line-height: 1.5; }
+    .box { border: 1px solid #ddd; border-radius: 10px; padding: 14px; margin: 12px 0; }
+    button { padding: 10px 14px; margin: 6px 6px 6px 0; cursor: pointer; }
+    .warn { background: #fff6e6; border: 1px solid #ffd28a; padding: 10px; border-radius: 8px; }
+    .ok { background: #ecfff1; border: 1px solid #9be6b1; padding: 10px; border-radius: 8px; }
+    textarea { width: 100%; height: 180px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .small { color: #666; font-size: 13px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .pill { padding: 2px 8px; border: 1px solid #ddd; border-radius: 999px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h2>InfoRec 啟動</h2>
+
+  <div class="box">
+    <div class="row">
+      <div class="pill" id="pillStatus">狀態：未連接</div>
+      <div class="pill" id="pillWallet">Wallet：-</div>
+      <div class="pill" id="pillDevice">Device：-</div>
+    </div>
+    <p class="small">此頁面由 QR 開啟，DeviceHash 會在網址參數帶入，例如：<code>?d=xxxx</code></p>
+  </div>
+
+  <div class="box warn">
+    <b>安全提示</b>
+    <ul>
+      <li><b>Free 啟動</b>：只會要求「簽名（Signature）」驗證錢包控制權，<b>不會扣款、不會轉帳</b>。</li>
+      <li><b>0.1 SOL / 1 SOL</b>：會要求你在 Phantom 確認一筆「SOL 轉帳」到商家錢包，<b>會扣款</b>（含少量網路手續費）。</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <button id="btnConnect">連接 Phantom</button>
+    <button id="btnFree" disabled>Free（3 個月）簽名啟動</button>
+    <button id="btnPay01" disabled>支付 0.1 SOL（保固一年）</button>
+    <button id="btnPay1" disabled>支付 1 SOL（加值服務）</button>
+    <div id="msg" class="small"></div>
+  </div>
+
+  <div class="box">
+    <b>IR1 授權碼（複製貼回 InfoRec）</b>
+    <textarea id="out" readonly></textarea>
+    <div class="small">若你在手機複製不便，可用 Phantom 內建分享/複製功能，或改用電腦瀏覽器開啟此網址。</div>
+  </div>
+
+  <script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+  <script>
+    // ====== 你要改的參數 ======
+    const MERCHANT_WALLET = "PUT_YOUR_MERCHANT_WALLET_HERE"; // 你的收款地址
+    const RPC_URL = "https://api.mainnet-beta.solana.com";   // 可改成你偏好的 RPC
+    // =========================
+
+    const qs = new URLSearchParams(location.search);
+    const deviceHash = (qs.get("d") || "").trim();
+    const $ = (id) => document.getElementById(id);
+
+    $("pillDevice").textContent = "Device：" + (deviceHash || "-");
+
+    function base64UrlEncode(bytes) {
+      let bin = "";
+      bytes.forEach(b => bin += String.fromCharCode(b));
+      const b64 = btoa(bin);
+      return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+    }
+
+    function textToU8(s) { return new TextEncoder().encode(s); }
+
+    function setMsg(s) { $("msg").textContent = s || ""; }
+    function setOut(s) { $("out").value = s || ""; }
+
+    function getProvider() {
+      const p = window.solana;
+      if (!p || !p.isPhantom) throw new Error("未偵測到 Phantom，請用 Phantom 內建瀏覽器開啟，或安裝 Phantom。");
+      return p;
+    }
+
+    let provider = null;
+    let pubkey = null;
+
+    async function connect() {
+      provider = getProvider();
+      const resp = await provider.connect();
+      pubkey = resp.publicKey;
+      $("pillStatus").textContent = "狀態：已連接";
+      $("pillWallet").textContent = "Wallet：" + pubkey.toBase58();
+      $("btnFree").disabled = false;
+      $("btnPay01").disabled = false;
+      $("btnPay1").disabled = false;
+      setMsg("已連接，請選擇啟動方式。");
+    }
+
+    async function signOnly(tier) {
+      if (!deviceHash) throw new Error("缺少 DeviceHash 參數（網址 ?d=...）。請重新掃 QR。");
+      if (!pubkey) throw new Error("尚未連接錢包。");
+
+      // 建議：帶上 ts + nonce，避免重放（Delphi 可檢查 ts 是否過舊）
+      const ts = Date.now();
+      const nonce = crypto.getRandomValues(new Uint32Array(1))[0].toString(16);
+
+      const payload = {
+        v: 1,
+        tier: tier,               // "FREE"
+        device: deviceHash,
+        wallet: pubkey.toBase58(),
+        tx: "",                   // free 無交易
+        ts: ts,
+        nonce: nonce
+      };
+
+      const msg = "IR1|" + JSON.stringify(payload);
+      const signed = await provider.signMessage(textToU8(msg), "utf8");
+
+      // Phantom 回傳：{ signature: Uint8Array, publicKey }
+      const sigB64u = base64UrlEncode(Array.from(signed.signature));
+
+      const pack = {
+        p: payload,
+        s: sigB64u
+      };
+
+      // IR1.<base64url(JSON)>
+      const ir1 = "IR1." + base64UrlEncode(textToU8(JSON.stringify(pack)));
+      setOut(ir1);
+      setMsg("完成：已產生 IR1 授權碼，請複製貼回 InfoRec。");
+    }
+
+    async function payAndActivate(tier, solAmount) {
+      if (!deviceHash) throw new Error("缺少 DeviceHash 參數（網址 ?d=...）。請重新掃 QR。");
+      if (!pubkey) throw new Error("尚未連接錢包。");
+
+      const connection = new solanaWeb3.Connection(RPC_URL, "confirmed");
+      const toPubkey = new solanaWeb3.PublicKey(MERCHANT_WALLET);
+
+      // 1) 送 SOL 轉帳交易
+      const lamports = Math.round(solAmount * solanaWeb3.LAMPORTS_PER_SOL);
+
+      const latest = await connection.getLatestBlockhash("confirmed");
+      const tx = new solanaWeb3.Transaction({
+        feePayer: pubkey,
+        recentBlockhash: latest.blockhash
+      }).add(
+        solanaWeb3.SystemProgram.transfer({
+          fromPubkey: pubkey,
+          toPubkey: toPubkey,
+          lamports: lamports
+        })
+      );
+
+      setMsg("請在 Phantom 確認轉帳交易…");
+      const sent = await provider.signAndSendTransaction(tx);
+      const sig = sent.signature;
+      setMsg("交易送出，等待確認… Tx=" + sig);
+
+      await connection.confirmTransaction(
+        { signature: sig, blockhash: latest.blockhash, lastValidBlockHeight: latest.lastValidBlockHeight },
+        "confirmed"
+      );
+
+      // 2) 再做 signMessage（把 tx signature 一起簽進去）
+      const ts = Date.now();
+      const nonce = crypto.getRandomValues(new Uint32Array(1))[0].toString(16);
+
+      const payload = {
+        v: 1,
+        tier: tier,               // "STD" / "PRO"
+        device: deviceHash,
+        wallet: pubkey.toBase58(),
+        tx: sig,                  // 交易簽章（Delphi 端會用 RPC 驗證金額）
+        ts: ts,
+        nonce: nonce,
+        sol: solAmount            // 方便顯示/檢查（Delphi 仍以鏈上實際為準）
+      };
+
+      const msg = "IR1|" + JSON.stringify(payload);
+      const signed = await provider.signMessage(textToU8(msg), "utf8");
+      const sigB64u = base64UrlEncode(Array.from(signed.signature));
+
+      const pack = { p: payload, s: sigB64u };
+      const ir1 = "IR1." + base64UrlEncode(textToU8(JSON.stringify(pack)));
+
+      setOut(ir1);
+      setMsg("完成：已產生 IR1 授權碼（含付款交易），請複製貼回 InfoRec。");
+    }
+
+    $("btnConnect").addEventListener("click", async () => {
+      try { await connect(); } catch (e) { setMsg("錯誤：" + (e.message || e)); }
+    });
+
+    $("btnFree").addEventListener("click", async () => {
+      try { setOut(""); setMsg(""); await signOnly("FREE"); } catch (e) { setMsg("錯誤：" + (e.message || e)); }
+    });
+
+    $("btnPay01").addEventListener("click", async () => {
+      try { setOut(""); setMsg(""); await payAndActivate("STD", 0.1); } catch (e) { setMsg("錯誤：" + (e.message || e)); }
+    });
+
+    $("btnPay1").addEventListener("click", async () => {
+      try { setOut(""); setMsg(""); await payAndActivate("PRO", 1.0); } catch (e) { setMsg("錯誤：" + (e.message || e)); }
+    });
+  </script>
+</body>
+</html>
