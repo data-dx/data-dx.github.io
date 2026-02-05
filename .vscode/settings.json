@@ -1,5 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/index.html",
+    "livePreview.defaultPreviewPath": "/community.html",
     "workbench.editor.autoLockGroups": {
         "workbench.editorinputs.searchEditorInput": true,
         "workbench.input.interactive": true,
