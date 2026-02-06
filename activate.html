@@ -24,10 +24,15 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:system-ui,"Segoe UI",Arial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #1e222d 0%, #0f1115 100%);
 }
 .container{
-  max-width:420px;
-  margin:20px auto;
+  max-width:500px;
+  width: 90%;
   padding:0 14px;
 }
 h1{
@@ -182,7 +187,7 @@ btnFree.onclick=async()=>{
 // ===== 0.1 SOL 測試 =====
 btnPay01.onclick=async()=>{
   const conn=new solanaWeb3.Connection('https://api.mainnet-beta.solana.com','confirmed');
-  const to=new solanaWeb3.PublicKey('PUT_YOUR_MERCHANT_WALLET');
+  const to=new solanaWeb3.PublicKey('AWcif9F1t3hYZwyiAKz49ad3MT2H8MSKnURvCgui8e2b');
   const tx=new solanaWeb3.Transaction().add(
     solanaWeb3.SystemProgram.transfer({
       fromPubkey:pubkey,
