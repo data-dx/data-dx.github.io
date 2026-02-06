@@ -1,0 +1,15 @@
+{
+  "short_name": "InfoRec",
+  "name": "InfoRec 軟體啟動",
+  "icons": [
+    {
+      "src": "../favicon.ico",
+      "sizes": "64x64 32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "activate.html",
+  "display": "standalone",
+  "theme_color": "#0f1115",
+  "background_color": "#0f1115"
+}
