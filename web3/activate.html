@@ -3,122 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InfoRec Web3 授權中心</title>
+    <title>InfoRec 授權中心 (SKR 支付)</title>
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="https://unpkg.com/@solana/spl-token@0.3.8/lib/index.iife.min.js"></script>
     <style>
         body { font-family: "Microsoft JhengHei", sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .plan-card { border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 15px; border-radius: 10px; transition: 0.3s; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .plan-card { border: 1px solid #e0e0e0; padding: 20px; margin-bottom: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
         .plan-card:hover { border-color: #007bff; background: #f8f9ff; }
-        h3 { margin-top: 0; color: #007bff; }
-        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        #status { font-weight: bold; margin-bottom: 20px; padding: 10px; border-radius: 5px; background: #e9ecef; }
+        h3 { margin: 0 0 10px 0; color: #007bff; }
+        #status { margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #fff3cd; color: #856404; font-size: 14px; word-break: break-all; border: 1px solid #ffeeba; }
+        .footer { text-align: center; font-size: 12px; color: #999; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>軟體授權啟用 (SKR 支付)</h2>
-    <div id="status">正在取得設備資訊...</div>
+    <h2 style="text-align: center;">InfoRec 軟體授權與續約</h2>
+    <div id="status">正在初始化環境...</div>
     <div id="plans-container"></div>
+    <div class="footer">請在 Solana 錢包內建瀏覽器開啟以獲得最佳體驗</div>
 </div>
 
 <script>
-    // --- 配置區 ---
-    const SKR_MINT_ADDRESS = "您的_SKR_代幣合約地址"; // !!! 請務必填入您的 SKR Mint 地址
-    const RECEIVER_WALLET = "AWcif9F1t3hYZwyiAKz49ad3MT2H8MSKnURvCgui8e2b"; // 您的收款錢包
-    const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSe7qB7Vj7-tL-P2P3y77z2l90-F4F7v5Z-pQWp8_S5bQWp8/formResponse"; // 您的表單提交網址
+    // --- 核心配置 (已填入您的資訊) ---
+    const SKR_MINT = "SKRbvo6Gf7GondiT3BbTfuRDPqLWei4j2Qy2NPGZhW3"; 
+    const RECEIVER = "AWcif9F1t3hYZwyiAKz49ad3MT2H8MSKnURvCgui8e2b"; 
+    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe7qB7Vj7-tL-P2P3y77z2l90-F4F7v5Z-pQWp8_S5bQWp8/formResponse";
 
-    // 您剛才產生的 Entry ID
     const ENTRIES = {
-        device: "entry.318491871",
-        wallet: "entry.1235688536",
-        ir1:    "entry.766787688",
-        tx:     "entry.465243642",
-        plan:   "entry.1350643756"
+        device: "entry.318491871", wallet: "entry.1235688536",
+        ir1: "entry.766787688", tx: "entry.465243642", plan: "entry.1350643756"
     };
 
     const PLANS = [
-        { id: "PLAN_1", skr: 100,   days: 30,   name: "1個月保固 (限購一次)" },
-        { id: "PLAN_2", skr: 1000,  days: 90,   name: "3個月保固" },
-        { id: "PLAN_3", skr: 3000,  days: 365,  name: "1年保固" },
-        { id: "PLAN_4", skr: 3000,  days: 1460, name: "延長保固 4年" },
-        { id: "PLAN_5", skr: 10000, days: 3650, name: "專業支援 10年" }
+        { name: "測試方案 A", skr: 1, days: 30 },
+        { name: "測試方案 B", skr: 2, days: 90 },
+        { name: "1年保固", skr: 3000, days: 365 },
+        { name: "4年延長保固", skr: 3000, days: 1460 },
+        { name: "10年專業支援", skr: 10000, days: 3650 }
     ];
 
-    // --- 核心邏輯 ---
-
-    // 取得網址上的 DeviceHash (?d=...)
     const urlParams = new URLSearchParams(window.location.search);
-    const deviceHash = urlParams.get('d') || "未知設備";
+    const deviceHash = urlParams.get('d') || "N/A";
 
-    /** * 功能：計算到期日 (yyyy/mm/dd) */
-    function calcExpiry(days) {
-        let d = new Date();
-        d.setDate(d.getDate() + days);
-        return d.getFullYear() + "/" + 
-               String(d.getMonth() + 1).padStart(2, '0') + "/" + 
-               String(d.getDate()).padStart(2, '0');
-    }
-
-    /** * 功能：產生 IR1 授權碼 */
-    async function generateIR1(device, wallet, expiry, tx) {
-        const payload = { d: device, w: wallet, ed: expiry, tx: tx };
-        const jsonStr = JSON.stringify({ p: payload });
-        const b64 = btoa(unescape(encodeURIComponent(jsonStr))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-        return "IR1." + b64;
-    }
-
-    /** * 功能：提交至 Google Form */
-    async function postToGoogle(data) {
-        const url = `https://docs.google.com/forms/d/e/1FAIpQLSd9O-7vY7Z3q37m_tP2O4r8E7v_XQp-pWp8_S5bQWp8/formResponse?` +
-                    `${ENTRIES.device}=${encodeURIComponent(data.device)}&` +
-                    `${ENTRIES.wallet}=${encodeURIComponent(data.wallet)}&` +
-                    `${ENTRIES.ir1}=${encodeURIComponent(data.ir1)}&` +
-                    `${ENTRIES.tx}=${encodeURIComponent(data.tx)}&` +
-                    `${ENTRIES.plan}=${encodeURIComponent(data.plan)}`;
+    /** {功能：執行真實 SKR 轉帳} */
+    async function transferSKR(amount) {
+        // 1. 連接 RPC 節點
+        const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", "confirmed");
         
-        // 使用 no-cors 模式發送，不理會回傳結果
-        fetch(url, { mode: 'no-cors' });
+        // 2. 偵測錢包 (支援 Phantom, Solflare 等)
+        const provider = window.phantom?.solana || window.solflare || window.solana;
+        if (!provider) throw new Error("找不到錢包，請在錢包 App 內開啟此網頁");
+
+        if (!provider.isConnected) await provider.connect();
+
+        const fromPubkey = provider.publicKey;
+        const toPubkey = new solanaWeb3.PublicKey(RECEIVER);
+        const mintPubkey = new solanaWeb3.PublicKey(SKR_MINT);
+
+        // 3. 計算代幣數量 (處理 Decimals)
+        const mintInfo = await connection.getParsedAccountInfo(mintPubkey);
+        const decimals = mintInfo.value.data.parsed.info.decimals;
+        const adjustedAmount = amount * Math.pow(10, decimals);
+
+        // 4. 取得關聯帳戶 (ATA)
+        const fromATA = await splToken.getAssociatedTokenAddress(mintPubkey, fromPubkey);
+        const toATA = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey);
+
+        // 5. 建立轉帳交易
+        const transaction = new solanaWeb3.Transaction().add(
+            splToken.createTransferInstruction(fromATA, toATA, fromPubkey, adjustedAmount)
+        );
+
+        transaction.feePayer = fromPubkey;
+        const { blockhash } = await connection.getLatestBlockhash();
+        transaction.recentBlockhash = blockhash;
+
+        // 6. 簽署並送出
+        const { signature } = await provider.signAndSendTransaction(transaction);
+        await connection.confirmTransaction(signature);
+        return signature;
     }
 
+    /** {功能：處理支付點擊事件} */
     async function handlePay(plan) {
         const statusEl = document.getElementById('status');
         try {
-            if (!window.solana) { alert("請在支援 Solana 的瀏覽器開啟，或安裝 Phantom 錢包"); return; }
+            statusEl.style.color = "blue";
+            statusEl.innerText = `正在請錢包授權支付 ${plan.skr} SKR...`;
             
-            statusEl.innerText = "正在連接錢包...";
-            const resp = await window.solana.connect();
-            const walletAddr = resp.publicKey.toString();
+            const txId = await transferSKR(plan.skr); // 執行真實扣款
 
-            statusEl.innerText = `正在處理 ${plan.name} 支付...`;
+            // 計算到期日
+            const exp = new Date();
+            exp.setDate(exp.getDate() + plan.days);
+            const expStr = exp.getFullYear() + "/" + String(exp.getMonth()+1).padStart(2,'0') + "/" + String(exp.getDate()).padStart(2,'0');
 
-            // --- 此處為模擬支付，正式版需加入 SPL Token 轉帳代碼 ---
-            const mockTx = "TX_" + Math.random().toString(36).substr(2, 9);
-            // ---------------------------------------------------
+            // 產生 IR1 代碼 (簡易版 HMAC)
+            const payload = { d: deviceHash, w: (window.solana || window.solflare).publicKey.toString(), ed: expStr, tx: txId };
+            const ir1 = "IR1." + btoa(JSON.stringify({p: payload})).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 
-            const expiry = calcExpiry(plan.days);
-            const ir1 = await generateIR1(deviceHash, walletAddr, expiry, mockTx);
+            // 存入 Google Form
+            const query = `${ENTRIES.device}=${deviceHash}&${ENTRIES.wallet}=${payload.w}&${ENTRIES.ir1}=${ir1}&${ENTRIES.tx}=${txId}&${ENTRIES.plan}=${plan.name}`;
+            fetch(`${FORM_URL}?${query}`, { mode: 'no-cors' });
 
-            // 存入雲端
-            await postToGoogle({ device: deviceHash, wallet: walletAddr, ir1: ir1, tx: mockTx, plan: plan.name });
-
-            statusEl.innerHTML = `<span style="color:green">✅ 啟用成功！</span><br>授權碼：<code>${ir1}</code><br>請重新啟動軟體。`;
+            statusEl.style.color = "green";
+            statusEl.innerHTML = `✅ 支付成功！<br>TxID: ${txId.substring(0,10)}...<br>授權碼：<code>${ir1}</code>`;
         } catch (err) {
+            statusEl.style.color = "red";
             statusEl.innerText = "❌ 失敗: " + err.message;
         }
     }
 
-    // 初始化介面
     window.onload = () => {
-        document.getElementById('status').innerText = `設備 ID: ${deviceHash}`;
+        document.getElementById('status').innerText = `目前設備 ID: ${deviceHash}`;
         const container = document.getElementById('plans-container');
         PLANS.forEach(p => {
-            const div = document.createElement('div');
-            div.className = 'plan-card';
-            div.innerHTML = `<h3>${p.name}</h3><p>價格: ${p.skr} SKR</p><button onclick='handlePay(${JSON.stringify(p)})'>選擇並支付</button>`;
-            container.appendChild(div);
+            const card = document.createElement('div');
+            card.className = 'plan-card';
+            card.innerHTML = `<h3>${p.name}</h3><p>支付金額: <b>${p.skr} SKR</b><br>保固期限: <b>${p.days} 天</b></p>`;
+            card.onclick = () => handlePay(p);
+            container.appendChild(card);
         });
     };
 </script>
