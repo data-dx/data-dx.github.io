@@ -37,7 +37,7 @@
     };
 
     const PLANS = [
-        { name: "測試方案 A2", skr: 1, days: 30 },
+        { name: "測試方案 A3", skr: 1, days: 30 },
         { name: "測試方案 B", skr: 2, days: 90 },
         { name: "1年保固", skr: 3000, days: 365 },
         { name: "4年延長保固", skr: 3000, days: 1460 },
@@ -50,65 +50,71 @@
     /** {功能：執行真實 SKR 轉帳} */
 /** {功能：執行真實 SKR 轉帳，並解決 RPC 403 報錯問題} */
 /** {功能：執行真實 SKR 轉帳，採用 Helius 穩定節點並解決 403 報錯} */
+/** {功能：執行真實 SKR 轉帳，並解決 RPC 403 報錯問題} */
 async function transferSKR(amount) {
-    // 1. 建立連線：使用 Helius 提供的高穩定度節點，確保不被 403 阻擋
-    const RPC_ENDPOINT = "https://mainnet.helius-rpc.com/?api-key=70163351-a9c1-426b-871d-f8a48b948700";
-    
-    const connection = new solanaWeb3.Connection(RPC_ENDPOINT, {
-        commitment: "confirmed",
-        confirmTransactionInitialTimeout: 60000
-    });
+    // 解決 403 關鍵：改用 Solflare 或 Ankr 提供的公共寬鬆節點
+    const RPC_ENDPOINTS = [
+        "https://solana-mainnet.rpc.extensivly.com", // 目前較穩定的公共節點
+        "https://api.mainnet-beta.solana.com"        // 備用節點
+    ];
 
-    try {
-        // 2. 偵測並連接錢包 (支援 Phantom, Solflare 等多種錢包)
-        const provider = window.phantom?.solana || window.solflare || window.solana;
-        if (!provider) throw new Error("找不到相容錢包，請在錢包 App 內建瀏覽器中開啟此網頁");
+    let connection;
+    let success = false;
 
-        if (!provider.isConnected) {
-            await provider.connect();
+    // 嘗試不同的節點直到成功
+    for (let url of RPC_ENDPOINTS) {
+        try {
+            connection = new solanaWeb3.Connection(url, {
+                commitment: "confirmed",
+                confirmTransactionInitialTimeout: 60000
+            });
+            // 測試連線是否有效
+            await connection.getSlot();
+            success = true;
+            console.log("成功連線至節點:", url);
+            break;
+        } catch (e) {
+            console.warn(`節點 ${url} 連線失敗，嘗試下一個...`);
         }
-
-        const fromPubkey = provider.publicKey;
-        const toPubkey = new solanaWeb3.PublicKey(RECEIVER);
-        const mintPubkey = new solanaWeb3.PublicKey(SKR_MINT);
-
-        // 3. 獲取代幣精確度 (Decimals)
-        const mintInfo = await connection.getParsedAccountInfo(mintPubkey);
-        if (!mintInfo || !mintInfo.value) throw new Error("無法獲取 SKR 代幣資訊，請確認 Mint 地址");
-        
-        const decimals = mintInfo.value.data.parsed.info.decimals;
-        const adjustedAmount = amount * Math.pow(10, decimals);
-
-        // 4. 取得傳送者與接收者的代幣帳戶 (ATA)
-        const fromTokenAccount = await splToken.getAssociatedTokenAddress(mintPubkey, fromPubkey);
-        const toTokenAccount = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey);
-
-        // 5. 建立轉帳交易指令
-        const transaction = new solanaWeb3.Transaction().add(
-            splToken.createTransferInstruction(
-                fromTokenAccount, 
-                toTokenAccount, 
-                fromPubkey, 
-                adjustedAmount
-            )
-        );
-
-        transaction.feePayer = fromPubkey;
-        const { blockhash } = await connection.getLatestBlockhash();
-        transaction.recentBlockhash = blockhash;
-
-        // 6. 請求錢包簽署並送出交易
-        const { signature } = await provider.signAndSendTransaction(transaction);
-        
-        // 7. 等待區塊鏈確認結果
-        await connection.confirmTransaction(signature);
-        return signature;
-
-    } catch (err) {
-        // 捕捉並拋出更友善的錯誤訊息
-        console.error("支付程序錯誤:", err);
-        throw new Error(err.message || "交易失敗，請確認錢包餘額是否充足");
     }
+
+    if (!success) throw new Error("目前所有區塊鏈節點繁忙中，請稍後再試。");
+
+    // 2. 偵測錢包 (支援 Phantom, Solflare 等)
+    const provider = window.phantom?.solana || window.solflare || window.solana;
+    if (!provider) throw new Error("找不到錢包，請在錢包 App 內開啟此網頁");
+
+    if (!provider.isConnected) await provider.connect();
+
+    const fromPubkey = provider.publicKey;
+    const toPubkey = new solanaWeb3.PublicKey(RECEIVER);
+    const mintPubkey = new solanaWeb3.PublicKey(SKR_MINT);
+
+    // 3. 計算代幣數量 (處理 Decimals)
+    // 注意：若連線被擋，這一步 getParsedAccountInfo 就會噴 403
+    const mintInfo = await connection.getParsedAccountInfo(mintPubkey);
+    if (!mintInfo.value) throw new Error("找不到 SKR 代幣資訊，請確認 Mint 地址是否正確");
+    
+    const decimals = mintInfo.value.data.parsed.info.decimals;
+    const adjustedAmount = amount * Math.pow(10, decimals);
+
+    // 4. 取得關聯帳戶 (ATA)
+    const fromATA = await splToken.getAssociatedTokenAddress(mintPubkey, fromPubkey);
+    const toATA = await splToken.getAssociatedTokenAddress(mintPubkey, toPubkey);
+
+    // 5. 建立轉帳交易
+    const transaction = new solanaWeb3.Transaction().add(
+        splToken.createTransferInstruction(fromATA, toATA, fromPubkey, adjustedAmount)
+    );
+
+    transaction.feePayer = fromPubkey;
+    const { blockhash } = await connection.getLatestBlockhash();
+    transaction.recentBlockhash = blockhash;
+
+    // 6. 簽署並送出
+    const { signature } = await provider.signAndSendTransaction(transaction);
+    await connection.confirmTransaction(signature);
+    return signature;
 }
 
     transaction.feePayer = fromPubkey;
