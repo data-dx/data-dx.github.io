@@ -48,9 +48,17 @@
     const deviceHash = urlParams.get('d') || "N/A";
 
     /** {功能：執行真實 SKR 轉帳} */
-    async function transferSKR(amount) {
-        // 1. 連接 RPC 節點
-        const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", "confirmed");
+async function transferSKR(amount) {
+    // 修正：改用 Helius 或是 Solflare 提供的公共節點，通常比官方節點穩定
+    const RPC_ENDPOINT = "https://mainnet.helius-rpc.com/?api-key=您的金鑰"; 
+    // 或者暫時改用這個較寬鬆的公共節點測試：
+    const ALT_RPC = "https://solana-mainnet.g.alchemy.com/v2/demo"; 
+    
+    // 建立連線，並加上與錢包通訊的 Commit 配置
+    const connection = new solanaWeb3.Connection(ALT_RPC, {
+        commitment: "confirmed",
+        confirmTransactionInitialTimeout: 60000
+    });
         
         // 2. 偵測錢包 (支援 Phantom, Solflare 等)
         const provider = window.phantom?.solana || window.solflare || window.solana;
