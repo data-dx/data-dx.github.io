@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>輸入處理｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>輸入處理</h1>
+  <hr>
+
+  <p>本軟體提供「輸入處理」與「資料查詢」兩項功能：</p>
+
+  <ol class="ol-l1">
+    <li>
+      <strong>輸入處理</strong>：由開發者預先定義動作，分為五大類：
+      <ul class="ul-l1">
+        <li>前置處理：游標進入欄位立即執行</li>
+        <li>後置處理：游標離開欄位立即執行</li>
+        <li>操作：輸入過程限制檢查</li>
+        <li>日期：日期專用處理</li>
+        <li>進階：其他特殊功能</li>
+      </ul>
+    </li>
+  </ol>
+
+  <figure>
+    <img class="winimg" src="images/FP_KeyInDP1.jpg" alt="輸入處理工作頁">
+    <figcaption class="TACenter">輸入處理工作頁</figcaption>
+  </figure>
+
+  <h2>輸入處理功能表</h2>
+
+  <table>
+    <tbody>
+      <tr class="trtitle">
+        <th>類別</th>
+        <th>編號</th>
+        <th>功能</th>
+        <th>參數一</th>
+        <th>參數二</th>
+        <th>說明</th>
+      </tr>
+
+      <tr>
+        <td rowspan="2"><strong>計算功能</strong></td>
+        <td>1</td>
+        <td>金額加總</td>
+        <td>前項數目</td>
+        <td></td>
+        <td>將指定的前項資料加總後輸出。</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>數量 × 單價</td>
+        <td></td>
+        <td></td>
+        <td>將前兩項資料相乘後輸出為目前值。</td>
+      </tr>
+
+      <tr>
+        <td rowspan="2"><strong>日期</strong></td>
+        <td>1</td>
+        <td>免輸入分隔符號日期</td>
+        <td></td>
+        <td></td>
+        <td>1050127 或 20160127 轉為 2016/01/27。</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>自動加入日期</td>
+        <td>月</td>
+        <td>日</td>
+        <td>今日自動帶入，可指定偏移。</td>
+      </tr>
+
+      <tr>
+        <td rowspan="7"><strong>輸入設定</strong></td>
+        <td>1</td>
+        <td>限定數字</td>
+        <td></td>
+        <td></td>
+        <td>限制只能輸入數字與 - .</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>限制長度</td>
+        <td>長度</td>
+        <td></td>
+        <td>限制文字長度（如帳號 14 碼）。</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>英文大寫</td>
+        <td></td>
+        <td></td>
+        <td>abc → ABC。</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>英數半形</td>
+        <td></td>
+        <td></td>
+        <td>全形 → 半形。</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>英數全形</td>
+        <td></td>
+        <td></td>
+        <td>半形 → 全形。</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>依字數分割字串</td>
+        <td>分割</td>
+        <td></td>
+        <td>字串超過指定長度自動換行。</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>擇一輸入</td>
+        <td></td>
+        <td></td>
+        <td>依輸入值決定顯示內容。</td>
+      </tr>
+
+      <tr>
+        <td rowspan="8"><strong>資料查詢</strong></td>
+        <td>1</td>
+        <td>加入套印者代號</td>
+        <td></td>
+        <td></td>
+        <td>自動帶入套印者代號。</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>加入帳戶名稱</td>
+        <td></td>
+        <td></td>
+        <td>帶入帳戶名稱。</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>加入銀行帳號</td>
+        <td></td>
+        <td></td>
+        <td>帶入銀行帳號。</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>引用前次資料</td>
+        <td></td>
+        <td></td>
+        <td>列印後自動帶入上次內容。</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>登錄流水號</td>
+        <td></td>
+        <td></td>
+        <td>引用未使用票號。</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>西元日期流水號</td>
+        <td>長度</td>
+        <td></td>
+        <td>產生日字串＋流水號。</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>流水號</td>
+        <td></td>
+        <td></td>
+        <td>列印後自動 +1。</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>關鍵字查詢客戶</td>
+        <td></td>
+        <td></td>
+        <td>輸入關鍵字自動帶入客戶資料。</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</body>
+</html>

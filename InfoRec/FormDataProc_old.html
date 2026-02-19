@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <title>資料處理設定｜InfoRec</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/site.css">
+   <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>資料處理設定</h1>
+  <hr>
+
+  <p>此視窗可以設定資料字串類型，套印項目資料處理方式，該套印項目必需先於「資料配置設定」視窗，被置於「取得資料項目」或「共享資料項目」區域，才能顯示在此視窗內進行資料處理設定。</p>
+
+  <figure>
+    <img class="winimg" src="images/FormDPSet1.jpg" alt="套印處理設定視窗">
+    <figcaption class="TACenter">套印處理設定視窗</figcaption>
+  </figure>
+
+  <ol>
+    <li>資料處理管理：
+      <ul class="lstdlz">
+        <li>增加資料處理功能流程：
+          <ul>
+            <li>於「套印項目」區域內點選要設定資料處理功能的套印項目。例如金額。</li>
+            <li>於「處理功能 &gt; 類別」點選數字。</li>
+            <li>於「處理功能 &gt; 類型」點選「123 -&gt; &lt;123&gt;」</li>
+            <li>前置字串：輸入「$」，讓字串的最面加上「$」字串。</li>
+            <li>附加字串：例如在字串後面加入「-」。</li>
+          </ul>
+        </li>
+        <li>刪除資料處理功能：請在資料處理功能區域，直接用滑鼠左鍵於要刪除的功能上面，快點2下即可。</li>
+      </ul>
+    </li>
+
+    <li>工作頁說明：
+      <ul class="lstdlz">
+        <li>處理功能：將輸入的資料轉換成套印所需的格式，例如將字串逐字分開。</li>
+        <li>進階處理：套印項目可以隨著資料內容產生不同的套印格式（單行或多行、顏色、大小）。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <figure>
+    <img class="winimg" src="images/FormDPSet2.jpg" alt="處理功能工作頁">
+    <figcaption class="TACenter">處理功能工作頁</figcaption>
+  </figure>
+
+  <figure>
+    <img class="winimg" src="images/FormDPSet3.jpg" alt="進階功能工作頁">
+    <figcaption class="TACenter">進階功能工作頁</figcaption>
+  </figure>
+
+  <p><strong>處理功能說明一覽表</strong></p>
+
+  <table>
+    <tbody>
+      <tr class="trtitle">
+        <th>類別</th>
+        <th>編號</th>
+        <th>功能</th>
+        <th>參數一</th>
+        <th>參數二</th>
+        <th>說明</th>
+      </tr>
+
+      <tr>
+        <td class="th20" rowspan="4"><strong>日期</strong></td>
+        <td class="th20">1</td>
+        <td class="th120">日期直接複製</td>
+        <td class="th50"></td>
+        <td class="th50"></td>
+        <td class="th50em">直接複製</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>2013/10/20 -&gt; 102 10 20</td>
+        <td></td>
+        <td></td>
+        <td>改為臺灣日期，將年月日分開，並去掉分隔符號</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>2014/04/01 -&gt; 103/04/01</td>
+        <td>分隔符號1</td>
+        <td>分隔符號2</td>
+        <td>改為臺灣日期，可以指定分隔符號</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>2013/10/20 -&gt; 2013 10 20</td>
+        <td></td>
+        <td></td>
+        <td>將日期分開年月日，並去掉分隔符號</td>
+      </tr>
+
+      <tr>
+        <td rowspan="6"><strong>數字</strong></td>
+        <td>1</td>
+        <td>1000 -&gt; 1,000</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>加入千分符號，可加入其他前置字串如 $ 或 -</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>1 -&gt; ONE ONLY.</td>
+        <td></td>
+        <td></td>
+        <td>將數字轉為英文金額格式</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>123 -&gt; 臺佰貮拾參</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>將數字轉為臺灣金額，並可加入收尾字串（如「元整」）</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>123 -&gt; 壹 貮 參</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>將數字逐字分開（臺灣金額）</td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td>123 -&gt; 1 2 3</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>將數字分開，由左至右填碼（例：金額）</td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td>123 -&gt; 1 2 3</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>將數字分開，由右至左填碼（例：帳號）</td>
+      </tr>
+
+      <tr>
+        <td rowspan="7"><strong>字串</strong></td>
+        <td>1</td>
+        <td>字串直接複製</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>ABC -&gt; A B C</td>
+        <td>前置字串</td>
+        <td>附加字串</td>
+        <td>將字串逐字分開</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>依字數分割字串</td>
+        <td>字數</td>
+        <td></td>
+        <td>例：超過 10 碼就分成 2 段</td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>依識別碼分割字串</td>
+        <td>識別碼</td>
+        <td></td>
+        <td>例：04-12345678-123 → 04 12345678 123</td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td>多選一</td>
+        <td>符號</td>
+        <td>選項數</td>
+        <td>由輸入資料判斷群組項目可取得資料者</td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td>依字數縮小或分割字串</td>
+        <td>縮小</td>
+        <td>分割</td>
+        <td>例：支票憑票支付，依字數決定縮小或分割</td>
+      </tr>
+
+      <tr>
+        <td>7</td>
+        <td>補碼 (pad)</td>
+        <td>長度</td>
+        <td>補碼字串</td>
+        <td>以補碼方式補到指定長度</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <p class="TACenterU">進階功能（列印前）：</p>
+
+  <ul class="lstdlz">
+    <li>依群組成員數分配資料：
+      <ul class="lstla">
+        <li>參數：無</li>
+        <li>應用：英文支票金額限定 2 行</li>
+        <li>內容設計：文字方塊固定寬度</li>
+        <li>功能：若超過群組行數 → 先縮小字體 → 等於群組數時才分配</li>
+      </ul>
+    </li>
+
+    <li>以單行文字呈現：
+      <ul class="lstla">
+        <li>參數：最小字體</li>
+        <li>應用：文字方塊太小、字數太多時</li>
+        <li>內容設計：支援 1 行或多行。多行時，以最小字體估高度。預設字體大小供 1 行使用。</li>
+        <li>功能：資料太多時，文字以 1 行為目標並持續縮小直至最小字體。</li>
+      </ul>
+    </li>
+
+    <li>限制文字行數：
+      <ul class="lstla">
+        <li>參數：行數</li>
+        <li>應用：多行使用者輸入過多要限制</li>
+        <li>內容設計：固定寬高的文字方塊</li>
+        <li>功能：資料過多時縮小到行數等於參數為止。</li>
+      </ul>
+    </li>
+  </ul>
+
+</body>
+</html>
