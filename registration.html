@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InfoRec｜Registration Guide</title>
+  <link rel="stylesheet" href="css/site.css">
+  <script src="../js/redirect.js"></script>
+  <style>
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+    .btn-group-lang { margin-bottom: 20px; text-align: right; }
+    .btn-lang { 
+      padding: 5px 15px; border: 1px solid #ccc; background: #fff; 
+      cursor: pointer; border-radius: 4px; font-size: 14px; transition: 0.3s;
+    }
+    .btn-lang.active { background: #212529; color: #fff; border-color: #212529; }
+    .btn-lang:hover:not(.active) { background: #f8f9fa; }
+    .step-title { font-weight: bold; color: #0d6efd; margin-top: 10px; display: block; }
+    .badge-protocol { font-size: 0.8rem; background: #eee; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+
+<body class="ir-page">
+
+  <div class="btn-group-lang sticky-top pt-2 bg-white pb-2 border-bottom mb-4">
+    <button class="btn-lang active" onclick="switchLang('tw', this)">繁體中文</button>
+    <button class="btn-lang" onclick="switchLang('en', this)">English</button>
+    <button class="btn-lang" onclick="switchLang('cn', this)">简体中文</button>
+  </div>
+
+  <div id="lang-tw" class="lang-section active">
+    <h1>InfoRec 軟體註冊與授權指南</h1>
+    <hr>
+    <p class="ir-lead">感謝您採用 InfoRec 資訊紀錄管理工具。為了確保您的軟體權益與完整的保固服務，請參考以下流程完成註冊。</p>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">一、 準備工作：下載與安裝</div>
+      <div class="mb-3">
+        <b>(一) Windows 桌面工具 (InfoRec.exe)</b><br>
+        請至官方網站 <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> 下載並執行 InfoRec.exe。這是您進行資訊管理、數據儲存文件套印與各項服務的核心工具。
+      </div>
+      <div>
+        <b>(二) 支付與授權工具 (區塊鏈錢包)</b><br>
+        本系統採用 Solana 區塊鏈進行授權驗證，請依您的設備準備：
+        <ul class="mb-0 mt-1 small">
+          <li><b>1. Solana 手機用戶：</b>請至 Solana dApp Store 下載「InfoRec App」。</li>
+          <li><b>2. 一般電腦/手機用戶：</b>請在瀏覽器安裝 Phantom 或 Solflare 錢包外掛，並透過 PWA 網頁版進行授權。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">二、 註冊流程說明</div>
+      <p class="small text-muted">本系統提供「線上授權」與「離線申請授權」兩種方式：</p>
+      
+      <div class="mb-4">
+        <div class="fw-bold text-primary border-bottom pb-1">【方案甲：線上授權 (預設)】</div>
+        <p class="small text-muted mt-2">支付完成後立即取得雲端授權，自動完成註冊。</p>
+        <span class="step-title">步驟 1：於桌面工具提交申請</span>
+        <ul class="mb-2">
+          <li>開啟 InfoRec.exe，點選「支援 > 加入社群 > 申請註冊」。</li>
+          <li>填寫用戶名稱、聯絡人、電子郵件與聯絡電話。</li>
+          <li>選擇硬體指紋來源（電腦名稱或隨身碟磁區），點選「執行」。</li>
+          <li>系統將同時產生：
+            <ul>
+              <li>一般用戶：支付網址 (PWA)。</li>
+              <li>Solana 手機用戶：QR Code</li>
+            </ul>
+          </li>
+        </ul>
+        <span class="step-title">步驟 2：使用錢包支付</span>
+        <ul class="mb-2">
+          <li>掃描 QR Code 或進入網址，選擇您的訂閱方案。</li>
+          <li>於錢包視窗確認並授權傳送 <b>SKR 代幣</b>。</li>
+        </ul>
+        <span class="step-title">步驟 3：啟動軟體授權</span>
+        <ul class="mb-0">
+          <li>回到桌面工具，點選「支援 > 加入社群 > 執行註冊」。</li>
+          <li>系統將自動驗證鏈上轉帳結果，確認無誤後即完成註冊。</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="mb-0">
+        <div class="fw-bold text-secondary border-bottom pb-1">【方案乙：離線申請授權】</div>
+        <p class="small text-muted mt-2">適用於無法親自操作虛擬貨幣、或設備處於離線環境之用戶。</p>
+        <span class="step-title">步驟 1：產生申請檔案</span>
+        <ul class="mb-2">
+          <li>於申請註冊視窗選擇「離線申請授權」。</li>
+          <li>填寫資料後點選「執行」，系統將自動產生申請檔並引導您發送郵件給代辦者。</li>
+        </ul>
+        <span class="step-title">步驟 2：轉帳給代辦人</span>
+        <ul class="mb-2">
+          <li>若您無特定代辦人，請將金融匯款證明提供給本軟體管理人員，由管理人員進入「代辦模式」為您傳送 SKR 代幣並產生授權。</li>
+        </ul>
+        <span class="step-title">步驟 3：匯入授權檔完成註冊</span>
+        <ul class="mb-0">
+          <li>收到代辦人員回傳的「授權檔案」後，將其存入 InfoRec 程式資料夾。</li>
+          <li>於註冊畫面勾選「檔案匯入註冊」，再點選「執行註冊」即可啟用。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">三、 代辦模式</div>
+      <p class="mb-2 small">此模式用於協助他人完成 SKR 轉帳並取得授權檔案：</p>
+      <ol class="mb-0">
+        <li>代辦人員開啟註冊視窗，選擇「代辦模式」。</li>
+        <li>點選讀取申請者提供的「授權申請檔案」。</li>
+        <li>由代辦人員之錢包完成 SKR 轉帳，系統將產生該設備專用的「授權檔案」。</li>
+        <li>代辦人員將檔案轉交給申請者，依「方案乙」步驟 3 匯入即可。</li>
+      </ol>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 border-danger border">
+      <div class="fw-semibold mb-2 text-danger">⚠️ 注意事項</div>
+      <ul class="mb-0 small">
+        <li><b>1. 【硬體綁定】</b>註冊資料會與您的硬體設備關聯，採用電腦名稱註冊者，若需更換電腦，請務必將新電腦名稱修改為與原註冊名稱一致。</li>
+        <li><b>2. 【退款條款】</b>區塊鏈交易具有不可逆性，一旦成功後無法退款。請於付款前充分試用軟體，確認符合您的期待。</li>
+        <li><b>3. 【保固延續】</b>續約保固將由原到期日自動順延，不會縮短您既有的權益天數。</li>
+        <li><b>4. 【技術支援】</b>若有任何註冊或軟體使用上的問題，歡迎隨時與本軟體技術支援團隊（管理者）聯繫。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="lang-en" class="lang-section">
+    <h1>InfoRec Registration & Licensing Guide</h1>
+    <hr>
+    <p class="ir-lead">Thank you for choosing InfoRec. To ensure your software rights and full warranty services, please complete the registration process below.</p>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">I. Prerequisites: Download & Installation</div>
+      <div class="mb-3">
+        <b>(1) Windows Desktop Tool (InfoRec.exe)</b><br>
+        Please visit <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> to download and run InfoRec.exe. This is your core tool for data management and services.
+      </div>
+      <div>
+        <b>(2) Payment & Licensing Tools (Blockchain Wallet)</b><br>
+        The system uses Solana blockchain for verification. Please prepare based on your device:
+        <ul class="mb-0 mt-1 small">
+          <li><b>1. Solana Phone Users:</b> Download "InfoRec App" from the Solana dApp Store.</li>
+          <li><b>2. Regular Users:</b> Install Phantom or Solflare wallet extension and authorize via PWA version.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">II. Registration Process</div>
+      <p class="small text-muted">The system provides two methods: "Online Activation" and "Offline License Request":</p>
+
+      <div class="mb-4">
+        <div class="fw-bold text-primary border-bottom pb-1">【Option A: Online Activation (Default)】</div>
+        <p class="small text-muted mt-2">Get cloud license immediately after payment to complete registration automatically.</p>
+        <span class="step-title">Step 1: Submit Request via Desktop Tool</span>
+        <ul class="ms-3">
+          <li>Open InfoRec.exe, go to "Support > Join Community > Register".</li>
+          <li>Fill in User Name, Contact, Email, and Phone Number.</li>
+          <li>Select Hardware Fingerprint source (PC Name or USB ID) and click "Execute".</li>
+          <li>The system generates:
+            <ul>
+              <li>Regular Users: Payment URL (PWA).</li>
+              <li>Solana Phone Users: QR Code</li>
+            </ul>
+          </li>
+        </ul>
+        <span class="step-title">Step 2: Payment via Wallet</span>
+        <ul class="ms-3">
+          <li>Scan QR Code or follow URL, then choose your subscription plan.</li>
+          <li>Authorize the <b>SKR token</b> transfer in your wallet.</li>
+        </ul>
+        <span class="step-title">Step 3: Activate Software License</span>
+        <ul class="ms-3">
+          <li>Return to Desktop Tool, click "Execute Registration".</li>
+          <li>System verifies on-chain transaction and completes activation.</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="mb-0">
+        <div class="fw-bold text-secondary border-bottom pb-1">【Option B: Offline License Request】</div>
+        <p class="small text-muted mt-2">For users unable to use crypto or devices in offline environments.</p>
+        <span class="step-title">Step 1: Generate Request File</span>
+<ul class="ms-3">
+  <li>Select "Offline License Request", fill info, and click "Execute" to generate a request file.</li>
+</ul>
+<span class="step-title">Step 2: Transfer to Agent</span>
+<ul class="ms-3">
+  <li>If you do not have a specific agent, provide payment proof to our management staff. They will use "Proxy Mode" to process your license.</li>
+</ul>
+<span class="step-title">Step 3: Import License File</span>
+<ul class="ms-3">
+  <li>Place the received <b>License File</b> in the InfoRec folder.</li>
+  <li>Check "Import from File" and click "Execute Registration" to activate.</li>
+</ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">III. Proxy Mode</div>
+      <p class="mb-2 small">Used to assist others in completing SKR transfers and obtaining license files:</p>
+      <ol class="ms-3">
+        <li>Agent opens registration, selects "Proxy Mode".</li>
+        <li>Load the ".req" file provided by the applicant.</li>
+        <li>Complete payment via agent's wallet to generate a device-specific license.</li>
+        <li>Deliver the file to the applicant for import (Step 3 of Option B).</li>
+      </ol>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 border-danger border">
+      <div class="fw-semibold mb-2 text-danger">⚠️ Important Notes</div>
+      <ul class="mb-0 small">
+        <li><b>1. [Hardware Lock]</b> License is bound to your hardware. If changing PCs, PC name must match original.</li>
+        <li><b>2. [Refund Policy]</b> Blockchain transactions are irreversible. No refunds after payment.</li>
+        <li><b>3. [Warranty Extension]</b> Renewals automatically extend from original expiration date.</li>
+        <li><b>4. [Technical Support]</b> For any issues, contact the Technical Support Team (Admin).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="lang-cn" class="lang-section">
+    <h1>InfoRec 软件注册与授权指南</h1>
+    <hr>
+    <p class="ir-lead">感谢您采用 InfoRec 信息记录管理工具。为了确保您的软件权益与完整的质保服务，请参考以下流程完成注册。</p>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">一、 准备工作：下载与安装</div>
+      <div class="mb-3">
+        <b>(一) Windows 桌面工具 (InfoRec.exe)</b><br>
+        请至官方网站 <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> 下载并运行 InfoRec.exe。
+      </div>
+      <div>
+        <b>(二) 支付与授权工具 (区块链钱包)</b><br>
+        本系统采用 Solana 区块链验证，请根据您的设备准备：
+        <ul class="mb-0 mt-1 small">
+          <li><b>1. Solana 手机用户：</b>请至 Solana dApp Store 下载“InfoRec App”。</li>
+          <li><b>2. 普通用户：</b>请在浏览器安装 Phantom 或 Solflare 钱包插件并通过 PWA 授权。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">二、 注册流程说明</div>
+      <p class="small text-muted">本系统提供“线上授权”与“离线申请授权”两种方式：</p>
+      
+      <div class="mb-4">
+        <div class="fw-bold text-primary border-bottom pb-1">【方案甲：线上授权 (默认)】</div>
+        <p class="small text-muted mt-2">支付完成后立即获得云端授权，自动完成注册。</p>
+        <span class="step-title">步骤 1：在桌面工具提交申请</span>
+        <ul class="ms-3">
+          <li>开启 InfoRec.exe，点击“支持 > 加入社区 > 申请注册”。</li>
+          <li>填写用户名、联系人、电子邮箱与联系电话。</li>
+          <li>选择硬件指纹来源（电脑名称或闪存盘分区），点击“执行”。</li>
+          <li>系统生成：支付网址 (PWA) 或 二维码 (QR Code)。</li>
+        </ul>
+        <span class="step-title">步骤 2：使用钱包支付</span>
+        <ul class="ms-3">
+          <li>扫描二维码或访问网址，授权发送 <b>SKR 代币</b>。</li>
+        </ul>
+        <span class="step-title">步骤 3：启动软件授权</span>
+        <ul class="ms-3">
+          <li>回到桌面工具，点击“执行注册”即可完成启用。</li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="mb-0">
+        <div class="fw-bold text-secondary border-bottom pb-1">【方案乙：离线申请授权】</div>
+        <p class="small text-muted mt-2">适用于无法亲自操作虚拟货币，或设备处于断网环境的用户。</p>
+        <span class="step-title">步骤 1：生成申请文件</span>
+<ul class="ms-3">
+  <li>在注册窗口选择“离线申请授权”，填写资料后点击“执行”生成申请文件。</li>
+</ul>
+<span class="step-title">步骤 2：转账给代办人</span>
+<ul class="ms-3">
+  <li>若您没有特定代办人，请将转账凭证提供给本软件管理人员，由管理人员进入“代办模式”为您发送 SKR 並生成授权。</li>
+</ul>
+<span class="step-title">步骤 3：导入授权文件</span>
+<ul class="ms-3">
+  <li>将接收到的<b>授权文件</b>放入目录，勾选“文件导入注册”并点击执行即可。</li>
+</ul>
+      </div>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-2">三、 代办模式</div>
+      <p class="mb-2 small">此模式用于协助他人完成 SKR 转账并获取授权文件：</p>
+      <ol class="ms-3">
+        <li>代办人员打开注册窗口，选择“代办模式”。</li>
+        <li>读取申请者提供的“授权申请文件”。</li>
+        <li>由代办人员的钱包完成 SKR 转账，系统将生成该设备专用的“授权文件”。</li>
+        <li>代办人员将文件转交给申请者，按方案乙步骤 3 导入即可。</li>
+      </ol>
+    </div>
+
+    <div class="ir-card p-3 p-md-4 border-danger border">
+      <div class="fw-semibold mb-2 text-danger">⚠️ 注意事项</div>
+      <ul class="mb-0 small">
+        <li><b>1. 【硬件绑定】</b>授权与硬件关联。更换电脑时，请保持电脑名称一致。</li>
+        <li><b>2. 【退款说明】</b>区块链交易不可逆，一旦成功无法退款。</li>
+        <li><b>3. 【保固延续】</b>续约保固由原到期日自动顺延，不会缩短既有权益。</li>
+        <li><b>4. 【技术支持】</b>如有任何问题，欢迎随时与技术支持团队（管理员）联系。</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function switchLang(lang, btn) {
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.getElementById('lang-' + lang).classList.add('active');
+      document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
+
+</body>
+</html>
