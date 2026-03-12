@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>文件內容設計｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>文件內容設計</h1>
+  <hr>
+
+  <p><strong>前言：</strong>本軟體與其它列印或資料收集軟體最大的差異在於可以視覺化及完全客制化的設計。列印內容、記錄的位置都以視覺化方式呈現，可以用滑鼠直接移動；而內容的項目及多寡，可以由使用者自由發揮。</p>
+  <p>套印項目是指在文件上面加入要列印（收集資料）的字串或圖案。</p>
+
+  <h2>主要功能：</h2>
+  <ol class="ol-l1">
+    <li>
+      <a href="FormDocDesign_Base.html" target="content">公用區</a>：
+      <ul class="ul-l1">
+        <li>指定套印項目的大小是否為自動縮放，也可以修改顯示名稱、內容範例。</li>
+        <li>備註：設計支票類型文件時，可以將「平行線」的顯示名稱設定為「CrossedCheck」，「禁止背書轉讓」顯示名稱設定為「Nonnegotiable」，系統就能提供是否套印「平行線」及「禁止背書轉讓」的功能選項，讓使用者不需改變「文件內容設計」，就能決定是否套印「平行線」及「禁止背書轉讓」。</li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="FormDocDesign_Item.html" target="content">套印項目管理</a>：
+      管理文件中的套印項目，可以將字串類型或圖案類型的項目進行新增或刪除。
+      <ul class="ul-l1">
+        <li>字串類型項目：圖案之外的內容，全部歸類為字串類型，因此字串包含了文字、數字類型的套印資料。</li>
+        <li>圖案類型項目：可以加入圖檔。</li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="FormDocDesign_attrs.html" target="content">項目屬性設計</a>：
+      對字串類的套印項目進行字體大小、顏色、外框等設定，或對圖案類的套印項目指定圖案來源。
+    </li>
+  </ol>
+
+  <h2>支援功能：</h2>
+  <ol class="ol-l1">
+    <li>
+      <a href="FormDataAlloc.html" target="content">資料配置</a>：
+      對使用者輸入（或匯入）的資料進行配置，例如將日期分配給 3 個套印項目（年、月、日）。
+    </li>
+    <li>
+      <a href="FormDataProc.html" target="content">資料處理</a>：
+      對使用者輸入（或匯入）的資料進行處理，例如將日期切割為年、月、日，或將「1000」轉為「新臺幣壹仟元整」。
+    </li>
+  </ol>
+
+  <figure>
+    <img class="winimg" src="images/FormDocDesign.png" alt="套印內容設定視窗">
+    <figcaption class="TACenter">套印內容設定視窗</figcaption>
+  </figure>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>文件管理｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>文件管理</h1>
+  <hr>
+
+  <p>文件管理可以新增、刪除並修改文件相關資料（不含內容設計）。</p>
+
+  <figure>
+    <img class="winimg" src="images/FormDocInfo.png" alt="文件管理視窗">
+    <figcaption class="TACenter">文件管理視窗</figcaption>
+  </figure>
+
+  <h2>文件設定</h2>
+  <ol class="ol-l1">
+    <li>
+      領域代號：
+      <ul class="ul-l1">
+        <li>用於分類管理（如銀行、金融、地區）。</li>
+        <li>例：<code>TWBANK</code> 表示臺灣金融業。</li>
+      </ul>
+    </li>
+
+    <li>
+      來源代號：
+      <ul class="ul-l1">
+        <li>用來快速尋找該來源。</li>
+        <li>例：<code>700</code> 表示中華郵政。</li>
+      </ul>
+    </li>
+
+    <li>
+      文件編號：
+      <ul class="ul-l1">
+        <li>識別不同的文件類型，如支票、存取款條。</li>
+        <li>例：<code>01</code> 代表支票。</li>
+      </ul>
+    </li>
+
+    <li>
+      開啟管理視窗：
+      <ul class="ul-l1">
+        <li>
+          <img src="images/FormDocInfoShowOtherBtn.png" alt="開啟視窗"> 可開啟：
+          <ul class="ul-l2">
+            <li><a href="FormArea.html" target="content">領域管理</a></li>
+            <li><a href="FormDocSrc.html" target="content">來源管理</a></li>
+            <li><a href="FormDocKind.html" target="content">文件類型管理</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      圖檔：
+      <ul class="ul-l1">
+        <li>用於文件內容設計階段作為底圖。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <figure>
+    <img class="winimg" src="images/FormDocInfoSet.png" alt="文件設定工作頁">
+    <figcaption class="TACenter">文件設定工作頁</figcaption>
+  </figure>
+
+  <h2>進階設定</h2>
+  <figure>
+    <img class="winimg" src="images/FormDocInfoAdvSet.png" alt="進階設定工作頁">
+    <figcaption class="TACenter">進階設定工作頁</figcaption>
+  </figure>
+
+  <ol class="ol-l1">
+    <li>
+      文件樣式：
+      <ul class="ul-l1">
+        <li>一般套印：一般套印作業模式。</li>
+        <li>多欄套印：相同內容一次列印多份（如郵寄標籤）。</li>
+        <li>一式1份：僅列印單份。</li>
+      </ul>
+    </li>
+
+    <li>
+      輸入介面模式：
+      <ul class="ul-l1">
+        <li>文件模式：輸入資料時直接呈現文件畫面。</li>
+        <li>預設模式：欄位數量少於 20 時系統自動產生輸入介面。</li>
+      </ul>
+    </li>
+
+    <li>
+      功能設定：
+      <ul class="ul-l1">
+        <li>
+          列印記錄存檔：
+          <ul class="ul-l2">
+            <li>搭配 <a href="FormRecSaveSet.html" target="content">文件紀錄儲存設計</a> 自動存檔。</li>
+          </ul>
+        </li>
+        <li>
+          文件領用登錄：
+          <ul class="ul-l2">
+            <li>搭配 <a href="FormDocIssLog.html" target="content">文件領用登錄</a> 檢查票號與領用數量。</li>
+          </ul>
+        </li>
+        <li>列印底圖：可讓底圖與資料一起印出。</li>
+      </ul>
+    </li>
+  </ol>
+
+</body>
+</html>

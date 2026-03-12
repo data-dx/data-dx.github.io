@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>產生文件圖檔｜InfoRec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- 統一使用新版樣式 -->
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>產生文件圖檔</h1>
+  <hr>
+
+  <!-- 第一段保留 margin-top:0，避免 hr 底下多一行 -->
+  <p style="margin-top:0;">
+   若您要自行設計文件套印內容或進行資料蒐集，在建立「文件設定檔」之前，
+  通常需要先將紙本或電子文件轉換為「底圖」（例如 PNG），
+  以便在底圖上配置輸入欄位（文字或圖章等），
+  並作為使用者輸入資料時的對照（文件模式）。
+  視需求，亦可將輸入資料與底圖一併列印輸出。
+  </p>
+
+  <strong>圖檔規格（建議）</strong>
+  <ol>
+    <li>格式：PNG 圖檔。</li>
+    <li>編輯用：解析度建議 124 DPI（便於畫面編輯與定位）。</li>
+    <li>列印用：解析度建議至少 300 DPI（確保輸出品質）。</li>
+  </ol>
+
+  <p>
+    將文件轉成圖檔的方法很多，例如掃描、另存、列印成檔案，或使用截圖工具等，以下提供常見做法：
+  </p>
+
+  <strong>一、直接轉成 PNG 圖檔</strong>
+  <ol>
+    <li>紙本文件：使用掃描設備掃描，並以較清晰設定輸出為 PNG。</li>
+    <li>電子文件：例如 DOC、XLS（或其他試算表）、ODT、PDF 等，可使用原始編輯工具或「列印成圖檔」方式輸出為 PNG。</li>
+  </ol>
+
+  <strong>二、先轉成 PDF，再轉為 PNG（建議流程）</strong>
+  <p>
+    若希望流程更穩定並取得較一致的輸出品質，可先將文件統一轉為 PDF，再由 PDF 轉為 PNG：
+  </p>
+
+  <ol>
+    <li>
+      <strong>先轉成 PDF</strong>
+      <ul>
+        <li>紙本文件：以掃描設備掃描，輸出為 PDF。</li>
+        <li>電子文件：DOC、XLS、ODT、PDF 等，可使用編輯工具或列印功能輸出為 PDF。</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>安裝轉檔工具（選用）</strong>
+      <ul>
+        <li>
+          ImageMagick：可將 PDF 或各種圖檔轉換為指定格式圖檔。網址：
+          <a href="https://imagemagick.org/index.php" target="_blank" rel="noopener">https://imagemagick.org/index.php</a>
+        </li>
+        <li>
+          Ghostscript：供 ImageMagick 處理 PDF 轉圖之用。網址：
+          <a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank" rel="noopener">https://www.ghostscript.com/releases/gsdnld.html</a>
+        </li>
+        <li>備註：若需在命令列使用，請確認相關程式已正確安裝，且（如有需要）可在環境變數 PATH 中找到。</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>FileToImg（工具）</strong>：在「資訊紀錄管理工具」資料夾內提供 FileToImg，可將 PDF 轉成 PNG。
+    </li>
+  </ol>
+
+
+
+</body>
+</html>

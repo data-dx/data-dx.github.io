@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>最新消息｜InfoRec</title>
+
+  <link rel="stylesheet" href="css/site.css" />
+  <script src="../js/redirect.js"></script>
+</head>
+
+<body class="ir-content-body">
+  <main class="ir-page">
+    <h1>最新消息</h1>
+
+    <!-- 這裡由 JS 自動插入回首頁的小提示 -->
+
+    <hr />
+
+    <p>
+      為協助將資料與紀錄轉化為可用資訊，以利數位化流程與管理，本網站提供「資訊紀錄管理工具（InfoRec）」。
+      本工具已歷經多種文件型態（紙本或電子檔）數位化與套印情境的實務驗證，
+      不論文件架構或內容差異，皆可有效進行套印、處理與儲存，以完成資料蒐集與管理作業。
+    </p>
+
+    <p>
+      本系統可應用於各式資料蒐集與文件套印作業，
+      包含會計文件、金融業表單、一般行政文書，
+      以及企業或政府機關提供之內部或對外填寫文件等，
+      亦可作為資料蒐集用途（類似 Google 表單）。
+    </p>
+
+    <p>
+      有關文件管理、套印內容、資料處理分析與套印方式，
+      使用者可依需求自由組合設定，客製化文件編輯格式，
+      並可匯出與分享設定成果。
+    </p>
+
+    <h2 class="mt-4">2026 年發展目標</h2>
+
+    <div class="ir-card p-3 p-md-4">
+      <ol class="mb-0">
+        <li>
+          <strong>目標：</strong>
+          <ul>
+            <li>推廣：讓有資料蒐集與文件套印需求的使用者，能更容易取得並使用本系統。</li>
+            <li>付款說明：非本地交易，得以 SOL 虛擬貨幣進行付款，並提供交易憑證作為付款證明。</li>
+            <li>說明文件：完善操作說明與教學內容，以利更多使用者快速上手。</li>
+            <li>網路版：持續強化現有網路版功能，以因應不同使用情境的需求。</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>多國語言：</strong>
+          軟體支援多國語言切換，並已提供繁體中文、簡體中文及英文。
+          若需其他語言（如日文、韓文、泰文、西班牙文、德文等），
+          可由使用者自行製作，或與我們聯絡協助處理。
+        </li>
+
+        <li>
+          <strong>系統介面說明：</strong>
+          逐步為各使用者介面（UI）建立入門說明，方便使用者參照。
+        </li>
+
+        <li>
+          <strong>文件設定說明：</strong>
+          提供文件設定流程之說明，協助使用者更快完成文件設計與設定。
+        </li>
+
+        <li>
+          <strong>社群：</strong>
+          歡迎加入社群交流，透過討論與經驗分享，取得使用上的建議與回饋。
+        </li>
+
+        <li>
+          <strong>專業支援：</strong>
+          對於需要進一步協助的使用者，提供付費專業支援（由經過驗證之第三方提供）。
+          不論是指定文件設計、功能強化或相關支援服務，
+          皆可由專業支援廠商協助處理。
+        </li>
+
+        <li>
+          透過社群交流或專業支援，可協助您簡化資料蒐集、文件列印與資料分析等工作流程，
+          提升整體作業效率。
+        </li>
+      </ol>
+    </div>
+  </main>
+
+  <!-- 統一：不是 iframe 時，在 h1 後面插入「回首頁」 -->
+  <script>
+    (function () {
+      if (window.top !== window.self) return;
+
+      var h1 = document.querySelector('.ir-page h1');
+      if (!h1) return;
+
+      var note = document.createElement('div');
+      note.className = 'ir-outside-note';
+      note.innerHTML =
+        '本頁為 InfoRec 說明文件的一部分。' +
+        '<a href="/index.html">回 InfoRec 首頁</a>';
+
+      h1.insertAdjacentElement('afterend', note);
+    })();
+  </script>
+
+  <!-- 保留你原來的高度通知 -->
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
+</html>

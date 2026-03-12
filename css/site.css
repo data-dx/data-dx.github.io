@@ -1,0 +1,732 @@
+:root{
+  --ir-maxw: 1080px;
+  --ir-radius: 18px;
+  --ir-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+/* =========================
+   基本設定
+   ========================= */
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC",
+               Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+  display: flex;          /* 整頁上下排列：上 navbar / hero，中 iframe，下 footer */
+  flex-direction: column;
+}
+
+/* layout container */
+.ir-container{
+  max-width: var(--ir-maxw);
+}
+
+/* =========================
+   HERO 區塊
+   ========================= */
+.ir-hero{
+  border-radius: var(--ir-radius);
+  box-shadow: var(--ir-shadow);
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(13,110,253,.18), transparent 55%),
+    radial-gradient(900px 500px at 90% 20%, rgba(32,201,151,.16), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92));
+  padding: 0.25rem 0.75rem;      /* 壓縮 hero 上下留白 */
+}
+
+/* hero 內標題 / 副標 */
+.ir-hero h1{
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
+  line-height: 1.25;
+  margin: 0 0 .15rem;
+}
+
+.ir-hero .ir-muted{
+  font-size: .95rem;
+  margin: .05rem 0 0;
+}
+
+/* hero 右側卡片（快速入口） */
+.ir-hero .ir-card{
+  padding: .45rem .6rem;
+}
+
+.ir-hero .ir-card .btn{
+  padding: .25rem .5rem;
+  font-size: .82rem;
+  line-height: 1.1;
+}
+
+/* 專注閱讀按鈕永不換行 */
+#btnFocus{
+  white-space: nowrap !important;
+  max-width: none !important;
+}
+
+/* 桌機時稍微放寬一點字級，但仍保持扁平 */
+@media (min-width: 992px){
+  .ir-hero{
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .ir-hero h1{
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+    line-height: 1.2;
+  }
+  .ir-hero .ir-card{
+    padding: .6rem .8rem;
+  }
+}
+
+/* 視窗高度比較矮時：再壓縮 hero 高度，必要時隱藏副標 */
+@media (max-height: 800px){
+  .ir-hero{
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+}
+@media (max-height: 700px){
+  .ir-hero{
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+  .ir-hero .ir-muted{
+    display: none;       /* 高度真的不夠時，只留主標題＋右側按鈕 */
+  }
+}
+
+/* hero 內卡片 / 標籤 / 說明色彩 */
+.ir-card{
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+.ir-muted{
+  color: rgba(0,0,0,.65);
+}
+
+.ir-badge{
+  font-size: .85rem;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.7);
+}
+
+/* 手機：隱藏右側快速入口卡片 */
+@media (max-width: 575.98px){
+  .ir-hero-card{
+    display: none !important;
+  }
+}
+
+/* =========================
+   主內容結構（navbar 下面到 footer 上面）
+   ========================= */
+.ir-main{
+  flex: 1;                /* 撐滿 navbar 下方到 footer 上方 */
+  display: flex;
+  padding-top: .25rem;
+  padding-bottom: 0;
+}
+
+.ir-main-inner{
+  max-width: var(--ir-maxw);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 工具列（專注閱讀提示） */
+.ir-toolbar{
+  margin: .15rem 0 .10rem;
+  padding: 0;
+  line-height: 1.1;
+}
+
+.ir-toolbar .ir-muted{
+  font-size: .75rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* iframe 外框 */
+.ir-frame-wrap{
+  margin: 0 0 .25rem;
+}
+
+/* iframe 本體 */
+.ir-iframe{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: var(--ir-shadow);
+  background: #fff;
+  display: block;
+  height: 50vh;        /* 桌機：約半螢幕高 */
+  min-height: 280px;
+  overflow: auto;
+}
+
+/* 內容 iframe 的「至少高度」（如果被當作 ir-main-frame 用） */
+.ir-main-frame{
+  min-height: 60vh;
+}
+
+/* 手機：給 iframe 更多高度 */
+@media (max-width: 575.98px){
+  .ir-hero{ border-radius: 16px; }
+  .ir-iframe{
+    border-radius: 14px;
+    height: 70vh;
+  }
+}
+
+/* =========================
+   內容頁（iframe 裡載入的 use/、sample/ 等）
+   ========================= */
+.ir-page{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 18px 32px;   /* 上方改 10px，讓「最新消息」靠上 */
+}
+
+/* 標題區塊距離：h1 → hr → 第一段文字 */
+.ir-page h1{
+  margin: 2px 0 6px;
+  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+.ir-page h2{
+  font-size: 1.25rem;
+  margin-top: 22px;
+}
+
+.ir-page hr{
+  height: 0;
+  margin: 6px 0 10px;
+  border: none;
+  border-top: 1px solid #fff;
+  opacity: 1;
+}
+
+/* 第一段文字不要再被多推下去 */
+.ir-page p:first-of-type{
+  margin-top: 0;
+}
+
+/* 段落 / 列表 */
+.ir-page p{
+  text-indent: 2em;
+  line-height: 1.75;
+  color: rgba(0,0,0,.82);
+  font-size: 1.05rem;
+}
+.ir-page li{
+  line-height: 1.75;
+  color: rgba(0,0,0,.82);
+  font-size: 1.05rem;
+}
+
+/* 引導段落（ir-lead）不縮排、稍淡 */
+.ir-page .ir-lead{
+  font-size: 1.05rem;
+  color: rgba(0,0,0,.70);
+  text-indent: 0;
+}
+
+/* 表格（一般版） */
+.ir-table{
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.ir-table th,
+.ir-table td{
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  text-align: left;
+  vertical-align: top;
+}
+.ir-table thead th{
+  background: rgba(0,0,0,.03);
+  font-weight: 650;
+}
+.ir-table tr:last-child td{
+  border-bottom: 0;
+}
+.ir-scroll-x{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* InfoRec 說明頁表格框線（黑底版） */
+.ir-page table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: .95rem;
+}
+.ir-page table th,
+.ir-page table td{
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .45rem .6rem;
+}
+.ir-page table th{
+  font-weight: 600;
+}
+
+/* 標題型小區塊 */
+.sub-title{
+  font-weight: 650;
+  font-size: 1.05rem;
+  margin: .4rem 0 .4rem;
+}
+h2.sub{
+  font-weight: 650;
+  font-size: 1.18rem;
+  margin: 1.1rem 0 .5rem;
+  color: #ddd;
+}
+.tbl-head{
+  background: #000;
+  color: #fff;
+  font-size: .97rem;
+  font-weight: 600;
+  padding: .45rem .6rem;
+  border-radius: 4px 4px 0 0;
+  margin: 1.2rem 0 .1rem;
+}
+
+/* 大綱 / 清單樣式（國際版） */
+.ol-l1{
+  list-style-type: decimal;
+  margin: .6rem 0 .8rem 1.6rem;
+}
+.ol-l2{
+  list-style-type: lower-alpha;
+  margin: .4rem 0 .7rem 2.2rem;
+}
+.ol-l3{
+  list-style-type: lower-roman;
+  margin: .3rem 0 .6rem 2.8rem;
+}
+.ul-l1{
+  list-style-type: disc;
+  margin: .4rem 0 .6rem 1.6rem;
+}
+.ul-l2{
+  list-style-type: circle;
+  margin: .3rem 0 .5rem 2rem;
+}
+
+/* 內容頁單獨開啟時，允許垂直捲動 */
+body.ir-page{
+  overflow-y: auto;
+}
+
+/* 內容頁圖片不超出寬度 */
+.ir-page img,
+.ir-page figure img,
+.ir-page img.winimg{
+  max-width: 100%;
+  height: auto;
+}
+
+/* FIN 分頁導覽（深色背景高對比版） */
+.ir-pager{
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: .75rem 0 1rem;
+}
+
+/* 一般頁碼 */
+.ir-page-link{
+  padding: .3rem .7rem;
+  border-radius: .375rem;
+  text-decoration: none;
+  font-size: .9rem;
+  line-height: 1.2;
+  color: #ffffff;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+}
+.ir-page-link:hover{
+  background: rgba(255,255,255,.32);
+  color: #ffffff;
+}
+.ir-page-link.is-active,
+.ir-page-link[aria-current="page"]{
+  background: #0d6efd;
+  border-color: #0d6efd;
+  color: #ffffff;
+  font-weight: 600;
+}
+.ir-page-link.is-nav{
+  background: rgba(0,0,0,.45);
+  border-color: rgba(255,255,255,.45);
+  font-weight: 600;
+}
+.ir-page-link.is-nav:hover{
+  background: rgba(0,0,0,.65);
+}
+.ir-page-spacer{
+  flex: 1 1 auto;
+}
+
+/* 文件索引清單：緊湊模式 */
+.ir-page .ol-l1{
+  margin: .5rem 0 .75rem;
+  padding-left: 1.2rem;
+}
+.ir-page .ol-l1 li{
+  margin: .15rem 0;
+  line-height: 1.35;
+}
+.ir-page .ol-l1 a{
+  text-decoration: none;
+}
+.ir-page .ol-l1 a:hover{
+  text-decoration: underline;
+}
+
+/* 回首頁提示區塊 */
+.ir-outside-note{
+  font-size: .88rem;
+  margin: 4px 0 10px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,.04);
+  border-radius: 4px;
+  line-height: 1.3;
+}
+.ir-outside-note a{
+  margin-left: 4px;
+}
+
+/* =========================
+   專注閱讀模式（只藏 hero / footer）
+   ========================= */
+body.ir-focus #heroBlock{
+  display: none !important;
+}
+body.ir-focus #footerBlock{
+  display: none !important;
+}
+
+/* =========================
+   Footer：貼底、一行
+   ========================= */
+#footerBlock{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  line-height: 1 !important;
+  font-size: 0.9rem !important;
+  height: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+}
+#footerBlock a{
+  line-height: 1 !important;
+  padding: 0 !important;
+  margin: 0 .3rem !important;
+  font-size: 0.9rem !important;
+}
+
+/* =========================
+   Dark mode（跟隨系統）
+   ========================= */
+@media (prefers-color-scheme: dark){
+
+  body,
+  html,
+  body.bg-body-tertiary{
+    background:
+      radial-gradient(900px 500px at 15% 0%, rgba(56,139,253,.12), transparent 55%),
+      radial-gradient(900px 500px at 85% 10%, rgba(46,160,67,.10), transparent 55%),
+      #0f1115 !important;
+    color: #e6e8ee !important;
+  }
+
+  /* Navbar */
+  .navbar{
+    background-color: #11141a !important;
+    border-bottom-color: rgba(255,255,255,.10) !important;
+  }
+  .navbar .navbar-brand,
+  .navbar .nav-link{
+    color: rgba(230,232,238,.92) !important;
+  }
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus{
+    color: #ffffff !important;
+  }
+  .navbar .dropdown-menu{
+    background-color: #141821 !important;
+    border-color: rgba(255,255,255,.10) !important;
+  }
+  .navbar .dropdown-item{
+    color: rgba(230,232,238,.90) !important;
+  }
+  .navbar .dropdown-item:hover{
+    background-color: rgba(255,255,255,.08) !important;
+    color: #fff !important;
+  }
+
+  /* Hero */
+  .ir-hero{
+    background:
+      radial-gradient(1200px 600px at 10% 0%, rgba(56,139,253,.18), transparent 55%),
+      radial-gradient(900px 500px at 90% 20%, rgba(46,160,67,.16), transparent 50%),
+      linear-gradient(180deg, #161a22, #141821) !important;
+    color: #eef1f7;
+  }
+  .ir-muted{
+    color: rgba(230,232,238,.75) !important;
+  }
+
+  /* Cards / list */
+  .ir-card,
+  .card,
+  .list-group-item{
+    background-color: #161a22 !important;
+    border-color: rgba(255,255,255,.10) !important;
+    color: rgba(230,232,238,.92) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.6);
+  }
+
+  /* iframe */
+  .ir-iframe{
+    background-color: #0f1115 !important;
+    border-color: rgba(255,255,255,.10) !important;
+  }
+
+  /* Footer */
+  .ir-footer{
+    color: rgba(230,232,238,.65);
+  }
+
+  /* Buttons */
+  .btn-outline-secondary,
+  .btn-outline-light{
+    color: #eef1f7 !important;
+    border-color: rgba(255,255,255,.40) !important;
+    background: rgba(255,255,255,.06) !important;
+  }
+  .btn-outline-secondary:hover,
+  .btn-outline-light:hover{
+    background: rgba(255,255,255,.12) !important;
+    color: #ffffff  !important;
+  }
+  .btn-light{
+    background: rgba(255,255,255,.10) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: #ffffff !important;
+  }
+  .btn-light:hover{
+    background: rgba(255,255,255,.16) !important;
+  }
+
+  .ir-badge{
+    background: rgba(255,255,255,.10) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: rgba(255,255,255,.92) !important;
+  }
+
+  /* 內容頁文字 / 表格 */
+  .ir-page,
+  .ir-page p,
+  .ir-page li,
+  .ir-page h1,
+  .ir-page h2,
+  .ir-page h3,
+  .ir-page .ir-lead{
+    color: rgba(230,232,238,.92) !important;
+  }
+  .ir-table{
+    border-color: rgba(255,255,255,.10) !important;
+  }
+  .ir-table thead th{
+    background: rgba(255,255,255,.06) !important;
+    color: rgba(230,232,238,.92) !important;
+  }
+  .ir-table td,
+  .ir-table th{
+    border-bottom-color: rgba(255,255,255,.08) !important;
+    color: rgba(230,232,238,.90) !important;
+  }
+
+  /* 連結顏色 */
+  a{
+    color: #79b8ff !important;
+  }
+  a:hover{
+    color: #a7d0ff !important;
+  }
+}
+
+/* =========================
+   手動指定主題（可選）
+   ========================= */
+body.theme-dark{
+  background-color: #0f1115;
+  color: #e6e8ee;
+}
+body.theme-light{
+  background-color: #f6f7fb;
+  color: #111;
+}
+
+
+/* =========================
+   修正：內容區(iframe)桌機自動吃滿剩餘高度
+   說明：先前高度被 JS 以 (vh-360) 寫死，CSS 改不動；
+         這裡改回由 flex 版面自動撐滿（不再猜 -365/-360）。
+   ========================= */
+.ir-main-inner{
+  /* 已是 flex-column；確保可縮放 */
+  min-height: 0;
+}
+
+#contentArea.ir-frame-wrap{
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: .25rem;
+}
+
+#contentFrame.ir-iframe{
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* 桌機：內容盡量放大 */
+@media (min-width: 992px){
+  #contentFrame.ir-iframe{
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+/* 全尺寸：讓版面變成「上面內容 + 中間 iframe + 底部 footer」 */
+html, body { height: 100%; }
+
+body.ir-page, body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 你的 iframe 區塊：吃滿剩餘空間 */
+#contentArea{
+  flex: 1 1 auto;
+  min-height: 0;        /* 很重要：避免把 footer 擠出畫面 */
+  overflow: hidden;
+}
+
+/* iframe 本體：撐滿 contentArea */
+#contentFrame{
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  border: 0;
+}
+
+/* footer 不要被壓縮 */
+footer, .ir-footer{
+  flex: 0 0 auto;
+}
+
+@supports (height: 100dvh){
+  body.ir-page, body{ min-height: 100dvh; }
+}
+
+/* =========================
+   Hero 高度再壓縮（桌機 + 手機）
+   目標：約原本的 1/2 ～ 1/3
+   ========================= */
+
+/* 限制 hero 最大高度，避免被撐太高 */
+.ir-hero{
+  max-height: 24vh;        /* 桌機約 1/3 螢幕 */
+  overflow: hidden;
+}
+
+/* row 的上下 gutter 太大，直接壓縮 */
+.ir-hero > .row{
+  --bs-gutter-y: 0.35rem;  /* 原本 g-3 約 1rem */
+}
+
+/* 標籤區塊（表單套印 / 文件設定 / 印表機）下方留白再縮 */
+.ir-hero .d-flex.mb-3{
+  margin-bottom: .4rem !important;
+}
+
+/* 手機：再更小一點 */
+@media (max-width: 575.98px){
+  .ir-hero{
+    max-height: 26vh;      /* 手機再縮 */
+  }
+}
+
+/* === Hero 區「表格範例」dropdown：改成深色系，與導覽列一致 === */
+
+.ir-hero .dropdown-menu {
+  background-color: #1f2937;      /* 深藍灰，接近 navbar */
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  min-width: 220px;
+  max-width: 260px;
+  padding: 0.35rem 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* dropdown 文字 */
+.ir-hero .dropdown-item {
+  color: #e5e7eb;                 /* 淺灰白 */
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  white-space: nowrap;
+}
+
+/* hover / focus */
+.ir-hero .dropdown-item:hover,
+.ir-hero .dropdown-item:focus {
+  background-color: #374151;      /* hover 深一階 */
+  color: #ffffff;
+}
+
+/* 避免被 hero 裁掉 */
+.ir-hero {
+  overflow: visible;
+}
+
+/* Hero 區 dropdown badge：高度補回來（與其他 ir-badge 一致） */
+.ir-hero .dropdown-toggle.ir-badge {
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+
+  /* 這兩行是補高度的關鍵 */
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+

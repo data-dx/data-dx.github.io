@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>InfoRec 軟體啟動</title>
+
+<style>
+:root{
+  --bg:#0f1115;
+  --card:#171a21;
+  --border:#2a2f3a;
+  --text:#e6e8ee;
+  --muted:#9aa1b2;
+  --accent:#4da3ff;
+  --warn-bg:#2a2314;
+  --warn-border:#6b5520;
+  --btn:#1f6feb;
+  --btn2:#238636;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,"Segoe UI",Arial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #1e222d 0%, #0f1115 100%);
+}
+.container{
+  max-width:500px;
+  width: 90%;
+  padding:0 14px;
+}
+h1{
+  font-size:22px;
+  margin:8px 0 14px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:14px;
+}
+.label{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.mono{
+  font-family:Consolas,monospace;
+  font-size:13px;
+  word-break:break-all;
+  background:#0b0d12;
+  border:1px solid var(--border);
+  padding:10px;
+  border-radius:8px;
+}
+.warn{
+  background:var(--warn-bg);
+  border:1px solid var(--warn-border);
+  border-radius:10px;
+  padding:12px;
+  font-size:14px;
+  line-height:1.6;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+button{
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:#222735;
+  color:var(--text);
+  cursor:pointer;
+}
+button.primary{background:var(--btn)}
+button.pay{background:var(--btn2)}
+button:disabled{opacity:.5;cursor:not-allowed}
+textarea{
+  width:100%;
+  height:160px;
+  background:#0b0d12;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
+  font-family:Consolas,monospace;
+  font-size:13px;
+}
+.footer{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>InfoRec 軟體啟動</h1>
+
+<div class="card">
+  <div class="label">設備識別碼（Device ID）</div>
+  <div id="device" class="mono">-</div>
+</div>
+
+<div class="card warn">
+  <b>安全提示</b><br>
+  • Free 啟動僅要求「簽名（Signature）」以驗證錢包控制權<br>
+  • 不會扣款、不會轉帳、不會存取任何資產<br>
+  • 付費方案將在錢包中明確顯示轉帳金額後才需確認
+</div>
+
+<div class="card">
+  <div class="actions">
+    <button id="btnConnect" class="primary">連接錢包</button>
+    <button id="btnFree" disabled>Free（3 個月）簽名啟動</button>
+    <button id="btnPay01" class="pay" disabled>支付 0.1 SOL（測試）</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="label">IR1 授權碼</div>
+  <textarea id="out" readonly></textarea>
+  <div class="actions" style="margin-top:8px">
+    <button onclick="copyIR1()">複製授權碼</button>
+  </div>
+</div>
+
+<div class="footer">
+  請將產生的授權碼貼回 InfoRec Windows 軟體以完成啟動
+</div>
+
+</div>
+
+<script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+<script>
+const qs=new URLSearchParams(location.search);
+const deviceHash=(qs.get('d')||'').trim();
+deviceHash && (device.textContent=deviceHash);
+
+let provider=null,pubkey=null;
+
+// ===== 工具 =====
+function base64Url(bytes){
+  let s='';bytes.forEach(b=>s+=String.fromCharCode(b));
+  return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function copyIR1(){
+  if(!out.value) return;
+  navigator.clipboard.writeText(out.value);
+  alert('已複製授權碼');
+}
+
+// ===== 連接錢包 =====
+btnConnect.onclick=async()=>{
+  try{
+    if(!window.solana) throw new Error('請使用錢包 App 的內建瀏覽器開啟本頁');
+    provider=window.solana;
+    const r=await provider.connect();
+    pubkey=r.publicKey;
+    btnFree.disabled=false;
+    btnPay01.disabled=false;
+  }catch(e){alert(e.message||e)}
+};
+
+// ===== Free =====
+btnFree.onclick=async()=>{
+  const payload={v:1,tier:'FREE',device:deviceHash,wallet:pubkey.toBase58(),ts:Date.now()};
+  const msg='IR1|'+JSON.stringify(payload);
+  const s=await provider.signMessage(new TextEncoder().encode(msg),'utf8');
+  out.value='IR1.'+base64Url(new TextEncoder().encode(JSON.stringify({
+    p:payload,s:base64Url(Array.from(s.signature))
+  })));
+};
+
+// ===== 0.1 SOL 測試 =====
+btnPay01.onclick=async()=>{
+  const conn=new solanaWeb3.Connection('https://api.mainnet-beta.solana.com','confirmed');
+  const to=new solanaWeb3.PublicKey('AWcif9F1t3hYZwyiAKz49ad3MT2H8MSKnURvCgui8e2b');
+  const tx=new solanaWeb3.Transaction().add(
+    solanaWeb3.SystemProgram.transfer({
+      fromPubkey:pubkey,
+      toPubkey:to,
+      lamports:0.1*solanaWeb3.LAMPORTS_PER_SOL
+    })
+  );
+  const sent=await provider.signAndSendTransaction(tx);
+  await conn.confirmTransaction(sent.signature,'confirmed');
+
+  const payload={v:1,tier:'STD',device:deviceHash,wallet:pubkey.toBase58(),tx:sent.signature,ts:Date.now()};
+  const msg='IR1|'+JSON.stringify(payload);
+  const s=await provider.signMessage(new TextEncoder().encode(msg),'utf8');
+  out.value='IR1.'+base64Url(new TextEncoder().encode(JSON.stringify({
+    p:payload,s:base64Url(Array.from(s.signature))
+  })));
+};
+</script>
+
+</body>
+</html>

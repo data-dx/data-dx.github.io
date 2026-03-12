@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>資料處理設定－進階設定</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>資料處理設定－進階設定</h1>
+  <hr>
+
+  <p>進階設定工作頁，主要提供使用者如何在列印前將資料再次進行調整。</p>
+
+  <ol class="ol-l1">
+    <li>依群組成員數分配資料：
+      <!-- AcFixRows -->
+      <ul class="ul-l2">
+        <li>參數：無</li>
+        <li>應用：英文支票金額限定 2 行</li>
+        <li>內容設計：文字方塊為固定寬度</li>
+        <li>功能：當文字太多，「行數超過群組數」時，文字將持續縮小，至「行數等於群組數」後，將資料分配給群組成員。</li>
+      </ul>
+    </li>
+
+    <li>以單行文字呈現：
+      <!-- AcFAutoRowsHeight -->
+      <ul class="ul-l2">
+        <li>參數：最小字體</li>
+        <li>應用：用於文字方塊太小，列印字數過多的情況。</li>
+        <li>內容設計：文字方塊設定為 1 行或多行。多行時，先用最小字體了解所需文字方塊高度。預設字體大小供文字只有 1 行時使用。</li>
+        <li>功能：當文字太多時，文字以 1 行為目標，持續縮小直至最小字體。</li>
+      </ul>
+    </li>
+
+    <li>限制文字行數：
+      <!-- AcFLimitedRows -->
+      <ul class="ul-l2">
+        <li>參數：行數</li>
+        <li>應用：用於多行且避免客戶輸入過多的情況</li>
+        <li>內容設計：文字方塊為固定寬度及高度。</li>
+        <li>功能：當輸入文字太多時，文字將持續縮小，至指定行數為止。</li>
+      </ul>
+    </li>
+  </ol>
+
+</body>
+</html>

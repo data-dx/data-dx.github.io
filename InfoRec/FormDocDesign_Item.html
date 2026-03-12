@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>文件內容設計－套印項目管理｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>套印項目管理</h1>
+  <hr>
+
+  <p>套印項目指將字串或圖檔放入文件內容中，並可依需求進行新增或刪除。套印項目分為可改變內容及不可改變內容兩種類型。</p>
+
+  <figure>
+    <img class="winimg" src="images/FormDocDesign_Item.png" alt="套印項目管理工作頁">
+    <figcaption class="TACenter">套印項目管理工作頁</figcaption>
+  </figure>
+
+  <ol class="ol-l1">
+    <li>
+      選擇套印項目：
+      <ul class="ul-l1">
+        <li>
+          先選擇種類，再於文件適當區域點擊，即可加入套印項目。
+          <br>
+          <img src="images/FormDocDesign_Item_Item.png" alt="套印項目選取">
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      連續加入：
+      <ul class="ul-l1">
+        <li>啟用後可在文件上連續加入多個獨立項目。</li>
+      </ul>
+    </li>
+
+    <li>
+      數量：
+      <ul class="ul-l1">
+        <li>可一次加入具群組關係的多個項目（如日期的年、月、日）。</li>
+      </ul>
+    </li>
+
+    <li>
+      間距：
+      <ul class="ul-l1">
+        <li>搭配「數量」設定，避免項目重疊。</li>
+        <li>單位為 mm，1 cm = 10 mm。</li>
+      </ul>
+    </li>
+
+    <li>刪除：先點選某項目後執行刪除。</li>
+    <li>清空：清除全部項目並重新編號。</li>
+
+    <li>
+      套印類型：
+      <ul class="ul-l1">
+        <li>
+          <img src="images/FormDocDesign_Item_StrDB.png" alt="資料字串">資料字串：輸入資料時動態改變內容（如日期）。
+        </li>
+        <li>
+          <img src="images/FormDocDesign_Item_Str.png" alt="一般字串">一般字串：固定內容（如「禁止背書轉讓」）。
+        </li>
+        <li>
+          <img src="images/FormDocDesign_Item_ImgDB.png" alt="資料圖檔">資料圖檔：依輸入內容自動替換（如員工相片）。
+        </li>
+        <li>
+          <img src="images/FormDocDesign_Item_Img.png" alt="一般圖檔">一般圖檔：固定內容（如平行線或商標）。
+        </li>
+      </ul>
+    </li>
+
+    <li>列印：設定項目是否要列印。</li>
+  </ol>
+
+</body>
+</html>

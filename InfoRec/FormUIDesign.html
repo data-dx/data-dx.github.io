@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>輸入介面設計｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+
+  <script src="../js/redirect.js"></script>
+  <script src="../js/page-note.js"></script>
+</head>
+
+<body class="ir-page">
+
+  <h1>輸入介面設計</h1>
+  <hr>
+
+  <p>
+    文件在完成「文件內容設計」、「資料配置」、「資料處理」後，即已具備「匯入套印」的功能。
+    若要提供「輸入套印」功能，需在此進行設定。
+  </p>
+
+  <p>
+    此處僅處理字串資料型態，且該項目須先於
+    <a href="FormDataAlloc.html" target="content">資料配置設定</a>
+    放在「A.取得資料項目」才能在此出現。
+  </p>
+
+  <p>
+    可新增輸入項目來增加進階資料處理功能，例如輸入「收票人代號」即查出對方資料。
+    此類資料不會列印在文件上。
+  </p>
+
+  <figure>
+    <img class="winimg" src="images/FormUIDesign.png" alt="資料輸入設定視窗">
+    <figcaption class="TACenter">資料輸入設定視窗</figcaption>
+  </figure>
+
+  <h2>支援功能類別</h2>
+  <ol class="ol-l1">
+    <li><strong>查詢設計</strong>：以查詢方式取得資料，如輸入客戶代號 → 得到客戶相關資料。</li>
+    <li><strong>顯示設計</strong>：設定首頁「列印記錄」顯示內容。</li>
+    <li><strong>儲存設計</strong>：指定需存檔的欄位，以利查詢分析。</li>
+    <li><strong>介面設計</strong>：可自行客製輸入介面（條列式或文件式）。</li>
+  </ol>
+
+  <h2>輸入欄位管理</h2>
+  <p>欄位指「可以輸入資料的項目」。</p>
+
+  <ol class="ol-l1">
+    <li>
+      <strong>新增欄位</strong>：產生一筆「Extra」開頭項目。
+      <ul class="ul-l1">
+        <li>不會列印於文件。</li>
+        <li>利於查詢更多資料。</li>
+        <li>可用於新增必須存檔的資料欄位（如票號）。</li>
+      </ul>
+    </li>
+
+    <li><strong>刪除欄位</strong>：將新增項目移除並清空欄位功能。</li>
+
+    <li>
+      <strong>顯示全部</strong>：
+      顯示所有資料型套印項目，新項目會出現在最上方。
+    </li>
+
+    <li>
+      <strong>重設</strong>：
+      還原至「文件內容設計」的資料型項目。
+    </li>
+  </ol>
+
+  <h2>欄位項目區域說明</h2>
+  <ol class="ol-l1">
+    <li>
+      <strong>輸入欄位一覽表</strong>：提供輸入與存檔功能的基礎。
+      <ul class="ul-l1">
+        <li>新增：點「新增項目」增一筆資料並改名。</li>
+        <li>刪除：左鍵連點兩下刪除。</li>
+        <li>調整順序：拖曳調整。</li>
+      </ul>
+    </li>
+
+    <li><strong>欄位功能</strong>：
+      指定輸入項目資料處理功能（引用前次資料、限制輸入…等）。</li>
+  </ol>
+
+  <h2>工作頁功能</h2>
+  <ol class="ol-l1">
+    <li><strong>輸入處理</strong>：針對輸入動作做運算與限制。</li>
+    <li><strong>資料查詢</strong>：顯示可查詢的資料功能。</li>
+    <li><strong>欄位屬性</strong>：如數字靠右、字串對齊方式。</li>
+  </ol>
+
+  <h2>輸入處理</h2>
+  <p>本系統提供「輸入處理」及「資料查詢」功能。各輸入型態皆有不同邏輯。</p>
+
+  <figure>
+    <img class="winimg" src="images/FormUIDesign_InputProc.png" alt="輸入處理工作頁">
+    <figcaption class="TACenter">輸入處理工作頁</figcaption>
+  </figure>
+
+  <h3>輸入處理功能一覽表</h3>
+  <table>
+    <tbody>
+      <tr class="trtitle">
+        <th>類別</th>
+        <th>編號</th>
+        <th>功能</th>
+        <th>參數一</th>
+        <th>參數二</th>
+        <th>說明</th>
+      </tr>
+
+      <tr>
+        <td rowspan="2"><strong>計算功能</strong></td>
+        <td>1</td><td>金額加總</td><td>前項數目</td><td></td>
+        <td>指定前 N 項做加總並輸出。</td>
+      </tr>
+      <tr>
+        <td>2</td><td>數量 × 單價</td><td></td><td></td>
+        <td>前兩項相乘後輸出。</td>
+      </tr>
+
+      <tr>
+        <td rowspan="2"><strong>日期</strong></td>
+        <td>1</td><td>免輸入分隔符號轉日期</td><td></td><td></td>
+        <td>輸入 1050127 或 20160127 都會轉成「2016/01/27」。</td>
+      </tr>
+      <tr>
+        <td>2</td><td>自動加入日期</td><td>月</td><td>日</td>
+        <td>自動加入今日日期，可指定偏移。</td>
+      </tr>
+      <tr>
+        <td rowspan="7"><strong>輸入設定</strong></td>
+        <td>1</td><td>限定數字</td><td></td><td></td>
+        <td>限制只能輸入數字。</td>
+      </tr>
+      <tr>
+        <td>2</td><td>限制長度</td><td>長度</td><td></td>
+        <td>限制文字長度。（例：帳號 14 碼）</td>
+      </tr>
+      <tr>
+        <td>3</td><td>英文大寫</td><td></td><td></td>
+        <td>abc → ABC。</td>
+      </tr>
+      <tr>
+        <td>4</td><td>英數半形</td><td></td><td></td>
+        <td>全形 → 半形。</td>
+      </tr>
+      <tr>
+        <td>5</td><td>英數全形</td><td></td><td></td>
+        <td>半形 → 全形。</td>
+      </tr>
+      <tr>
+        <td>6</td><td>依長度分割字串</td><td>分割</td><td></td>
+        <td>自動換行以符合字數限制。</td>
+      </tr>
+      <tr>
+        <td>7</td><td>擇一輸入</td><td></td><td></td>
+        <td>輸入一個值決定顯示欄位。</td>
+      </tr>
+
+      <tr>
+        <td rowspan="8"><strong>資料查詢</strong></td>
+        <td>1</td><td>帳戶代號</td><td></td><td></td>
+        <td>自動填入套印者代號。</td>
+      </tr>
+      <tr>
+        <td>2</td><td>帳戶名稱</td><td></td><td></td>
+        <td>自動加入帳戶名稱。</td>
+      </tr>
+      <tr>
+        <td>3</td><td>銀行帳號</td><td></td><td></td>
+        <td>自動加入銀行帳號。</td>
+      </tr>
+      <tr>
+        <td>4</td><td>引用前次資料</td><td></td><td></td>
+        <td>列印後，自動帶入上一次輸入的值。</td>
+      </tr>
+      <tr>
+        <td>5</td><td>登錄流水號</td><td></td><td></td>
+        <td>引用「文件領用登錄」中未使用票號。</td>
+      </tr>
+      <tr>
+        <td>6</td><td>西元日期流水號</td><td>長度</td><td></td>
+        <td>產生日期字串＋流水序號。</td>
+      </tr>
+      <tr>
+        <td>7</td><td>流水號</td><td></td><td></td>
+        <td>列印後自動 +1。</td>
+      </tr>
+      <tr>
+        <td>8</td><td>關鍵字查詢客戶</td><td></td><td></td>
+        <td>輸入關鍵字自動篩選客戶。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>資料查詢設計</h2>
+  <p>每人／每種文件可用的功能皆可能不同。</p>
+
+  <figure>
+    <img class="winimg" src="images/FormUIDesign_DataQuery.png" alt="資料查詢工作頁">
+    <figcaption class="TACenter">資料查詢工作頁</figcaption>
+  </figure>
+
+  <h3>資料查詢功能一覽表</h3>
+  <table>
+    <tr class="trtitle">
+      <th>類別</th>
+      <th>編號</th>
+      <th>功能</th>
+      <th>說明</th>
+    </tr>
+    <tr>
+      <td><strong>ACCOUNT</strong></td>
+      <td>1</td>
+      <td></td>
+      <td>未設定</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><strong>CUSTOMER</strong></td>
+      <td>2</td>
+      <td>以代號查詢</td>
+      <td>輸入代號查詢客戶資料。</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>以名稱查詢</td>
+      <td>輸入字串查詢，可搭關鍵字搜尋。</td>
+    </tr>
+  </table>
+
+</body>
+</html>
