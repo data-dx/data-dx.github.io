@@ -3,30 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InfoRec 版權聲明</title>
+  <title>使用權益與版權聲明｜InfoRec</title>
   <link rel="stylesheet" href="css/site.css">
   <script src="../js/redirect.js"></script>
 </head>
 
-<body>
+<body class="ir-content-body">
   <main class="ir-page">
-    <h1>InfoRec 版權與資產聲明</h1>
+    <h1>使用權益與版權聲明</h1>
     <hr />
+    
     <div class="ir-card p-3 p-md-4">
       <ol class="mb-0">
-        <li><strong>智慧財產權歸屬：</strong> 本 InfoRec dApp 之應用程式代碼、介面設計、商標（iR Logo）以及「IR1.」鏈上數據通訊協議格式，其著作權與相關智慧財產權均由開發者依法保留。</li>
-        <li>
-          <strong>軟體使用授權 (License)：</strong> 本軟體授權使用者於支援 Solana Mobile Wallet Adapter (MWA) 之行動裝置或瀏覽器環境中合法使用。本授權旨在確保軟體運作之透明度，未經開發者書面授權，禁止對本 PWA 程式碼進行反編譯、惡意竄改或用於非法商業營利行為。
+        <li class="mb-3">
+          <strong>軟體開發成果：</strong> 
+          本 InfoRec 應用程式的所有介面設計、標誌（iR Logo）以及專門為資料傳輸設計的通訊技術（IR1. 協議），均為開發團隊自行研發之成果，並受相關著作權法保護。
         </li>
-        <li>
-          <strong>鏈上數據權益：</strong> 使用者透過本系統產生並加密儲存於 Solana 區塊鏈之數據，其所有權歸屬於該簽章錢包之持有人。InfoRec 不對用戶自行上鏈之內容負擔審核或擔保責任。
+        <li class="mb-3">
+          <strong>授權與啟動說明：</strong> 
+          本軟體採「啟動碼授權」制。無論您是透過線上錢包自主啟動，或是經由開發團隊協助完成註冊，該授權均保障您在合法的技術環境中穩定使用本工具。請妥善保存您的授權資訊，並避免用於非法用途。
         </li>
-        <li>
-          <strong>第三方技術與合規聲明：</strong> 本系統運作基於 Solana Blockchain、Firebase Hosting 及 Delphi 跨平台技術。相關底層元件之權利歸屬於原權利人（如 Solana Foundation, Google Inc. 等）。本程式致力於符合 Solana 生態系之技術規範與安全性標準。
+        <li class="mb-3">
+          <strong>資料的安全性與所有權：</strong> 
+          這是我們最重視的核心原則。您透過本系統產生的所有紀錄，其所有權完全屬於您。本程式設計初衷即為「本地儲存、自主管理」，開發團隊無法跨過技術門檻查看或修改您的私人數據，確保您的數位紀錄受到最高程度的隱私保障。
+        </li>
+        <li class="mb-0">
+          <strong>技術平台聲明：</strong> 
+          本程式運行於成熟的國際技術平台（如 Google、Solana 技術規範）。我們致力於確保這些新技術能以最簡單、最親切的方式服務每一位使用者，並符合數位安全的標準。
         </li>
       </ol>
     </div>
-    <p style="text-align: center; color: #888; margin-top: 20px;">© 2026 InfoRec. All Rights Reserved.</p>
+
+    <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.85rem;">
+      © 2026 InfoRec. All Rights Reserved.
+    </p>
   </main>
+
+  <script>
+    /* 高度自動通知 (VMware/iframe 環境適用) */
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
 </body>
 </html>

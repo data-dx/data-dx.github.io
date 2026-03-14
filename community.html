@@ -16,20 +16,61 @@
   <hr>
 
   <p class="ir-lead">
-    歡迎加入社群交流與討論；無論是使用問題、文件設定需求，
-    或分享實際使用經驗，皆可在社群中提出。
+    歡迎加入社群交流與討論。無論是使用疑問、文件設定分享，或實務經驗回饋，皆可透過以下管道取得支援。
   </p>
 
   <section class="mb-4">
     <div class="ir-card p-3 p-md-4">
-      <div class="fw-semibold mb-2">社群管道</div>
-      <ul class="mb-0">
-       <li>LINE：<a href="https://line.me/ti/p/~inforec.dev" target="_blank" rel="noopener">加入好友</a></li>
-        <li>Telegram：<a href="https://t.me/inforeclabs" target="_blank" rel="noopener">加入好友</a></li>
-         <li>諮詢窗口：<a href="https://tawk.to/chat/69b13fc1be53e11c396ec469/1jje623d3" target="_blank" rel="noopener">傳送訊息</a></li>
-        <li>電子郵件：<a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a></li>
+      <div class="fw-semibold mb-3">交流與支援管道</div>
+      <ul class="mb-0" style="list-style: none; padding-left: 0;">
+        <li class="mb-3">
+          💡 <strong>諮詢窗口：</strong>
+          <a href="https://tawk.to/chat/69b13fc1be53e11c396ec469/1jje623d3" target="_blank" rel="noopener">點此啟動 tawk.to 線上對話</a>
+          <span class="text-muted" style="font-size: 0.875rem;">（免安裝軟體）</span>
+        </li>
+        <li class="mb-3">
+          💬 <strong>Telegram：</strong>
+          <a href="https://t.me/inforeclabs" target="_blank" rel="noopener">加入 InfoRec Labs</a>
+        </li>
+        <li class="mb-3">
+          🟢 <strong>LINE 社群：</strong>
+          <a href="https://line.me/ti/p/~inforec.dev" target="_blank" rel="noopener">點我加入好友 / 社群</a>
+        </li>
+        <li class="mb-0">
+          📧 <strong>電子郵件：</strong>
+          <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>
+        </li>
       </ul>
     </div>
   </section>
 
-  <section class="mb
+  <section class="mb-4">
+    <div class="ir-card p-3 p-md-4" style="background-color: #f8f9fa; border-left: 4px solid #6c757d;">
+      <div class="fw-semibold mb-2">使用與維護原則</div>
+      <ul class="mb-0" style="font-size: 0.95rem; color: #495057;">
+        <li class="mb-1"><strong>評估與確認：</strong> 軟體功能是否符合需求請自行評估；系統運算產生之結果，請使用者務必自行確認。</li>
+        <li><strong>維護與改進：</strong> 我們致力於持續優化功能並提升穩定性。歡迎透過社群回饋問題或分享您的實務操作經驗。</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    /* 高度自動通知 (VMware/iframe 環境適用) */
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
+</html>

@@ -18,6 +18,7 @@ $RECYCLE.BIN/
 *.dbstat
 __history/
 ModelSupport_*/
+AGENTS.md
 
 # Android / Bubblewrap 暫存
 app/
