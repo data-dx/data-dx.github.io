@@ -28,14 +28,25 @@ body{
 /* =========================
    HERO 區塊
    ========================= */
-.ir-hero{
+/* 修改這一段，確保高度可伸縮且文字可換行 */
+.ir-hero {
+  max-height: none !important; /* 移除高度限制，讓文字有空間換行 */
+  overflow: visible;           /* 確保下拉選單與換行文字不會被裁掉 */
   border-radius: var(--ir-radius);
   box-shadow: var(--ir-shadow);
   background:
     radial-gradient(1200px 600px at 10% 0%, rgba(13,110,253,.18), transparent 55%),
     radial-gradient(900px 500px at 90% 20%, rgba(32,201,151,.16), transparent 50%),
     linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92));
-  padding: 0.25rem 0.75rem;      /* 壓縮 hero 上下留白 */
+  padding: 0.75rem 0.75rem;    /* 稍微給一點上下內距，換行才好看 */
+}
+
+/* 確保說明文字強制換行 */
+.ir-hero .ir-muted {
+  white-space: normal !important; 
+  word-wrap: break-word;
+  display: block;
+  line-height: 1.5;            /* 增加行高，換行後比較好閱讀 */
 }
 
 /* hero 內標題 / 副標 */
@@ -730,3 +741,17 @@ footer, .ir-footer{
   padding-bottom: 0.55rem;
 }
 
+/* 強制讓自訂分隔線顯示出來 */
+.dropdown-item-text.text-muted {
+  color: #6c757d !important; /* 強制灰色 */
+  opacity: 1 !important;      /* 確保不透明 */
+  display: block;
+  padding: 0.2rem 1.2rem;    /* 給點左右間距，看起來更對齊 */
+}
+
+/* 如果是深色模式 */
+@media (prefers-color-scheme: dark) {
+  .dropdown-item-text.text-muted {
+    color: rgba(255,255,255,0.4) !important; /* 深色模式下的灰色 */
+  }
+}
