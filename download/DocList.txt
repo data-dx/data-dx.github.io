@@ -1,4 +1,8 @@
-﻿ES-FIN_HSBC_01_1,HSBC,CHECK,20241020
+﻿ChkIssue_050_ReqSlip_1,金融業支票核發管理系統,領取證(TBB),20260502
+ChkIssue_050_Leaf_1,金融業支票核發管理系統(TBB),支票,20260502
+ChkIssue_050_Cover_1,金融業支票核發管理系統(TBB),支票封面,20260502
+ChkIssue_050_BlkReq_1,金融業支票核發管理系統(TBB),空白領取證,20260502
+ES-FIN_HSBC_01_1,HSBC,CHECK,20241020
 HK-FIN_004_01_1,香港上海匯豐銀行,支票,20241020
 HK-FIN_229_01_1,中國信託銀行,支票,20241020
 HK-FIN_megabank_01_1,香港兆豐銀行,支票,20241020
