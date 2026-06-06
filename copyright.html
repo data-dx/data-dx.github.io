@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>使用權益與版權聲明｜InfoRec</title>
+  <title>著作權與授權聲明｜InfoRec</title>
   <link rel="stylesheet" href="css/site.css">
   <script src="../js/redirect.js"></script>
 </head>
 
 <body class="ir-content-body">
   <main class="ir-page">
-    <h1>使用權益與版權聲明</h1>
+    <h1>著作權與授權聲明</h1>
     <hr />
     
     <div class="ir-card p-3 p-md-4">
       <ol class="mb-0">
         <li class="mb-3">
           <strong>軟體開發成果：</strong> 
-          本 InfoRec 應用程式的所有介面設計、標誌（iR Logo）以及專門為資料傳輸設計的通訊技術（IR1. 協議），均為開發團隊自行研發之成果，並受相關著作權法保護。
+          本 InfoRec 應用程式的所有介面設計、標誌（iR Logo）以及專門為資料傳輸設計的通訊技術，均為本專案相關著作權利人獨立研發之成果，並受相關著作權法保護。
         </li>
         <li class="mb-3">
-          <strong>授權與啟動說明：</strong> 
-          本軟體採「啟動碼授權」制。無論您是透過線上錢包自主啟動，或是經由開發團隊協助完成註冊，該授權均保障您在合法的技術環境中穩定使用本工具。請妥善保存您的授權資訊，並避免用於非法用途。
+          <strong>授權與啟用說明：</strong> 
+          本軟體採「現狀功能啟用與環境驗證」制。無論是透過線上錢包自主啟用，或是經由社群協力節點代辦完成環境驗證登錄，該技術驗證機制均保障在合法的技術環境中穩定使用本工具。請妥善保存環境授權資訊，並避免用於非法用途。
         </li>
         <li class="mb-3">
           <strong>資料的安全性與所有權：</strong> 
-          這是我們最重視的核心原則。您透過本系統產生的所有紀錄，其所有權完全屬於您。本程式設計初衷即為「本地儲存、自主管理」，開發團隊無法跨過技術門檻查看或修改您的私人數據，確保您的數位紀錄受到最高程度的隱私保障。
+          這是本軟體最核心之技術原則。使用者透過本系統產生的所有紀錄，其所有權完全屬於使用者。本程式設計初衷即為「本地儲存、自主管理」，本軟體技術架構無法跨過技術門檻查看或修改使用者的私人數據，確保數位紀錄受到最高程度之安全保障。
         </li>
         <li class="mb-0">
-          <strong>技術平台聲明：</strong> 
-          本程式運行於成熟的國際技術平台（如 Google、Solana 技術規範）。我們致力於確保這些新技術能以最簡單、最親切的方式服務每一位使用者，並符合數位安全的標準。
+          <strong>技術規範聲明：</strong> 
+          本程式運行於成熟的國際技術規範（如 Google、SOL 區塊鏈技術規範）。本系統旨在確保相關技術成果能以自主控管之方式落實，並符合數位安全的標準。
         </li>
       </ol>
     </div>
 
     <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.85rem;">
-      © 2026 InfoRec. All Rights Reserved.
+      © <span id="subYear"></span> InfoRec 著作權所有。
     </p>
   </main>
 
@@ -55,6 +55,15 @@
       window.addEventListener('resize', postHeight);
       setTimeout(postHeight, 300);
       setTimeout(postHeight, 900);
+    })();
+  </script>
+
+  <script>
+    /* 頁尾年份自動動態換年機制 */
+    (function () {
+      if(document.getElementById("subYear")) {
+        document.getElementById("subYear").textContent = new Date().getFullYear();
+      }
     })();
   </script>
 </body>

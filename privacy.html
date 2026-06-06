@@ -16,26 +16,26 @@
     <div class="ir-card p-3 p-md-4">
       <ul class="mb-0" style="list-style: none; padding-left: 0;">
         <li class="mb-4">
-          <strong>● 數據收集與處理：</strong><br>
-          本系統僅在您主動使用功能時進行數據處理。桌面端工具之資料完整儲存於您的本地環境（如 Firebird 資料庫）；Web3 功能僅讀取錢包公鑰以識別資產權限，並用於簽署「IR1.」協議紀錄。
+          <strong>● 數據控制與本機環境：</strong><br>
+          本軟體純屬技術工具交付。桌面端之資訊與紀錄完整儲存於使用者的本機環境（如 Firebird 資料庫），所有數據由使用者自行控管，本軟體與開發者不具備任何遠端伺服器，亦不持有、不收集任何使用者之業務數據。
         </li>
         <li class="mb-4">
-          <strong>● 資產與私鑰安全：</strong><br>
-          本程式嚴格遵循 Solana MWA 規範，絕不要求、存取或儲存您的錢包助記詞或私鑰。所有交易簽署均在您授權的錢包 App 中獨立完成，確保您的資產絕對安全。
+          <strong>● 資產與密鑰安全：</strong><br>
+          本軟體嚴格遵循 SOL 區塊鏈行動端驗證規範（MWA），絕不要求、存取或儲存使用者的錢包助記詞或私鑰。所有環境驗證之交易簽署均在使用者授權的錢包內獨立完成。
         </li>
         <li class="mb-4">
           <strong>● 第三方流量統計：</strong><br>
-          本網站使用 Google Analytics (gtag.js) 收集匿名流量資訊，僅用於分析網站效能以優化使用者體驗。我們不使用追蹤性 Cookie 進行個人行為畫像或商業廣告投放。
+          本專案文案網頁使用 Google Analytics (gtag.js) 收集匿名流量資訊，僅用於分析網頁效能以優化技術文案之呈現。本網站不使用追蹤性 Cookie 進行使用者行為分析與追蹤。
         </li>
         <li class="mb-0">
-          <strong>● 數據控制與鏈上特性：</strong><br>
-          您對儲存於本地或 Solana 區塊鏈上之紀錄擁有完全控制權。受限於區塊鏈不可篡改之技術特性，已上鏈之數據無法刪除，僅限持有對應私鑰之用戶進行權限處置。
+          <strong>● 鏈上環境特性：</strong><br>
+          採用 SOL 區塊鏈環境驗證之紀錄，擁有完全之技術控制權。受限於分散式帳本不可篡改之技術特性，已完成傳送驗證之上鏈數據無法刪除。
         </li>
       </ul>
     </div>
 
     <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.85rem;">
-      © 2026 InfoRec. All Rights Reserved.
+      © <span id="subYear"></span> InfoRec 著作權所有。
     </p>
   </main>
 
@@ -55,6 +55,15 @@
       window.addEventListener('resize', postHeight);
       setTimeout(postHeight, 300);
       setTimeout(postHeight, 900);
+    })();
+  </script>
+
+  <script>
+    /* 頁尾年份自動動態換年機制 */
+    (function () {
+      if(document.getElementById("subYear")) {
+        document.getElementById("subYear").textContent = new Date().getFullYear();
+      }
     })();
   </script>
 </body>
