@@ -6,14 +6,57 @@
 
   <title>系統架構｜InfoRec</title>
 
-  <!-- 套用新版共用樣式 -->
   <link rel="stylesheet" href="../css/site.css">
 
-  <!-- GA 追蹤 -->
-
   <script src="../js/redirect.js"></script>
-  <!-- 如果不是被 iframe 載入，會在 h1 下方自動插一行「回首頁」提示 -->
   <script src="../js/page-note.js"></script>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+      startOnLoad: true,
+      theme: 'dark',               /* 保持深色主題 */
+      themeVariables: {
+        fontSize: '16px',
+        fontFamily: '"Microsoft JhengHei", sans-serif',
+        
+        /* 🎯 關鍵修正：強制把方塊內部的「死白底」換成深色底 */
+        mainBkg: '#2a2f3a',         /* 方塊背景：改成沉穩的深灰藍（不再刺眼！） */
+        nodeBorder: '#4f596b',      /* 方塊邊框：暗色邊框 */
+        nodeTextColor: '#e2e8f0',   /* 方塊文字：改成溫和的亮灰白字 */
+        
+        /* 如果有箭頭或線條，一併微調 */
+        lineColor: '#a0aec0',       /* 線條顏色 */
+        textColor: '#e2e8f0'        /* 一般文字顏色 */
+      }
+    });
+  </script>
+
+<style>
+    /* 🎯 護眼大救援：將整個網頁與圖表區強制轉為沉穩不刺眼的暗色系 */
+    body.ir-page {
+      background-color: #1e1e1e !important; /* 整個網頁底色：微暗黑 */
+      color: #d4d4d4 !important;            /* 網頁文字：柔和亮灰 */
+    }
+    
+    /* 讓超連結在暗色背景下不會太藍、刺眼 */
+    a { color: #4fc1ff !important; }
+    
+    /* 核心尺寸修正與方塊底色覆蓋 */
+    .mermaid .node rect, 
+    .mermaid .node polygon {
+      width: 140px !important;
+      x: -70px !important;
+      fill: #2d2d2d !important;             /* 方塊內底色：深灰（絕不刺眼） */
+      stroke: #5a5a5a !important;           /* 方塊邊框：暗灰 */
+    }
+    
+    /* 強制圖表內的文字使用柔和淡米白 */
+    .mermaid .node .label, 
+    .mermaid .node .label span {
+      color: #e0e0e0 !important;
+    }
+  </style>
 </head>
 
 <body class="ir-page">
@@ -42,16 +85,182 @@
   </ol>
 
   <figure>
-    <!-- 假設圖片放在 InfoRec/images/InfoRec.png -->
-    <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
+    <div class="mt-4 text-center">
+      <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
+    </div>
     <figcaption class="TACenter">資訊紀錄管理工具 - 首頁</figcaption>
   </figure>
 
-  <p><strong>架構圖（功能表）：</strong></p>
+  <p><strong>架構圖（常用、資料）：</strong></p>
 
   <figure>
-    <img class="winimg" src="images/Architecture.png" alt="資訊紀錄管理工具 - 架構圖">
-    <figcaption class="TACenter">資訊紀錄管理工具 - 架構圖</figcaption>
+    <pre class="mermaid" style="cursor: pointer;">
+        graph TD
+            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
+            
+            %% ==========================================
+            %% 1. 核心大項與一級分支 (群組一)
+            %% ==========================================
+            主控[資訊記錄管理工具]
+
+            主控 --> 常用[常用]
+            主控 --> 資料[資料]
+
+            %% ==========================================
+            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
+            %% ==========================================
+            
+            %% 【常用】分支
+            常用 --> 文件交換1[文件交換]
+            文件交換1 --> 資料擁有者1[資料擁有者]
+            資料擁有者1 --> 印表機[印表機]
+            印表機 --> 匯入套印[匯入套印]
+
+            %% 【資料】分支
+            資料 --> 資料擁有者2[資料擁有者]
+            資料擁有者2 --> 客戶資料[客戶資料]
+            客戶資料 --> 項目管理[項目管理]
+            項目管理 --> 資料交換[資料交換]   
+
+
+            %% ==========================================
+            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
+            %% ==========================================
+            
+            click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
+            click 常用 href "MITCommon.html" "常用管理說明"
+            click 資料 href "MITdata.html" "資料管理說明"
+
+            click 文件交換1 href "FormDocEx.html"
+            click 資料擁有者1 href "FormDataOwner.html"
+            click 印表機 href "FormPrinter.html"
+            click 匯入套印 href "FormImportPrint.html"
+
+            click 資料擁有者2 href "FormDataOwner.html"
+            click 客戶資料 href "FormCustomer.html"
+            click 項目管理 href "FormProducts.html"
+            click 資料交換 href "FormDocEx.html"
+            
+    </pre>
+    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（常用、資料）</figcaption>
+  </figure>
+
+  <p><strong>架構圖（文件）：</strong></p>
+
+  <figure>
+    <pre class="mermaid" style="cursor: pointer;">
+        graph TD
+            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
+            
+            %% ==========================================
+            %% 1. 核心大項與一級分支 (文件獨立功能)
+            %% ==========================================
+            主控[資訊記錄管理工具]
+
+            主控 --> 文件[文件]
+
+            %% ==========================================
+            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
+            %% ==========================================
+            
+            %% 🎯 【文件】改為 4 個平行分支
+            文件 --> 文件管理[文件管理]
+            文件 --> 內容設計[內容設計]
+            文件 --> 輸入管理設計[輸入管理設計]    
+            文件 --> 建立副本[建立副本]
+
+            %% 各自的三級子功能，依據您的原圖形狀往右邊橫向畫出流程分支
+            文件管理 --> 領域管理[領域管理]
+            領域管理 --> 文件來源[文件來源]
+            文件來源 --> 文件類型[文件類型]
+
+            內容設計 --> 資料配置[資料配置]
+            資料配置 --> 資料處理[資料處理]
+
+            輸入管理設計 --> 資料取得[資料取得]
+            資料取得 --> 紀錄儲存[紀錄儲存]
+            紀錄儲存 --> 紀錄顯示[紀錄顯示]
+            紀錄顯示 --> 輸入版面[輸入版面]
+
+
+            %% ==========================================
+            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
+            %% ==========================================
+            
+            click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
+            click 文件 href "MITDoc.html" "文件管理說明"
+            
+            %% 文件分支的 4 個點擊連結
+            click 文件管理 href "FormDocInfo.html"
+            click 內容設計 href "FormDocDesign.html"
+            click 輸入管理設計 href "FormUIDesign.html"
+            click 建立副本 href "MICopyCreation.html"
+
+            click 領域管理 href "FormArea.html"
+            click 文件來源 href "FormDocSrc.html"
+            click 文件類型 href "FormDocKind.html"
+
+            click 資料配置 href "FormDataAlloc.html"
+            click 資料處理 href "FormDataProc.html"
+
+            click 資料取得 href "FormQueryDesign.html"
+            click 紀錄儲存 href "FormInfoRecSaveSet.html"
+            click 紀錄顯示 href "FormDocRecShowSet.html"
+            click 輸入版面 href "FormLayout.html"
+    </pre>
+    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（文件）</figcaption>
+  </figure>
+
+  <p><strong>架構圖（記錄、工具、支援）：</strong></p>
+
+  <figure>
+    <pre class="mermaid" style="cursor: pointer;">
+        graph TD
+            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
+            
+            %% ==========================================
+            %% 1. 核心大項與一級分支 (群組二)
+            %% ==========================================
+            主控[資訊記錄管理工具]
+
+            主控 --> 記錄[記錄]
+            主控 --> 工具[工具]
+            主控 --> 支援[支援]
+
+            %% ==========================================
+            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
+            %% ==========================================
+            
+            %% 【記錄】分支
+            記錄 --> 文件領用登錄[文件領用登錄]
+            文件領用登錄 --> 文件紀錄管理[文件紀錄管理]
+
+            %% 【工具】分支
+            工具 --> 偏好設定[偏好設定]
+            偏好設定 --> 金融業支票核發[金融業支票核發]
+
+            %% 【支援】分支
+            支援 --> 授權與啟用[授權與啟用]
+            授權與啟用 --> 軟體說明與協助[軟體說明與協助]
+            軟體說明與協助 --> 網頁[網頁]       
+
+            %% ==========================================
+            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
+            %% ==========================================
+            
+            click 主控 href "https://www.inforec.dev/"
+            
+            click 文件領用登錄 href "FormDocIssLog.html"
+            click 文件紀錄管理 href "FormDocRecords.html"
+            click 偏好設定 href "FormPrefs.html"
+            click 金融業支票核發 href "FormChkIssue.html"
+
+            click 授權與啟用 href "FormSignUp.html"
+            click 軟體說明與協助 href "FormContactInfo.html"
+            click 網頁 href "https://www.inforec.dev/"
+       
+    </pre>
+    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（記錄、工具、支援）</figcaption>
   </figure>
 
 </body>

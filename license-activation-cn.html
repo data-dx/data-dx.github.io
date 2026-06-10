@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InfoRec｜软件授权与启用说明</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+  <style>
+    .btn-group-lang { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+    .btn-lang { 
+      padding: 5px 12px; border: 1px solid #ccc; background: #fff; 
+      cursor: pointer; border-radius: 4px; font-size: 13px; margin-left: 5px; transition: 0.3s;
+    }
+    .btn-lang.active { background: #212529; color: #fff; border-color: #212529; }
+    .btn-lang:hover:not(.active) { background: #f8f9fa; }
+  </style>
+</head>
+<body class="ir-page">
+
+  <!-- 右上方語系切換按鈕 -->
+  <div class="btn-group-lang">
+    <button class="btn-lang" onclick="location.href='license-activation-tw.html'">繁體中文</button>
+    <button class="btn-lang" onclick="location.href='license-activation-en.html'">English</button>
+    <button class="btn-lang active" onclick="location.href='license-activation-cn.html'">简体中文</button>
+  </div>
+
+  <h1>InfoRec 软件授权与启用说明</h1>
+  <hr>
+  <p class="ir-lead">欢迎采用 InfoRec 软件（以下简称 InfoRec）信息记录管理工具。为了保障您的软件现状授权权益与既有版本更新之衍生下载权益，请参考以下流程引导完成软件功能启用与环境验证登录。</p>
+
+  <h2>一、 准备工作：下载与安装</h2>
+  <ol>
+    <li>
+      <strong>Windows 桌面工具 (InfoRec.exe)</strong><br>
+      请至项目文档下载页面 <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> 下载并运行 InfoRec.exe。这是您进行信息管理、数据存储文件套印与各项功能验证的核心工具。
+    </li>
+    <li>
+      <strong>验证与授权工具 (区块链钱包)</strong><br>
+      本系统采用 Solana 区块链进行授权与环境验证，请根据您的设备准备：
+      <ul>
+        <li><strong>Solana 手机用户：</strong>请至 Solana dApp Store 下载“InfoRec App”。</li>
+        <li><strong>普通用户：</strong>请在浏览器安装 Phantom 或 Solflare 钱包插件并通过 PWA 网页版进行授权。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>二、 流程说明</h2>
+  <p>本系统提供“线上环境验证”与“离线申请环境验证”两种方式：</p>
+  <ol>
+    <li>
+      <strong>【方案甲：线上环境验证 (默认)】</strong>
+      <p>验证完成后立即获得云端授权，自动完成本机环境登录。</p>
+      <ul>
+        <li><strong>步骤 1：在桌面工具提交申请</strong><br>开启 InfoRec.exe，点击“支持 > 加入社区 > 申请功能启用”。填写用户名、联系人、电子邮箱与联系电话。选择硬件指纹来源（电脑名称或闪存盘分区），点击“执行”。系统将同时生成普通用户的支付网址 (PWA) 或 Solana 手机用户的二维码 (QR Code)。</li>
+        <li><strong>步骤 2：使用钱包进行环境与技术验证</strong><br>扫描二维码或访问网址，选择您的智慧财产权授权方案。于钱包窗口确认并<strong>采用 SOL 区块链的 SKR 传送验证</strong>，此技术验证机制旨在构建最低经济屏障（防滥用机制），并作为智慧财产权授权之象征性合理对价。</li>
+        <li><strong>步骤 3：启动软件授权</strong><br>回到桌面工具，点击“支持 > 加入社区 > 执行环境验证”。系统自动比对链上转账与环境验证结果，确认无误后即完成功能启用。</li>
+      </ul>
+    </li>
+    <li>
+      <strong>【方案乙：离线申请环境验证】</strong>
+      <p>适用于无法亲自操作虚拟货币，或设备处于断网环境的用户。</p>
+      <ul>
+        <li><strong>步骤 1：生成申请文件</strong><br>在功能验证窗口选择“离线申请授权”。填写资料后点击“执行”生成申请文件并引导您发送邮件给社区協力人员。</li>
+        <li><strong>步骤 2：透过社区協力转账验证</strong><br>若您没有特定社区协助对象，请将相关证明提供给社区自愿協力人员，由社区協力节点进入“代办模式”<strong>采用 SOL 区块链的 SKR 传送验证</strong>，为您代转并生成技术授权文件。</li>
+        <li><strong>步骤 3：导入授权文件完成本机环境验证</strong><br>将接收到的“授权文件”放入 InfoRec 程序文件夹。在启用画面勾选“文件导入启用”并点击“执行环境验证”即可完成启用。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>三、 代办模式</h2>
+  <p>此模式用于社区協力协助他人完成 SKR 转账验证并获取特定环境之授权文件：</p>
+  <ol>
+    <li>社区協力人员打开验证窗口，选择“代办模式”。</li>
+    <li>读取申请者提供的“授权申请文件”。</li>
+    <li>由社区協力人员的钱包完成 SKR 转账验证，系统将生成该设备与环境专用的“授权文件”。</li>
+    <li>社区協力人员将文件转交给申请者，按方案乙步骤 3 导入即可。</li>
+  </ol>
+
+  <h2>四、 注意事项（重大事项揭露与免责宣告）</h2>
+  <ul>
+    <li><strong>1. 【环境与硬件绑定】</strong>本软件永久授权与特定操作系统环境及硬件设备相依。采用电脑名称进行环境验证者，用户须具备独立部署与操作能力，若更换电脑环境，请务必自行将新电脑名称修改为与原验证名称一致。本软件技术性质纯粹，不提供人工环境重设、转移或其他个别化技术咨询劳务。</li>
+    <li><strong>2. 【退款说明】</strong>区块链交易不可逆，验证成功后无法退款。此技术验证机制旨在构建最低经济屏障，以防止恶意自动化程序大量刷取、滥用软件资源，并作为智慧财产权授权之象征性合理对价。请于验证前充分试用软件，确认符合您的期待。</li>
+    <li><strong>3. 【授权效期延续】</strong>续约之既有版本更新衍生下载权益由原到期日自动顺延，不会缩短既有权益。</li>
+    <li><strong>4. 【社区互助与取得支援】</strong>如有任何软件功能使用或环境相依性问题，欢迎提交至社区協力平台进行经验分享与技术交流。本软件定位为智财权授权行使，不提供 any 常态性人工客服、定期维护或售后技术支持服务。如需排版微调，请参考 <a href="use/print-layout.html">列印調整說明</a>。若有需要，欢迎寻求协助。</li>
+  </ul>
+</body>
+</html>
