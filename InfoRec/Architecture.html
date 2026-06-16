@@ -86,7 +86,7 @@
     InfoRec 軟體（以下簡稱 InfoRec）主視窗分為功能表、工作頁、輸入列印等三個區域，說明如下。
   </p>
 
-  <h2>一、 核心區域導覽</h2>
+  <h2>核心區域導覽</h2>
   <ol class="ol-l1">
     <li>
       <a href="architecture_menu.html">功能表</a>：
@@ -107,7 +107,7 @@
     <figcaption class="TACenter">資訊紀錄管理工具 - 首頁</figcaption>
   </figure>
 
-  <h2>二、 互動式系統架構圖</h2>
+  <h2>互動式系統架構圖</h2>
   
   <ol class="ol-l1 architecture-list">
     <li>
@@ -117,7 +117,7 @@
           <figure>
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
-                    主控[資訊記錄管理工具] --> 常用[常用]
+                    主控[資訊紀錄管理工具] --> 常用[常用]
                     主控 --> 資料[資料]
                     
                     %% 【常用】分支
@@ -158,7 +158,7 @@
           <figure>
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
-                    主控[資訊記錄管理工具] --> 文件[文件]
+                    主控[資訊紀錄管理工具] --> 文件[文件]
 
                     %% 【文件】分支
                     文件 --> 文件管理[文件管理]
@@ -202,18 +202,18 @@
     </li>
 
     <li class="mt-4">
-      <strong>記錄、工具與支援架構</strong>
+      <strong>紀錄、工具與支援架構</strong>
       <ul class="ul-l1 architecture-diagram-section">
         <li>
           <figure>
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
-                    主控[資訊記錄管理工具] --> 記錄[記錄]
+                    主控[資訊紀錄管理工具] --> 紀錄[紀錄]
                     主控 --> 工具[工具]
                     主控 --> 支援[支援]
 
-                    %% 【記錄】分支
-                    記錄 --> 文件領用登錄[文件領用登錄]
+                    %% 【紀錄】分支
+                    紀錄 --> 文件領用登錄[文件領用登錄]
                     文件領用登錄 --> 文件紀錄管理[文件紀錄管理]
 
                     %% 【工具】分支
@@ -227,12 +227,11 @@
 
                     %% 點擊智慧跳轉連結
                     click 主控 href "https://www.inforec.dev/"
-                    click 記錄 href "MITRecords.html"
+                    click 紀錄 href "MITRecords.html"
                     click 文件領用登錄 href "FormDocIssLog.html"
                     click 文件紀錄管理 href "FormDocRecords.html"
 
                     click 工具 href "MITTool.html"
-                    click 偏好設定 href "FormPrefs.html"
                     click 偏好設定 href "FormPrefs.html"
                     click 金融業支票核發 href "FormChkIssue.html"
                     
@@ -241,7 +240,7 @@
                     click 軟體說明與協助 href "FormContactInfo.html"
                     click 網頁 href "https://www.inforec.dev/"
             </pre>
-            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（記錄、工具、支援）</figcaption>
+            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（紀錄、工具、支援）</figcaption>
           </figure>
         </li>
       </ul>
