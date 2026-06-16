@@ -1,6 +1,9 @@
 (function () {
   'use strict';
 
+  // ==========================================
+  // 核心基礎工具與核心區域控制
+  // ==========================================
   function $all(sel){ return Array.from(document.querySelectorAll(sel)); }
 
   function setYear(){
@@ -24,23 +27,22 @@
     }catch(e){}
   }
 
-function setFocus(on){
-  var btn = document.getElementById('btnFocus');
+  function setFocus(on){
+    var btn = document.getElementById('btnFocus');
 
-  if (on)
-    document.body.classList.add('ir-focus');
-  else
-    document.body.classList.remove('ir-focus');
+    if (on)
+      document.body.classList.add('ir-focus');
+    else
+      document.body.classList.remove('ir-focus');
 
-  if (btn) {
-    if (document.body.classList.contains('ir-focus')) {
-      btn.textContent = '離開專注閱讀（顯示介紹）';
-    } else {
-      btn.textContent = '專注閱讀（放大內容）';
+    if (btn) {
+      if (document.body.classList.contains('ir-focus')) {
+        btn.textContent = '離開專注閱讀（顯示介紹）';
+      } else {
+        btn.textContent = '專注閱讀（放大內容）';
+      }
     }
   }
-}
-
 
   function bindFocusButton(){
     var btn = document.getElementById('btnFocus');
@@ -84,29 +86,34 @@ function setFocus(on){
     });
   }
 
-function initFromHash(){
-  try{
-    if(location.hash && location.hash.length > 1){
-      var src = decodeURIComponent(location.hash.substring(1));
-      if(src){
-        setIframeSrc(src);
-        setFocus(false); // ✅ 這裡也固定 false
+  function initFromHash(){
+    try{
+      if(location.hash && location.hash.length > 1){
+        var src = decodeURIComponent(location.hash.substring(1));
+        if(src){
+          setIframeSrc(src);
+          setFocus(false); // ✅ 這裡也固定 false
+        }
       }
-    }
-  }catch(e){}
-}
+    }catch(e){}
+  }
 
-
-document.addEventListener('DOMContentLoaded', function(){
-  setFocus(false);   // ✅ 強制預設不專注（先關掉再說）
-  setYear();
-  initFromHash();
-  bindNav();
-  bindFocusButton();
-});
+  // ==========================================
+  // 主程式初始化觸發
+  // ==========================================
+  document.addEventListener('DOMContentLoaded', function(){
+    setFocus(false);   // ✅ 強制預設不專注（先關掉再說）
+    setYear();
+    initFromHash();
+    bindNav();
+    bindFocusButton();
+  });
 
 })();
 
+// ==========================================
+// 說明文件外部單獨開啟時的防呆提示
+// ==========================================
 (function(){
   document.addEventListener('DOMContentLoaded', function () {
     // 在 iframe 裡就不要顯示
@@ -128,7 +135,3 @@ document.addEventListener('DOMContentLoaded', function(){
     h1.insertAdjacentElement('afterend', note);
   });
 })();
-
-
-
-

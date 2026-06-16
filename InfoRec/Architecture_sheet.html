@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>工作頁｜InfoRec</title>
+  
   <link rel="stylesheet" href="../css/site.css">
 
   <script src="../js/redirect.js"></script>
@@ -15,38 +16,45 @@
   <h1>工作頁</h1>
   <hr>
 
-  <p>工作頁主要有下列4個：</p>
+  <p class="ir-lead">
+    工作頁主要包含下列 4 個核心管理介面：
+  </p>
 
-  <ol>
-    <li>可用文件：要進行文件編輯時，先選擇文件來源，再指定資料擁有者(使用文件的主體)後，才可以輸入資料。當資料儲存時，日後若有需要就可以用文件及資料擁有者找到歷史紀錄(由列印紀綠工作頁)。
+  <ol class="ol-l1">
+<li>
+      <strong>可用文件</strong>：使用本軟體進行任何作業之前，需要先選擇「<a href="FormDocEx.html">文件來源</a>」，再指定「<a href="FormDataOwner.html">資料擁有者</a>」（使用文件的主體）後，所有的動作，就會針對這個組合進行；例如輸入資料、存檔、登錄文件編號，未來輸入（列印）資料查詢。
       <figure>
-        <img class="winimg" src="../InfoRec/images/IR_tabForm.png" alt="可用文件工作頁">
+        <img class="winimg" src="images/IR_tabDoc.png" alt="可用文件工作頁">
         <figcaption class="TACenter">可用文件工作頁</figcaption>
       </figure>
     </li>
 
-    <li>客戶資料：文件編的相對人，例如發票的收人、信件的收信人)。
+    <li>
+      <a href="FormCustomer.html"><s<strong>客戶資料</strong></a>：文件內容的相對人（例如：發票的收票人、信件的收信人）。
       <figure>
-        <img class="winimg" src="../InfoRec/images/IR_tabCustomer.png" alt="客戶資料工作頁">
+        <img class="winimg" src="images/IR_tabCustomer.png" alt="客戶資料工作頁">
         <figcaption class="TACenter">客戶資料工作頁</figcaption>
       </figure>
     </li>
 
-    <li>物品資料：已儲存在本系統資料庫內的物品，會出現於此，常用於發票的品名，或會計文件的科目。。
+    <li>
+      <a href="FormItems.html"><strong>項目管理</strong></a>：文件中需要引用的資訊，例如常用於發票的品名(代號、名稱單位、單價)，或會計文件的科目、外幣(代號、名稱單位)。
       <figure>
-        <img class="winimg" src="../InfoRec/images/IR_tabProduct.png" alt="物品資料工作頁">
-        <figcaption class="TACenter">物品資料工作頁</figcaption>
+        <img class="winimg" src="images/IR_tabItems.png" alt="項目管理工作頁">
+        <figcaption class="TACenter">項目管理工作頁</figcaption>
       </figure>
     </li>
 
-    <li>列印記錄：顯示的資料來源有2個。
-      <ol class="lstdlz">
-        <li>文件領用登錄：文件一經登路後，系統就會產生相關資料</li>
-        <li>文件未先登錄：於文件編輯後，如有存檔或列印，就會自動儲存(或更新)資料。</li>
-      </ol>
+    <li>
+      <strong>列印記錄</strong>：顯示列印(預覽)的歷史資料，便於叫出來重覆使用，避免相同的資料重新輸入的問題。
+      <ul class="ul-l1">
+        <li><strong>欄位項目管理</strong>：列印記錄表格中呈現的欄位項目，可以由<a href="FormDocRecShowSet.html">紀錄顯示設定</a>進行管理。</li>
+        <li><strong>欄位寬度設定</strong>：點選<span style="text-decoration: underline;">列印記錄</span>後，可以拖拉或指定欄位寬度，完成後，再按一次<span style="text-decoration: underline;">列印記錄</span>，軟體就會儲存欄寬設定。</li>
+        <li>刪除列印記錄：直接在該筆記錄用滑鼠左錄快點2下即可刪除該筆資料。</li>
+      </ul>
       <figure>
-        <img class="winimg" src="../InfoRec/images/IR_tabForm.png" alt="列印記錄工作頁">
-        <figcaption class="TACenter">列印記錄</figcaption>
+        <img class="winimg" src="images/IR_tabPrtRecord.png" alt="列印記錄工作頁">
+        <figcaption class="TACenter">列印記錄工作頁</figcaption>
       </figure>
     </li>
   </ol>

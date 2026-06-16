@@ -755,3 +755,44 @@ footer, .ir-footer{
     color: rgba(255,255,255,0.4) !important; /* 深色模式下的灰色 */
   }
 }
+
+/* ========================================================
+   InfoRec Mermaid 互動圖表與圖說完美置中美學
+   ======================================================== */
+
+/* 確保架構圖與圖片無論大小，絕對水平置中 */
+.ir-page figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 強制左右居中 */
+  justify-content: center;
+  width: 100%;
+  margin: 1.5rem auto;
+}
+
+/* 限制 Mermaid 的最大寬度，並確保在小螢幕時也能置中縮放 */
+.mermaid {
+  width: 100%;
+  max-width: 800px;         /* 內容區美學最佳寬度 */
+  display: flex;
+  justify-content: center;
+}
+
+/* 互動式超連結美學（直接覆蓋內建圖表樣式） */
+.mermaid .clickable .label,
+.mermaid .clickable .label span {
+  color: #4fc1ff !important;            /* 清晰的互動連結藍 */
+  text-decoration: underline !important; /* 標準超連結底線 */
+  font-weight: bold;
+}
+
+/* 配合 .ol-l1 與 .ul-l1 層次結構微調 */
+.architecture-list {
+  padding-left: 0;
+  list-style-position: inside;
+}
+.architecture-diagram-section {
+  width: 100%;
+  padding-left: 0;
+  list-style-type: none; /* 移除包覆圖表的圓點 */
+}

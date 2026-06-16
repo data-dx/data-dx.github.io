@@ -4,59 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>系統架構｜InfoRec</title>
+  <title>系統架構說明｜InfoRec</title>
 
   <link rel="stylesheet" href="../css/site.css">
-
   <script src="../js/redirect.js"></script>
   <script src="../js/page-note.js"></script>
 
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
-      startOnLoad: true,
-      theme: 'dark',               /* 保持深色主題 */
-      themeVariables: {
-        fontSize: '16px',
-        fontFamily: '"Microsoft JhengHei", sans-serif',
-        
-        /* 🎯 關鍵修正：強制把方塊內部的「死白底」換成深色底 */
-        mainBkg: '#2a2f3a',         /* 方塊背景：改成沉穩的深灰藍（不再刺眼！） */
-        nodeBorder: '#4f596b',      /* 方塊邊框：暗色邊框 */
-        nodeTextColor: '#e2e8f0',   /* 方塊文字：改成溫和的亮灰白字 */
-        
-        /* 如果有箭頭或線條，一併微調 */
-        lineColor: '#a0aec0',       /* 線條顏色 */
-        textColor: '#e2e8f0'        /* 一般文字顏色 */
-      }
-    });
-  </script>
+  <style>
+    .ir-page figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;      /* 關鍵：讓內部的網頁圖表或圖片強制左右居中 */
+      justify-content: center;
+      width: 100%;
+      margin: 1.5rem auto;
+    }
 
-<style>
-    /* 🎯 護眼大救援：將整個網頁與圖表區強制轉為沉穩不刺眼的暗色系 */
-    body.ir-page {
-      background-color: #1e1e1e !important; /* 整個網頁底色：微暗黑 */
-      color: #d4d4d4 !important;            /* 網頁文字：柔和亮灰 */
+    /* 限制 Mermaid 的最大寬度，並確保在小螢幕時也能置中縮放 */
+    .mermaid {
+      width: 100%;
+      max-width: 800px;         /* 配合內容區美學的最佳寬度 */
+      display: flex;
+      justify-content: center;
+    }
+
+    /* 🎯 互動式超連結美學（直接覆蓋內建圖表樣式） */
+    .mermaid .clickable .label,
+    .mermaid .clickable .label span {
+      color: #4fc1ff !important;            /* 清晰的互動連結藍 */
+      text-decoration: underline !important; /* 畫上標準超連結底線 */
+      font-weight: bold;
     }
     
-    /* 讓超連結在暗色背景下不會太藍、刺眼 */
-    a { color: #4fc1ff !important; }
-    
-    /* 核心尺寸修正與方塊底色覆蓋 */
-    .mermaid .node rect, 
-    .mermaid .node polygon {
-      width: 140px !important;
-      x: -70px !important;
-      fill: #2d2d2d !important;             /* 方塊內底色：深灰（絕不刺眼） */
-      stroke: #5a5a5a !important;           /* 方塊邊框：暗灰 */
+    .architecture-list {
+      padding-left: 0;
+      list-style-position: inside;
     }
-    
-    /* 強制圖表內的文字使用柔和淡米白 */
-    .mermaid .node .label, 
-    .mermaid .node .label span {
-      color: #e0e0e0 !important;
+    .architecture-diagram-section {
+      width: 100%;
+      padding-left: 0;
+      list-style-type: none; /* 移除包覆圖表的圓點，維持視覺乾淨 */
     }
   </style>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    function initAndRun() {
+      mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'dark',               /* 圖表核心維持深色，確保跨主題清晰度 */
+        themeVariables: {
+          fontSize: '15px',
+          fontFamily: '"Microsoft JhengHei", sans-serif',
+          mainBkg: '#2d323f',         /* 方塊背景：深灰藍 */
+          nodeBorder: '#5c677d',      /* 方塊邊框：中灰藍 */
+          nodeTextColor: '#e2e8f0',   /* 方塊文字：柔白 */
+          lineColor: '#94a3b8',       /* 線條顏色：鋼鐵灰 */
+          textColor: '#e2e8f0'        /* 一般文字顏色 */
+        }
+      });
+      // 💡 關鍵防呆：強制主動去掃描網頁中的 pre.mermaid 並畫出來，避免生命週期錯過
+      mermaid.run();
+    }
+
+    // 確保網頁不論在哪種預覽環境下開好，都能主動出圖
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAndRun);
+    } else {
+      initAndRun();
+    }
+  </script>
 </head>
 
 <body class="ir-page">
@@ -65,203 +83,170 @@
   <hr>
 
   <p class="ir-lead">
-    本軟體主視窗分為功能表、工作頁、輸入列印等三個區域，說明如下。
+    InfoRec 軟體（以下簡稱 InfoRec）主視窗分為功能表、工作頁、輸入列印等三個區域，說明如下。
   </p>
 
-  <ol>
+  <h2>一、 核心區域導覽</h2>
+  <ol class="ol-l1">
     <li>
       <a href="architecture_menu.html">功能表</a>：
-      軟體首頁之外的功能，均由功能表提供。功能表依常用、資料、文件、支援等數個大項分類。
+      軟體首頁之外的功能，均由功能表提供。功能表依常用、資料、文件、支援等數個項目分類。
     </li>
     <li>
       <a href="Architecture_sheet.html">工作頁</a>：
-      輸入、列印時，需要指定表格、編輯人員、相對人（廠商或人員）；輸入與列印後的紀錄檢視，
-      都由對應的「工作頁」進行管理。
+      進行資料輸入、列印前，需要先指定文件、文件的使用主體（使用人、銀行帳號）；提供對應的「工作頁」，顯示輸入參考資料及列印後的紀錄檢視。
     </li>
     <li>
       <a href="architecture_inputprint.html">輸入列印</a>：
-      所有文件的資料輸入與列印作業，都在此區完成。
+      所有文件的資料輸入與列印作業，可在此區完成。
     </li>
   </ol>
 
   <figure>
-    <div class="mt-4 text-center">
-      <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
-    </div>
+    <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
     <figcaption class="TACenter">資訊紀錄管理工具 - 首頁</figcaption>
   </figure>
 
-  <p><strong>架構圖（常用、資料）：</strong></p>
+  <h2>二、 互動式系統架構圖</h2>
+  
+  <ol class="ol-l1 architecture-list">
+    <li>
+      <strong>常用與資料架構</strong>
+      <ul class="ul-l1 architecture-diagram-section">
+        <li>
+          <figure>
+            <pre class="mermaid" style="cursor: pointer;">
+                graph TD
+                    主控[資訊記錄管理工具] --> 常用[常用]
+                    主控 --> 資料[資料]
+                    
+                    %% 【常用】分支
+                    常用 --> 文件交換1[文件交換]
+                    文件交換1 --> 資料擁有者1[資料擁有者]
+                    資料擁有者1 --> 印表機[印表機]
+                    印表機 --> 匯入套印[匯入套印]
 
-  <figure>
-    <pre class="mermaid" style="cursor: pointer;">
-        graph TD
-            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
-            
-            %% ==========================================
-            %% 1. 核心大項與一級分支 (群組一)
-            %% ==========================================
-            主控[資訊記錄管理工具]
+                    %% 【資料】分支
+                    資料 --> 資料擁有者2[資料擁有者]
+                    資料擁有者2 --> 客戶資料[客戶資料]
+                    客戶資料 --> 項目管理[項目管理]
+                    項目管理 --> 資料交換[資料交換]   
 
-            主控 --> 常用[常用]
-            主控 --> 資料[資料]
+                    %% 點擊智慧跳轉連結
+                    click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
+                    click 常用 href "MITCommon.html" "常用管理說明"
+                    click 資料 href "MITdata.html" "資料管理說明"
+                    click 文件交換1 href "FormDocEx.html"
+                    click 資料擁有者1 href "FormDataOwner.html"
+                    click 印表機 href "FormPrinter.html"
+                    click 匯入套印 href "FormImportPrint.html"
+                    click 資料擁有者2 href "FormDataOwner.html"
+                    click 客戶資料 href "FormCustomer.html"
+                    click 項目管理 href "FormItems.html"
+                    click 資料交換 href "FormDocEx.html"
+            </pre>
+            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（常用、資料）</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="mt-4">
+      <strong>文件模組架構</strong>
+      <ul class="ul-l1 architecture-diagram-section">
+        <li>
+          <figure>
+            <pre class="mermaid" style="cursor: pointer;">
+                graph TD
+                    主控[資訊記錄管理工具] --> 文件[文件]
 
-            %% ==========================================
-            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
-            %% ==========================================
-            
-            %% 【常用】分支
-            常用 --> 文件交換1[文件交換]
-            文件交換1 --> 資料擁有者1[資料擁有者]
-            資料擁有者1 --> 印表機[印表機]
-            印表機 --> 匯入套印[匯入套印]
+                    %% 【文件】分支
+                    文件 --> 文件管理[文件管理]
+                    文件 --> 內容設計[內容設計]
+                    文件 --> 輸入管理設計[輸入管理設計]    
+                    文件 --> 建立副本[建立副本]
 
-            %% 【資料】分支
-            資料 --> 資料擁有者2[資料擁有者]
-            資料擁有者2 --> 客戶資料[客戶資料]
-            客戶資料 --> 項目管理[項目管理]
-            項目管理 --> 資料交換[資料交換]   
+                    文件管理 --> 領域管理[領域管理]
+                    領域管理 --> 文件來源[文件來源]
+                    文件來源 --> 文件類型[文件類型]
 
+                    內容設計 --> 資料配置[資料配置]
+                    資料配置 --> 資料處理[資料處理]
 
-            %% ==========================================
-            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
-            %% ==========================================
-            
-            click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
-            click 常用 href "MITCommon.html" "常用管理說明"
-            click 資料 href "MITdata.html" "資料管理說明"
+                    輸入管理設計 --> 資料取得[資料取得]
+                    資料取得 --> 紀錄儲存[紀錄儲存]
+                    紀錄儲存 --> 紀錄顯示[紀錄顯示]
+                    紀錄顯示 --> 輸入版面[輸入版面]
 
-            click 文件交換1 href "FormDocEx.html"
-            click 資料擁有者1 href "FormDataOwner.html"
-            click 印表機 href "FormPrinter.html"
-            click 匯入套印 href "FormImportPrint.html"
+                    %% 點擊智慧跳轉連結
+                    click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
+                    click 文件 href "MITDoc.html" "文件管理說明"
+                    click 文件管理 href "FormDocInfo.html"
+                    click 內容設計 href "FormDocDesign.html"
+                    click 輸入管理設計 href "FormUIDesign.html"
+                    click 建立副本 href "MICopyCreation.html"
+                    click 領域管理 href "FormArea.html"
+                    click 文件來源 href "FormDocSrc.html"
+                    click 文件類型 href "FormDocKind.html"
+                    click 資料配置 href "FormDataAlloc.html"
+                    click 資料處理 href "FormDataProc.html"
+                    click 資料取得 href "FormQueryDesign.html"
+                    click 紀錄儲存 href "FormInfoRecSaveSet.html"
+                    click 紀錄顯示 href "FormDocRecShowSet.html"
+                    click 輸入版面 href "FormLayout.html"
+            </pre>
+            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（文件）</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </li>
 
-            click 資料擁有者2 href "FormDataOwner.html"
-            click 客戶資料 href "FormCustomer.html"
-            click 項目管理 href "FormProducts.html"
-            click 資料交換 href "FormDocEx.html"
-            
-    </pre>
-    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（常用、資料）</figcaption>
-  </figure>
+    <li class="mt-4">
+      <strong>記錄、工具與支援架構</strong>
+      <ul class="ul-l1 architecture-diagram-section">
+        <li>
+          <figure>
+            <pre class="mermaid" style="cursor: pointer;">
+                graph TD
+                    主控[資訊記錄管理工具] --> 記錄[記錄]
+                    主控 --> 工具[工具]
+                    主控 --> 支援[支援]
 
-  <p><strong>架構圖（文件）：</strong></p>
+                    %% 【記錄】分支
+                    記錄 --> 文件領用登錄[文件領用登錄]
+                    文件領用登錄 --> 文件紀錄管理[文件紀錄管理]
 
-  <figure>
-    <pre class="mermaid" style="cursor: pointer;">
-        graph TD
-            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
-            
-            %% ==========================================
-            %% 1. 核心大項與一級分支 (文件獨立功能)
-            %% ==========================================
-            主控[資訊記錄管理工具]
+                    %% 【工具】分支
+                    工具 --> 偏好設定[偏好設定]
+                    偏好設定 --> 金融業支票核發[金融業支票核發]
 
-            主控 --> 文件[文件]
+                    %% 【支援】分支
+                    支援 --> 授權與啟用[授權與啟用]
+                    授權與啟用 --> 軟體說明與協助[軟體說明與協助]
+                    軟體說明與協助 --> 網頁[網頁]       
 
-            %% ==========================================
-            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
-            %% ==========================================
-            
-            %% 🎯 【文件】改為 4 個平行分支
-            文件 --> 文件管理[文件管理]
-            文件 --> 內容設計[內容設計]
-            文件 --> 輸入管理設計[輸入管理設計]    
-            文件 --> 建立副本[建立副本]
+                    %% 點擊智慧跳轉連結
+                    click 主控 href "https://www.inforec.dev/"
+                    click 記錄 href "MITRecords.html"
+                    click 文件領用登錄 href "FormDocIssLog.html"
+                    click 文件紀錄管理 href "FormDocRecords.html"
 
-            %% 各自的三級子功能，依據您的原圖形狀往右邊橫向畫出流程分支
-            文件管理 --> 領域管理[領域管理]
-            領域管理 --> 文件來源[文件來源]
-            文件來源 --> 文件類型[文件類型]
-
-            內容設計 --> 資料配置[資料配置]
-            資料配置 --> 資料處理[資料處理]
-
-            輸入管理設計 --> 資料取得[資料取得]
-            資料取得 --> 紀錄儲存[紀錄儲存]
-            紀錄儲存 --> 紀錄顯示[紀錄顯示]
-            紀錄顯示 --> 輸入版面[輸入版面]
-
-
-            %% ==========================================
-            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
-            %% ==========================================
-            
-            click 主控 href "https://www.inforec.dev/" "前往 InfoRec 官方首頁"
-            click 文件 href "MITDoc.html" "文件管理說明"
-            
-            %% 文件分支的 4 個點擊連結
-            click 文件管理 href "FormDocInfo.html"
-            click 內容設計 href "FormDocDesign.html"
-            click 輸入管理設計 href "FormUIDesign.html"
-            click 建立副本 href "MICopyCreation.html"
-
-            click 領域管理 href "FormArea.html"
-            click 文件來源 href "FormDocSrc.html"
-            click 文件類型 href "FormDocKind.html"
-
-            click 資料配置 href "FormDataAlloc.html"
-            click 資料處理 href "FormDataProc.html"
-
-            click 資料取得 href "FormQueryDesign.html"
-            click 紀錄儲存 href "FormInfoRecSaveSet.html"
-            click 紀錄顯示 href "FormDocRecShowSet.html"
-            click 輸入版面 href "FormLayout.html"
-    </pre>
-    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（文件）</figcaption>
-  </figure>
-
-  <p><strong>架構圖（記錄、工具、支援）：</strong></p>
-
-  <figure>
-    <pre class="mermaid" style="cursor: pointer;">
-        graph TD
-            %% 使用直角連線，完美模擬心智圖與組織架構圖的對稱形狀
-            
-            %% ==========================================
-            %% 1. 核心大項與一級分支 (群組二)
-            %% ==========================================
-            主控[資訊記錄管理工具]
-
-            主控 --> 記錄[記錄]
-            主控 --> 工具[工具]
-            主控 --> 支援[支援]
-
-            %% ==========================================
-            %% 2. 二級與三級子功能節點（垂直樹狀對齊）
-            %% ==========================================
-            
-            %% 【記錄】分支
-            記錄 --> 文件領用登錄[文件領用登錄]
-            文件領用登錄 --> 文件紀錄管理[文件紀錄管理]
-
-            %% 【工具】分支
-            工具 --> 偏好設定[偏好設定]
-            偏好設定 --> 金融業支票核發[金融業支票核發]
-
-            %% 【支援】分支
-            支援 --> 授權與啟用[授權與啟用]
-            授權與啟用 --> 軟體說明與協助[軟體說明與協助]
-            軟體說明與協助 --> 網頁[網頁]       
-
-            %% ==========================================
-            %% 3. 智慧搜尋跳轉功能 (使用安全的 href 語法)
-            %% ==========================================
-            
-            click 主控 href "https://www.inforec.dev/"
-            
-            click 文件領用登錄 href "FormDocIssLog.html"
-            click 文件紀錄管理 href "FormDocRecords.html"
-            click 偏好設定 href "FormPrefs.html"
-            click 金融業支票核發 href "FormChkIssue.html"
-
-            click 授權與啟用 href "FormSignUp.html"
-            click 軟體說明與協助 href "FormContactInfo.html"
-            click 網頁 href "https://www.inforec.dev/"
-       
-    </pre>
-    <figcaption class="TACenter">資訊紀錄管理工具 - 互動式核心架構圖（記錄、工具、支援）</figcaption>
-  </figure>
+                    click 工具 href "MITTool.html"
+                    click 偏好設定 href "FormPrefs.html"
+                    click 偏好設定 href "FormPrefs.html"
+                    click 金融業支票核發 href "FormChkIssue.html"
+                    
+                    click 支援 href "MITSupport.html"
+                    click 授權與啟用 href "FormSignUp.html"
+                    click 軟體說明與協助 href "FormContactInfo.html"
+                    click 網頁 href "https://www.inforec.dev/"
+            </pre>
+            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（記錄、工具、支援）</figcaption>
+          </figure>
+        </li>
+      </ul>
+    </li>
+  </ol>
 
 </body>
 </html>
