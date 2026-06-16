@@ -796,3 +796,66 @@ footer, .ir-footer{
   padding-left: 0;
   list-style-type: none; /* 移除包覆圖表的圓點 */
 }
+
+/* ===================================================
+   【自動適應深淺色版】移除死白、背景透明、完美融入環境
+   =================================================== */
+
+/* 1. 強制隱藏因表格稍微溢出產生的滾動條 */
+.ir-page .ir-scroll-x {
+  overflow-x: hidden !important; 
+  padding: 1px !important;       
+}
+
+/* 2. 表格主體外觀：改為透明底色，完美融入深色/淺色背景 */
+.ir-page table.ir-table {
+  width: 100% !important;
+  max-width: 100% !important;
+  background: transparent !important;       /* 改為透明，自動吃外層底色 */
+  background-color: transparent !important; /* 改為透明 */
+  border-collapse: separate !important; 
+  border-spacing: 0 !important;        
+  border-top: 1px solid rgba(128, 128, 128, 0.4) !important;   /* 半透明外框線 */
+  border-left: 1px solid rgba(128, 128, 128, 0.3) !important;  
+  border-right: 1px solid rgba(128, 128, 128, 0.3) !important; 
+  table-layout: fixed !important;             
+}
+
+/* 3. 表格標頭：略帶透明的淺色層，自動適應背景 */
+.ir-page table.ir-table th {
+  background: rgba(128, 128, 128, 0.1) !important; /* 不論深淺色，都帶有一點點微灰色調 */
+  background-color: rgba(128, 128, 128, 0.1) !important;
+  color: inherit !important;      /* 繼承原本網頁設定的文字顏色（黑底就變白字，白底就變黑字） */
+  font-weight: 600 !important;
+  padding: 14px 12px !important;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.5) !important; /* 標頭下橫線 */
+  border-right: 1px solid rgba(128, 128, 128, 0.2) !important;  
+}
+
+/* 4. 內容欄位：背景透明，文字顏色隨環境自動變換 */
+.ir-page table.ir-table td {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;      /* 繼承原本網頁設定的文字顏色，防止黑底黑字 */
+  padding: 14px 12px !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3) !important; /* 每行下方的橫格線 */
+  border-right: 1px solid rgba(128, 128, 128, 0.2) !important;  /* 每一直欄右側的直條線 */
+}
+
+/* 5. 修正最後一欄的右邊界 */
+.ir-page table.ir-table th:last-child,
+.ir-page table.ir-table td:last-child {
+  border-right: none !important;
+}
+
+/* 6. 下載超連結：維持高對比的標準藍色（在黑底與白底下都很醒目） */
+.ir-page table.ir-table a.text-success {
+  color: #3b82f6 !important; /* 調整為稍微明亮一點的藍色，確保暗色模式也清晰 */
+  text-decoration: underline !important;
+}
+
+/* 7. 滑鼠懸停於下載連結時 */
+.ir-page table.ir-table a.text-success:hover {
+  color: #60a5fa !important;
+}
