@@ -13,29 +13,34 @@
 <body class="ir-page">
 
   <h1>文件管理</h1>
-  <hr>
 
-  <p>文件管理可以新增、刪除並修改文件相關資料（不含內容設計）。</p>
+  <p>文件管理可以新增、刪除並修改文件相關管理資料（不含文件紀錄的內容）。</p>
 
-  <figure>
+  <figure id="FormDocInfo">
     <img class="winimg" src="images/FormDocInfo.png" alt="文件管理視窗">
-    <figcaption class="TACenter">文件管理視窗</figcaption>
+    <figcaption>文件管理視窗</figcaption>
   </figure>
 
   <h2>文件設定</h2>
+  
+  <figure id="FormDocInfo_tabDocSets">
+    <img class="winimg" src="images/FormDocInfo_tabDocSets.png" alt="文件設定工作頁">
+    <figcaption>文件設定工作頁</figcaption>
+  </figure>
+
   <ol class="ol-l1">
     <li>
       領域代號：
       <ul class="ul-l1">
-        <li>用於分類管理（如銀行、金融、地區）。</li>
-        <li>例：<code>TWBANK</code> 表示臺灣金融業。</li>
+        <li>用於領域的分類管理（如金融業、運輸類、ISMS資訊安全）。</li>
+        <li>例：<code>TW-FIN</code> 表示臺灣金融業。</li>
       </ul>
     </li>
 
     <li>
       來源代號：
       <ul class="ul-l1">
-        <li>用來快速尋找該來源。</li>
+        <li>文件的文源。</li>
         <li>例：<code>700</code> 表示中華郵政。</li>
       </ul>
     </li>
@@ -43,19 +48,19 @@
     <li>
       文件編號：
       <ul class="ul-l1">
-        <li>識別不同的文件類型，如支票、存取款條。</li>
+        <li>依文源所提供文件進行命名或編碼，如支票、存取款條。</li>
         <li>例：<code>01</code> 代表支票。</li>
       </ul>
     </li>
 
     <li>
-      開啟管理視窗：
+      開啟文件管理附屬資料：
       <ul class="ul-l1">
         <li>
           <img src="images/FormDocInfoShowOtherBtn.png" alt="開啟視窗"> 可開啟：
           <ul class="ul-l2">
             <li><a href="FormArea.html" target="content">領域管理</a></li>
-            <li><a href="FormDocSrc.html" target="content">來源管理</a></li>
+            <li><a href="FormDocSrc.html" target="content">文件來源管理</a></li>
             <li><a href="FormDocKind.html" target="content">文件類型管理</a></li>
           </ul>
         </li>
@@ -64,38 +69,50 @@
 
     <li>
       圖檔：
-      <ul class="ul-l1">
-        <li>用於文件內容設計階段作為底圖。</li>
-      </ul>
+<ul class="ul-l1">
+  <li>指定文件底圖，可用於<a href="FormDocDesign.html" target="content">文件內容設計</a>、<a href="FormLayout.html" target="content">輸入版面設計</a>、<a href="architecture_inputprint.html" target="content">文件輸入模式</a>時的底圖，或用於與輸入的資料進行合併套印。</li>
+</ul>
     </li>
   </ol>
 
-  <figure>
-    <img class="winimg" src="images/FormDocInfoSet.png" alt="文件設定工作頁">
-    <figcaption class="TACenter">文件設定工作頁</figcaption>
-  </figure>
-
   <h2>進階設定</h2>
-  <figure>
-    <img class="winimg" src="images/FormDocInfoAdvSet.png" alt="進階設定工作頁">
-    <figcaption class="TACenter">進階設定工作頁</figcaption>
+  
+  <figure id="FormDocInfo_tabAdvSets">
+    <img class="winimg" src="images/FormDocInfo_tabAdvSets.png" alt="進階設定工作頁">
+    <figcaption>進階設定工作頁</figcaption>
   </figure>
 
   <ol class="ol-l1">
     <li>
       文件樣式：
       <ul class="ul-l1">
-        <li>一般套印：一般套印作業模式。</li>
-        <li>多欄套印：相同內容一次列印多份（如郵寄標籤）。</li>
-        <li>一式1份：僅列印單份。</li>
+        <li>一般套印：文件中只有一份紀錄，一般文件的預設模式。</li>
+        <li>多欄套印：相同內容一次列印多份（如標籤紙）。</li>
+        <li>一式1份：配合上述的文件樣式做設定。</li>
       </ul>
     </li>
 
     <li>
-      輸入版面模式：
+      輸入介面模式：
       <ul class="ul-l1">
-        <li>文件模式：輸入資料時直接呈現文件畫面。</li>
-        <li>預設模式：沒有文件當底圖的輸入版面，當欄位數量少於 20 時系統會自動產生輸入版面，超過20個欄位時，可以自訂「輸入版面」進行客制化的設計。</li>
+        <li>
+          文件模式：輸入介面直接呈現文件畫面，提供類紙式的填寫方式。
+          <figure id="FormDocInfo_InpMode_Doc">
+            <img class="winimg" src="images/FormDocInfo_InpMode_Doc.png" alt="文件模式">
+            <figcaption>文件模式</figcaption>
+          </figure>
+        </li>
+        <li>
+          預設模式：沒有文件當底圖的輸入介面，當文件輸入的資料項目少於 20 個，由軟體自動生成輸入版面是最佳的做法；若超過 20 個輸入資料項目時，可以進行「<a href="FormLayout.html" target="content">輸入版面設計</a>」進行設計輸入介面。
+          <figure id="FormDocInfo_InpMode_Default">
+            <img class="winimg" src="images/FormDocInfo_InpMode_Default.png" alt="軟體自動生成輸入版面">
+            <figcaption>軟體自動生成輸入版面</figcaption>
+          </figure>
+          <figure id="FormDocInfo_InpMode_Custom">
+            <img class="winimg" src="images/FormDocInfo_InpMode_Custom.png" alt="人工設定輸入版面">
+            <figcaption>人工設定輸入版面</figcaption>
+          </figure>
+        </li>
       </ul>
     </li>
 
@@ -103,18 +120,16 @@
       功能設定：
       <ul class="ul-l1">
         <li>
-          列印記錄存檔：
-          <ul class="ul-l2">
-            <li>搭配 <a href="FormInfoRecSaveSet.html" target="content">文件紀錄儲存設計</a> 自動存檔。</li>
-          </ul>
+          存檔：將輸入的資料自動存成暫存檔，免除重複輸入。
         </li>
         <li>
-          文件領用登錄：
-          <ul class="ul-l2">
-            <li>搭配 <a href="FormDocIssLog.html" target="content">文件領用登錄</a> 檢查票號與領用數量。</li>
+          文件領用登錄：需搭配下列 2 項功能設定。
+          <ul class="ul-l2">                  
+            <li><a href="FormInfoRecSaveSet.html" target="content">文件紀錄儲存設計</a> 指定文件哪些資料要存檔，存入資料庫中 InfoRec 資料表的指定欄位。</li>
+            <li><a href="FormDocIssLog.html" target="content">文件領用登錄</a> 創建及檢查文件號碼與領用數量，做為文件紀錄存檔的依據及索引。</li>
           </ul>
         </li>
-        <li>列印底圖：可讓底圖與資料一起印出。</li>
+        <li>列印底圖：將文件與輸入的資料一併印出。</li>
       </ul>
     </li>
   </ol>
