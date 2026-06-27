@@ -18,7 +18,6 @@
 </head>
 <body class="ir-page">
 
-  <!-- 右上方語系切換按鈕 -->
   <div class="btn-group-lang">
     <button class="btn-lang" onclick="location.href='license-activation-tw.html'">繁體中文</button>
     <button class="btn-lang active" onclick="location.href='license-activation-en.html'">English</button>
@@ -27,62 +26,96 @@
 
   <h1>InfoRec Software Licensing & Activation Guide</h1>
   <hr>
-  <p class="ir-lead">Welcome to InfoRec Software (hereinafter referred to as InfoRec) information logging management tool. To protect your rights regarding current software licensing and subsequent version update downloads, please follow this guide to complete function activation and environment verification registry.</p>
+  
+  <p>To protect your rights regarding current software licensing, as well as existing version updates and download entitlements, please refer to the following guide to complete software function activation and verification.</p>
 
-  <h2>一、 Prerequisites: Download & Installation</h2>
-  <ol>
+  <h2>Prerequisites: Software Download & Installation</h2>
+  <ol class="ol-l1">
     <li>
-      <strong>Windows Desktop Tool (InfoRec.exe)</strong><br>
-      Please visit the project download page <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> to download and run InfoRec.exe. This is your core tool for data management, form template printing, and various function verifications.
+      <strong>Download InfoRec (Information Logging Management System) Windows Desktop Tool</strong>
+      <p>Please visit the project download page <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> to download and run InfoRec.exe. This is your core tool for information management, data storage, form template printing, and various function verifications.</p>
     </li>
     <li>
-      <strong>Verification & Licensing Tools (Blockchain Wallet)</strong><br>
-      This system utilizes the Solana blockchain for licensing and environment verification. Please prepare according to your device:
-      <ul>
-        <li><strong>Solana Phone Users:</strong> Download the "InfoRec App" from the Solana dApp Store.</li>
-        <li><strong>General Desktop/Mobile Users:</strong> Install the Phantom or Solflare wallet extension in your browser and authorize via the PWA web version.</li>
+      <strong>Licensing & Verification (Blockchain Technology Verification)</strong>
+      <ol class="ol-l2">
+        <li>
+          <strong>Web3 Blockchain Online Licensing Verification</strong>
+          <p>This project utilizes the Solana blockchain for environment verification. Please choose one of the following paths based on your device to complete function activation verification:</p>
+          <ul class="ul-l1">
+            <li><strong>Solana Phone Users:</strong> Please visit the Solana dApp Store to download the "InfoRec App", and install the Phantom wallet if necessary.</li>
+            <li><strong>General Desktop Users:</strong> Please install the Phantom wallet extension in your browser and verify via the PWA web version.</li>
+            <li><strong>Android Phone Users:</strong> Please download the APK file from this project website and install the Phantom wallet.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Traditional Licensing Verification (Non-Blockchain)</strong>
+          <p>Execute "Request Offline License", and then obtain the license verification file generated through the "Assisted Offline Licensing" channel to complete the verification.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <strong>Reference Links:</strong> <a href="FormSignUp.html">Software Licensing & Activation</a>, <a href="FormAppReg.html">Apply for Software License</a>
+    </li>
+  </ol>
+
+  <h2>Process Description</h2>
+  <p>This software provides two licensing methods: Online Licensing and Traditional Licensing. The brief descriptions are as follows:</p>
+  <ol class="ol-l1">
+    <li>
+      <strong>Online Licensing (Default Method)</strong>
+      <p>Users independently apply for a license and complete online Web3 blockchain verification and activation.</p>
+      <ul class="ul-l1">
+        <li>
+          <strong>Submit Request via Desktop Tool</strong>
+          <br>Open InfoRec.exe, click "Support > Licensing & Activation > Apply for Verification > Verification Mode (Online Licensing)". Fill in your email address or entitlement identification alias, select the hardware binding source (PC name or USB drive partition), and click the "Execute Verification" button. The system will generate a QR Code containing the verification data URL (PWA).
+        </li>
+        <li>
+          <strong>Technical Verification via Blockchain</strong>
+          <br>Scan the QR Code or access the blockchain verification URL, then choose your software licensing plan. Submit the licensing activation to proceed. The technical verification mechanism in this process is designed to establish a minimum barrier to entry (anti-abuse mechanism) and serves as a symbolic reasonable consideration for intellectual property licensing.
+        </li>
+        <li>
+          <strong>Complete Environment Verification</strong>
+          <br>Return to the desktop tool, click "Support > Licensing & Activation > Execute Verification". The system will automatically compare the on-chain verification results, and complete the environment activation process once verified.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Traditional Licensing Verification (Non-Blockchain) - Requires cooperation with an "Assisted Offline Licensing" user to complete verification</strong>
+      <p>Applicable to computers without an internet connection, or users with no experience in using blockchain (verified with the assistance of community members).</p>
+      <ul class="ul-l1">
+        <li>
+          <strong>Generate Request File</strong>
+          <br>Open InfoRec.exe, click "Support > Licensing & Activation > Apply for Verification > Verification Mode (Request Offline License)". Fill in the required data and click "Execute Verification". The system will automatically generate a verification request file; please hand this file over to a community member for assistance with technical verification.
+        </li>
+        <li>
+          <strong>Transaction Verification via Community Peer Assistance</strong>
+          <br>If you have no experience using blockchain, a community member (third party) with a Web3 environment can execute "Assisted Offline Licensing" to complete the technical verification data and generate the verification file on your behalf.
+        </li>
+        <li>
+          <strong>Execute Local Verification</strong>
+          <ul class="ul-l2">
+            <li>"License via File": For offline devices, after obtaining the license file, select "License via File" and then click "Execute Verification" to complete local environment activation.</li>
+            <li>"Direct Online Verification": For computers with an internet connection, directly click "Execute Verification" to read the data and complete verification.</li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ol>
 
-  <h2>二、 Process Description</h2>
-  <p>The system provides two methods: "Online Environment Verification" and "Offline Environment Verification Request":</p>
-  <ol>
+  <h2>Important Notes</h2>
+  <ul class="ul-l1">
     <li>
-      <strong>[Option A: Online Environment Verification (Default)]</strong>
-      <p>Obtain cloud licensing immediately after successful validation, automatically completing local environment registry.</p>
-      <ul>
-        <li><strong>Step 1: Submit Request via Desktop Tool</strong><br>Open InfoRec.exe, click "Support > Join Community > Apply for Activation". Fill in the username, contact person, email, and phone number. Select the hardware fingerprint source (PC name or USB sector), then click "Execute". The system will generate a Payment URL (PWA) for regular users or a QR Code for Solana phone users.</li>
-        <li><strong>Step 2: Environment & Technical Verification via Wallet</strong><br>Scan the QR Code or access the URL, then choose your intellectual property licensing plan. Confirm in the wallet window and <strong>apply SKR transmission verification on the SOL blockchain</strong>. This technical verification mechanism is designed to establish a minimum economic barrier (anti-abuse mechanism) and serves as a symbolic reasonable consideration for intellectual property licensing.</li>
-        <li><strong>Step 3: Activate Software License</strong><br>Return to the desktop tool, click "Support > Join Community > Execute Environment Verification". The system will automatically compare the on-chain transaction with the environment verification results, completing activation upon validation.</li>
-      </ul>
+      <strong>Environment & Hardware Lock:</strong> This software is fixed "as-is" to the Windows operating system environment, and utilizes the PC name or USB drive partition volume serial number for hardware binding. For those using PC names for verification, when changing computers, please make sure to manually modify the new PC name to match the original verified name.
     </li>
     <li>
-      <strong>[Option B: Offline Environment Verification Request]</strong>
-      <p>Applicable to users who cannot operate cryptocurrency directly or whose devices are in offline environments.</p>
-      <ul>
-        <li><strong>Step 1: Generate Request File</strong><br>Select "Offline License Request" in the function verification window. Fill in the data and click "Execute". The system will automatically generate a request file and guide you to send an email to community assistance personnel.</li>
-        <li><strong>Step 2: Verification via Community Peer Assistance</strong><br>If you do not have a designated community assistant, provide relevant proofs to community assistants. The community assistance node will enter "Proxy Mode" and <strong>apply SKR transmission verification on the SOL blockchain</strong> to transfer and generate the technical license file on your behalf.</li>
-        <li><strong>Step 3: Import License File for Local Registry</strong><br>After receiving the "License File" returned by community assistants or verification nodes, save it into the InfoRec program folder. Check "Import File to Activate" on the activation screen, then click "Execute Environment Verification" to complete activation.</li>
-      </ul>
+      <strong>Download Consideration Disclosure:</strong> The blockchain technical verification mechanism aims to provide the software to users who genuinely need it, preventing automated programs from abusing software resources due to open access without barriers. Because blockchain transactions possess irreversible technical characteristics, once the environment verification is successful, tokens (such as SKR) used as a symbolic consideration for intellectual property licensing cannot be refunded.
     </li>
-  </ol>
-
-  <h2>三、 Proxy Mode</h2>
-  <p>This mode is used by community assistants to help others complete SKR transfer verification and obtain environment-specific license files:</p>
-  <ol>
-    <li>Community assistants open the verification window and select "Proxy Mode".</li>
-    <li>Click to read the "License Request File" provided by the applicant.</li>
-    <li>The community assistant completes the SKR transfer verification via their wallet, and the system generates a "License File" specific to that device and environment.</li>
-    <li>The community assistant transfers the file to the applicant, who imports it following Step 3 of "Option B".</li>
-  </ol>
-
-  <h2>四、 Important Notes (Disclosures & Disclaimers)</h2>
-  <ul>
-    <li><strong>1. [Environment & Hardware Lock]</strong> This software license is strictly tied to specific operating system environments and hardware devices. Users choosing PC names for verification must possess independent deployment and operational capabilities. If changing computing environments, please make sure to modify the new PC name to match the original verified name. The nature of this software is strictly technical; no manual environment resetting, migration, or individualized technical consulting services are provided.</li>
-    <li><strong>2. [Refund Policy]</strong> Blockchain transactions are irreversible; no refunds are available after successful verification. This technical verification mechanism aims to establish a minimum economic barrier to prevent malicious automation tools from bulk-scraping or abusing software resources, and serves as a symbolic reasonable consideration for IP licensing. Please fully trial the software before verification to ensure it meets your expectations.</li>
-    <li><strong>3. [License Period Extension]</strong> Renewals for existing version updates will automatically extend from the original expiration date without shortening your existing entitlement period.</li>
-    <li><strong>4. [Community Mutual Help & Obtaining Support]</strong> For any issues regarding software functionality or environment dependencies, you are welcome to submit them to the community platform for experience sharing and problem-solving. This software is positioned as the exercise of intellectual property licensing and does not provide routine manual customer service, periodic maintenance, or after-sales technical support services. For print layout adjustments, please refer to the <a href="use/print-layout.html">列印調整說明</a>. If you need further assistance, please seek help.</li>
+    <li>
+      <strong>License Period Extension:</strong> If environment activation and verification are continuously completed subsequently, the version update and derivative download entitlements will be automatically extended from the original expiration date.
+    </li>
+    <li>
+      <strong>Community Mutual Help & Troubleshooting:</strong> For any questions regarding software functionality or operations, you are welcome to submit them to the community peer assistance platform for experience sharing and self-troubleshooting.
+    </li>
   </ul>
 
 </body>
