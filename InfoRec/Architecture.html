@@ -83,16 +83,15 @@
   <hr>
 
   <p>
-    InfoRec 軟體是運作於windows作業系統下的一個資訊紀錄管理工具，亦提供文件套印、資訊管理等附加價值。
+    InfoRec 軟體是運作於 Windows 作業系統下的一個資訊紀錄管理工具，亦提供文件套印、資訊管理等附加價值。
   </p>
 
-  <h2>InfoRec主要視窗</h2>
+  <h2>InfoRec 主要視窗</h2>
   <p>主視窗提供資料輸入、列印及紀錄存檔、資訊分析等相關作業的主要操作介面。</p>
 
-
-  <figure>
+  <figure id="img-main-window">
     <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
-    <figcaption class="TACenter">資訊紀錄管理工具 - 首頁</figcaption>
+    <figcaption>資訊紀錄管理工具 - 首頁</figcaption>
   </figure>
 
   <h2>互動式系統架構圖</h2>
@@ -102,7 +101,7 @@
       <strong>常用與資料架構</strong>
       <ul class="ul-l1 architecture-diagram-section">
         <li>
-          <figure>
+          <figure id="diagram-common-data">
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
                     主控[資訊紀錄管理工具] --> 常用[常用]
@@ -133,17 +132,17 @@
                     click 項目管理 href "FormItems.html"
                     click 資料交換 href "FormDocEx.html"
             </pre>
-            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（常用、資料）</figcaption>
+            <figcaption>資訊紀錄管理工具 - 核心架構圖（常用、資料）</figcaption>
           </figure>
         </li>
       </ul>
     </li>
     
-    <li class="mt-4">
+    <li>
       <strong>文件模組架構</strong>
       <ul class="ul-l1 architecture-diagram-section">
         <li>
-          <figure>
+          <figure id="diagram-document">
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
                     主控[資訊紀錄管理工具] --> 文件[文件]
@@ -183,17 +182,17 @@
                     click 紀錄顯示 href "FormDocRecShowSet.html"
                     click 輸入版面 href "FormLayout.html"
             </pre>
-            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（文件）</figcaption>
+            <figcaption>資訊紀錄管理工具 - 核心架構圖（文件）</figcaption>
           </figure>
         </li>
       </ul>
     </li>
 
-    <li class="mt-4">
+    <li>
       <strong>紀錄、工具與支援架構</strong>
       <ul class="ul-l1 architecture-diagram-section">
         <li>
-          <figure>
+          <figure id="diagram-records-tools-support">
             <pre class="mermaid" style="cursor: pointer;">
                 graph TD
                     主控[資訊紀錄管理工具] --> 紀錄[紀錄]
@@ -228,12 +227,32 @@
                     click 軟體說明與協助 href "FormContactInfo.html"
                     click 網頁 href "https://www.inforec.dev/"
             </pre>
-            <figcaption class="TACenter">資訊紀錄管理工具 - 核心架構圖（紀錄、工具、支援）</figcaption>
+            <figcaption>資訊紀錄管理工具 - 核心架構圖（紀錄、工具、支援）</figcaption>
           </figure>
         </li>
       </ul>
     </li>
   </ol>
 
+  <footer id="footerBlock" class="ir-footer">©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。</footer>
+
+  <script>
+    (function() {
+      // 系統安全高度通知與動態防禦機制
+      function notifyHeight() {
+        if (window.parent && window.parent.postMessage) {
+          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
+        }
+      }
+      window.addEventListener('load', notifyHeight);
+      window.addEventListener('resize', notifyHeight);
+      
+      // 年份自動更新
+      var yearEl = document.getElementById('siteYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
 </body>
 </html>

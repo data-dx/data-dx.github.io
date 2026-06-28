@@ -3,23 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>系統架構說明｜InfoRec</title>
-
+  <title>InfoRec 資訊紀錄管理工具｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
   <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script> 
-
-  </script>
+  <script src="../js/page-note.js"></script>
 </head>
-
 <body class="ir-page">
 
-  <h1>系統架構說明</h1>
+  <h1>InfoRec 資訊紀錄管理工具</h1>
   <hr>
 
   <p>
-    InfoRec 軟體（以下簡稱 InfoRec）主視窗分為功能表、工作頁、輸入列印等三個區域，說明如下。
+    InfoRec 資訊紀錄管理工具，可分為功能表、工作頁、輸入列印等三個區域，說明如下。
   </p>
 
   <ol class="ol-l1">
@@ -33,14 +28,34 @@
     </li>
     <li>
       <a href="architecture_inputprint.html">輸入列印</a>：
-      所有文件的資料輸入與列印作業，可在此區完成。為避免受限於螢幕或視窗大小限制，此區域也可以手動拖拉改變大小。</li>  
-
+      所有文件的資料輸入與列印作業，可在此區完成。為避免受限於螢幕或視窗大小限制，此區域也可以手動拖拉改變大小。
+    </li>
   </ol>
 
-    <figure>
+  <figure id="img-homepage">
     <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
-    <figcaption class="TACenter">資訊紀錄管理工具 - 首頁</figcaption>
+    <figcaption>資訊紀錄管理工具 - 首頁</figcaption>
   </figure>
 
+  <footer id="footerBlock" class="ir-footer">©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。</footer>
+
+  <script>
+    (function() {
+      // 系統安全高度通知與動態防禦機制
+      function notifyHeight() {
+        if (window.parent && window.parent.postMessage) {
+          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
+        }
+      }
+      window.addEventListener('load', notifyHeight);
+      window.addEventListener('resize', notifyHeight);
+      
+      // 年份自動更新
+      var yearEl = document.getElementById('siteYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
 </body>
 </html>

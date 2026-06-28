@@ -14,35 +14,56 @@
   <hr>
 
   <p class="ir-lead">
-    InfoRec 軟體（以下簡稱 InfoRec）的功能表為軟體核心的導航中樞，依常用、資料、文件、記錄、支援等項目進行分類管理，方便使用者快速切換至各項功能視窗。
+    InfoRec 軟體（以下簡稱 InfoRec）的功能表為軟體核心的導航中樞，依常用、資料、文件、紀錄、支援等項目進行分類管理，方便使用者快速切換至各項功能視窗。
   </p>
 
-  <h2>一、 功能表介面導覽</h2>
-  <figure>
+  <h2>功能表介面導覽</h2>
+  <figure id="fig-architecture-menu">
     <img class="winimg" src="images/Architecture_Menu.png" alt="資訊紀錄管理工具 - 功能表" />
-    <figcaption class="TACenter">資訊紀錄管理工具 - 功能表</figcaption>
+    <figcaption>資訊紀錄管理工具 - 功能表</figcaption>
   </figure>
 
-  <h2>二、 核心功能分類說明</h2>
+  <h2>核心功能分類說明</h2>
   <ol class="ol-l1">
     <li>
-      <a href="MITCommon.html"><strong>常用功能</strong></a>：將常用的功能集中管理包含文件交換、資料擁有者、印表機設定、匯入套印等功能。
+      <a href="MITCommon.html"><strong>常用功能</strong></a>：將常用的功能集中管理，包含文件交換、資料擁有者、印表機設定、匯入套印等功能。
     </li>
     <li>
-      <a href="MITData.html"><strong>資料管理</strong></a>：管理文件記錄處理過程中，需要引用的資料如資料擁有者、客戶管理、項目管理、資料交換。
+      <a href="MITData.html"><strong>資料管理</strong></a>：管理文件紀錄處理過程中，需要引用的資料如資料擁有者、客戶管理、項目管理、資料交換。
     </li>
     <li>
-      <a href="MITDoc.html"><strong>文件設計</strong></a>：要管理文件紀錄時，一定要先進行文件資料處理設計，定義文件要紀錄的項目，資料先後順序及資料處理方式，決定文件紀錄輸入的介面，記錄的處理及儲存方式，相關功能包含文件管理、內容設計、輸入管理設計。
+      <a href="MITDoc.html"><strong>文件設計</strong></a>：要管理文件紀錄時，一定要先進行文件資料處理設計，定義文件要紀錄的項目，資料先後順序及資料處理方式，決定文件紀錄輸入的介面，紀錄的處理及儲存方式，相關功能包含文件管理、內容設計、輸入管理設計。
     </li>
     <li>
-      <a href="MITRecord.html"><strong>紀錄管理</strong></a>：將套印後的資料依文件編號進行保留，以利後續分析管理使用，包含文件領用登錄、列印記錄管理等功能。
+      <a href="MITRecords.html"><strong>紀錄管理</strong></a>：將套印後的資料依文件編號進行保留，以利後續分析管理使用，包含文件領用登錄、列印紀錄管理等功能。
     </li>
     <li>
-      <a href="MITTool.html"><strong>工具</strong></a>：提供系統介面的設定，使用者慣用語言，字型及字型大小，全幕顯示...等。
+      <a href="MITTool.html"><strong>工具</strong></a>：提供系統介面的設定，使用者慣用語言，字型及字型大小，全螢幕顯示...等。
     </li>
     <li>
       <a href="MITSupport.html"><strong>支援</strong></a>：提供軟體授權與啟用、軟體說明與協助及網站提供常見問題解答，以協助使用者排除操作問題。
     </li>
   </ol>
+
+  <footer id="footerBlock" class="ir-footer">©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。</footer>
+
+  <script>
+    (function() {
+      // 系統安全高度通知與動態防禦機制
+      function notifyHeight() {
+        if (window.parent && window.parent.postMessage) {
+          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
+        }
+      }
+      window.addEventListener('load', notifyHeight);
+      window.addEventListener('resize', notifyHeight);
+      
+      // 年份自動更新
+      var yearEl = document.getElementById('siteYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
 </body>
 </html>
