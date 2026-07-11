@@ -1,61 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InfoRec 資訊紀錄管理工具｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
-<body class="ir-page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InfoRec 資訊紀錄管理工具｜InfoRec</title>
+    <link rel="stylesheet" href="../css/site.css" />
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+  </head>
+  <body class="ir-page">
+    <h1>InfoRec 資訊紀錄管理工具</h1>
+    <hr />
 
-  <h1>InfoRec 資訊紀錄管理工具</h1>
-  <hr>
+    <p>
+      InfoRec
+      資訊紀錄管理工具，可分為功能表、工作頁、輸入列印等三個區域，說明如下。
+    </p>
 
-  <p>
-    InfoRec 資訊紀錄管理工具，可分為功能表、工作頁、輸入列印等三個區域，說明如下。
-  </p>
+    <ol class="ol-l1">
+      <li>
+        <a href="architecture_menu.html">功能表</a>：
+        軟體首頁之外的功能，均由功能表提供。功能表依常用、資料、文件、支援等數個項目分類。
+      </li>
+      <li>
+        <a href="Architecture_sheet.html">工作頁</a>：
+        進行資料輸入、列印前，需要先指定文件、文件的使用主體（使用人、銀行帳號）；提供對應的「工作頁」，顯示輸入參考資料及列印後的紀錄檢視。
+      </li>
+      <li>
+        <a href="architecture_inputprint.html">輸入列印</a>：
+        所有文件的資料輸入與列印作業，可在此區完成。為避免受限於螢幕或視窗大小限制，此區域也可以手動拖拉改變大小。
+      </li>
+    </ol>
 
-  <ol class="ol-l1">
-    <li>
-      <a href="architecture_menu.html">功能表</a>：
-      軟體首頁之外的功能，均由功能表提供。功能表依常用、資料、文件、支援等數個項目分類。
-    </li>
-    <li>
-      <a href="Architecture_sheet.html">工作頁</a>：
-      進行資料輸入、列印前，需要先指定文件、文件的使用主體（使用人、銀行帳號）；提供對應的「工作頁」，顯示輸入參考資料及列印後的紀錄檢視。
-    </li>
-    <li>
-      <a href="architecture_inputprint.html">輸入列印</a>：
-      所有文件的資料輸入與列印作業，可在此區完成。為避免受限於螢幕或視窗大小限制，此區域也可以手動拖拉改變大小。
-    </li>
-  </ol>
+    <figure id="img-homepage">
+      <img
+        class="winimg"
+        src="images/InfoRec.png"
+        alt="資訊紀錄管理工具 - 首頁"
+      />
+      <figcaption>資訊紀錄管理工具 - 首頁</figcaption>
+    </figure>
 
-  <figure id="img-homepage">
-    <img class="winimg" src="images/InfoRec.png" alt="資訊紀錄管理工具 - 首頁">
-    <figcaption>資訊紀錄管理工具 - 首頁</figcaption>
-  </figure>
+    <footer id="footerBlock" class="ir-footer">
+      ©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。
+    </footer>
 
-  <footer id="footerBlock" class="ir-footer">©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。</footer>
-
-  <script>
-    (function() {
-      // 系統安全高度通知與動態防禦機制
-      function notifyHeight() {
-        if (window.parent && window.parent.postMessage) {
-          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
+    <script>
+      (function () {
+        // 系統安全高度通知與動態防禦機制
+        function notifyHeight() {
+          if (window.parent && window.parent.postMessage) {
+            window.parent.postMessage(
+              { frameHeight: document.body.scrollHeight },
+              "*",
+            );
+          }
         }
-      }
-      window.addEventListener('load', notifyHeight);
-      window.addEventListener('resize', notifyHeight);
-      
-      // 年份自動更新
-      var yearEl = document.getElementById('siteYear');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
-    })();
-  </script>
-</body>
+        window.addEventListener("load", notifyHeight);
+        window.addEventListener("resize", notifyHeight);
+
+        // 年份自動更新
+        var yearEl = document.getElementById("siteYear");
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+      })();
+    </script>
+  </body>
 </html>

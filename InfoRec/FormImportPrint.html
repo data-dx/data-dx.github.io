@@ -1,44 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>匯入套印｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>匯入套印｜InfoRec</title>
+    <link rel="stylesheet" href="../css/site.css" />
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+    <!-- 2027-7-11 -->
+  </head>
 
-<body class="ir-page">
+  <body class="ir-page">
+    <h1>匯入套印</h1>
+    <hr />
 
-  <h1>匯入套印</h1>
-  <hr>
+    <p>
+      匯入套印適用於整批、大量套印作業，將匯入資料取代人工逐筆紀錄，可節省時間並降低錯誤率。
+    </p>
 
-  <p>匯入套印適用於整批、大量套印作業，將匯入資料取代人工逐筆輸入，可節省時間並降低錯誤率。</p>
+    <h2>注意事項：</h2>
+    <ol class="ol-l1">
+      <li>
+        文件需先進行單筆測試，以確保套印內容正確無誤及套印位置正確，才可以使用本功能。
+      </li>
+      <li>匯入筆數無上限，但請先測試 3~5 筆，確認無誤後，再進行大量套印。</li>
+      <li>
+        範例與匯入檔案提供 XLSX 及 .tsv（純文字檔）兩種格式，即使環境未安裝
+        Office 辦公軟體，仍可順利執行匯入套印功能。
+      </li>
+    </ol>
 
-  <ol class="ol-l1">
-    <li>文件設定檔需先完成測試，可正確列印。</li>
-    <li>匯入筆數無上限，但需考量印表機紙張上限。</li>
-    <li>列印預覽提供檢視，正式作業可直接列印以加快速度。</li>
-    <li>
-      匯入資料：
-      <ul class="ul-l1">
-        <li>第一次建議執行「範例」，系統會產生正確匯入格式。</li>
-        <li>已列印記錄會同時作為操作示範。</li>
-      </ul>
-    </li>
-  </ol>
+    <h2>操作說明：</h2>
+    <ol class="ol-l1">
+      <li>
+        範例：每種文件的匯入格式皆不相同，「範例」功能將提供正確的格式，並將您單筆套印已列印之紀錄作為範例供使用者參考。
+      </li>
+      <li>匯入資料：將您依循前述「範例」格式所輸入的資料，整批匯入資料庫。</li>
+      <li>
+        列印範圍：若您的印表機無法自動進紙，或者您欲逐張列印，可選擇單筆列印。
+      </li>
+      <li>
+        預覽列印：可先預覽再列印，但數量若過於龐大時，因系統需要產生大量的底圖，處理速度將會變慢；若經過數輪測試確認無誤後，即可取消勾選預覽列印，直接印出即可。
+      </li>
+    </ol>
 
-  <figure>
-    <img class="winimg" src="images/FormImportPrint_UI.png" alt="匯入套印管理視窗">
-    <figcaption class="TACenter">匯入套印管理視窗</figcaption>
-  </figure>
+    <figure>
+      <img
+        class="winimg"
+        src="images/FormImportPrint_UI.png"
+        alt="匯入套印管理視窗"
+      />
+      <figcaption>匯入套印管理視窗</figcaption>
+    </figure>
 
-  <figure>
-    <img class="winimg" src="images/FormImportPrint_File.png" alt="匯入範例檔案">
-    <figcaption class="TACenter">匯入範例檔案</figcaption>
-  </figure>
-
-</body>
+    <figure>
+      <img
+        class="winimg"
+        src="images/FormImportPrint_File.png"
+        alt="匯入檔案格式（範例）"
+      />
+      <figcaption>匯入檔案格式（範例）</figcaption>
+    </figure>
+  </body>
 </html>
