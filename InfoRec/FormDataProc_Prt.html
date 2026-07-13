@@ -1,53 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>資料處理設定－進階設定</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>資料處理設定－進階設定</title>
+    <link rel="stylesheet" href="../css/site.css" />
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+  </head>
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+  <body class="ir-page">
+    <h1>資料處理設定－進階設定</h1>
+    <hr />
 
-<body class="ir-page">
+    <p class="ir-lead">
+      進階設定工作頁，主要提供使用者如何在列印前將資料再次進行調整。
+    </p>
 
-  <h1>資料處理設定－進階設定</h1>
-  <hr>
+    <table class="ir-table">
+      <thead>
+        <tr>
+          <th style="width: 8%">類別</th>
+          <th style="width: 6%">編號</th>
+          <th style="width: 22%">功能</th>
+          <th style="width: 36%">功能代碼</th>
+          <th style="width: 14%">參數一</th>
+          <th style="width: 14%">參數二</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="6"><strong>列印前</strong></td>
+          <td>1</td>
+          <td>限制行數顯示文字</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Layout<wbr />Text<wbr />Limit<wbr />Rows
+          </td>
+          <td>行數上限</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>文字自動適配</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Layout<wbr />Text<wbr />Auto<wbr />Fit
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>文字緊密靠左排列</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Layout<wbr />Text<wbr />Compact<wbr />Left
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>文字緊密靠上排列</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Layout<wbr />Text<wbr />Compact<wbr />Top
+          </td>
+          <td>Y | 排列起點</td>
+          <td>附件名稱</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>有內容時顯示附加項目</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Annex<wbr />Show<wbr />If<wbr />Has<wbr />Value
+          </td>
+          <td>附件一</td>
+          <td>附件二</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>無內容時顯示附加項目</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Annex<wbr />Show<wbr />If<wbr />Empty
+          </td>
+          <td>附件一</td>
+          <td>附件二</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <p>進階設定工作頁，主要提供使用者如何在列印前將資料再次進行調整。</p>
-
-  <ol class="ol-l1">
-    <li>依群組成員數分配資料：
-      <!-- AcFixRows -->
-      <ul class="ul-l2">
-        <li>參數：無</li>
-        <li>應用：英文支票金額限定 2 行</li>
-        <li>內容設計：文字方塊為固定寬度</li>
-        <li>功能：當文字太多，「行數超過群組數」時，文字將持續縮小，至「行數等於群組數」後，將資料分配給群組成員。</li>
-      </ul>
-    </li>
-
-    <li>以單行文字呈現：
-      <!-- AcFAutoRowsHeight -->
-      <ul class="ul-l2">
-        <li>參數：最小字體</li>
-        <li>應用：用於文字方塊太小，列印字數過多的情況。</li>
-        <li>內容設計：文字方塊設定為 1 行或多行。多行時，先用最小字體了解所需文字方塊高度。預設字體大小供文字只有 1 行時使用。</li>
-        <li>功能：當文字太多時，文字以 1 行為目標，持續縮小直至最小字體。</li>
-      </ul>
-    </li>
-
-    <li>限制文字行數：
-      <!-- AcFLimitedRows -->
-      <ul class="ul-l2">
-        <li>參數：行數</li>
-        <li>應用：用於多行且避免客戶輸入過多的情況</li>
-        <li>內容設計：文字方塊為固定寬度及高度。</li>
-        <li>功能：當輸入文字太多時，文字將持續縮小，至指定行數為止。</li>
-      </ul>
-    </li>
-  </ol>
-
-</body>
+    <h2>功能說明</h2>
+    <ol class="ol-l1">
+      <li>
+        <strong>限制行數顯示文字：</strong
+        >當資料長度無法在指定的行數完整顯示或列印時，文字會自動縮小字體以符合行數上限。
+      </li>
+      <li>
+        <strong>文字自動適配</strong>
+        <ul>
+          <li>
+            <strong>文字長度：</strong
+            >當文字長度無法在指定範圍顯示或列印時，文字大小可以自動縮小以符合列印範圍。
+          </li>
+          <li>
+            <strong>前後字串：</strong
+            >前端及後端可以加入指定的字串（如將「100」變成「$100-」）。
+          </li>
+          <li>
+            <strong>數字類型的資料：</strong
+            >若將填補符號「-」放在前端時，系統會自動填滿未使用的欄位。例如設有「萬、千、百、拾、個」五個欄位，當輸入「100」時，會分別顯示為「-
+            - 1 0 0」或「- - 壹 零 零」。
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>文字緊密靠左排列：</strong
+        >輸入地址時，若部分欄位缺少里、巷、弄，此時「號」的相關資料會自動水平向左靠攏緊貼路名，以校正相對位置。
+      </li>
+      <li>
+        <strong>文字緊密靠上排列：</strong
+        >用於多行排版，當上方某些行數無資料時，下方的文字會自動垂直向上緊密靠攏，消除多餘的空白行。
+      </li>
+      <li>
+        <strong>有內容時顯示附加項目：</strong
+        >例如輸入地址時含有「10」，系統偵測到有內容，於顯示或列印時就會自動代出「弄」字。
+      </li>
+      <li>
+        <strong>無內容時顯示附加項目：</strong
+        >例如套印手開統一發票時，若第二行以後就沒有資料，系統偵測為無內容，則在第二行自動出現「---以下空白---」。
+      </li>
+    </ol>
+  </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>文件記錄管理｜InfoRec</title>
+  <title>文件紀錄管理｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
 
   <script src="../js/redirect.js"></script>
@@ -12,66 +12,86 @@
 
 <body class="ir-page">
 
-  <h1>文件記錄管理</h1>
+  <h1>文件紀錄管理</h1>
   <hr>
 
-  <p>當文件啟用「列印記錄存檔」且編號已完成「文件領用登錄」時，列印後內容會自動存檔，可供日後查詢與報表輸出。</p>
+  <p>有價值的文件紀錄，經過設計指定保存，讓紀錄可以產生價值或做為決策的依據。</p>
+
+    <h2>前置作業</h2>
 
   <ol class="ol-l1">
-    <li>
-      類型支援：
+    <li>啟用紀錄功能
+      <ul>
+        <li>說明：讓文件的填寫記錄進行計劃性的儲存。</li>
+        <li>位置：文件 ＞ <a href="FormDocInfo.html" target="_self">文件資訊管理</a>＞ 進階設定 ＞ 功能設定，選取「文件領用登錄」</li>
+      </ul>
+    </li>
+    <li>登錄文件編號
+      <ul>
+        <li>說明：登錄文件編號，讓記錄依編號進行存檔。</li>
+        <li>位置：紀錄 ＞ <a href="FormDocIssLog.html" target="_self">文件領用登錄</a></li>
+      </ul>
+    </li>
+    <li>指定儲存的紀錄欄位
+      <ul>
+        <li>說明：指定要儲</li>
+        <li>位置：文件 ＞ 輸入管理設計 ＞ <a href="FormInfoRecSaveSet.html" target="_self">記錄儲存設計</a></li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>操作說明：</h2>
+
+  <ol class="ol-l1">
+    <li>類型支援：只要要有文件編號(如支票、發票)即可，若編號可以自行指定編號如202707001
       <ul class="ul-l1">
-        <li>支票類：依銀行帳號存檔與查詢。</li>
-        <li>發票類：依使用者代號存檔與查詢。</li>
+        <li>金融類文件：如支票，由銀行帳號當主體，進行存檔與查詢。</li>
+        <li>非金融類文件：如發票由使用者(公司或個人)當主體進行存檔與查詢。</li>
       </ul>
     </li>
 
-    <li>
-      查詢／報表：
+    <li>查詢／報表：
       <ul class="ul-l1">
         <li>查詢依據：
           <ul class="ul-l2">
-            <li>日期、文件編號、到期日、列印日、屬性、備註等。</li>
+            <li>到期日：是指文件(支票、發票)上面的日期，若是本票是指承兌日。</li>
+            <li>列印日：是指輸入紀綠或列印時的日期。</li>
+              <li>文件編號：依文件編號範圍進行臺詢。</li>
           </ul>
         </li>
-        <li>報表輸出：
+        <li>報表輸出：提供網頁及xlsx等2種格式，依照排序條件的不同，提供2種內容的報表。</li>
+        
+        <li>排序條件：
           <ul class="ul-l2">
-            <li>日計表：依日期統計，如支票某日應付票款。</li>
-            <li>明細表：顯示指定範圍內每筆列印記錄。</li>
+            <li>日計表：排件條件設為「到期日」時，報表提供日計功能。</li>
+            <li>一般報表：列印日、文件編號客戶代號明細表：顯示指定範圍內每筆列印紀錄。</li>
           </ul>
         </li>
       </ul>
     </li>
 
-    <li>
-      屬性修改：
+    <li>屬性修改：共有5種
       <ul class="ul-l1">
-        <li>可變更表格屬性，便於自動帶入空白表格或作廢控管。</li>
+        <li>未使用(DocUnused)：會依登錄的順序，編踸由小到大呈現於使用文件編號的地方</li>
+        <li>已簽發(DocIssued)：票號已被使用存有記錄，為列印「領款簽收單」的依據。</li>
+        <li>作廢(DocVoided)：該票號不再用例如支票開錯了，作廢)，或發票換月了，將未使用(DocUnused)的票號作廢。</li>
+        <li>已承兌(DocAccepted)：如支票已承兌，將支票的屬性由已簽發(DocIssued)變為已承兌，支票才不會出現在「領款簽收單」上面</li>
+        <li>遺失(DocLost)：文件遺失的註記。</li>
       </ul>
     </li>
 
-    <li>
-      內容修改：
-      <ul class="ul-l1">
-        <li>可修改指定資料編號內容。</li>
-        <li>主畫面輸入列印區也能輸入編號後修改內容再列印存檔。</li>
-      </ul>
-    </li>
-
-    <li>
-      簽收回條：
-      <ul class="ul-l1">
-        <li>依文件（如支票）編號列印領款簽收單。</li>
-        <li>請先依編號查詢資料後列印。</li>
-        <li>請投入 A4 紙張，可列印兩張 A5 表格。</li>
+    <li>領款簽收單：
+      <ul class="ul-l1">        
+        <li>依先下載領款簽收單的文件設定檔，檔案名稱為TW-ADM_ACC_0000_1，此檔也可以自行設計。</li>
+        <li>請先依編號查詢屬性為「已簽發」DocIssued的紀錄資料後即可列印。</li>
       </ul>
     </li>
   </ol>
 
   <figure>
-    <img class="winimg" src="images/FormDocRecords.png" alt="文件記錄管理視窗">
-    <figcaption class="TACenter">文件記錄管理視窗</figcaption>
+    <img class="winimg" src="images/FormDocRecords.png" alt="文件紀錄管理視窗">
+    <figcaption>文件紀錄管理視窗</figcaption>
   </figure>
-
+  </script>
 </body>
 </html>
