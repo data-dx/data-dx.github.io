@@ -1,175 +1,426 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>資料處理設定-資料處理｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>資料處理設定－資料處理</title>
+    <link rel="stylesheet" href="../css/site.css" />
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+  </head>
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+  <body class="ir-page">
+    <h1>資料處理設定－資料處理</h1>
+    <hr />
 
-<body class="ir-page">
+    <p>
+      「資料處理」工作頁，主要是對資料進行轉換或分配，以產生符合文件需要的格式。
+    </p>
 
-  <h1>資料處理設定-資料處理</h1>
-  <hr>
+    <h2>功能列表</h2>
+    <table class="ir-table">
+      <thead>
+        <tr>
+          <th style="width: 8%">類別</th>
+          <th style="width: 6%">編號</th>
+          <th style="width: 24%">功能</th>
+          <th style="width: 26%">功能代碼</th>
+          <th style="width: 12%">參數一</th>
+          <th style="width: 12%">參數二</th>
+          <th style="width: 12%">參數三</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="5"><strong>日期</strong></td>
+          <td>1</td>
+          <td>每月一張</td>
+          <td class="ir-code-cell">
+            AcMonthly<wbr />One<wbr />Per<wbr />Month
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2026/7/13 &rarr; 2026-7-13</td>
+          <td class="ir-code-cell">AcDate<wbr />Symbol<wbr />AD</td>
+          <td>分隔符號1</td>
+          <td>分隔符號2</td>
+          <td>日</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>2026/7/13 &rarr; 2026 7 13</td>
+          <td class="ir-code-cell">AcDate<wbr />Split<wbr />AD</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>2026/7/13 &rarr; 115-7-13</td>
+          <td class="ir-code-cell">AcDate<wbr />Symbol<wbr />TW</td>
+          <td>分隔符號1</td>
+          <td>分隔符號2</td>
+          <td>日</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>2026/7/13 &rarr; 115 7 13</td>
+          <td class="ir-code-cell">AcDate<wbr />Split<wbr />TW</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
 
-  <p>這裏將說明資料處理功能的作用。</p>
+        <tr>
+          <td rowspan="13"><strong>數字</strong></td>
+          <td>1</td>
+          <td>1000 &rarr; 1,000</td>
+          <td class="ir-code-cell">AcNumber<wbr />Format<wbr />Thousands</td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td>小數位數</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>1000 &rarr; 1 0 0 0</td>
+          <td class="ir-code-cell">
+            AcDistribute<wbr />Digits<wbr />Left<wbr />To<wbr />Right
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>1000 &rarr; 1 0 0 0 (由右往左)</td>
+          <td class="ir-code-cell">
+            AcDistribute<wbr />Digits<wbr />Right<wbr />To<wbr />Left
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>1.23 &rarr; ONE AND 23/100 ONLY</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />English<wbr />Words
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>1.23 &rarr; 1元2角3分(簡體)</td>
+          <td class="ir-code-cell">AcCurrency<wbr />To<wbr />CN</td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>123 &rarr; 壹 贰 叁(簡體)</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />CN<wbr />Word<wbr />Split
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>1.23 &rarr; 1元2角3分(香港)</td>
+          <td class="ir-code-cell">AcCurrency<wbr />To<wbr />HK</td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>123 &rarr; 壹 貳 叁(香港)</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />HK<wbr />Word<wbr />Split
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>1.23 &rarr; 1元2角3分(臺灣)</td>
+          <td class="ir-code-cell">AcCurrency<wbr />To<wbr />TW</td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>123 &rarr; 壹 貳 參(臺灣)</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />TW<wbr />Word<wbr />Split
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>123456 &rarr; 壹拾貳 參 肆 伍 陸(萬元合併，臺灣)</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />TW<wbr />Word<wbr />Split<wbr />Ex
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>1.23 &rarr; UN CON 23/100 EUROS</td>
+          <td class="ir-code-cell">
+            AcCurrency<wbr />To<wbr />Spanish<wbr />Words
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>依間距值編號</td>
+          <td class="ir-code-cell">AcReindex<wbr />By<wbr />Step</td>
+          <td>間距值</td>
+          <td></td>
+          <td></td>
+        </tr>
 
-<div class="tbl-head">處理功能說明一覽表</div>
+        <tr>
+          <td rowspan="10"><strong>字串</strong></td>
+          <td>1</td>
+          <td>直接套用</td>
+          <td class="ir-code-cell">
+            AcApply<wbr />Text<wbr />With<wbr />Affix
+          </td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>取得部份字串</td>
+          <td class="ir-code-cell">AcGet<wbr />Text<wbr />Part</td>
+          <td>由左往右</td>
+          <td>由右往左</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>逐字拆分</td>
+          <td class="ir-code-cell">AcSplit<wbr />Text<wbr />By<wbr />Char</td>
+          <td>前置字串</td>
+          <td>附加字串</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>依分隔符號拆分</td>
+          <td class="ir-code-cell">AcSplit<wbr />By<wbr />Delimiter</td>
+          <td>分隔符號</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>指定字數拆分</td>
+          <td class="ir-code-cell">AcSplit<wbr />By<wbr />Length</td>
+          <td>字數</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>多選一(依共享順序選擇)</td>
+          <td class="ir-code-cell">
+            AcSelect<wbr />Single<wbr />Item<wbr />By<wbr />Order
+          </td>
+          <td>符號</td>
+          <td>尾值內容</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>移除尾字</td>
+          <td class="ir-code-cell">AcRemove<wbr />Last<wbr />Char</td>
+          <td>位數</td>
+          <td>符號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>依條件移除尾字</td>
+          <td class="ir-code-cell">
+            AcRemove<wbr />Last<wbr />Char<wbr />By<wbr />Set
+          </td>
+          <td>指定範圍</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>置中補字對齊</td>
+          <td class="ir-code-cell">
+            AcCenter<wbr />Align<wbr />With<wbr />Padding
+          </td>
+          <td>最大長度(置中)</td>
+          <td>插入字串</td>
+          <td>附加字串</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>長度不足補齊</td>
+          <td class="ir-code-cell">AcPad<wbr />To<wbr />Group<wbr />Length</td>
+          <td>長度</td>
+          <td>補碼字串</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 
-  <table>
-    <tbody>
-      <tr class="trtitle">
-        <th>類別</th>
-        <th>編號</th>
-        <th>功能</th>
-        <th>參數一</th>
-        <th>參數二</th>
-        <th>說明</th>
-      </tr>
+    <h2>功能說明</h2>
+    <p>
+      請注意「前置字串」參數：若入「-」符號，系統會自動填滿未使用的欄位。例如設有「萬、千、百、拾、個」五個欄位，當輸入「100」時，會分別顯示為「-
+      - 1 0 0」或「- - 壹 零 零」。
+    </p>
+    <ol class="ol-l1">
+      <li>
+        日期：(功能的參考日期，會呈現使用時的日期)
+        <ul>
+          <li>
+            <strong>每月一張：</strong
+            >當一次要列印多張文件但月份不能相同時使用。例如一次印24張支票，作為銀行借款還款使用，此時在支票的日期加上這個選項，於主頁列印時，將選取「每月一張」，並顧「列印張數」輸入24，再按最印，此時就可以依輸入的日期(第1張)，每張日期會加上1個月，的連續印出24張不同月份的日期的支票。
+          </li>
+          <li>
+            <strong>西元日期格式化（2026/7/13 &rarr; 2026-7-13）：</strong
+            >將西元日期轉換為指定符號格式的日期。
+          </li>
+          <li>
+            <strong>西元日期拆分（2026/7/13 &rarr; 2026 7 13）：</strong
+            >將西元日期拆分為無分隔符號的年、月、日。
+          </li>
+          <li>
+            <strong>臺灣日期格式化（2026/7/13 &rarr; 115-7-13）：</strong
+            >將西元日期轉換為指定符號格式的臺灣民國日期。
+          </li>
+          <li>
+            <strong>臺灣日期拆分（2026/7/13 &rarr; 115 7 13）：</strong
+            >將西元日期拆分為無分隔符號的臺灣民國日期格式的年、月、日。
+          </li>
+        </ul>
+      </li>
+      <li>
+        數字：
+        <ul>
+          <li>
+            <strong>數字千分位格式化（1000 &rarr; 1,000）：</strong
+            >為數值資料加入千分位符號，並可指定前置字串如「$」或「-」、附加字串與指定的小數位數。
+          </li>
 
-      <tr>
-        <td class="th20" rowspan="4"><strong>日期</strong></td>
-        <td class="th20">1</td>
-        <td class="th120">日期直接複製</td>
-        <td class="th50"></td>
-        <td class="th50"></td>
-        <td class="th50em">直接複製</td>
-      </tr>
+          <li>
+            <strong>數字由左至右拆分填碼（1000 &rarr; 1 0 0 0）：</strong
+            >將數字依位數拆開，採取由左至右的順序填入指定的欄位，用於字串類的資料，如銀行帳號。
+          </li>
+          <li>
+            <strong>數字由右至左拆分填碼（1000 &rarr; 1 0 0 0）：</strong
+            >將數字依位數拆開，採取由右至左的順序填入指定欄位，用於數值類的資料，如金額。
+          </li>
+          <li>
+            <strong>數字轉英文金額（1.23 &rarr; ONE AND 23/100 ONLY）：</strong
+            >將數值轉換為標準英文大寫金融金額格式，可自由搭配前置或附加字串。
+          </li>
+          <li>
+            <strong>數字轉簡體中文金額（1.23 &rarr; 1元2角3分）：</strong
+            >將數字資料轉換為簡體中文金額表示法（含元、角、分之單位），並支援附加項目宣告。
+          </li>
+          <li>
+            <strong>數字轉簡體大寫拆分（123 &rarr; 壹 贰 叁）：</strong
+            >將數值轉換為簡體中文金融大寫數字，並將字元逐一拆分以利填入對應的欄位。
+          </li>
+          <li>
+            <strong>數字轉香港中文金額（1.23 &rarr; 1元2角3分）：</strong
+            >將數字轉換為香港習慣之中文金額表示法，精確處理元、角、分單位轉換。
+          </li>
+          <li>
+            <strong>數字轉香港大寫拆分（123 &rarr; 壹 貳 叁）：</strong
+            >將數值轉換為香港習慣之繁體金融大寫數字，並進行逐字拆分填碼。
+          </li>
+          <li>
+            <strong>數字轉臺灣中文金額（1.23 &rarr; 1元2角3分）：</strong
+            >將數值資料轉換為臺灣習慣之中文金額格式，可自行搭配前置與附加字串。
+          </li>
+          <li>
+            <strong>數字轉臺灣大寫拆分（123 &rarr; 壹 貳 參）：</strong
+            >將數字轉換為臺灣標準金融大寫數字（壹、貳、參），並自動進行逐字拆分。
+          </li>
+          <li>
+            <strong
+              >臺灣大寫萬元合併拆分（123456 &rarr; 壹拾貳 參 肆 伍
+              陸）：</strong
+            >將數值轉換為臺灣金融大寫格式，並針對萬元以上或以下進行不同的合併與拆分，以對特殊文件進行套印。
+          </li>
+          <li>
+            <strong
+              >數字轉西班牙文金額（1.23 &rarr; UN CON 23/100 EUROS）：</strong
+            >將數字轉換為標準西班牙文大寫金額格式。
+          </li>
+          <li>
+            <strong>依間距值編號：</strong
+            >讓文件列印產生流水號，例如「連續報表式標籤紙」件數為3，此時需要3-1、3-2、3-3印於那3張標籤紙，這個功能可以分別產生1、2、3的內容。
+          </li>
+        </ul>
+      </li>
+      <li>
+        字串：
+        <ul>
+          <li><strong>直接套用：</strong>資料不做任何處理，直接使用。</li>
 
-      <tr>
-        <td>2</td>
-        <td>2013/10/20 -&gt; 102 10 20</td>
-        <td></td>
-        <td></td>
-        <td>改為臺灣日期，將年月日分開，並去掉分隔符號</td>
-      </tr>
-
-      <tr>
-        <td>3</td>
-        <td>2014/04/01 -&gt; 103/04/01</td>
-        <td>分隔符號1</td>
-        <td>分隔符號2</td>
-        <td>改為臺灣日期，可以指定分隔分號</td>
-      </tr>
-
-      <tr>
-        <td>4</td>
-        <td>2013/10/20 -&gt; 2013 10 20</td>
-        <td></td>
-        <td></td>
-        <td>將日期分開年月日，並去掉分隔符號</td>
-      </tr>
-
-      <tr>
-        <td rowspan="6"><strong>數字</strong></td>
-        <td>1</td>
-        <td>1000 -&gt; 1,000</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>加入千分符號，字串前號可以加入其他字串如‘$’、 ‘-’</td>
-      </tr>
-
-      <tr>
-        <td>2</td>
-        <td>1 -&gt; ONE ONLY.</td>
-        <td></td>
-        <td></td>
-        <td>將數字轉為英文金額格式</td>
-      </tr>
-
-      <tr>
-        <td>3</td>
-        <td>123 -&gt; 臺佰貮拾參</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>將數字轉為臺灣金額，字串前號可以加入字串，例如於字串後面加上‘元整’</td>
-      </tr>
-
-      <tr>
-        <td>4</td>
-        <td>123 -&gt; 壹 貮 參</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>將數字轉為臺灣金額，並逐字分開</td>
-      </tr>
-
-      <tr>
-        <td>5</td>
-        <td>123 -&gt; 1 2 3</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>將數字分開，並且由左至右填碼，例如金額。</td>
-      </tr>
-
-      <tr>
-        <td>6</td>
-        <td>123 -&gt; 1 2 3</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>將數字分開，並且由右至左填碼，例如帳號</td>
-      </tr>
-
-      <tr>
-        <td rowspan="7"><strong>字串</strong></td>
-        <td>1</td>
-        <td>字串直接複製</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>2</td>
-        <td>ABC -&gt; A B C</td>
-        <td>前置字串</td>
-        <td>附加字串</td>
-        <td>將字串逐字分開</td>
-      </tr>
-
-      <tr>
-        <td>3</td>
-        <td>依字數分割字串</td>
-        <td>字數</td>
-        <td></td>
-        <td>例如超過10碼就分割成2段</td>
-      </tr>
-
-      <tr>
-        <td>4</td>
-        <td>依識別碼分割字串</td>
-        <td>識別碼</td>
-        <td></td>
-        <td>例如電話將04-12345678-123，轉成04 12345678 123</td>
-      </tr>
-
-      <tr>
-        <td>5</td>
-        <td>多選一</td>
-        <td>符號</td>
-        <td>選項數</td>
-        <td>由輸入資料判斷群組中項目那一個可以取得資料。</td>
-      </tr>
-
-      <tr>
-        <td>6</td>
-        <td>依字數縮小或分割字串</td>
-        <td>縮小</td>
-        <td>分割</td>
-        <td>指定字串逾「縮小」設定值就縮小，逾「分割」設定值就分割。例如支票憑票支付，系統會依字數決定是否縮小或分割字串</td>
-      </tr>
-
-      <tr>
-        <td>7</td>
-        <td>補碼(pad)</td>
-        <td>長度</td>
-        <td>補碼字串</td>
-        <td>將字串依補碼字串，補到一定長度。</td>
-      </tr>
-    </tbody>
-  </table>
-
-</body>
+          <li><strong>取得部份字串：</strong>依設定取得指定的資料。</li>
+          <li>
+            <strong>字串逐字拆分：</strong
+            >將資料逐字分開，以供群組成員(欄位)使用。
+          </li>
+          <li>
+            <strong>依分隔符號拆分：</strong
+            >依據指定符號（如連字號「-」）將原始字串切分（例如將電話號碼「04-12345678」拆分為區域碼與電話號碼）。
+          </li>
+          <li>
+            <strong>指定字數拆分：</strong
+            >設定固定的字數上限，當原始字串長度超過該設定值時，系統即自動將其切割成多個段落或行數。
+          </li>
+          <li>
+            <strong>多選一（依共享順序選擇）：</strong
+            >文件上面有多個選項可以選擇，依使用者輸入的數字，於該位置印出指定符號，例如文件上有4個選項「現金、支票、信用卡、轉帳」，當輸入2時，就會勾選支票。
+          </li>
+          <li><strong>移除尾字：</strong>將指定的字串去除。</li>
+          <li>
+            <strong>依條件移除尾字：</strong
+            >例如套印時，信封上面地址項目如(鄕鎮市區)已印刷完成，當資料有該字串時如「台中市」，此功能就能將「市」去除，只套印出必要的字串(台中)。
+          </li>
+          <li>
+            <strong>置中補字對齊：</strong
+            >列印信封收件人置中列印時，如果人名太短，可先告知，收件人可列印的最大字數，並將插入字串設為空白，在不超過可列印範圍長度時，會在收信人每個字的中間插入空白。
+          </li>
+          <li>
+            <strong>長度不足補齊：</strong>
+            指定目標長度，當原始資料長度不足時，可設定前綴與後綴字串，自動在原始資料的左邊補到指定長度。
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </body>
 </html>
