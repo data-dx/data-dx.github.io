@@ -1,196 +1,647 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>輸入處理｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>輸入管理設計－輸入處理</title>
+    <link class="ir-asset" rel="stylesheet" href="../css/site.css" />
+    <script class="ir-asset" src="../js/redirect.js"></script>
+    <script class="ir-asset" src="../js/page-note.js"></script>
+  </head>
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+  <body class="ir-page">
+    <h1>輸入管理設計－輸入處理</h1>
+    <hr />
 
-<body class="ir-page">
+    <p>「輸入處理」工作頁，於輸入過程可以提升使用者輸入的時間及體驗。</p>
 
-  <h1>輸入處理</h1>
-  <hr>
+    <h2>功能列表</h2>
+    <table class="ir-table">
+      <thead>
+        <tr>
+          <th width="45">類別</th>
+          <th width="40">編號</th>
+          <th>功能</th>
+          <th>功能代碼</th>
+          <th width="65">參數一</th>
+          <th width="65">參數二</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 自動加入 (9) -->
+        <tr>
+          <td rowspan="9"><strong>自動加入</strong></td>
+          <td>1</td>
+          <td>使用單位代碼</td>
+          <td class="ir-code-cell">AcE_<wbr />Apply<wbr />Owner<wbr />Code</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>使用單位名稱</td>
+          <td class="ir-code-cell">AcE_<wbr />Apply<wbr />Owner<wbr />Name</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>帶入銀行帳號</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Apply<wbr />Bank<wbr />Account
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>帶入前次資料</td>
+          <td class="ir-code-cell">AcE_<wbr />Apply<wbr />Last<wbr />Value</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>預設值</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Apply<wbr />Default<wbr />Value
+          </td>
+          <td>預設值</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>取用已登錄流水號</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Apply<wbr />Registered<wbr />Serial
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>產生西元日期流水號</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Generate<wbr />Date<wbr />Serial<wbr />AD
+          </td>
+          <td>序號長度</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>產生自訂流水號</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Generate<wbr />Custom<wbr />Serial
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>空白時帶入指定欄位資料</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Apply<wbr />Value<wbr />From<wbr />Field<wbr />If<wbr />Empty
+          </td>
+          <td>欄位編號</td>
+          <td></td>
+        </tr>
 
-  <p>本軟體提供「輸入處理」與「資料查詢」兩項功能：</p>
+        <!-- 計算功能 (7) -->
+        <tr>
+          <td rowspan="7"><strong>計算功能</strong></td>
+          <td>1</td>
+          <td>前段欄位金額合計</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Sum<wbr />Previous<wbr />Fields
+          </td>
+          <td>欄位數量</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>計算公式</td>
+          <td class="ir-code-cell">AcE_<wbr />Calc<wbr />Formula</td>
+          <td>計算式</td>
+          <td>小數位數</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>次數計算</td>
+          <td class="ir-code-cell">AcE_<wbr />Calc<wbr />By<wbr />Count</td>
+          <td>指定欄位計算</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>計算稅額（未稅）</td>
+          <td class="ir-code-cell">AcE_<wbr />Without<wbr />VAT</td>
+          <td>稅率</td>
+          <td>小數位數</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>計算稅額（含稅）</td>
+          <td class="ir-code-cell">AcE_<wbr />Include<wbr />VAT</td>
+          <td>稅率</td>
+          <td>小數位數</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>四捨五入</td>
+          <td class="ir-code-cell">AcE_<wbr />Apply<wbr />Rounding</td>
+          <td>小數位數</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>小數位數</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Set<wbr />Decimal<wbr />Places
+          </td>
+          <td>小數位數</td>
+          <td></td>
+        </tr>
 
-  <ol class="ol-l1">
-    <li>
-      <strong>輸入處理</strong>：由開發者預先定義動作，分為五大類：
-      <ul class="ul-l1">
-        <li>前置處理：游標進入欄位立即執行</li>
-        <li>後置處理：游標離開欄位立即執行</li>
-        <li>操作：輸入過程限制檢查</li>
-        <li>日期：日期專用處理</li>
-        <li>進階：其他特殊功能</li>
-      </ul>
-    </li>
-  </ol>
+        <!-- 日期 (4) -->
+        <tr>
+          <td rowspan="4"><strong>日期</strong></td>
+          <td>1</td>
+          <td>免輸入分隔符號轉西元日期</td>
+          <td class="ir-code-cell">AcX_<wbr />Normalize<wbr />Date<wbr />AD</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>免輸入分隔符號轉臺灣日期</td>
+          <td class="ir-code-cell">AcX_<wbr />Normalize<wbr />Date<wbr />TW</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>自動填入日期</td>
+          <td class="ir-code-cell">AcE_<wbr />Auto<wbr />Add<wbr />Date</td>
+          <td>月調整值</td>
+          <td>日調整值</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>自動填入時間</td>
+          <td class="ir-code-cell">AcE_<wbr />Auto<wbr />Add<wbr />Time</td>
+          <td></td>
+          <td></td>
+        </tr>
 
-  <figure>
-    <img class="winimg" src="images/FP_KeyInDP1.jpg" alt="輸入處理工作頁">
-    <figcaption class="TACenter">輸入處理工作頁</figcaption>
-  </figure>
+        <!-- 進階處理 (10) -->
+        <tr>
+          <td rowspan="10"><strong>進階處理</strong></td>
+          <td>1</td>
+          <td>超過字數自動換行</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Wrap<wbr />Text<wbr />By<wbr />Length
+          </td>
+          <td>分割</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>關鍵字查詢</td>
+          <td class="ir-code-cell">AcC_<wbr />Find<wbr />By<wbr />Keyword</td>
+          <td>TABLE</td>
+          <td>Field</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>依客戶名稱關鍵字查詢</td>
+          <td class="ir-code-cell">
+            AcC_<wbr />Find<wbr />Customer<wbr />By<wbr />Name
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>查詢客戶代碼</td>
+          <td class="ir-code-cell">
+            AcC_<wbr />Find<wbr />Customer<wbr />By<wbr />Code
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>轉為半形文字</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Convert<wbr />To<wbr />Half<wbr />Width
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>轉為全形文字</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Convert<wbr />To<wbr />Full<wbr />Width
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>補齊文字（進入時）</td>
+          <td class="ir-code-cell">
+            AcE_<wbr />Pad<wbr />String<wbr />On<wbr />Enter
+          </td>
+          <td>長度</td>
+          <td>左 0 右 1</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>補齊文字（離開時）</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Pad<wbr />String<wbr />On<wbr />Exit
+          </td>
+          <td>長度</td>
+          <td>左 0 右 1</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>轉為固定文字</td>
+          <td class="ir-code-cell">
+            AcC_<wbr />Replace<wbr />With<wbr />Fixed<wbr />Text
+          </td>
+          <td>符號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>設定列印張數</td>
+          <td class="ir-code-cell">AcX_<wbr />Set<wbr />Print<wbr />Copies</td>
+          <td></td>
+          <td></td>
+        </tr>
 
-  <h2>輸入處理功能表</h2>
+        <!-- 輸入限制 (4) -->
+        <tr>
+          <td rowspan="4"><strong>輸入限制</strong></td>
+          <td>1</td>
+          <td>二選一輸入</td>
+          <td class="ir-code-cell">AcX_<wbr />Select<wbr />One<wbr />Input</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>未輸入就跳過指定欄位數量</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Skip<wbr />Field<wbr />When<wbr />Empty
+          </td>
+          <td>幾個欄位</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>未輸入就跳至指定欄位編號</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Jump<wbr />To<wbr />Field<wbr />When<wbr />Empty
+          </td>
+          <td>欄位編號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>切換欄位群組編輯模式</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Toggle<wbr />Editable<wbr />Groups
+          </td>
+          <td>第 1 組</td>
+          <td>第 2 組</td>
+        </tr>
 
-  <table>
-    <tbody>
-      <tr class="trtitle">
-        <th>類別</th>
-        <th>編號</th>
-        <th>功能</th>
-        <th>參數一</th>
-        <th>參數二</th>
-        <th>說明</th>
-      </tr>
+        <!-- 欄位屬性 (10) -->
+        <tr>
+          <td rowspan="10"><strong>欄位屬性</strong></td>
+          <td>1</td>
+          <td>英文以小寫呈現</td>
+          <td class="ir-code-cell">
+            AcP_<wbr />Lower<wbr />Case<wbr />English
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>英文以大寫呈現</td>
+          <td class="ir-code-cell">
+            AcP_<wbr />Upper<wbr />Case<wbr />English
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>限定輸入數字</td>
+          <td class="ir-code-cell">AcP_<wbr />Validate<wbr />Number</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>限制輸入長度</td>
+          <td class="ir-code-cell">
+            AcP_<wbr />Limit<wbr />Input<wbr />Length
+          </td>
+          <td>長度</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>輸入_檢查按鈕</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Input<wbr />Toggle<wbr />Check
+          </td>
+          <td>指定符號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>輸入_單選按鍵</td>
+          <td class="ir-code-cell">
+            AcX_<wbr />Input<wbr />Select<wbr />Single
+          </td>
+          <td>指定符號</td>
+          <td>成員編號</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>密碼遮蔽</td>
+          <td class="ir-code-cell">AcP_<wbr />Set<wbr />Password<wbr />Mask</td>
+          <td>指定符號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>唯讀</td>
+          <td class="ir-code-cell">AcP_<wbr />Set<wbr />Read<wbr />Only</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>滑鼠單擊_檢查按鈕</td>
+          <td class="ir-code-cell">
+            AcK_<wbr />Mouse<wbr />Toggle<wbr />Check
+          </td>
+          <td>指定符號</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>滑鼠單擊_單選按鈕</td>
+          <td class="ir-code-cell">
+            AcK_<wbr />Mouse<wbr />Select<wbr />Single
+          </td>
+          <td>指定符號</td>
+          <td>成員編號</td>
+        </tr>
 
-      <tr>
-        <td rowspan="2"><strong>計算功能</strong></td>
-        <td>1</td>
-        <td>金額加總</td>
-        <td>前項數目</td>
-        <td></td>
-        <td>將指定的前項資料加總後輸出。</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>數量 × 單價</td>
-        <td></td>
-        <td></td>
-        <td>將前兩項資料相乘後輸出為目前值。</td>
-      </tr>
+        <!-- 元件組 (3) -->
+        <tr>
+          <td rowspan="3"><strong>元件組</strong></td>
+          <td>1</td>
+          <td>下拉式選單</td>
+          <td class="ir-code-cell">AcV_<wbr />Drop<wbr />Down<wbr />List</td>
+          <td>取序號 0 取值 1</td>
+          <td>檔案來源</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>多行文字</td>
+          <td class="ir-code-cell">AcV_<wbr />Memo</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>圖片顯示</td>
+          <td class="ir-code-cell">AcV_<wbr />Insert<wbr />Image</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <tr>
-        <td rowspan="2"><strong>日期</strong></td>
-        <td>1</td>
-        <td>免輸入分隔符號日期</td>
-        <td></td>
-        <td></td>
-        <td>1050127 或 20160127 轉為 2016/01/27。</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>自動加入日期</td>
-        <td>月</td>
-        <td>日</td>
-        <td>今日自動帶入，可指定偏移。</td>
-      </tr>
-
-      <tr>
-        <td rowspan="7"><strong>輸入設定</strong></td>
-        <td>1</td>
-        <td>限定數字</td>
-        <td></td>
-        <td></td>
-        <td>限制只能輸入數字與 - .</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>限制長度</td>
-        <td>長度</td>
-        <td></td>
-        <td>限制文字長度（如帳號 14 碼）。</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>英文大寫</td>
-        <td></td>
-        <td></td>
-        <td>abc → ABC。</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>英數半形</td>
-        <td></td>
-        <td></td>
-        <td>全形 → 半形。</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>英數全形</td>
-        <td></td>
-        <td></td>
-        <td>半形 → 全形。</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>依字數分割字串</td>
-        <td>分割</td>
-        <td></td>
-        <td>字串超過指定長度自動換行。</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>擇一輸入</td>
-        <td></td>
-        <td></td>
-        <td>依輸入值決定顯示內容。</td>
-      </tr>
-
-      <tr>
-        <td rowspan="8"><strong>資料查詢</strong></td>
-        <td>1</td>
-        <td>加入套印者代號</td>
-        <td></td>
-        <td></td>
-        <td>自動帶入套印者代號。</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>加入帳戶名稱</td>
-        <td></td>
-        <td></td>
-        <td>帶入帳戶名稱。</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>加入銀行帳號</td>
-        <td></td>
-        <td></td>
-        <td>帶入銀行帳號。</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>引用前次資料</td>
-        <td></td>
-        <td></td>
-        <td>列印後自動帶入上次內容。</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>登錄流水號</td>
-        <td></td>
-        <td></td>
-        <td>引用未使用票號。</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>西元日期流水號</td>
-        <td>長度</td>
-        <td></td>
-        <td>產生日字串＋流水號。</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>流水號</td>
-        <td></td>
-        <td></td>
-        <td>列印後自動 +1。</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>關鍵字查詢客戶</td>
-        <td></td>
-        <td></td>
-        <td>輸入關鍵字自動帶入客戶資料。</td>
-      </tr>
-
-    </tbody>
-  </table>
-
-</body>
+    <h2>功能說明</h2>
+    <ol class="ol-l1">
+      <li>
+        自動加入：
+        <ul>
+          <li>
+            <strong>使用單位代碼：</strong
+            >自動加入填寫文件時，所需的填寫人代碼。
+          </li>
+          <li>
+            <strong>使用單位名稱：</strong>自動填入填寫文件時所需的填寫人名稱。
+          </li>
+          <li>
+            <strong>帶入銀行帳號：</strong
+            >自動帶入填寫文件時，所需的填寫人銀行帳號。
+          </li>
+          <li>
+            <strong>帶入前次資料：</strong
+            >於輸入第2筆開始，會自動帶入前1次輸入的資料。
+          </li>
+          <li><strong>預設值：</strong>自動填入指定的預設值內容。</li>
+          <li>
+            <strong>取用已登錄流水號：</strong
+            >直接取用此文件最早登錄且屬性為「未使用」已登錄的文件編號。
+          </li>
+          <li>
+            <strong>產生西元日期流水號：</strong
+            >以依當日的西元日期加上流水號，自動生成不重複流水號。
+          </li>
+          <li>
+            <strong>產生自訂流水號：</strong
+            >當第一筆編號輸入完成後，系統即依該自訂的編碼規則與格式，自動生成不重複流水號。
+          </li>
+          <li>
+            <strong>空白時帶入指定欄位資料：</strong>當本欄位未輸入 any
+            內容時，自動複製指定欄位編號的資料填入。
+          </li>
+        </ul>
+      </li>
+      <li>
+        計算功能：欄位代為3碼，@ + 2碼的流水號，如 @01 指定一個資料欄位，
+        <ul>
+          <li>
+            <strong>前段欄位金額合計：</strong
+            >自動加總本欄位上方指定數量欄位之金額總和。
+          </li>
+          <li><strong>計算公式：</strong>依設定之數學計算式進行即時運算。</li>
+          <li>
+            <strong>次數計算：</strong
+            >針對此文件指定欄位，有填入資料的數量，進行次數累計計算。
+          </li>
+          <li>
+            <strong>計算稅額（未稅）：</strong
+            >依指定稅率與小數位數，反推並計算未稅金額之稅額。
+          </li>
+          <li>
+            <strong>計算稅額（含稅）：</strong
+            >依指定稅率與小數位數，計算含稅總額之應納稅額。
+          </li>
+          <li>
+            <strong>四捨五入：</strong>將欄位數值四捨五入，可以設定小數位數。
+          </li>
+          <li>
+            <strong>小數位數：</strong
+            >強制限制並格式化數值資料之小數呈現位數，以供於顯示或列印使用。
+          </li>
+        </ul>
+      </li>
+      <li>
+        日期：
+        <ul>
+          <li>
+            <strong>免輸入分隔符號轉西元日期：</strong
+            >使用者直接輸入純數字時（如 20260714 或
+            1150714），自動轉換並標準化為西元日期格式 2026/7/14。
+          </li>
+          <li>
+            <strong>免輸入分隔符號轉臺灣日期：</strong>輸入純數字時（如 20260714
+            或 1150714），自動標準化轉換為臺灣民國日期格式 115/7/4。
+          </li>
+          <li>
+            <strong>自動填入日期：</strong
+            >自動帶入當前日期，並支援指定月份與日期調整值（加減天數）。
+          </li>
+          <li><strong>自動填入時間：</strong>自動帶入當前系統標準時間。</li>
+        </ul>
+      </li>
+      <li>
+        進階處理：
+        <ul>
+          <li>
+            <strong>超過字數自動換行：</strong
+            >偵測欄位內文字長度，超出設定限制時自動執行換行切割。用於長文字型的字串。
+          </li>
+          <li>
+            <strong>關鍵字查詢：</strong
+            >關聯指定的資料表、欄位，實作關鍵字查詢、取值與焦點轉移。
+          </li>
+          <li>
+            <strong>依客戶名稱關鍵字查詢：</strong
+            >專用於客戶管理，透過名稱關鍵字取得客戶相關資料。
+          </li>
+          <li>
+            <strong>查詢客戶代碼：</strong
+            >直接依客戶代碼於快速載入關聯的客戶資料。
+          </li>
+          <li>
+            <strong>轉為半形文字：</strong
+            >於離開該欄位時，將輸入的英文字、標點等全形字元轉換為標準半形字元。
+          </li>
+          <li>
+            <strong>轉為全形文字：</strong
+            >自動將輸入的半形字元轉換為標準全形文字。
+          </li>
+          <li>
+            <strong>補齊文字（進入時）：</strong
+            >游標進入欄位時，依設定長度與對齊方向自動在左側或右側補碼。
+          </li>
+          <li>
+            <strong>補齊文字（離開時）：</strong
+            >游標離開欄位時，依設定長度在指定側自動補齊字元（如補 0）。
+          </li>
+          <li>
+            <strong>轉為固定文字：</strong
+            >強制將輸入內容替換為指定的固定符號或字串。
+          </li>
+          <li>
+            <strong>設定列印張數：</strong>設定該資料列印時的預設輸出份數。
+          </li>
+        </ul>
+      </li>
+      <li>
+        輸入限制：
+        <ul>
+          <li>
+            <strong>二選一輸入：</strong
+            >設定特定兩個欄位之間互斥，僅能擇一輸入。
+          </li>
+          <li>
+            <strong>未輸入就跳過指定欄位數量：</strong
+            >當本欄位為空白時，自動略過隨後指定數量的欄位。例如第 2
+            筆未輸入，就直接移至總計欄位。
+          </li>
+          <li>
+            <strong>未輸入就跳至指定欄位編號：</strong
+            >當本欄位空白時，焦點自動跳轉至指定編號的目標欄位。
+          </li>
+          <li>
+            <strong>切換欄位群組編輯模式：</strong
+            >依輸入值切換可編輯的欄位群組（共 4 組，第 1 組至第 4 組）。
+          </li>
+        </ul>
+      </li>
+      <li>
+        欄位屬性：
+        <ul>
+          <li>
+            <strong>英文以小寫呈現：</strong
+            >強制將所有輸入的英文字母轉換為小寫顯示。
+          </li>
+          <li>
+            <strong>英文以大寫呈現：</strong
+            >強制將所有輸入的英文字母轉換為大寫顯示。
+          </li>
+          <li>
+            <strong>限定輸入數字：</strong
+            >嚴格限制欄位僅能輸入數值，阻擋非數字字元。
+          </li>
+          <li>
+            <strong>限制輸入長度：</strong
+            >限制該欄位最大可允許輸入之字元長度上限。
+          </li>
+          <li>
+            <strong>輸入_檢查按鈕：</strong
+            >提供可點擊的核取按鈕，依輸入填入指定符號。
+          </li>
+          <li>
+            <strong>輸入_單選按鍵：</strong
+            >提供單選按鍵機制，於輸入符合條件時選取對應成員。
+          </li>
+          <li>
+            <strong>密碼遮蔽：</strong>以指定的屏蔽符號（如
+            *）隱藏真實輸入文字以資保護。
+          </li>
+          <li><strong>唯讀：</strong>鎖定該欄位內容，僅供閱讀禁止修改。</li>
+          <li>
+            <strong>滑鼠單擊_檢查按鈕：</strong>支援滑鼠單擊事件，可以多選欄位。
+          </li>
+          <li>
+            <strong>滑鼠單擊_單選按鈕：</strong>支援滑鼠單擊事件，擇一選取欄位。
+          </li>
+        </ul>
+      </li>
+      <li>
+        元件組：
+        <ul>
+          <li>
+            <strong>下拉式選單：</strong
+            >建立下拉選單，並支援指定取序號或取值模式，資料來源可為外部檔案。
+          </li>
+          <li>
+            <strong>多行文字：</strong
+            >設定欄位為多行編輯區域，可用於輸入長篇文字或多行紀錄。
+          </li>
+          <li><strong>圖片顯示：</strong>欄位可呈現圖案類的資料。</li>
+        </ul>
+      </li>
+    </ol>
+  </body>
 </html>
