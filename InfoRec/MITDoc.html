@@ -1,80 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>文件｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>文件｜InfoRec</title>
+    <link rel="stylesheet" href="../css/site.css" />
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+  </head>
 
-<body class="ir-page">
+  <body class="ir-page">
+    <h1>文件</h1>
+    <hr />
 
-  <h1>文件</h1>
-  <hr>
+    <p>
+      管理、設計文件相關資訊，如文件基本資料、填寫紀錄（列印）內容的資料分配、資料處理、輸入介面、資料引用、資料儲存、紀錄顯示。
+    </p>
 
-  <p>管理、設計文件的紀錄(套印)內容，包含：內容呈現、資料分配、資料處理、輸入版面、資料取得、資料儲存等作業。</p>
+    <ol class="ol-l1">
+      <li>
+        <a href="FormDocInfo.html" target="content">文件管理</a>：
+        <ul class="ul-l1">
+          <li>
+            建立及管理文件的基本資料，如領域、來源、文件編號、文件大小、文件樣式、輸入介面模式，是否列印底圖。紀錄是否自動存成暫存檔、使用文件編號（格式化存檔）。
+          </li>
+          <li>
+            支援功能：
+            <ul class="ul-l2">
+              <li>
+                <a href="FormArea.html" target="content">領域管理</a
+                >：文件依不同的來源或特殊性質進行分類，如
+                TW-FIN（臺灣金融業）、ISMS（資訊安全管理制度）。
+              </li>
+              <li>
+                <a href="FormDocSrc.html" target="content">來源管理</a
+                >：來源為領域分支，例如金融業
+                700（中華郵政股份有限公司）、資訊管理制度 09（存取控制）。
+              </li>
+              <li>
+                <a href="FormDocKind.html" target="content">文件編號</a
+                >：依來源現有的文件編號，或指定自訂的文件編號，如金融業
+                01（支票）、資訊管理制度 409001（網路申請單）。
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
 
-  <ol class="ol-l1">
-    
-    
-    <li>
-      <a href="FormDocInfo.html" target="content">文件管理：</a>
-      <ul class="ul-l1">
-        <li>建立及管理文件的相關資訊，如領域、來源、文件編號、文件大小、文件樣式、輸入介面模式。決定是否列印底圖、是否存檔等功能。</li>
-      </ul>
+      <li>
+        <a href="FormDocDesign.html" target="content">內容設計</a>：
+        <ul class="ul-l1">
+          <li>設定資料呈現在文件裡面的內容、字型、顏色、圖片位置等。</li>
+          <li>
+            支援功能：
+            <ul class="ul-l2">
+              <li>
+                <a href="FormDataAlloc.html" target="content">資料配置</a
+                >：將資料設定由誰取得、引用（完整的資料）或共享（部份資料）。
+              </li>
+              <li>
+                <a href="FormDataProc.html" target="content">資料處理</a
+                >：將資料進行分割或格式轉換處理。
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
 
-      <ul class="ul-l2">
-        <li><a href="FormArea.html" target="content">領域管理：</a> 如TW-FIN(臺灣金融業)、ISMS(資訊安全管理制度)。</li>
-        <li><a href="FormDocSrc.html" target="content">來源管理：</a> 來源為領域分支例如金融業700(中華郵政股份有限公司)、資訊管理制度 09(存取控制)。</li>
-        <li><a href="FormDocKind.html" target="content">文件編號：</a> 金融業 01(支票)、資訊管理制度 409001(網路申請單)。</li>
-      </ul>
-    </li>
+      <li>
+        <a href="FormUIDesign.html" target="content">輸入管理設計</a>：
+        <ul class="ul-l1">
+          <li>設計資料輸入欄位及操作限制。</li>
+          <li>可增加非列印的查詢欄位（如依客戶代號查詢客戶資料）。</li>
+          <li>
+            支援功能：
+            <ul class="ul-l2">
+              <li>
+                <a href="FormQueryDesign.html" target="content">資料取得</a
+                >：引用其他資料表的資料，簡化輸入工作。可由代號或關鍵字查詢資料。
+              </li>
+              <li>
+                <a href="FormDocRecShowSet.html" target="content">紀錄顯示</a
+                >：決定主視窗的「列印紀錄」或文件紀錄管理的「紀錄一覽表」，顯示哪些紀錄中的項目。
+              </li>
+              <li>
+                <a href="FormInfoRecSaveSet.html" target="content">紀錄儲存</a
+                >：決定哪些紀錄項目要存檔，存入哪個紀錄欄位。
+              </li>
+              <li>
+                <a href="FormLayout.html" target="content">輸入版面</a
+                >：當文件紀錄內容超過 20
+                個項目時，自訂輸入版面，可以提升操作體驗。
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
 
-    <li>
-      <a href="FormDocDesign.html" target="content">內容設計：</a>
-      <ul class="ul-l1">
-        <li>設定資料呈現內容、字型、顏色、圖片位置等。</li>
-      </ul>
-      <ul class="ul-l2">
-        <li><a href="FormDataAlloc.html" target="content">資料配置：</a> 將資料分拆配置至套印項目。</li>
-        <li><a href="FormDataProc.html" target="content">資料處理：</a> 進階資料轉換與格式處理。</li>
-      </ul>
-    </li>
+      <li>
+        <a href="FormDocEx.html" target="content">文件交換</a
+        >：管理文件設定檔的「匯入／匯出／轉製」功能。
+      </li>
 
-    <li>
-      <a href="FormUIDesign.html" target="content">輸入管理設計：</a>
-      <ul class="ul-l1">
-        <li>設計資料輸入欄位及操作限制。</li>
-        <li>支援非列印項目（如查詢銀行帳號）。</li>
-        <li>自動建立匯入套印格式。</li>
-      </ul>
-      <ul class="ul-l2">
-        <li><a href="FormQueryDesign.html" target="content">資料取得：</a> 由代號或關鍵字查詢資料。</li>
-        <li><a href="FormDocRecShowSet.html" target="content">紀錄顯示：</a> 決定顯示那些欄位。</li>
-        <li><a href="FormInfoRecSaveSet.html" target="content">紀錄儲存：</a> 決定哪些欄位要存檔。</li>
-        <li><a href="FormLayout.html" target="content">輸入版面：</a> 超過 20 項以上可自訂輸入畫面。</li>
-      </ul>
-    </li>
-
-    <li>
-      <a href="FormDocEx.html" target="content">文件交換：</a>
-      <ul class="ul-l1">
-        <li>匯入／匯出／轉製設定檔。</li>
-        <li>下載專業支援者設定檔。</li>
-      </ul>
-    </li>
-
-    <li>
-       <a href="MICopyCreation.html" target="content">建立副本：</a>
-      <ul class="ul-l1">
-        <li>同版本文件可為不同使用者產生副本。</li>
-        <li>例：支票不同帳號需列印不同商標，可為每帳號建立一份客製設定。</li>
-      </ul>
-    </li>
-  </ol>
-
-</body>
+      <li>
+        <a href="MICopyCreation.html" target="content">建立副本</a>：
+        <ul class="ul-l1">
+          <li>
+            同一版本的文件，因為使用者的不同產生副本，以利於產生差異的套印內容。
+          </li>
+          <li>
+            例：同一家銀行的支票，不同帳號需列印不同名稱、商標圖案，此功能可以為每個帳號建立一份客製化的副本設定，除了名稱、商標外，其他的文件設計完全共享。
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </body>
 </html>
