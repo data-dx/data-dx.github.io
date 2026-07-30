@@ -1,115 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>軟體現狀交付與下載｜InfoRec</title>
+    <link rel="stylesheet" href="css/site.css" />
+    <script src="../js/redirect.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>軟體現狀交付與下載｜InfoRec</title>
-  <link rel="stylesheet" href="css/site.css">
-  <script src="../js/redirect.js"></script>
-</head>
+  <body class="ir-page">
+    <h1>軟體下載與現狀交付</h1>
+    <hr />
 
-<body class="ir-page">
+    <p class="ir-lead">
+      請下載試用體驗本機軟體功能，直接解解壓縮即可執行。本系統無須安裝，供使用者評估本機軟體環境之相符程度。
+    </p>
 
-  <h1>軟體下載與現狀交付</h1>
-  <hr>
+    <ol class="mb-4">
+      <li>本軟體支援 Windows 系統環境之相容運作。</li>
+      <li>
+        如有軟體功能啟用與相依性環境問題，歡迎透過社群協力管道提交經驗分享。
+      </li>
+    </ol>
 
-  <p class="ir-lead">
-    請下載試用體驗本機軟體功能，直接解解壓縮即可執行。本系統無須安裝，供使用者評估本機軟體環境之相符程度。
-  </p>
+    <div class="ir-card p-3 p-md-4 mb-4">
+      <div class="fw-semibold mb-3">檔案下載</div>
 
-  <ol class="mb-4">
-    <li>本軟體支援 Windows 系統環境之相容運作。</li>
-    <li>如有軟體功能啟用與相依性環境問題，歡迎透過社群協力管道提交經驗分享。</li>
-  </ol>
+      <div class="ir-scroll-x mb-4">
+        <table class="ir-table">
+          <thead>
+            <tr>
+              <th style="min-width: 180px">項目名稱</th>
+              <th style="min-width: 100px">檔案下載</th>
+              <th style="min-width: 250px">配置說明</th>
+              <th style="min-width: 120px">更新日期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>資訊紀錄管理工具</strong></td>
+              <td>
+                <a href="download/InfoRec.7z" class="fw-bold text-success"
+                  >點我下載 (主程式)</a
+                >
+              </td>
+              <td>
+                免安裝，解壓縮後執行主功能
+                <strong>InfoRec.exe</strong> 即可開始現狀體驗。
+              </td>
+              <td>2026/07/31</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="ir-card p-3 p-md-4 mb-4">
-    <div class="fw-semibold mb-3">檔案下載</div>
-
-    <div class="ir-scroll-x mb-4">
-      <table class="ir-table">
-        <thead>
-          <tr>
-            <th style="min-width: 180px;">項目名稱</th>
-            <th style="min-width: 100px;">檔案下載</th>
-            <th style="min-width: 250px;">配置說明</th>
-            <th style="min-width: 120px;">更新日期</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>資訊紀錄管理工具</strong></td>
-            <td><a href="download/InfoRec.7z" class="fw-bold text-success">點我下載 (主程式)</a></td>
-            <td>免安裝，解壓縮後執行主功能 <strong>InfoRec.exe</strong> 即可開始現狀體驗。</td>
-            <td>2026/06/09</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="mt-4 border-top pt-3">
+        <div class="fw-semibold mb-2">配置備註與技術補充</div>
+        <ul class="mb-0 small text-muted">
+          <li class="mb-2">
+            <span class="text-dark fw-semibold">解壓縮輔助：</span
+            >建議使用免費開放原始碼之系統工具
+            <a href="https://www.7-zip.org/" target="_blank" rel="noopener"
+              >7-Zip</a
+            >
+            進行本機檔案解壓。
+          </li>
+          <li class="mb-2">
+            <span class="text-dark fw-semibold">版本變更紀錄：</span>可點擊
+            <a href="FixVersion.txt">查看更新詳情</a> 檢視既有技術環境相容調整。
+          </li>
+          <li class="mb-2">
+            <span class="text-dark fw-semibold">現狀文件範本：</span
+            >本機工具已內建提供多種現狀文件結構；若有特定客製化規格需求，使用者可參考指引自行配置，或透過社群協力平台進行經驗分享。
+          </li>
+          <li class="mb-2">
+            <span class="text-dark fw-semibold">多國語系校對（選用）：</span
+            >若後續因本機元件名稱技術調整需同步語系，得下載
+            <a href="update/Languages.7z">多國語言語系檔 (ini)</a>，解壓後將 ini
+            檔案自行放入主程式目錄下之 Languages 資料夾。
+          </li>
+          <li class="mb-2">
+            <span class="text-dark fw-semibold">行動端驗證輔助（選用）：</span
+            >若特定使用者不具備 Seeker 設備，但欲透過 Android
+            裝置完成環境驗證，得下載安裝
+            <a href="InfoRec_Mobile_v26.apk" download
+              >行動端技術驗證連結套件 (APK)</a
+            >。請確保行動裝置預先就緒 Phantom 等錢包工具，以配合本機執行 SOL
+            區塊鏈環境驗證機制。
+          </li>
+          <li class="mb-0">
+            <span class="text-dark fw-semibold">長期功能解鎖：</span
+            >本下載檔提供 30
+            天現狀功能體驗。如需解鎖長期技術限制，請依本機系統指示<b
+              >採用 SOL 區塊鏈的 SKR 傳送驗證</b
+            >（建立防止無效資源濫用之最低經濟屏障），以取得對應之智慧財產權授權對價。
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="mt-4 border-top pt-3">
-      <div class="fw-semibold mb-2">配置備註與技術補充</div>
-      <ul class="mb-0 small text-muted">
-        <li class="mb-2">
-          <span class="text-dark fw-semibold">解壓縮輔助：</span>建議使用免費開放原始碼之系統工具 <a href="https://www.7-zip.org/" target="_blank" rel="noopener">7-Zip</a> 進行本機檔案解壓。
+    <div class="ir-card p-3 p-md-4">
+      <div class="fw-semibold mb-2">專案發展目標</div>
+      <ul class="mb-0 text-secondary small">
+        <li>
+          致力於優化本機技術工具結構，協助使用者落實資料紀錄、列印與自主流程控管效益。
         </li>
-        <li class="mb-2">
-          <span class="text-dark fw-semibold">版本變更紀錄：</span>可點擊 <a href="FixVersion.txt">查看更新詳情</a> 檢視既有技術環境相容調整。
-        </li>
-        <li class="mb-2">
-          <span class="text-dark fw-semibold">現狀文件範本：</span>本機工具已內建提供多種現狀文件結構；若有特定客製化規格需求，使用者可參考指引自行配置，或透過社群協力平台進行經驗分享。
-        </li>
-        <li class="mb-2">
-          <span class="text-dark fw-semibold">多國語系校對（選用）：</span>若後續因本機元件名稱技術調整需同步語系，得下載 <a href="update/Languages.7z">多國語言語系檔 (ini)</a>，解壓後將 ini 檔案自行放入主程式目錄下之 Languages 資料夾。
-        </li>
-        <li class="mb-2">
-          <span class="text-dark fw-semibold">行動端驗證輔助（選用）：</span>若特定使用者不具備 Seeker 設備，但欲透過 Android 裝置完成環境驗證，得下載安裝 <a href="InfoRec_Mobile_v26.apk" download>行動端技術驗證連結套件 (APK)</a>。請確保行動裝置預先就緒 Phantom 等錢包工具，以配合本機執行 SOL 區塊鏈環境驗證機制。
-        </li>
-        <li class="mb-0">
-          <span class="text-dark fw-semibold">長期功能解鎖：</span>本下載檔提供 30 天現狀功能體驗。如需解鎖長期技術限制，請依本機系統指示<b>採用 SOL 區塊鏈的 SKR 傳送驗證</b>（建立防止無效資源濫用之最低經濟屏障），以取得對應之智慧財產權授權對價。
+        <li>
+          持續依據底層技術架構進行硬體環境相容調整，落實去中心化社群經驗與技術成果互惠。
         </li>
       </ul>
     </div>
-  </div>
 
-  <div class="ir-card p-3 p-md-4">
-    <div class="fw-semibold mb-2">專案發展目標</div>
-    <ul class="mb-0 text-secondary small">
-      <li>致力於優化本機技術工具結構，協助使用者落實資料紀錄、列印與自主流程控管效益。</li>
-      <li>持續依據底層技術架構進行硬體環境相容調整，落實去中心化社群經驗與技術成果互惠。</li>
-    </ul>
-  </div>
+    <p
+      style="
+        text-align: center;
+        color: #888;
+        margin-top: 30px;
+        font-size: 0.85rem;
+      "
+    >
+      © <span id="subYear"></span> InfoRec 著作權所有。
+    </p>
 
-  <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.85rem;">
-    © <span id="subYear"></span> InfoRec 著作權所有。
-  </p>
+    <script>
+      /* 高度自動通知 (VMware/iframe 環境適用) */
+      (function () {
+        function postHeight() {
+          try {
+            var h = Math.max(
+              document.body.scrollHeight,
+              document.documentElement.scrollHeight,
+            );
+            parent.postMessage(
+              { type: "inforec-iframe-height", height: h },
+              "*",
+            );
+          } catch (e) {}
+        }
+        window.addEventListener("load", postHeight);
+        window.addEventListener("resize", postHeight);
+        setTimeout(postHeight, 300);
+        setTimeout(postHeight, 900);
+      })();
+    </script>
 
-  <script>
-    /* 高度自動通知 (VMware/iframe 環境適用) */
-    (function () {
-      function postHeight() {
-        try {
-          var h = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-          );
-          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
-        } catch (e) {}
-      }
-      window.addEventListener('load', postHeight);
-      window.addEventListener('resize', postHeight);
-      setTimeout(postHeight, 300);
-      setTimeout(postHeight, 900);
-    })();
-  </script>
-
-  <script>
-    /* 頁尾年份自動動態換年機制 */
-    (function () {
-      if(document.getElementById("subYear")) {
-        document.getElementById("subYear").textContent = new Date().getFullYear();
-      }
-    })();
-  </script>
-</body>
+    <script>
+      /* 頁尾年份自動動態換年機制 */
+      (function () {
+        if (document.getElementById("subYear")) {
+          document.getElementById("subYear").textContent =
+            new Date().getFullYear();
+        }
+      })();
+    </script>
+  </body>
 </html>
