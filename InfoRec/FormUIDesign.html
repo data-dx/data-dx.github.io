@@ -1,162 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>輸入管理設計｜InfoRec</title>
-  <link rel="stylesheet" href="../css/site.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>輸入介面設計｜InfoRec</title>
+    <link rel="stylesheet" href="../css/site.css" />
 
-  <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
-</head>
+    <script src="../js/redirect.js"></script>
+    <script src="../js/page-note.js"></script>
+  </head>
 
-<body class="ir-page">
+  <body class="ir-page">
+    <h1>輸入介面設計</h1>
+    <hr />
 
-  <h1>輸入管理設計</h1>
-  <hr>
+    <p>
+      本頁用來設定表單的輸入欄位、處理規則、資料查詢及顯示樣式，讓資料輸入流程符合實際作業需求。
+    </p>
 
-  <p>文件必需文件管理建檔，並分別進行「文件內容設計」、「資料配置」、「資料處理」後，再進入本視窗完成輸入介面設計，才能完成整個文件設定檔。</p>
+    <h2>畫面功能</h2>
+    <ul class="ul-l1">
+      <li>
+        <strong>輸入欄位管理：</strong>新增、刪除、重新命名及調整欄位順序。
+      </li>
+      <li><strong>欄位功能：</strong>查看目前欄位已套用的處理或查詢功能。</li>
+      <li>
+        <strong>輸入處理：</strong>依數值、金額、字串或日期選擇驗證與處理功能。
+      </li>
+      <li>
+        <strong>資料查詢：</strong
+        >從指定資料表加入查詢功能，協助帶入或核對資料。
+      </li>
+      <li><strong>欄位屬性：</strong>設定字型、大小、顏色、底色及對齊方式。</li>
+    </ul>
 
-<h2>注意事項</h2>
-  <ol class="ol-l1">
-    <li>前置作業</li>
-          <ul class="ul-l1">
-        <li><a href="FormDocInfo.html" target="content">文件管理：</a>：建立文件的基本資料。</li>
-        <li>文件內容設計：設計文件紀綠的組成資料及佈置位置資料。</li>
-        <ul>
-  <li><a href="FormDataAlloc.html" target="content">資料配置：</a> 將紀錄需要取得的資料進行分配或引用，出現在「A.取得資料項目」(取得資料的主要欄位，才會出現在本視窗的輸入欄位清單。</li>
-        <li><a href="FormDataProc.html" target="content">資料處理：</a> 進階資料轉換與格式處理。</li>
-        </ul>
-      </ul>
-        </ul>
-        <li>可用於新增必須存檔的資料欄位（如票號）。</li>
-      </ul>
-    <li>
-      <strong>輸入介面</strong>：
-      <ul class="ul-l1">
-        <li>自動(標準、預設)模式：從上到下自動排列的輸入介，當欄位不超過20個，建議用此模式，不需要進行任何設定。</li>
-        <li>自訂模式：如出貨單，手開發票，因為每一個文件有多筆記錄，因此欄位數量很大，若能排列成文件的格式，體驗性比較佳。而且可以自行設計輸入的方式，通常超過20個欄位，就建議採用此模式。</li>
-       <li>文件模式：將文件直接秀在螢幕上，好處理視學化最真實清楚，但不一定是最便利的輸入介面模式，因為額外的輸機機制，不一定可以很好的融入文件之中</li>
-      </ul>
-    </li></ol>
+    <figure>
+      <img
+        class="winimg"
+        src="images/FormUIDesign.png"
+        alt="輸入介面設計畫面"
+      />
+      <figcaption class="TACenter">輸入介面設計畫面</figcaption>
+    </figure>
 
-  <figure>
-    <img class="winimg" src="images/FormUIDesign.png" alt="輸入管理設計視窗">
-    <figcaption class="TACenter">輸入管理設計視窗</figcaption>
-  </figure>   
+    <h2>基本操作</h2>
+    <ol class="ol-l1">
+      <li>在左側「輸入欄位一覽表」選取要設定的欄位。</li>
+      <li>切換右側「輸入處理」或「資料查詢」，選擇需要的功能。</li>
+      <li>雙擊功能，或將功能拖曳至「欄位功能」清單，即可套用。</li>
+      <li>在「欄位功能」清單拖曳項目可調整執行順序；雙擊項目可移除功能。</li>
+      <li>如需修改外觀，切換至「欄位屬性」完成設定。</li>
+    </ol>
 
+    <h2>欄位管理</h2>
+    <ul class="ul-l1">
+      <li><strong>新增欄位：</strong>建立自訂輸入欄位，再輸入欄位名稱。</li>
+      <li><strong>刪除欄位：</strong>刪除選取欄位及其相關設定。</li>
+      <li><strong>顯示全部：</strong>列出尚未加入畫面的可用欄位。</li>
+      <li>
+        <strong>重設：</strong
+        >清除目前的輸入欄位設定。執行前請確認是否仍需保留既有處理功能。
+      </li>
+    </ul>
 
-<h2>視窗區域說明</h2>
+    <h2>進階設定</h2>
+    <p>
+      畫面下方可進入「查詢設計」、「記錄存檔」、「紀錄顯示」及「介面設計」，分別設定查詢條件、存檔方式、紀錄顯示規則與欄位位置。
+    </p>
 
-
-  <p>
-    可新增輸入項目來增加進階資料處理功能，例如輸入「收票人代號」即查出對方資料。
-    此類資料不會列印在文件上。
-  </p>
-
-
-
-  <h2>支援功能類別</h2>
-  <ol class="ol-l1">
-    <li><strong>資料取得</strong>：以查詢方式取得資料，如輸入客戶代號 → 得到客戶相關資料。</li>
-    <li><strong>顯示設計</strong>：設定首頁「列印記錄」顯示內容。</li>
-    <li><strong>儲存設計</strong>：指定需存檔的欄位，以利查詢分析。</li>
-    <li><strong>版面設計</strong>：可自行客製輸入版面（條列式或文件式）。</li>
-  </ol>
-
-  <h2>輸入欄位管理</h2>
-  <p>欄位指「可以輸入資料的項目」。</p>
-
-  <ol class="ol-l1">
-    <li>
-      <strong>新增欄位</strong>：產生一筆「Extra」開頭項目。
-      <ul class="ul-l1">
-        <li>不會列印於文件。</li>
-        <li>利於查詢更多資料。</li>
-        <li>可用於新增必須存檔的資料欄位（如票號）。</li>
-      </ul>
-    </li>
-
-    <li><strong>刪除欄位</strong>：將新增項目移除並清空欄位功能。</li>
-
-    <li>
-      <strong>顯示全部</strong>：
-      顯示所有資料型套印項目，新項目會出現在最上方。
-    </li>
-
-    <li>
-      <strong>重設</strong>：
-      還原至「文件內容設計」的資料型項目。
-    </li>
-  </ol>
-
-  <h2>欄位項目區域說明</h2>
-  <ol class="ol-l1">
-    <li>
-      <strong>輸入欄位一覽表</strong>：提供輸入與存檔功能的基礎。
-      <ul class="ul-l1">
-        <li>新增：點「新增項目」增一筆資料並改名。</li>
-        <li>刪除：左鍵連點兩下刪除。</li>
-        <li>調整順序：拖曳調整。</li>
-      </ul>
-    </li>
-
-    <li><strong>欄位功能</strong>：
-      指定輸入項目資料處理功能（引用前次資料、限制輸入…等）。</li>
-  </ol>
-
-  <h2>工作頁功能</h2>
-  <ol class="ol-l1">
-    <li><strong>輸入處理</strong>：針對輸入動作做運算與限制。</li>
-    <li><strong>資料查詢</strong>：顯示可查詢的資料功能。</li>
-    <li><strong>欄位屬性</strong>：如數字靠右、字串對齊方式。</li>
-  </ol>
-
-  <h2>輸入處理</h2>
-  <p>本系統提供「輸入處理」及「資料查詢」功能。各輸入型態皆有不同邏輯。</p>
-
-  <figure>
-    <img class="winimg" src="images/FormUIDesign_InputProc.png" alt="輸入處理工作頁">
-    <figcaption class="TACenter">輸入處理工作頁</figcaption>
-  </figure>
-
-
-  <h2>資料取得管理</h2>
-  <p>每人／每種文件可用的功能皆可能不同。</p>
-
-  <figure>
-    <img class="winimg" src="images/FormUIDesign_DataQuery.png" alt="資料查詢工作頁">
-    <figcaption class="TACenter">資料查詢工作頁</figcaption>
-  </figure>
-
-  <h3>資料查詢功能一覽表</h3>
-  <table>
-    <tr class="trtitle">
-      <th>類別</th>
-      <th>編號</th>
-      <th>功能</th>
-      <th>說明</th>
-    </tr>
-    <tr>
-      <td><strong>ACCOUNT</strong></td>
-      <td>1</td>
-      <td></td>
-      <td>未設定</td>
-    </tr>
-    <tr>
-      <td rowspan="2"><strong>CUSTOMER</strong></td>
-      <td>2</td>
-      <td>以代號查詢</td>
-      <td>輸入代號查詢客戶資料。</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>以名稱查詢</td>
-      <td>輸入字串查詢，可搭關鍵字搜尋。</td>
-    </tr>
-  </table>
-<br>
-<br>
-
-</body>
+    <h2>操作提醒</h2>
+    <ul class="ul-l1">
+      <li>功能執行順序會影響處理結果，調整後請實際測試輸入流程。</li>
+      <li>刪除欄位或重設會影響既有設定，請先確認提示訊息再執行。</li>
+    </ul>
+  </body>
 </html>
