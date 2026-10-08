@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用條款 Terms of Use｜IRVault</title>
+  <link rel="stylesheet" href="css/site.css">
+  <script src="../js/redirect.js"></script>
+</head>
+
+<body class="ir-content-body">
+  <main class="ir-page">
+    <h1>使用條款（Terms of Use）</h1>
+    <hr />
+
+    <div class="ir-card p-3 p-md-4">
+      <ul class="mb-0" style="list-style: none; padding-left: 0;">
+        <li class="mb-4">
+          <strong>● 適用範圍：</strong><br>
+          本條款適用於 IRVault 行動應用程式（含 InfoRec 授權服務，以下合稱「本軟體」）。使用本軟體即表示您已閱讀並同意本條款；若不同意，請勿使用。
+        </li>
+        <li class="mb-4">
+          <strong>● 非託管錢包：</strong><br>
+          本軟體為非託管工具，不保管、不要求、不儲存您的助記詞或私鑰。所有交易均由您在自己的錢包內簽署並自行負責。助記詞與私鑰遺失或外洩所造成之損失，開發者無法協助找回。
+        </li>
+        <li class="mb-4">
+          <strong>● 鏈上交易不可逆：</strong><br>
+          區塊鏈交易一經送出即無法撤銷或更正。請於簽署前自行確認地址、金額、代幣與網路手續費。
+        </li>
+        <li class="mb-4">
+          <strong>● 非投資建議：</strong><br>
+          本軟體所顯示之價格、報價、收益率或其他資訊僅供參考，不構成任何投資、財務、法律或稅務建議。代幣價格波動劇烈，您須自行評估風險。
+        </li>
+        <li class="mb-4">
+          <strong>● 第三方服務：</strong><br>
+          本軟體可能串接第三方協定與服務（例如兌換、質押、行情與錢包連線服務）。這些服務由其各自提供者營運並適用其各自條款，開發者不控制亦不為其可用性、正確性或安全性負責。文中所提及之第三方名稱與商標均屬其各自所有人。
+        </li>
+        <li class="mb-4">
+          <strong>● 授權與費用：</strong><br>
+          InfoRec 授權依實際購買方案提供。已完成之鏈上授權行使對價依鏈上特性不予撤回。本軟體內之手續費或分潤（如有）將於交易前顯示。
+        </li>
+        <li class="mb-4">
+          <strong>● 智慧財產權：</strong><br>
+          本軟體之程式、介面與文件之著作權屬開發者所有，詳見<a href="copyright.html">版權與授權聲明</a>。未經書面同意，不得複製、反向工程、轉售或用於非法用途。
+        </li>
+        <li class="mb-4">
+          <strong>● 免責聲明與責任限制：</strong><br>
+          本軟體依「現狀」提供，不保證不中斷或無錯誤。在法律允許範圍內，開發者不對因使用或無法使用本軟體、網路壅塞、第三方服務異常、智慧合約風險或市場波動所生之任何直接或間接損失負責。
+        </li>
+        <li class="mb-4">
+          <strong>● 隱私：</strong><br>
+          資料處理方式請見<a href="privacy.html">隱私權政策</a>。
+        </li>
+        <li class="mb-4">
+          <strong>● 條款修改與聯絡：</strong><br>
+          開發者得隨時修訂本條款，修訂後繼續使用即視為同意。如有問題請來信：<a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>。
+        </li>
+        <li class="mb-0">
+          <strong>● English Summary:</strong><br>
+          IRVault is a non-custodial tool. We never hold, request or store your seed phrase or private keys; you sign every transaction in your own wallet and are solely responsible for it. Blockchain transactions are irreversible. Information shown in the app is not investment, financial, legal or tax advice. Third-party protocols and services are operated by their respective providers under their own terms, and their names and trademarks belong to their owners. The software is provided "as is" without warranty, and to the extent permitted by law the developer is not liable for any loss arising from its use, including market volatility, network issues, third-party failures or smart-contract risk. On-chain license payments are non-refundable. See our <a href="privacy.html">Privacy Policy</a> and <a href="copyright.html">Copyright &amp; Licensing Statement</a>. Contact: <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>.
+        </li>
+      </ul>
+    </div>
+
+    <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.85rem;">
+      © <span id="subYear"></span> InfoRec 著作權所有。
+    </p>
+  </main>
+
+  <script>
+    /* 高度自動通知 (VMware/iframe 環境適用) */
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+
+  <script>
+    /* 頁尾年份自動動態換年機制 */
+    (function () {
+      if(document.getElementById("subYear")) {
+        document.getElementById("subYear").textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+</body>
+</html>
