@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.inforeclabs.inforec",
+      "sha256_cert_fingerprints": [
+        "F4:33:CF:26:BA:2D:A7:68:60:7C:50:24:67:FC:4D:16:00:2F:A2:DA:3A:23:5E:37:41:58:DC:CC:5C:B9:35:63"
+      ]
+    }
+  }
+]

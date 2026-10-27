@@ -1,0 +1,2 @@
+# 讓 GitHub Pages 發布 .well-known (預設會略過「.」開頭的資料夾)；供 IRVault MWA 錢包驗證 App 身分
+include: [".well-known"]
