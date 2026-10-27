@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="zh-Hant-TW" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-en="IRVault Digital Asset Management - User Guide">
+      IRVault 數位資產管理工具-功能入門說明
+    </title>
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- 🌟 介面主題：與 App 各頁共用 (跟隨系統 / 深色 / 一般) -->
+    <script src="js/core/theme-init.js"></script>
+    <link rel="stylesheet" href="css/theme.css" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <!-- Google Fonts: Inter & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Mermaid.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
+      integrity="sha384-WmdflGW9aGfoBdHc4rRyWzYuAjEmDwMdGdiPNacbwfGKxBW/SO6guzuQ76qjnSlr"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "Noto Sans TC", "system-ui", "sans-serif"],
+            },
+            // 🌟 本頁使用之 Tailwind 顏色一律對應 css/theme.css 共用語意色，隨 App 主題切換
+            colors: {
+              white: "var(--c-surface)",
+              slate: {
+                50: "var(--c-bg)",
+                100: "var(--c-border)",
+                200: "var(--c-border)",
+                400: "var(--c-text-3)",
+                600: "var(--c-text-2)",
+                700: "var(--c-text-2)",
+                800: "var(--c-text)",
+                900: "var(--c-text)",
+              },
+              blue: {
+                50: "var(--c-info-soft)",
+                100: "var(--c-info-soft)",
+                600: "var(--c-info)",
+                700: "var(--c-info)",
+              },
+              indigo: { 600: "var(--c-info)" },
+              amber: {
+                50: "var(--c-warn-soft)",
+                100: "var(--c-warn-soft)",
+                200: "var(--c-warn-line)",
+                700: "var(--c-warn)",
+                800: "var(--c-warn)",
+                950: "var(--c-warn)",
+              },
+              emerald: { 100: "var(--c-accent-soft)", 700: "var(--c-accent)" },
+              purple: { 100: "var(--c-info-soft)", 700: "var(--c-purple)" },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .mermaid svg {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 auto;
+      }
+
+      .node rect,
+      .node circle,
+      .node polygon {
+        rx: 10px;
+        ry: 10px;
+        cursor: pointer !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .node text {
+        cursor: pointer !important;
+        user-select: none;
+      }
+
+      .node:hover rect {
+        stroke: var(--c-info) !important;
+        stroke-width: 3px !important;
+        filter: drop-shadow(0 6px 12px var(--c-info-line));
+      }
+
+      /* 頂部列左側圓形返回鍵 (返回首頁)，樣式同 vault.css .nav-back-icon-btn */
+      .nav-back-icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--c-fill);
+        border: 1px solid var(--c-border);
+        color: var(--c-text);
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        flex-shrink: 0;
+      }
+      .nav-back-icon-btn:hover {
+        background: var(--c-fill-strong);
+        border-color: var(--c-border-strong);
+      }
+      .nav-back-icon-btn svg {
+        width: 17px;
+        height: 17px;
+        stroke: currentColor;
+      }
+
+      /* 點擊定位高亮光暈效果 */
+      .target-highlight {
+        outline: 3px solid var(--c-info) !important;
+        outline-offset: 4px;
+        box-shadow:
+          0 0 0 8px var(--c-info-soft),
+          0 16px 24px -4px var(--c-shadow) !important;
+        transition: all 0.35s ease;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-700 min-h-screen"
+  >
+    <header
+      class="sticky top-0 z-50 backdrop-blur-md bg-white border-b border-slate-200"
+    >
+      <div
+        class="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between"
+      >
+        <div class="flex items-center space-x-3">
+          <a
+            href="https://www.inforec.dev/"
+            class="nav-back-icon-btn"
+            title="返回首頁"
+            aria-label="返回首頁"
+            data-en-title="Back to Home"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </a>
+          <a href="#diagram-irvault" class="flex items-center space-x-2.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-slate-50 font-bold text-sm shadow-sm"
+            >
+              IR
+            </div>
+            <span class="font-bold text-slate-900 text-base tracking-tight"
+              >IRVault</span
+            >
+          </a>
+        </div>
+        <nav
+          class="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-medium"
+        >
+          <a
+            id="btn-open-browser"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-en="🌐 Open in Browser"
+            class="px-2.5 py-1 text-blue-600 hover:bg-blue-50 rounded-md whitespace-nowrap"
+          >
+            🌐 用瀏覽器開啟
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+      <!-- 頂部標題區 -->
+      <div class="mb-8">
+        <h1
+          class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug"
+          data-en="IRVault Digital Asset Management - User Guide"
+        >
+          IRVault 數位資產管理工具-功能入門說明
+        </h1>
+        <hr class="my-4 border-slate-200" />
+        <div
+          class="rounded-xl bg-blue-50 border border-blue-100 p-4 text-sm text-slate-700 leading-relaxed"
+          data-en="IRVault is a <b>fully client-side, non-custodial cross-chain asset dashboard</b> built for blockchain users. Following the core principle of “Not your keys, not your coins,” it lets you manage the wallets and addresses you control in one place — for multi-chain portfolio tracking, lightning-fast DEX swaps, and secure transfers."
+        >
+          IRVault 是一款專為區塊鏈使用者打造的
+          <b>純前端、非託管（Non-Custodial）跨鏈資產儀表板</b>。落實「Not your
+          keys, not your
+          coins」核心原則，助您將掌控的錢包、地址，一站式搞定多鏈資產盤點、極速
+          DEX Swap 與安全轉帳。
+        </div>
+      </div>
+
+      <!-- 一、軟體核心功能 -->
+      <section class="mb-8">
+        <h2
+          class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs">1</span> Core Features'
+        >
+          <span
+            class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs"
+            >一</span
+          >
+          軟體核心功能
+        </h2>
+        <p
+          class="text-slate-600 text-sm mb-3"
+          data-en="Consolidates multi-chain assets, standalone addresses, and exchange accounts. Key advantages:"
+        >
+          可整合多種錢包、各種鏈上地址、交易平台的資產，避免在多個虛擬貨幣 APP
+          間頻繁來回切換的割裂體驗，提供三大優勢：
+        </p>
+        <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+          <li
+            data-en="<strong>One-stop multi-chain aggregation:</strong> Simultaneously reads multi-chain wallets (e.g. Seeker Wallet, OKX Wallet, Phantom), standalone addresses (e.g. BTC, DOGE addresses), and exchanges (e.g. Binance), converting everything into a live USD net value — no more manual bookkeeping."
+          >
+            <strong>多鏈資產一站式聚合：</strong>同步讀取多鏈錢包（如 Solana
+            Seeker Wallet、OKX Wallet、Phantom）、獨立地址（例如
+            BTC、DOGE 地址）與交易平台（如幣安），以即時匯率折算為 USD
+            淨值，告別手動記帳。
+          </li>
+          <li
+            data-en="<strong>100% local, non-custodial architecture:</strong> Assets are shown as soon as a wallet or address is added; sending or swapping is authorized through your own wallet, and IRVault never accesses your seed phrase or private keys."
+          >
+            <strong>100% 本地非託管架構：</strong
+            >有錢包或地址即可顯示資產；傳送或交換時經由個人錢包授權執行，完全不存取助記詞與私鑰。
+          </li>
+
+          <li
+            data-en="<strong>Aggregated native swap depth:</strong> Connects directly to Jupiter, Solana's largest DEX aggregator, for market or limit swaps on the Solana chain along the best available route."
+          >
+            <strong>聚合原生 Swap 深度：</strong>直接串接 Solana 最大 DEX
+            聚合協議 Jupiter，以最佳可用路徑進行 SOL 鏈市價或限價交換。
+          </li>
+        </ul>
+      </section>
+
+      <!-- 二、安全防護 -->
+      <section class="mb-8">
+        <h2
+          class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs">2</span> Security Protection (3 Password Options)'
+        >
+          <span
+            class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs"
+            >二</span
+          >
+          安全防護（3 種密碼設定）
+        </h2>
+        <div
+          class="bg-white rounded-xl border border-slate-200 p-4 text-sm text-slate-700"
+          data-en="To prevent people around you from peeking at your balances or performing unauthorized actions, you can choose from 3 protection options as needed: <b>a custom password</b>, <b>Google Authenticator two-factor verification</b>, and <b>biometric / fingerprint unlock</b>."
+        >
+          為防止身旁他人窺探您的資產餘額或進行未授權操作，使用者依需要選擇：<b>自訂密碼</b>、<b
+            >Google Authenticator 二次驗證</b
+          >、<b>生物辨識 / 指紋</b> 等 3 種防護功能。
+        </div>
+      </section>
+
+      <!-- 三、IRVault 首頁與架構圖 -->
+      <section id="section-main" class="mb-10 scroll-mt-20">
+        <h2
+          class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs">3</span> IRVault Home Screen &amp; Feature Overview'
+        >
+          <span
+            class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs"
+            >三</span
+          >
+          IRVault 首頁與功能架構
+        </h2>
+        <p
+          class="text-slate-600 text-sm mb-4"
+          data-en="The default home screen after launch gives you a real-time view of combined or individually selected wallet/address holdings, with 4 core functions: <b>Send, Receive, Swap, and Auxiliary Tools</b>."
+        >
+          啟動後的預設主畫面，即時掌握合併、或指定錢包、地址顯示資產的持倉價值，並具備<b>傳送、接收、交換及輔助功能</b>等
+          4 項功能。
+        </p>
+
+        <div
+          class="bg-white rounded-xl border border-blue-100 shadow-sm p-4 sm:p-6 mb-4"
+        >
+          <figure id="diagram-irvault" class="w-full">
+            <pre class="mermaid select-none text-center">
+              graph TD
+                  classDef mainNode fill:{{MAIN}},stroke:{{MAIN}},stroke-width:2px,color:{{ON_MAIN}},font-weight:bold;
+                  classDef subNode fill:{{SUB}},stroke:{{LINE}},stroke-width:2px,color:{{SUB_TEXT}},font-weight:bold;
+
+                  main[IRVault 數位資產管理]:::mainNode --> send[傳送]:::subNode
+                  main --> receive[接收]:::subNode
+                  main --> swap[交換]:::subNode
+                  main --> aux[輔助功能]:::subNode
+
+                  click main href "#section-main" "IRVault 首頁說明"
+                  click send href "#section-send" "跳轉至：傳送功能"
+                  click receive href "#section-receive" "跳轉至：接收功能"
+                  click swap href "#section-exchange" "跳轉至：交換功能"
+                  click aux href "#section-auxiliary" "跳轉至：輔助功能"
+          </pre
+            >
+          </figure>
+        </div>
+      </section>
+
+      <div class="space-y-6 mb-10">
+        <!-- 1. 傳送 -->
+        <section
+          id="section-send"
+          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
+          >
+            <div class="flex items-center gap-2">
+              <span
+                class="w-6 h-6 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs"
+                >1</span
+              >
+              <h3
+                class="text-base font-bold text-slate-900"
+                data-en="[Send] Feature Overview"
+              >
+                【傳送】功能說明
+              </h3>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Local-only address book:</strong> Wallets added to the address book are ready to send from — quickly switch wallets and pick from already-connected wallets, addresses, and platforms, reducing the risk of sending to the wrong address and the human error that puts your assets at risk."
+            >
+              <strong>本地專屬通訊錄：</strong
+              >由錢包管理加入的錢包，具備傳送的條件，輕鬆切換錢包，快速選取已連接的錢包、地址、平台，降低傳送錯誤地址的風險，降低人為風險確保資產安全。
+            </li>
+            <li
+              data-en="<strong>Cross-chain address format safeguard:</strong> If you paste an address that doesn't match the selected chain, the system instantly flags it in red and blocks the send button."
+            >
+              <strong>跨鏈地址格式防呆：</strong
+              >選定公鏈發送時若貼入錯誤鏈種地址，系統即時提示紅字並禁止點擊發送。
+            </li>
+
+            <li
+              data-en="<strong>Signing happens entirely on-device:</strong> Every transaction is signed and broadcast directly through your own authorized wallet — your private key is never uploaded."
+            >
+              <strong>純本地簽章授權：</strong
+              >所有交易均直接調用本機授權錢包進行簽署與廣播，私鑰絕不上傳。
+            </li>
+            <li
+              data-en="<strong>On-chain transactions cannot be reversed once sent:</strong> Sending, swapping, and placing orders are all real on-chain actions. Always double-check the address and amount first, and test with a small amount before any large transfer."
+            >
+              <strong>鏈上交易一旦送出就無法撤銷：</strong
+              >傳送、交換、掛單都是真實上鏈的動作，請務必先確認地址與金額無誤，建議大額操作前先用小額測試過一次。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 2. 接收 -->
+        <section
+          id="section-receive"
+          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
+          >
+            <div class="flex items-center gap-2">
+              <span
+                class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs"
+                >2</span
+              >
+              <h3
+                class="text-base font-bold text-slate-900"
+                data-en="[Receive] Feature Overview"
+              >
+                【接收】功能說明
+              </h3>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Dedicated receiving QR code:</strong> Easily switch wallets, pick the asset you want to receive, and a QR code for the receiving address is generated automatically for quick scan-to-deposit."
+            >
+              <strong>專屬收款 QR Code：</strong
+              >簡易切換錢包，快速選取接收的資產，自動產生收款地址條碼，方便掃描快速入帳。
+            </li>
+
+            <li
+              data-en="<strong>Multi-chain label management:</strong> Assign custom labels to addresses by chain or purpose, making later tracking and reconciliation easier."
+            >
+              <strong>多鏈標籤分類管理：</strong
+              >支援為不同公鏈或用途地址自訂歸類標籤，方便日後統計與對帳。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3. 交換 -->
+        <section
+          id="section-exchange"
+          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
+          >
+            <div class="flex items-center gap-2">
+              <span
+                class="w-6 h-6 rounded-md bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs"
+                >3</span
+              >
+              <h3
+                class="text-base font-bold text-slate-900"
+                data-en="[Swap] Feature Overview"
+              >
+                【交換】功能說明 (Swap)
+              </h3>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Best-route order execution on Solana:</strong> Connects to the Jupiter aggregator, calculating AMM and order-book depth across the network to automatically avoid low-liquidity pairs and reduce slippage."
+            >
+              <strong>SOL鏈最優路徑下單：</strong>串接 Jupiter
+              聚合協議，精算全網 AMM 與訂單簿深度，自動避開低流動性幣對降滑點。
+            </li>
+            <li
+              data-en="<strong>Minimum Received guarantee:</strong> Clearly displays the minimum amount you'll receive after slippage, limiting the loss if MEV bots sandwich your trade."
+            >
+              <strong>最低到手保證 (Minimum Received)：</strong
+              >清楚標示扣除滑點後的最低到手數量，降低 MEV
+              機器人夾單的風險。
+            </li>
+            <li
+              data-en="<strong>Zero-balance lockout protection:</strong> When swapping out all of your SOL, the system automatically reserves a base amount for gas so your account can keep transacting."
+            >
+              <strong>防零餘額卡死機制：</strong>換出全部 SOL 時系統自動預留基礎
+              Gas 費，確保帳戶後續可正常交互。
+            </li>
+            <li
+              data-en="<strong>Customizable trade parameters:</strong> Freely adjust slippage tolerance and priority fee to suit your needs."
+            >
+              <strong>自訂交易參數：</strong
+              >支援使用者依需求彈性設定滑點容忍度（Slippage）與加速優先手續費（Priority
+              Fee）。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 4. 輔助功能 -->
+        <section
+          id="section-auxiliary"
+          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
+          >
+            <div class="flex items-center gap-2">
+              <span
+                class="w-6 h-6 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs"
+                >4</span
+              >
+              <h3
+                class="text-base font-bold text-slate-900"
+                data-en="[Auxiliary Tools] Overview"
+              >
+                【輔助功能】說明
+              </h3>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Hide spam tokens and assets:</strong> Manually hide phishing tokens or low-liquidity assets to keep your home screen clean and focused on what matters."
+            >
+              <strong>垃圾幣與資產自訂隱藏：</strong
+              >可手動勾選隱藏釣魚代幣或低流動性資產，保持首頁清爽只留重要持倉。
+            </li>
+            <li
+              data-en="<strong>Contract address (CA) verification:</strong> Expand a token card to check its real on-chain contract address, to help avoid honeypot scams using the same token name."
+            >
+              <strong>合約地址 (CA) 檢驗：</strong
+              >展開幣種卡片可直接檢驗真實鏈上合約地址，避免誤入同名貔貅盤（Honeypot）陷阱。
+            </li>
+            <li
+              data-en="<strong>Read-only exchange integration (BYOK):</strong> Bring your own read-only API key to display your Binance spot and earn balances — the key is stored only on your device."
+            >
+              <strong>交易所唯讀整合 (BYOK)：</strong>支援自備唯讀的 API Key
+              讀取幣安現貨與理財餘額，金鑰僅儲存於您的設備本地。
+            </li>
+            <li
+              data-en="<strong>Custom RPC node switching:</strong> Switch to a private node endpoint to improve loading speed and stability during network congestion."
+            >
+              <strong>自訂 RPC 節點切換：</strong
+              >支援切換私人節點端點以提升網路壅塞時的載入速度與穩定度。
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- 四、使用前，你該知道的事 -->
+      <section class="mb-10">
+        <h2
+          class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-xs">4</span> What You Should Know Before Using It'
+        >
+          <span
+            class="w-6 h-6 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-xs"
+            >四</span
+          >
+          使用前，你該知道的事
+        </h2>
+
+        <div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>IRVault is a dashboard, not an exchange:</strong> It never holds or custodies any of your assets. Every balance shown is queried live from on-chain nodes and exchange APIs for the wallets or addresses you connected yourself under 'Wallets & Addresses.' All of IRVault's settings and records live only on your own device — your seed phrase and private keys always stay in your own wallet."
+            >
+              <strong>IRVault 是儀表板，不是交易所：</strong
+              >它不持有、不保管您的任何資產。畫面上看到的餘額都是您自行在「錢包與地址」連接的錢包或(自己)地址，即時向鏈上節點與交易所
+              API 查詢而來，IRVault
+              所有的設定、記錄只存在您的設備之中，助記詞與私鑰永遠只留在您自己的錢包裡。
+            </li>
+            <li
+              data-en="<strong>Every wallet is strictly isolated:</strong> When you switch between wallets or addresses, each one's data is read independently — nothing is ever borrowed or mixed between caches."
+            >
+              <strong>每個錢包彼此嚴格獨立：</strong
+              >切換不同錢包或地址時，資料是各自獨立讀取，不會互相借用或混合快取。
+            </li>
+          </ul>
+        </div>
+
+        <!-- 4-1 常用錢包說明 -->
+        <h3
+          class="text-base font-bold text-slate-900 mt-6 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs">1</span> Common Wallets'
+        >
+          <span
+            class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs"
+            >1</span
+          >
+          常用錢包說明
+        </h3>
+        <div
+          class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 text-sm"
+        >
+          <div class="p-4">
+            <strong class="text-slate-900" data-en="Common Wallets"
+              >常見錢包</strong
+            >
+            <div class="overflow-x-auto mt-2">
+              <table class="w-full text-left text-slate-600">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-900">
+                    <th class="py-2 pr-4 font-semibold" data-en="Wallet">
+                      錢包
+                    </th>
+                    <th class="py-2 font-semibold" data-en="Description">
+                      說明
+                    </th>
+                    <th class="py-2 pl-4 font-semibold whitespace-nowrap" data-en="Send">傳送</th>
+                    <th class="py-2 pl-4 font-semibold whitespace-nowrap" data-en="Swap">交換</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="py-2 pr-4 font-medium text-slate-900">
+                      Seeker Wallet
+                    </td>
+                    <td
+                      class="py-2"
+                      data-en="The built-in wallet app on Solana Mobile Seeker phones, connected via Mobile Wallet Adapter."
+                    >
+                      Solana Mobile Seeker 手機內建的錢包 App，透過 Mobile Wallet Adapter 連線。
+                    </td>
+                    <td class="py-2 pl-4">✓</td>
+                    <td class="py-2 pl-4">✓</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 font-medium text-slate-900">
+                      Phantom
+                    </td>
+                    <td
+                      class="py-2"
+                      data-en="A popular multi-chain wallet, widely used on Solana."
+                    >
+                      常見的多鏈錢包，在 Solana 生態使用相當普遍。
+                    </td>
+                    <td class="py-2 pl-4">✓</td>
+                    <td class="py-2 pl-4">✓</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 font-medium text-slate-900">
+                      OKX Wallet
+                    </td>
+                    <td
+                      class="py-2"
+                      data-en="OKX's multi-chain wallet, supporting Solana and EVM-type addresses."
+                    >
+                      OKX 的多鏈錢包，支援 SOL 鏈與 EVM 類地址。
+                    </td>
+                    <td class="py-2 pl-4">✓</td>
+                    <td
+                      class="py-2 pl-4"
+                      data-en="✓ (Solana only)"
+                    >
+                      ✓（僅限 SOL 鏈）
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 pr-4 font-medium text-slate-900">
+                      Trust Wallet
+                    </td>
+                    <td
+                      class="py-2"
+                      data-en="A multi-chain mobile wallet."
+                    >
+                      多鏈行動錢包。
+                    </td>
+                    <td class="py-2 pl-4">✓</td>
+                    <td
+                      class="py-2 pl-4"
+                      data-en="✓ (Solana only)"
+                    >
+                      ✓（僅限 SOL 鏈）
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="p-4">
+            <strong class="text-slate-900" data-en="Notes">備註</strong>
+            <ul class="text-slate-600 mt-1 space-y-1 list-disc pl-4">
+              <li
+                data-en="Your seed phrase and private keys always stay in your own wallet; IRVault never receives or stores them."
+              >
+                助記詞與私鑰永遠只留在您自己的錢包裡，IRVault
+                不會取得也不會儲存。
+              </li>
+              <li
+                data-en="If IRVault does not support the wallet you use, please contact us so we can test and improve it."
+              >
+                如果 IRVault 無法支援您使用的錢包，請聯絡我們以進行測試及改善。
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4-2 常見金鑰 (API Key) 申請簡介 -->
+        <h3
+          class="text-base font-bold text-slate-900 mt-6 mb-3 flex items-center gap-2"
+          data-en='<span class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs">2</span> Common API Key Setup'
+        >
+          <span
+            class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center text-xs"
+            >2</span
+          >
+          常見金鑰 (API Key) 申請簡介
+        </h3>
+        <p
+          class="text-slate-600 text-sm mb-3"
+          data-en="All of the following are optional — IRVault works fine without them, though some parts of the experience may be a bit less smooth. Setup for all of these is in the [Settings] page."
+        >
+          以下都是「選填」項目，不申請也能正常使用
+          IRVault，只是部分體驗會打些折扣，設定入口都在【系統設定】頁面內。
+        </p>
+        <div
+          class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 text-sm"
+        >
+          <div class="p-4">
+            <strong class="text-slate-900" data-en="Helius API Key (Free)"
+              >Helius API Key（免費）</strong
+            >
+            <p
+              class="text-slate-600 mt-1"
+              data-en='Speeds up and improves the completeness of Solana on-chain asset queries. If left blank, IRVault falls back to public nodes, which still work but may be slower or occasionally delayed during peak times. Sign up for free at <a href="https://helius.dev" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">helius.dev</a>.'
+            >
+              用來加速 Solana
+              鏈上資產查詢的速度與完整度。不填的話會自動改用公共節點，能正常運作，只是速度較慢、尖峰時段偶爾會有資料延遲。可至
+              <a
+                href="https://helius.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:underline"
+                >helius.dev</a
+              >
+              免費註冊取得。
+            </p>
+          </div>
+          <div class="p-4">
+            <strong
+              class="text-slate-900"
+              data-en="Jupiter API Key “One API Key” (Free)"
+              >Jupiter API Key「One API Key」（免費）</strong
+            >
+            <p
+              class="text-slate-600 mt-1"
+              data-en='Raises the rate limit for swap quotes and grid-order requests, avoiding “too many requests” errors during busy periods. Apply for free at <a href="https://portal.jup.ag" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">portal.jup.ag</a>.'
+            >
+              用來提高 Swap
+              報價與網格掛單的請求速率上限，避免忙碌時段跳出「請求過於頻繁」的提示。可至
+              <a
+                href="https://portal.jup.ag"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:underline"
+                >portal.jup.ag</a
+              >
+              免費申請。
+            </p>
+          </div>
+          <div class="p-4">
+            <strong class="text-slate-900" data-en="Binance API Key"
+              >幣安 (Binance) API Key</strong
+            >
+            <p
+              class="text-slate-600 mt-1"
+              data-en="If you want to read your Binance account balances, only read-only display is currently provided. When creating the key, be sure to <b>enable “Read” permission only</b>."
+            >
+              如果您想讀取您幣安帳戶的資產餘額，目前僅提供唯讀顯示，申請時請務必<b>只勾選「讀取」權限</b>。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 頁尾宣告與複製按鈕 -->
+      <footer
+        class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400"
+      >
+        <p
+          data-en="IRVault Digital Asset Management System · This guide is updated continuously alongside the app"
+        >
+          IRVault 數位資產管理系統 · 本手冊隨軟體功能持續更新
+        </p>
+        <p
+          data-en='<a href="https://inforec-auth.web.app/terms.html" class="hover:underline">Terms of Use</a> · <a href="https://inforec-auth.web.app/privacy.html" class="hover:underline">Privacy Policy</a> · <a href="mailto:inforec.dev@gmail.com" class="hover:underline">inforec.dev@gmail.com</a>'
+        >
+          <a href="https://inforec-auth.web.app/terms.html" class="hover:underline">使用條款</a> · <a href="https://inforec-auth.web.app/privacy.html" class="hover:underline">隱私權政策</a> · <a href="mailto:inforec.dev@gmail.com" class="hover:underline">inforec.dev@gmail.com</a>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      // 各語言版本的 Mermaid 架構圖定義（節點 ID 統一用英文，語言只影響顯示文字）
+      const LANG_GRAPHS = {
+        "zh-TW": `graph TD
+    classDef mainNode fill:{{MAIN}},stroke:{{MAIN}},stroke-width:2px,color:{{ON_MAIN}},font-weight:bold;
+    classDef subNode fill:{{SUB}},stroke:{{LINE}},stroke-width:2px,color:{{SUB_TEXT}},font-weight:bold;
+
+    main[IRVault 數位資產管理]:::mainNode --> send[傳送]:::subNode
+    main --> receive[接收]:::subNode
+    main --> swap[交換]:::subNode
+    main --> aux[輔助功能]:::subNode
+
+    click main href "#section-main" "IRVault 首頁說明"
+    click send href "#section-send" "跳轉至：傳送功能"
+    click receive href "#section-receive" "跳轉至：接收功能"
+    click swap href "#section-exchange" "跳轉至：交換功能"
+    click aux href "#section-auxiliary" "跳轉至：輔助功能"`,
+        en: `graph TD
+    classDef mainNode fill:{{MAIN}},stroke:{{MAIN}},stroke-width:2px,color:{{ON_MAIN}},font-weight:bold;
+    classDef subNode fill:{{SUB}},stroke:{{LINE}},stroke-width:2px,color:{{SUB_TEXT}},font-weight:bold;
+
+    main[IRVault Asset Management]:::mainNode --> send[Send]:::subNode
+    main --> receive[Receive]:::subNode
+    main --> swap[Swap]:::subNode
+    main --> aux[Auxiliary]:::subNode
+
+    click main href "#section-main" "IRVault Home"
+    click send href "#section-send" "Go to: Send"
+    click receive href "#section-receive" "Go to: Receive"
+    click swap href "#section-exchange" "Go to: Swap"
+    click aux href "#section-auxiliary" "Go to: Auxiliary"`,
+      };
+
+      // 🌟 架構圖配色：由目前主題之共用語意色 (css/theme.css) 即時取值填入，隨深色 / 一般主題切換
+      function resolveGraphColors(graph) {
+        const css = getComputedStyle(document.documentElement);
+        const c = (name, fb) => (css.getPropertyValue(name) || "").trim() || fb;
+        const map = {
+          MAIN: c("--c-info", "#1d4ed8"),
+          ON_MAIN: c("--c-on-accent", "#ffffff"),
+          SUB: c("--c-surface-2", "#eff6ff"),
+          LINE: c("--c-info", "#2563eb"),
+          SUB_TEXT: c("--c-text", "#1e3a8a"),
+        };
+        return graph.replace(/{{([A-Z_]+)}}/g, (m, k) => map[k] || m);
+      }
+
+      // 偵測裝置語系：繁中裝置顯示繁中，其他一律給英文
+      function detectLang() {
+        const raw = (
+          navigator.language ||
+          navigator.userLanguage ||
+          ""
+        ).toLowerCase();
+        if (raw.startsWith("zh") && !/hans|-cn|-sg/.test(raw)) {
+          return "zh-TW";
+        }
+        return "en";
+      }
+
+      // 英文：非繁中裝置一律套用 [data-en] 內容
+      function applyEnglish() {
+        document.documentElement.lang = "en";
+        document.querySelectorAll("[data-en]").forEach((el) => {
+          if (el.tagName === "TITLE") {
+            document.title = el.dataset.en;
+          } else {
+            el.innerHTML = el.dataset.en;
+          }
+        });
+        document.querySelectorAll("[data-en-title]").forEach((el) => {
+          el.title = el.dataset.enTitle;
+          el.setAttribute("aria-label", el.dataset.enTitle);
+        });
+      }
+
+      // 平滑捲動並觸發目標聚焦動畫
+      function scrollToSection(targetId) {
+        const el = document.getElementById(targetId);
+        if (!el) return;
+
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        document.querySelectorAll(".target-highlight").forEach((node) => {
+          node.classList.remove("target-highlight");
+        });
+
+        el.classList.add("target-highlight");
+        setTimeout(() => {
+          el.classList.remove("target-highlight");
+        }, 2200);
+      }
+
+      document.addEventListener("DOMContentLoaded", async function () {
+        const lang = detectLang();
+        const preEl = document.querySelector("#diagram-irvault .mermaid");
+        preEl.textContent = resolveGraphColors(LANG_GRAPHS[lang]);
+
+        if (lang === "en") {
+          applyEnglish();
+        }
+
+        const openBtn = document.getElementById("btn-open-browser");
+        if (openBtn) {
+          const currentUrl = window.location.href;
+          openBtn.href = currentUrl;
+          // 🌟 Capacitor WebView 內，同網域連結會被判定為「內部導向」而原地重新整理，不會跳出手機系統瀏覽器。
+          // 改用官方 @capacitor/browser 外掛強制交由系統瀏覽器開啟（intent:// URI 手法並非 Capacitor 正式支援方式，實測不可靠）。
+          const BrowserPlugin =
+            window.Capacitor &&
+            window.Capacitor.Plugins &&
+            window.Capacitor.Plugins.Browser;
+          if (BrowserPlugin) {
+            openBtn.addEventListener("click", function (e) {
+              e.preventDefault();
+              BrowserPlugin.open({ url: currentUrl }).catch(() => {
+                window.location.href = currentUrl;
+              });
+            });
+          }
+        }
+
+        // 初始化 Mermaid 及綁定節點點擊跳轉事件
+        mermaid.initialize({
+          startOnLoad: false,
+          theme:
+            document.documentElement.getAttribute("data-theme") === "dark"
+              ? "dark"
+              : "neutral",
+          flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true,
+            curve: "basis",
+          },
+          securityLevel: "loose",
+        });
+
+        await mermaid.run({ querySelector: ".mermaid" });
+
+        const bindDiagramNodes = () => {
+          const sectionMap = {
+            main: "section-main",
+            send: "section-send",
+            receive: "section-receive",
+            swap: "section-exchange",
+            aux: "section-auxiliary",
+          };
+
+          document.querySelectorAll(".mermaid .node").forEach((node) => {
+            const match = /flowchart-([a-z]+)-/.exec(node.id);
+            const key = match && sectionMap[match[1]];
+            if (!key) return;
+            node.style.cursor = "pointer";
+            node.addEventListener("click", (e) => {
+              e.preventDefault();
+              scrollToSection(key);
+            });
+          });
+        };
+        bindDiagramNodes();
+
+        // 主題切換時以新配色重繪架構圖
+        document.addEventListener("irvault:themeChanged", async (e) => {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: e.detail && e.detail.theme === "dark" ? "dark" : "neutral",
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: "basis" },
+            securityLevel: "loose",
+          });
+          preEl.removeAttribute("data-processed");
+          preEl.textContent = resolveGraphColors(LANG_GRAPHS[lang]);
+          await mermaid.run({ querySelector: ".mermaid" });
+          bindDiagramNodes();
+        });
+      });
+    </script>
+  </body>
+</html>

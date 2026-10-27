@@ -1,0 +1,90 @@
+/* ============================================================================
+   專案名稱: IRVault - 全站主題色彩系統 (theme.css)
+   功能範疇: 深色 / 一般 (淺色) 雙主題之語意化色彩；由 vault-bootstrap.js 於 <html> 設定 data-theme
+   設計原則: 極簡、沉穩；全站僅使用下列約 30 個語意色，禁止於 CSS / HTML / JS 另行寫死色碼
+   使用方式: color: var(--c-text-2);  background: var(--c-surface);  border: 1px solid var(--c-border);
+             JS 動態樣式請附原色 fallback：var(--c-accent, #14f195) (共用 JS 亦被未載入本檔之 v1 index.html 使用)
+   漲跌色: 請使用 vault.css 之 --pnl-up / --pnl-down (會依「綠漲紅跌 / 紅漲綠跌」設定自動對調)
+   ============================================================================ */
+
+/* 🌟 深色主題 (預設) */
+:root {
+  --c-scheme: dark;
+  /* 背景 */
+  --c-bg: #0b0c10;  /* 頁面底色 */
+  --c-surface: #151820;  /* 卡片 / 面板 */
+  --c-surface-2: #1d212b;  /* 卡片上層 (輸入框、選單、hover) */
+  --c-glass: rgba(14, 17, 25, 0.94);  /* 浮動列 / 半透明面板 */
+  --c-fill: rgba(255, 255, 255, 0.05);  /* 淡填色 (次要按鈕、區塊) */
+  --c-fill-strong: rgba(255, 255, 255, 0.10);  /* 強填色 (hover、選取) */
+  --c-sunken: rgba(0, 0, 0, 0.25);  /* 下凹區 (輸入框底、日誌框) */
+  --c-overlay: rgba(0, 0, 0, 0.70);  /* 彈窗遮罩 */
+  /* 邊框 */
+  --c-border: rgba(255, 255, 255, 0.08);  /* 一般邊框 / 分隔線 */
+  --c-border-strong: rgba(255, 255, 255, 0.16);  /* 強調邊框 (輸入框、hover) */
+  /* 文字 */
+  --c-text: #f3f4f6;  /* 主要文字 */
+  --c-text-2: #9ca3af;  /* 次要文字 */
+  --c-text-3: #8b93a1;  /* 提示 / 佔位文字 */
+  --c-on-accent: #0b111c;  /* 實色色塊 (綠/紅/黃/藍按鈕) 上之文字 */
+  /* 品牌綠 */
+  --c-accent: #14f195;  /* 品牌主色 (文字、實色按鈕) */
+  --c-accent-soft: rgba(20, 241, 149, 0.12);  /* 品牌淡底 */
+  --c-accent-line: rgba(20, 241, 149, 0.35);  /* 品牌淡框 */
+  --c-accent-glow: rgba(20, 241, 149, 0.20);  /* 品牌光暈陰影 */
+  /* 狀態色 */
+  --c-danger: #ff8a8a;  /* 錯誤 / 下跌 / 刪除 */
+  --c-danger-soft: rgba(248, 113, 113, 0.12);
+  --c-danger-line: rgba(248, 113, 113, 0.40);
+  --c-warn: #f0b90b;  /* 警告 / BNB / BTC */
+  --c-warn-soft: rgba(240, 185, 11, 0.12);
+  --c-warn-line: rgba(240, 185, 11, 0.40);
+  --c-info: #60a5fa;  /* 資訊 / 連結 / ETH */
+  --c-info-soft: rgba(96, 165, 250, 0.12);
+  --c-info-line: rgba(96, 165, 250, 0.40);
+  --c-purple: #b98afb;  /* 多鏈 (MULTI) 標籤 */
+  /* 陰影 */
+  --c-shadow: rgba(0, 0, 0, 0.35);  /* 卡片陰影 */
+  --c-shadow-strong: rgba(0, 0, 0, 0.60);  /* 彈窗 / 浮層陰影 */
+}
+
+/* 🌟 一般 (淺色) 主題：文字與狀態色皆確保於白底 / 淡色底上對比 ≥ 4.5 */
+:root[data-theme="light"] {
+  --c-scheme: light;
+  /* 背景 */
+  --c-bg: #f4f5f7;
+  --c-surface: #ffffff;
+  --c-surface-2: #eef0f3;
+  --c-glass: rgba(255, 255, 255, 0.94);
+  --c-fill: rgba(15, 23, 42, 0.04);
+  --c-fill-strong: rgba(15, 23, 42, 0.08);
+  --c-sunken: rgba(15, 23, 42, 0.05);
+  --c-overlay: rgba(15, 23, 42, 0.45);
+  /* 邊框 */
+  --c-border: rgba(15, 23, 42, 0.10);
+  --c-border-strong: rgba(15, 23, 42, 0.20);
+  /* 文字 */
+  --c-text: #111827;
+  --c-text-2: #4b5563;
+  --c-text-3: #5b626e;
+  --c-on-accent: #ffffff;
+  /* 品牌綠 */
+  --c-accent: #03684a;
+  --c-accent-soft: rgba(3, 104, 74, 0.08);
+  --c-accent-line: rgba(3, 104, 74, 0.35);
+  --c-accent-glow: rgba(3, 104, 74, 0.15);
+  /* 狀態色 */
+  --c-danger: #b21f1f;
+  --c-danger-soft: rgba(178, 31, 31, 0.07);
+  --c-danger-line: rgba(178, 31, 31, 0.35);
+  --c-warn: #84500a;
+  --c-warn-soft: rgba(132, 80, 10, 0.08);
+  --c-warn-line: rgba(132, 80, 10, 0.35);
+  --c-info: #1a52bb;
+  --c-info-soft: rgba(26, 82, 187, 0.07);
+  --c-info-line: rgba(26, 82, 187, 0.35);
+  --c-purple: #7e22ce;
+  /* 陰影 */
+  --c-shadow: rgba(15, 23, 42, 0.08);
+  --c-shadow-strong: rgba(15, 23, 42, 0.18);
+}
