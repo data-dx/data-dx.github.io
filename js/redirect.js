@@ -41,8 +41,8 @@
       relPath = relPath.substring(1);
     }
 
-    // 組 index.html?page=...
-    var target = new URL("index.html", rootUrl);
+    // 組 InfoRec/?page=...（2026-10-30 InfoRec 外框由根目錄 index.html 移至 /InfoRec/，根目錄改為 InfoRec Labs 首頁）
+    var target = new URL("InfoRec/", rootUrl);
     target.searchParams.set("page", relPath);
 
     window.location.replace(target.toString());

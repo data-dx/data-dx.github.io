@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 🛡️ GitHub Pages 網址區分大小寫：InfoRec 產品頁資料夾為 /InfoRec/，手動輸入小寫 /inforec/... 時轉至正確大小寫，其餘找不到之網址顯示本頁 -->
+    <script>
+      (function () {
+        var path = location.pathname;
+        if (/^\/inforec(\/|$)/i.test(path) && path.indexOf("/InfoRec") !== 0) {
+          location.replace("/InfoRec" + path.substring(8) + location.search + location.hash);
+        }
+      })();
+    </script>
+
+    <title>InfoRec Labs</title>
+    <script src="/irvault/js/core/theme-init.js"></script>
+    <link rel="stylesheet" href="/irvault/css/theme.css" />
+    <link rel="stylesheet" href="/irvault/css/legal.css" />
+  </head>
+  <body>
+    <main class="legal-page">
+      <header class="legal-head">
+        <div class="legal-brand">Info<span>Rec</span> Labs</div>
+      </header>
+      <section class="legal-doc">
+        <h1>404</h1>
+        <p>找不到此頁面 / Page not found.</p>
+        <p><a href="/">回首頁 / Home</a></p>
+      </section>
+    </main>
+  </body>
+</html>
