@@ -849,6 +849,15 @@
           applyEnglish();
         }
 
+        // 🌟 由 IRVault App 開啟時 (網址帶 ?back=irvault / irvaulttest)，「<」改為以 DeepLink 回到 App；其他情況維持返回 www.inforec.dev
+        const backScheme = new URLSearchParams(location.search).get("back");
+        const backBtn = document.querySelector(".nav-back-icon-btn");
+        if (backBtn && /^irvault(test)?$/.test(backScheme || "")) {
+          backBtn.href = backScheme + "://open";
+          backBtn.setAttribute("aria-label", lang === "en" ? "Back to IRVault" : "返回 IRVault");
+          backBtn.title = backBtn.getAttribute("aria-label");
+        }
+
         const openBtn = document.getElementById("btn-open-browser");
         // 🌟 只在 App 內 (Capacitor 或 Android WebView「; wv)」) 顯示；已在一般瀏覽器中則移除按鈕
         const isInApp = !!window.Capacitor || /;\s*wv\)/i.test(navigator.userAgent);
