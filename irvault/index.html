@@ -868,7 +868,11 @@
         }
 
         const openBtn = document.getElementById("btn-open-browser");
-        if (openBtn) {
+        // 🌟 只在 App 內 (Capacitor 或 Android WebView「; wv)」) 顯示；已在一般瀏覽器中則移除按鈕
+        const isInApp = !!window.Capacitor || /;\s*wv\)/i.test(navigator.userAgent);
+        if (openBtn && !isInApp) {
+          openBtn.remove();
+        } else if (openBtn) {
           const currentUrl = window.location.href;
           openBtn.href = currentUrl;
           // 🌟 Capacitor WebView 內，同網域連結會被判定為「內部導向」而原地重新整理，不會跳出手機系統瀏覽器。
