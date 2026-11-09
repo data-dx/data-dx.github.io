@@ -1,0 +1,10 @@
+{
+  "name": "InfoRec Credit",
+  "symbol": "IREC",
+  "description": "IREC (InfoRec Credit) is the usage credit of InfoRec, Windows software for collecting and printing form data such as ISMS documents. It records real use of InfoRec and contributions such as shared document templates, and is claimed in the IRVault app.",
+  "image": "https://www.inforec.dev/irec/logo.png",
+  "external_url": "https://www.inforec.dev",
+  "extensions": {
+    "website": "https://www.inforec.dev"
+  }
+}
