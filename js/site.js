@@ -1,3 +1,18 @@
+// ==========================================
+// 🛡️ 資安：內容區 iframe 只允許載入站內相對路徑
+// 網址的 ?page= 與 #hash 是外部可控的輸入，不檢查會被塞入 javascript:（XSS）
+// 或 //外部網站（假冒頁面）。只接受英數、_ - . / 組成的站內路徑，不可含 ..、冒號、開頭不可為 /。
+// 回傳整理後的路徑；不合格回傳 null。index.html 與 InfoRec/index.html 也呼叫本函式。
+// ==========================================
+function irSafePage(p){
+  if (typeof p !== 'string') return null;
+  p = p.trim();
+  if (p.charAt(0) === '/') p = p.substring(1);
+  if (p.indexOf('..') >= 0) return null;
+  if (!/^[A-Za-z0-9_][A-Za-z0-9_.\/-]*(\?[A-Za-z0-9_.=&%-]*)?(#[A-Za-z0-9_.-]*)?$/.test(p)) return null;
+  return p;
+}
+
 (function () {
   'use strict';
 
@@ -13,6 +28,7 @@
 
   function setIframeSrc(src){
     var iframe = document.getElementById('contentFrame');
+    src = irSafePage(src);
     if(!iframe || !src) return;
     iframe.src = src;
   }
