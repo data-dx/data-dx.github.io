@@ -48,7 +48,7 @@
         <a
           class="navbar-brand fw-semibold me-auto me-md-3"
           href="#"
-          data-iframe-src="updates.html"
+          data-iframe-src="use/quick-start.html"
         >
           InfoRec <span class="ir-badge ms-2">桌面工具</span>
         </a>
@@ -350,7 +350,7 @@
             id="contentFrame"
             name="content"
             class="ir-iframe ir-main-frame"
-            src="updates.html"
+            src="use/quick-start.html"
             title="InfoRec content"
           ></iframe>
         </section>
@@ -415,13 +415,13 @@
           new Date().getFullYear();
       }
 
-      // 內容區不是預設的發展目標（updates.html）時，收起上方介紹（body.ir-subpage，規則在 css/site.css，與首頁共用）
+      // 內容區不是 /InfoRec/ 的預設內容「快速入門」（use/quick-start.html）時（2026-11-21 起與首頁分開，發展目標只在首頁），收起上方介紹（body.ir-subpage，規則在 css/site.css，與首頁共用）
       (function () {
         var frame = document.getElementById("contentFrame");
         if (!frame) return;
         function sync() {
           var src = (frame.getAttribute("src") || "").replace(/^\//, "");
-          document.body.classList.toggle("ir-subpage", src !== "" && src !== "updates.html");
+          document.body.classList.toggle("ir-subpage", src !== "" && src !== "use/quick-start.html");
         }
         sync();
         new MutationObserver(sync).observe(frame, { attributes: true, attributeFilter: ["src"] });
