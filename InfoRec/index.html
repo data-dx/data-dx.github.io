@@ -39,8 +39,14 @@
       class="navbar navbar-expand-md navbar-dark bg-dark border-bottom sticky-top"
     >
       <div class="container ir-container">
+        <!-- 「<」回 InfoRec Labs 首頁（與 IRVault 指南左上角一致） -->
+        <a class="ir-home-btn" href="/" title="回 InfoRec Labs 首頁" aria-label="回 InfoRec Labs 首頁">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </a>
         <a
-          class="navbar-brand fw-semibold"
+          class="navbar-brand fw-semibold me-auto me-md-3"
           href="#"
           data-iframe-src="updates.html"
         >
@@ -60,7 +66,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -74,25 +80,13 @@
               <ul class="dropdown-menu">
                 <li>
                   <a
-                    class="dropdown-item"
-                    href="download.html"
-                    data-iframe-src="download.html"
-                    >軟體下載</a
-                  >
-                </li>
-                <li>
-                  <a
                     class="dropdown-item fw-bold"
                     href="use/quick-start.html"
                     data-iframe-src="use/quick-start.html"
                     >快速入門</a
                   >
                 </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
+                <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a
                     class="dropdown-item"
@@ -125,11 +119,7 @@
                     >免費註冊說明</a
                   >
                 </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
+                <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a
                     class="dropdown-item"
@@ -176,11 +166,7 @@
                     >系統架構</a
                   >
                 </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
+                <li><hr class="dropdown-divider" /></li>
                 <li>
                   <a
                     class="dropdown-item"
@@ -326,6 +312,13 @@
               data-iframe-src="community.html"
               >社群 / 聯絡</a
             >
+            <!-- 下載統一放右上角（與首頁一致），左邊「使用說明」不再放軟體下載 -->
+            <a
+              class="btn btn-primary"
+              href="download.html"
+              data-iframe-src="download.html"
+              >下載</a
+            >
           </div>
         </div>
       </div>
@@ -339,9 +332,14 @@
               <h1 class="fw-semibold mb-2">
                 把「文件 + 資料 + 列印」流程，做得務實而可控
               </h1>
+              <!-- InfoRec 介紹（原在 updates.html 開頭，2026-11-21 移到這裡，避免首頁重複） -->
+              <p class="ir-muted mb-2">
+                <strong>InfoRec 資訊紀錄管理工具</strong>，旨在協助將雜亂的原始紀錄轉化為結構化資訊。
+                本系統已通過多種文件數位化與套印情境驗證，無論文件架構繁簡，皆能高效完成資料採集、自動套印與流程管理。
+              </p>
               <p class="ir-muted mb-0">
-                InfoRec
-                是偏向實務工作的桌面工具：本系統提供文件資料處理、文件套印，並把過程與結果留下可追溯的紀錄。
+                本系統靈活適用於會計憑證、金融表單、行政文書及內外部填報需求，亦可作為進階的資料蒐集工具（類似自定義線上表單）。
+                使用者可自由定義編輯輸入格式、資料處理轉換方式及最終儲存格式，並支援紀錄匯出與分析應用。
               </p>
             </div>
           </div>
@@ -354,11 +352,10 @@
             class="ir-iframe ir-main-frame"
             src="updates.html"
             title="InfoRec content"
-            loading="lazy"
           ></iframe>
         </section>
         <footer id="footerBlock" class="ir-footer">
-          ©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。
+          ©&nbsp;<span id="siteYear"></span>&nbsp;InfoRec 專案原創著作權人所有。
           <a href="copyright.html" data-iframe-src="copyright.html"
             >著作權與授權聲明</a
           >
@@ -417,6 +414,19 @@
         document.getElementById("siteYear").textContent =
           new Date().getFullYear();
       }
+
+      // 內容區不是預設的發展目標（updates.html）時，收起上方介紹（body.ir-subpage，規則在 css/site.css，與首頁共用）
+      (function () {
+        var frame = document.getElementById("contentFrame");
+        if (!frame) return;
+        function sync() {
+          var src = (frame.getAttribute("src") || "").replace(/^\//, "");
+          document.body.classList.toggle("ir-subpage", src !== "" && src !== "updates.html");
+        }
+        sync();
+        new MutationObserver(sync).observe(frame, { attributes: true, attributeFilter: ["src"] });
+        document.addEventListener("DOMContentLoaded", sync);
+      })();
     </script>
   </body>
 </html>

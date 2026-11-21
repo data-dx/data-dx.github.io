@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>社群與資源｜InfoRec</title>
+
+  <title>社群聯絡｜InfoRec Labs</title>
 
   <link rel="stylesheet" href="css/site.css">
-  <script src="../js/redirect.js"></script>
+  <script src="js/redirect.js"></script>
+  <style>
+    /* 內容頁未載入 Bootstrap，卡片內距與標題在此補上 */
+    .ir-card { padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .ir-card .card-title { font-weight: 700; margin-bottom: 0.75rem; }
+    .ir-card ul ul { margin-top: 0.5rem; }
+    .ir-card li { margin-bottom: 0.5rem; }
+    .ir-card li:last-child { margin-bottom: 0; }
+    .ir-note { margin-top: 0.5rem; font-size: 0.95rem; }
+  </style>
 </head>
 
 <body class="ir-page">
@@ -16,20 +25,37 @@
   <hr>
 
   <p class="ir-lead">
-    歡迎加入社群交流與討論。無論是使用疑問、文件設定分享，或實務經驗回饋，皆可透過以下管道進行技術交流與同好互助。。
+    歡迎加入社群交流。使用上的疑問、文件設定分享或實務經驗回饋，都可以透過以下管道聯絡。
   </p>
 
+  <!-- 聯絡資訊與 Email 簽名一致；群組連結若更改，需同步 about.html、InfoRec/FormContactInfo.html、irvault/index.html 與 InfoRec 桌面版 -->
   <section class="mb-4">
     <div class="ir-card p-3 p-md-4">
-      <div class="fw-semibold mb-3">交流與互動管道</div>
-      <ul class="mb-0" style="list-style: none; padding-left: 0;"> 
+      <div class="card-title">InfoRec Labs（資訊紀錄管理實驗室）</div>
+      <ul class="mb-0" style="list-style: none; padding-left: 0;">
         <li class="mb-3">
-          💬 <strong>Telegram：</strong>
-          <a href="https://t.me/InfoRec_dev" target="_blank" rel="noopener">加入 InfoRec 群組</a>
+          🌐 <strong>官網：</strong>
+          <a href="https://www.inforec.dev/" target="_top">www.inforec.dev</a>
         </li>
-        <li class="mb-0">
+        <li class="mb-3">
           📧 <strong>電子郵件：</strong>
           <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>
+        </li>
+        <li class="mb-0">
+          💬 <strong>Telegram 群組：</strong>
+          <ul class="mt-2 mb-0">
+            <li class="mb-2">
+              <strong>InfoRec</strong>（資料搜集、文件列印）：
+              <a href="https://t.me/InfoRec_dev" target="_blank" rel="noopener">t.me/InfoRec_dev</a>
+            </li>
+            <li class="mb-2">
+              <strong>IRVault</strong>（虛擬資產管理、InfoRec 註冊）：
+              <a href="https://t.me/IRVault_APP" target="_blank" rel="noopener">t.me/IRVault_APP</a>
+            </li>
+          </ul>
+          <div class="ir-note">
+            ※ InfoRec 註冊也可以來信請我們協助，不一定要用 IRVault。
+          </div>
         </li>
       </ul>
     </div>
@@ -37,11 +63,7 @@
 
   <section class="mb-4">
     <div class="ir-card p-3 p-md-4" style="background-color: #f8f9fa; border-left: 4px solid #6c757d;">
-      <div class="fw-semibold mb-2">使用與協力原則</div>
-      <ul class="mb-0" style="font-size: 0.95rem; color: #495057;">
-        <li class="mb-1"><strong>評估與確認：</strong> 軟體功能是否符合需求請自行評估；系統運算產生之結果，請使用者務必自行確認。</li>
-        <li><strong>維護與改進：</strong> 本軟體定位為靜態技術成果之智慧財產權授權，不提供常態性人工維護、定期升級或個人化客服勞務。歡迎透過社群平台提交應用心得，由社群同好自發進行經驗交流與技術互惠。</li>
-      </ul>
+      <p class="mb-0" style="font-size: 0.95rem; color: #495057; text-indent: 0;"><strong>使用須知：</strong>軟體是否符合需求請自行評估；軟體產生的結果，請務必自行確認。</p>
     </div>
   </section>
 

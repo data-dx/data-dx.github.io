@@ -5,19 +5,20 @@
     <!-- 🛡️ 資安：內容安全政策（CSP），限制只能載入站內與列出的 CDN／GA 資源；新增外部資源時要加進來，否則會被瀏覽器擋下 -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' data: https://cdn.jsdelivr.net; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-en="InfoRec Labs | Independent software studio">InfoRec Labs｜獨立軟體開發工作室</title>
+    <title data-en="InfoRec Labs | Practical tools for information and asset management">InfoRec Labs｜實用的資訊與資產管理工具</title>
     <link rel="canonical" href="https://www.inforec.dev/" />
     <meta property="og:title" content="InfoRec Labs" />
     <meta
       property="og:description"
-      content="InfoRec Labs 為獨立軟體開發工作室，主力產品為 InfoRec 桌面工具，另有 IRVault（Android）。"
+      content="InfoRec Labs 是個人的軟體開發專案，開發 InfoRec（Windows 文件處理與套印工具）與 IRVault（Solana Mobile App 與網頁版的資產管理與投資組合追蹤工具）。"
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.inforec.dev/" />
+    <meta property="og:image" content="https://www.inforec.dev/logo192.png" />
 
     <meta
       name="description"
-      content="InfoRec Labs is an independent software studio, maker of the InfoRec desktop tool (Windows) and IRVault (Android). / InfoRec Labs 為獨立軟體開發工作室，主力產品為 InfoRec 桌面工具，另有 IRVault（Android）。"
+      content="InfoRec Labs is a personal software project that builds InfoRec (a Windows tool for document processing and form printing) and IRVault (an asset management and portfolio tracking app for Solana Mobile and the web). / InfoRec Labs 是個人的軟體開發專案，開發 InfoRec（Windows 文件處理與套印工具）與 IRVault（Solana Mobile App 與網頁版的資產管理與投資組合追蹤工具）。"
     />
     <meta name="theme-color" content="#212529" />
     <link rel="icon" href="logo192.png" />
@@ -37,18 +38,29 @@
         flex-direction: column;
         height: auto;
         text-align: center;
+        /* 共用 site.css 是「一行、行高 1」，兩行（或手機換行）時會擠在一起，首頁放寬 */
+        line-height: 1.5 !important;
+        padding: 0.4rem 0 !important;
       }
+      #footerBlock a {
+        line-height: inherit !important;
+      }
+      /* 上方介紹只在預設內容（發展目標）顯示、看其他內容時收起：規則在 css/site.css（body.ir-subpage），與 /InfoRec/ 共用 */
     </style>
   </head>
 
   <body class="bg-body-tertiary">
+    <!-- ================= InfoRec Labs 首頁選單（精簡版，2026-11-21）=================
+         各工具的完整說明在自己的網站：InfoRec → /InfoRec/、IRVault → /irvault/，兩個網站左上角都有「<」回首頁。
+         首頁只放兩個工具的連結與「關於」（下載在各工具自己的頁面：/InfoRec/ 右上角、IRVault 指南「如何取得」）；舊網址 ?page=... 仍由下方內容區顯示。
+         所有文字都要有 data-en（非繁中裝置顯示英文）。 -->
     <nav
       class="navbar navbar-expand-md navbar-dark bg-dark border-bottom sticky-top"
     >
       <div class="container ir-container">
         <a
           class="navbar-brand fw-semibold"
-          href="#"
+          href="/"
           data-iframe-src="updates.html"
         >
           InfoRec Labs
@@ -67,297 +79,39 @@
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                使用說明
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="download.html"
-                    data-iframe-src="download.html"
-                    >軟體下載</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item fw-bold"
-                    href="use/quick-start.html"
-                    data-iframe-src="use/quick-start.html"
-                    >快速入門</a
-                  >
-                </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/printselect.html"
-                    data-iframe-src="use/printselect.html"
-                    >印表機選擇</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/printing-orientation.html"
-                    data-iframe-src="use/printing-orientation.html"
-                    >印表機操作說明</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/print-layout.html"
-                    data-iframe-src="use/print-layout.html"
-                    >列印調整說明</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="registration.html"
-                    data-iframe-src="registration.html"
-                    >免費註冊說明</a
-                  >
-                </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/doc-config.html"
-                    data-iframe-src="use/doc-config.html"
-                    >建置文件設定檔</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/docimage.html"
-                    data-iframe-src="use/docimage.html"
-                    >文件轉圖檔</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/formInput-design.html"
-                    data-iframe-src="use/formInput-design.html"
-                    >文件數位化建檔</a
-                  >
-                </li>
-              </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="InfoRec/">InfoRec</a>
             </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                系統介面
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/Architecture.html"
-                    data-iframe-src="InfoRec/Architecture.html"
-                    >系統架構</a
-                  >
-                </li>
-                <li>
-                  <span class="dropdown-item-text text-muted"
-                    >-----------------</span
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITCommon.html"
-                    data-iframe-src="InfoRec/MITCommon.html"
-                    >常用</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITdata.html"
-                    data-iframe-src="InfoRec/MITdata.html"
-                    >資料</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITDoc.html"
-                    data-iframe-src="InfoRec/MITDoc.html"
-                    >文件</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITRecords.html"
-                    data-iframe-src="InfoRec/MITRecords.html"
-                    >紀錄</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITTool.html"
-                    data-iframe-src="InfoRec/MITTool.html"
-                    >工具</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="InfoRec/MITSupport.html"
-                    data-iframe-src="InfoRec/MITSupport.html"
-                    >支援</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                文件範例
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/ES-FIN.html"
-                    data-iframe-src="sample/ES-FIN.html"
-                    >SPAIN Banco</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/HK-FIN.html"
-                    data-iframe-src="sample/HK-FIN.html"
-                    >HK Financial</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/JP-KIGY.html"
-                    data-iframe-src="sample/JP-KIGY.html"
-                    >日本企業</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/TW-ADM.html"
-                    data-iframe-src="sample/TW-ADM.html"
-                    >臺灣行政管理</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/TW-CORP.html"
-                    data-iframe-src="sample/TW-CORP.html"
-                    >臺灣企業類</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/TW-FIN.html"
-                    data-iframe-src="sample/TW-FIN.html"
-                    >臺灣金融業</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/TW-ORG.html"
-                    data-iframe-src="sample/TW-ORG.html"
-                    >臺灣公務類</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/TW-TRAN.html"
-                    data-iframe-src="sample/TW-TRAN.html"
-                    >臺灣運輸類</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="sample/US-TRAN.html"
-                    data-iframe-src="sample/US-TRAN.html"
-                    >美國運輸業</a
-                  >
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="irvault/">IRVault</a>
             </li>
           </ul>
 
           <div class="d-flex gap-2">
-            <a
-              class="btn btn-outline-light"
-              href="community.html"
-              data-iframe-src="community.html"
-              >社群 / 聯絡</a
-            >
-            <!-- ================= 下載選單（新增產品時，於此加一個項目） ================= -->
+            <!-- 關於選單：社群聯絡、關於開發者（about.html 為 dApp Store Publisher Website，首頁須保留此連結） -->
             <div class="dropdown">
               <button
-                class="btn btn-primary dropdown-toggle"
+                class="btn btn-outline-light dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                data-en="Downloads"
+                data-en="About"
               >
-                下載
+                關於
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
                   <a
                     class="dropdown-item"
-                    href="download.html"
-                    data-iframe-src="download.html"
-                    data-en="InfoRec (Windows)"
-                    >InfoRec（Windows）</a
+                    href="community.html"
+                    data-iframe-src="community.html"
+                    data-en="Community &amp; Contact"
+                    >社群聯絡</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="irvault/" data-en="IRVault (Android)"
-                    >IRVault（Android）</a
-                  >
+                  <a class="dropdown-item" href="about.html" data-en="About the Developer">關於開發者</a>
                 </li>
               </ul>
             </div>
@@ -371,16 +125,20 @@
         <section id="heroBlock" class="ir-hero mb-0">
           <div class="row align-items-center g-3">
             <div class="col-12">
-              <!-- ================= 工作室介紹與目標（InfoRec 為主力產品） ================= -->
-              <h1 class="fw-semibold mb-2" data-en="Making information and document workflows practical and under your control">
-                把資訊與文件流程，做得務實而可控
+              <!-- ================= InfoRec Labs 介紹與目標 ================= -->
+              <h1 class="fw-semibold mb-2" data-en="Making information and asset management practical and under your control">
+                把資訊與資產管理，做得務實而可控
               </h1>
-              <p class="ir-muted mb-2" data-en="InfoRec Labs is an independent software studio. Our goal is to build practical tools for managing information and digital assets, with data and keys always under the user's own control.">
-                InfoRec Labs 是獨立軟體開發工作室。我們的目標是打造實用的資訊管理與數位資產管理工具，讓資料與金鑰始終由使用者自行掌控。
+              <p class="ir-muted mb-1" data-en="InfoRec Labs is a personal software project building practical tools for managing information and digital assets, keeping users in control of their own information and assets.">
+                InfoRec Labs 是個人的軟體開發專案，開發實用的資訊管理與數位資產管理工具，讓使用者自行掌控資訊與資產。
               </p>
-              <p class="ir-muted mb-0" data-en="Our main product, InfoRec, is a desktop tool for processing document data and printing forms, keeping a traceable record of the process and results. We also make &lt;a href=&quot;irvault/&quot;&gt;IRVault&lt;/a&gt;, a non-custodial asset management and portfolio tracking tool for Android.">
-                主力產品 InfoRec 是文件資料處理與文件套印的桌面工具，並把過程與結果留下可追溯的紀錄；另有 <a href="irvault/">IRVault</a>（Android），非託管之資產管理與投資組合追蹤工具。
-              </p>
+              <!-- IRVault 功能描述須與 Solana dApp Store 商店說明一致：非託管；不寫第三方錢包名稱（例如 OKX）。BNB／ETH 交換是透過多鏈錢包，只寫「代幣交換」不寫錢包名。
+                   首頁是商店登記的 App Website：不可寫 InfoRec 註冊說明（註冊主文件 §12），註冊只放「免費註冊說明」連結頁 -->
+
+              <ul class="ir-muted mb-0 ps-4" data-en="&lt;li&gt;&lt;strong&gt;InfoRec&lt;/strong&gt;: a Windows desktop tool for organizing document records and printing forms, truly digitizing your records so they become a resource you can put to use. &lt;a href=&quot;privacy.html&quot; data-iframe-src=&quot;privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;IRVault&lt;/strong&gt;: a non-custodial asset management tool, available as a Solana Mobile app and on the web. View your digital assets in one place by wallet address or exchange API key, send on Solana, BNB Chain and Ethereum, and swap tokens. &lt;a href=&quot;https://inforec-auth.web.app/privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;">
+                <li><strong>InfoRec</strong>：Windows 桌面工具，用來整理文件紀錄、套印表單，把資訊紀錄確實數位化，成為使用者可以再運用的資源。<a href="privacy.html" data-iframe-src="privacy.html" class="ms-1">隱私權政策</a></li>
+                <li><strong>IRVault</strong>：Solana Mobile 手機 App 與網頁版，非託管的資產管理工具。可用錢包地址或交易所 API Key 整合查看虛擬資產，支援 Solana、BNB Chain、Ethereum 的轉帳以及代幣交換。<a href="https://inforec-auth.web.app/privacy.html" class="ms-1">隱私權政策</a></li>
+              </ul>
             </div>
           </div>
         </section>
@@ -391,25 +149,18 @@
             name="content"
             class="ir-iframe ir-main-frame"
             src="updates.html"
-            title="InfoRec content"
-            loading="lazy"
+            title="InfoRec Labs content"
           ></iframe>
         </section>
+        <!-- 頁尾精簡（2026-11-21）：只留著作權聲明與使用條款。隱私權政策放在上方兩個工具說明的最後，以及各工具頁尾（/InfoRec/、/irvault/）。 -->
         <footer id="footerBlock" class="ir-footer">
           <div>
-          ©<span id="siteYear"></span>&nbsp;InfoRec專案原創著作權人所有。
-          <a href="copyright.html" data-iframe-src="copyright.html"
+          © <span id="siteYear"></span> InfoRec Labs ·
+          <a href="copyright.html" data-iframe-src="copyright.html" data-en="Copyright &amp; License"
             >著作權與授權聲明</a
           >
           ·
-          <a href="privacy.html" data-iframe-src="privacy.html">隱私權政策</a> ·
-          <a href="community.html" data-iframe-src="community.html">社群交流</a> ·
-          <a href="about.html">關於開發者 About</a>
-          </div>
-          <div>
-          IRVault：
-          <a href="https://inforec-auth.web.app/terms.html" data-en="Terms of Use">使用條款</a> ·
-          <a href="https://inforec-auth.web.app/privacy.html" data-en="Privacy Policy">隱私權政策</a>
+          <a href="https://inforec-auth.web.app/terms.html" data-en="Terms of Use">使用條款</a>
           </div>
         </footer>
       </div>
@@ -457,11 +208,15 @@
     </script>
 
     <script>
-      // 偵測裝置語系：繁中裝置顯示繁中，工作室介紹、下載選單與 IRVault 條款連結於其他語系顯示英文（與 irvault/index.html 相同規則）
+      // 偵測裝置語系：繁中裝置顯示繁中，其他語系把所有帶 data-en 的文字（選單、介紹、頁尾）換成英文（與 irvault/index.html 相同規則）
+      // 內容區的說明頁（updates.html 等）只有中文，不在此切換
       (function () {
         var raw = (navigator.language || navigator.userLanguage || "").toLowerCase();
         var isZhTW = raw.indexOf("zh") === 0 && !/hans|-cn|-sg/.test(raw);
         if (isZhTW) return;
+        document.documentElement.lang = "en";
+        var toggler = document.querySelector(".navbar-toggler");
+        if (toggler) toggler.setAttribute("aria-label", "Toggle navigation");
         document.querySelectorAll("[data-en]").forEach(function (el) {
           if (el.tagName === "TITLE") {
             document.title = el.dataset.en;
@@ -477,6 +232,20 @@
         document.getElementById("siteYear").textContent =
           new Date().getFullYear();
       }
+
+      // 內容區不是預設的發展目標（updates.html）時，收起上方介紹（body.ir-subpage）
+      // 用 MutationObserver 監看 iframe 的 src，選單點擊、?page=、#hash、上一頁都涵蓋
+      (function () {
+        var frame = document.getElementById("contentFrame");
+        if (!frame) return;
+        function sync() {
+          var src = (frame.getAttribute("src") || "").replace(/^\//, "");
+          document.body.classList.toggle("ir-subpage", src !== "" && src !== "updates.html");
+        }
+        sync();
+        new MutationObserver(sync).observe(frame, { attributes: true, attributeFilter: ["src"] });
+        document.addEventListener("DOMContentLoaded", sync); // site.js 的 #hash 在 DOMContentLoaded 才設定
+      })();
     </script>
   </body>
 </html>

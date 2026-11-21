@@ -87,7 +87,7 @@ function irSafePage(p){
         ev.preventDefault();
         setIframeSrc(src);
 
-        try{ location.hash = encodeURIComponent(src); }catch(e){}
+        // 網址記錄由 index.html／InfoRec/index.html 以 ?page= 處理；此處不再寫 #hash（避免出現 ?page=x#x）。舊的 /#xxx.html 連結仍由 initFromHash 支援
         closeOffcanvasIfOpen();
 
         // ✅ 自動專注閱讀：Download / use / sample

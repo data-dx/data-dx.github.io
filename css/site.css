@@ -859,3 +859,60 @@ footer, .ir-footer{
 .ir-page table.ir-table a.text-success:hover {
   color: #60a5fa !important;
 }
+/* =========================
+   首頁與 /InfoRec/：上方介紹與內容區合成同一塊（2026-11-21）
+   介紹底色與內容區相同、上圓角下直角，內容區上緣接著介紹，看起來是一整塊
+   ========================= */
+#heroBlock.ir-hero{
+  background: #fff !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(0,0,0,.08);
+  border-bottom: none;
+  border-radius: 16px 16px 0 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1rem 1.25rem .5rem !important;
+}
+body:not(.ir-subpage):not(.ir-focus) #heroBlock + #contentArea #contentFrame{
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* 看其他內容時收起介紹，內容區從選單下方直接開始（body.ir-subpage 由頁面程式依 iframe 的 src 切換） */
+body.ir-subpage #heroBlock{
+  display: none !important;
+}
+@media (prefers-color-scheme: dark){
+  #heroBlock.ir-hero{
+    background: #0f1115 !important;
+    border-color: rgba(255,255,255,.10);
+  }
+  /* 內容頁（iframe 裡的說明頁）深色時改純色，與上方介紹接成一塊，不出現漸層接縫 */
+  body.ir-page,
+  body.ir-content-body{
+    background: #0f1115 !important;
+  }
+}
+
+/* /InfoRec/ 左上角「<」回 InfoRec Labs 首頁（樣式同 IRVault 指南） */
+.ir-home-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: .6rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.ir-home-btn:hover{
+  background: rgba(255,255,255,.18);
+  color: #fff;
+}
+.ir-home-btn svg{
+  width: 17px;
+  height: 17px;
+}
