@@ -10,16 +10,48 @@
     <script src="irvault/js/core/theme-init.js"></script>
     <link rel="stylesheet" href="irvault/css/theme.css" />
     <link rel="stylesheet" href="irvault/css/legal.css" />
+    <style>
+      /* 左上角「<」返回鍵（樣式同 /irvault/ 頂部列） */
+      .legal-brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .legal-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--c-fill);
+        border: 1px solid var(--c-border);
+        color: var(--c-text);
+        flex-shrink: 0;
+      }
+      .legal-back:hover {
+        background: var(--c-fill-strong);
+      }
+      .legal-back svg {
+        width: 17px;
+        height: 17px;
+      }
+    </style>
   </head>
   <body>
     <main class="legal-page">
-      <!-- ================= 頁首：語言切換 ================= -->
+      <!-- ================= 頁首 =================
+           語言跟著全站設定（js/lang.js）：只顯示目前語言那一段，不放語言按鈕；要換語言到首頁或 /irvault/ 的「關於」選單 -->
       <header class="legal-head">
-        <div class="legal-brand">Info<span>Rec</span> Labs</div>
-        <nav class="legal-lang">
-          <a href="#en">English</a>
-          <a href="#zh-TW">繁體中文</a>
-        </nav>
+        <div class="legal-brand-wrap">
+          <!-- 返回：從本站哪一頁進來就回哪一頁；直接開啟（沒有站內上一頁）則回首頁 -->
+          <a href="/" id="legalBack" class="legal-back" title="Back" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </a>
+          <div class="legal-brand">Info<span>Rec</span> Labs</div>
+        </div>
       </header>
 
       <!-- ================= English ================= -->
@@ -29,8 +61,9 @@
 
         <h2>Apps</h2>
         <ul>
-          <li><strong>InfoRec</strong> (Windows): a desktop tool for form printing, document settings and printer operations. <a href="InfoRec/">Learn more</a></li>
-          <li><strong>IRVault</strong> (Android, Solana dApp Store): a non-custodial asset management and portfolio tracking tool for Solana and EVM-compatible networks. IRVault never accesses or stores your private keys or seed phrase; every transaction is signed in your own wallet app. <a href="irvault/">Learn more</a></li>
+          <!-- 兩個工具的介紹與首頁上方介紹（index.html）同一套說法，改一邊要一起改另一邊；IRVault 最後一句（私鑰、自己的錢包簽署）只在本頁，是給商店審核看的非託管說明 -->
+          <li><strong>InfoRec</strong>: a Windows desktop tool for organizing document records and printing forms, truly digitizing your records so they become a resource you can put to use. <a href="InfoRec/">Learn more</a></li>
+          <li><strong>IRVault</strong>: a non-custodial asset management tool, available as a Solana Mobile app and on the web. View your digital assets in one place by wallet address or exchange API key (app only), send on Solana, BNB Chain and Ethereum, and swap tokens. IRVault never accesses or stores your private keys or seed phrase; every transaction is signed in your own wallet app. <a href="irvault/">Learn more</a></li>
         </ul>
 
         <h2>Legal</h2>
@@ -53,8 +86,8 @@
 
         <h2>開發的 App</h2>
         <ul>
-          <li><strong>InfoRec</strong>（Windows）：表單套印、文件設定與印表機操作的桌面工具。<a href="InfoRec/">了解更多</a></li>
-          <li><strong>IRVault</strong>（Android，Solana dApp Store）：非託管的資產管理與投資組合追蹤工具，支援 Solana 與 EVM 相容網路。IRVault 不存取、不儲存您的私鑰或助記詞，每筆交易皆在您自己的錢包 App 內簽署。<a href="irvault/">了解更多</a></li>
+          <li><strong>InfoRec</strong>：Windows 桌面工具，用來整理文件紀錄、套印表單，把資訊紀錄確實數位化，成為使用者可以再運用的資源。<a href="InfoRec/">了解更多</a></li>
+          <li><strong>IRVault</strong>：Solana Mobile 手機 App 與網頁版，非託管的資產管理工具。可用錢包地址或交易所 API Key（App 版）整合查看虛擬資產，支援 Solana、BNB Chain、Ethereum 的轉帳以及代幣交換。IRVault 不存取、不儲存您的私鑰或助記詞，每筆交易皆在您自己的錢包 App 內簽署。<a href="irvault/">了解更多</a></li>
         </ul>
 
         <h2>法律文件</h2>
@@ -70,5 +103,34 @@
         </ul>
       </section>
     </main>
+    <script src="js/lang.js"></script>
+    <script>
+      // 只顯示目前語言那一段（英文為主，繁中瀏覽器或選了繁中才顯示中文）
+      (function () {
+        var lang = irLang();
+        document.getElementById(lang === "en" ? "zh-TW" : "en").style.display = "none";
+        document.documentElement.lang = lang === "en" ? "en" : "zh-Hant-TW";
+        if (lang !== "en") document.title = "InfoRec Labs｜關於開發者";
+      })();
+      (function () {
+        var back = document.getElementById("legalBack");
+        // 在首頁、/InfoRec/、/irvault/ 的內容區（iframe）裡顯示時，不需要返回鍵
+        if (window.top !== window.self) {
+          back.style.display = "none";
+          return;
+        }
+        var ref = document.referrer;
+        var fromSite = false;
+        try {
+          fromSite = !!ref && new URL(ref).origin === location.origin;
+        } catch (e) {}
+        if (fromSite && history.length > 1) {
+          back.addEventListener("click", function (e) {
+            e.preventDefault();
+            history.back();
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

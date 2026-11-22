@@ -89,29 +89,40 @@
           </ul>
 
           <div class="d-flex gap-2">
-            <!-- 關於選單：社群聯絡、關於開發者（about.html 為 dApp Store Publisher Website，首頁須保留此連結） -->
+            <!-- 語言按鈕（js/lang.js）：地球圖示＋目前語言，選過會記住、各頁共用；選項文字固定用各自的語言，不加 data-en -->
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-light dropdown-toggle ir-lang-btn"
+                type="button"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+                aria-label="Language / 語言"
+                title="Language / 語言"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z"/></svg>
+                <span data-lang-label></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-md-end">
+                <li><a class="dropdown-item" href="#" data-set-lang="en" lang="en">English</a></li>
+                <li><a class="dropdown-item" href="#" data-set-lang="zh-TW" lang="zh-Hant-TW">繁體中文</a></li>
+              </ul>
+            </div>
+            <!-- 關於選單（三頁一致）：關於開發者（顯示在下方內容區，聯絡方式也在該頁）；about.html 為 dApp Store Publisher Website，首頁須保留此連結 -->
             <div class="dropdown">
               <button
                 class="btn btn-outline-light dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
+                data-bs-display="static"
                 aria-expanded="false"
                 data-en="About"
               >
                 關於
               </button>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-md-end">
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="community.html"
-                    data-iframe-src="community.html"
-                    data-en="Community &amp; Contact"
-                    >社群聯絡</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="about.html" data-en="About the Developer">關於開發者</a>
+                  <a class="dropdown-item" href="about.html" data-iframe-src="about.html" data-en="About the Developer">關於開發者</a>
                 </li>
               </ul>
             </div>
@@ -132,8 +143,9 @@
               <p class="ir-muted mb-1" data-en="InfoRec Labs is a personal software project building practical tools for managing information and digital assets, keeping users in control of their own information and assets.">
                 InfoRec Labs 是個人的軟體開發專案，開發實用的資訊管理與數位資產管理工具，讓使用者自行掌控資訊與資產。
               </p>
-              <!-- IRVault 功能描述須與 Solana dApp Store 商店說明一致：非託管；不寫第三方錢包名稱（例如 OKX）。BNB／ETH 交換是透過多鏈錢包，只寫「代幣交換」不寫錢包名。
-                   首頁是商店登記的 App Website：不可寫 InfoRec 註冊說明（註冊主文件 §12），註冊只放「免費註冊說明」連結頁 -->
+              <!-- 下面兩個工具的介紹與 about.html「開發的 App」同一套說法（中英文都是），改一邊要一起改另一邊。
+                   IRVault 功能描述須與 Solana dApp Store 商店說明一致：非託管；不寫第三方錢包名稱（例如 OKX）。BNB／ETH 交換是透過多鏈錢包，只寫「代幣交換」不寫錢包名。
+                   首頁是商店登記的 App Website：不可寫 InfoRec 註冊說明（註冊主文件 §12；community.html 那句「※ 註冊」是例外，但選單已不連到該頁），註冊只放「免費註冊說明」連結頁 -->
 
               <ul class="ir-muted mb-0 ps-4" data-en="&lt;li&gt;&lt;strong&gt;InfoRec&lt;/strong&gt;: a Windows desktop tool for organizing document records and printing forms, truly digitizing your records so they become a resource you can put to use. &lt;a href=&quot;privacy.html&quot; data-iframe-src=&quot;privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;IRVault&lt;/strong&gt;: a non-custodial asset management tool, available as a Solana Mobile app and on the web. View your digital assets in one place by wallet address or exchange API key (app only), send on Solana, BNB Chain and Ethereum, and swap tokens. &lt;a href=&quot;https://inforec-auth.web.app/privacy.html&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;">
                 <li><strong>InfoRec</strong>：Windows 桌面工具，用來整理文件紀錄、套印表單，把資訊紀錄確實數位化，成為使用者可以再運用的資源。<a href="privacy.html" data-iframe-src="privacy.html" class="ms-1">隱私權政策</a></li>
@@ -168,6 +180,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/site.js"></script>
+    <script src="js/lang.js"></script>
 
     <script>
       (function () {
@@ -208,12 +221,10 @@
     </script>
 
     <script>
-      // 偵測裝置語系：繁中裝置顯示繁中，其他語系把所有帶 data-en 的文字（選單、介紹、頁尾）換成英文（與 irvault/index.html 相同規則）
-      // 內容區的說明頁（updates.html 等）只有中文，不在此切換
+      // 語言由 js/lang.js 的 irLang() 決定（使用者在「關於」選單選過的優先，否則繁中瀏覽器→繁中、其他→英文）
+      // 英文時把所有帶 data-en 的文字（選單、介紹、頁尾）換成英文；內容區的說明頁（updates.html 等）還沒有英文版，仍顯示中文
       (function () {
-        var raw = (navigator.language || navigator.userLanguage || "").toLowerCase();
-        var isZhTW = raw.indexOf("zh") === 0 && !/hans|-cn|-sg/.test(raw);
-        if (isZhTW) return;
+        if (irLang() !== "en") return;
         document.documentElement.lang = "en";
         var toggler = document.querySelector(".navbar-toggler");
         if (toggler) toggler.setAttribute("aria-label", "Toggle navigation");
