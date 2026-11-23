@@ -66,7 +66,7 @@
         scrollbar-width: none;
         padding: 0.25rem 0;
       }
-      /* 手機（窄於 640px）：頂部列放不下，分頁籤移到第二排（第一排：「<」、IRVault、語言、關於） */
+      /* 手機（窄於 640px）：頂部列放不下，分頁籤移到第二排（第一排：「<」、IRVault、語言） */
       @media (max-width: 639.98px) {
         /* 加上 header 提高優先順序：tailwind.css 在本段樣式之後載入，否則 h-14 的固定高度會蓋掉 height: auto */
         header .ir-head-row {
@@ -114,15 +114,39 @@
         color: var(--c-info);
         border-color: var(--c-info-line, var(--c-info));
       }
-      /* 「輔助功能 ▾」下拉選單：分頁列可左右捲動會裁掉選單，所以選單放在分頁列外面，開啟時用 JS 定位在按鈕正下方 */
-      #toolsMenu {
+      /* 「InfoRec ▾」下拉選單：分頁列可左右捲動會裁掉選單，所以選單放在分頁列外面，開啟時用 JS 定位在按鈕正下方 */
+      .ir-tab-menu {
         position: fixed;
-        right: auto; /* 不沿用「關於」選單的靠右，否則會一路延伸到畫面右邊 */
+        right: auto; /* 不沿用語言選單的靠右，否則會一路延伸到畫面右邊 */
         width: max-content;
       }
-      .ir-tools-menu a.is-active {
+      .ir-tab-menu a.is-active {
         color: var(--c-info);
         font-weight: 700;
+      }
+      /* 資產管理、InfoRec 頁的各段：跳過去時不被頂部列蓋住（手機頂部列兩排較高） */
+      .ir-sec {
+        scroll-margin-top: 5rem;
+      }
+      @media (max-width: 639.98px) {
+        .ir-sec {
+          scroll-margin-top: 7.5rem;
+        }
+        /* 手機語言按鈕只留地球圖示 */
+        .ir-lang-btn [data-lang-label] {
+          display: none;
+        }
+      }
+      /* 「安全與錢包」「API Key」頁上方回到系統設定的連結 */
+      .ir-back-link {
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--c-info);
+        text-decoration: none;
+      }
+      .ir-back-link:hover {
+        text-decoration: underline;
       }
 
       /* ===== 右上角「關於」選單 ===== */
@@ -369,31 +393,22 @@
           </a>
         </div>
         <!-- 分頁籤：每次只顯示一個主題，網址 #hash 對應分頁（例如 /irvault/#swap），?back= 參數不受影響 -->
+        <!-- 選單（2026-11-23 改版）：資產管理（一頁，各段仍可用 #send 等網址直接跳）、系統設定（一頁）、InfoRec ▾（註冊與 IREC、官網、關於開發者） -->
         <nav id="guide-tabs" class="guide-tabs" aria-label="使用指南分頁" data-en-aria-label="Guide sections">
-          <a href="#send" data-tab="send" data-en="Send &amp; Receive">傳送與接收</a>
-          <a href="#swap" data-tab="swap" data-en="Swap">交換</a>
-          <!-- 輔助功能、安全與錢包、API Key 在 App 裡同屬「輔助功能」，合成一個下拉選單 -->
-          <button type="button" id="toolsBtn" aria-haspopup="true" aria-expanded="false" data-en="Tools ▾">輔助功能 ▾</button>
+          <a href="#assets" data-tab="assets" data-group="assets" data-en="Assets">資產管理</a>
+          <a href="#settings" data-tab="settings" data-group="settings" data-en="Settings">系統設定</a>
+          <button type="button" id="inforecBtn" class="ir-tab-btn" data-group="inforec" aria-haspopup="true" aria-expanded="false">InfoRec ▾</button>
         </nav>
-        <div id="toolsMenu" class="ir-about-menu ir-tools-menu" hidden>
-          <a href="#tools" data-tab="tools" data-en="Tools">輔助功能</a>
-          <a href="#safety" data-tab="safety" data-en="Security &amp; Wallets">安全與錢包</a>
-          <a href="#apikey" data-tab="apikey" data-en="API Keys">API Key</a>
+        <!-- 下拉選單放在分頁列外面（分頁列可左右捲動會裁掉選單），開啟時用 JS 定位在按鈕正下方 -->
+        <div id="inforecMenu" class="ir-about-menu ir-tab-menu" hidden>
+          <a href="#inforec" data-tab="inforec" data-en="Registration &amp; IREC">註冊與 IREC</a>
+          <a href="/" data-en="Official Website">官網</a>
+          <a href="#about" data-tab="about" data-en="About the Developer">關於開發者</a>
         </div>
         <nav
           class="flex-shrink-0 flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm font-medium"
         >
-          <a
-            id="btn-open-browser"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-en="🌐 Open in Browser"
-            class="px-2.5 py-1 text-blue-600 hover:bg-blue-50 rounded-md whitespace-nowrap"
-          >
-            🌐 用瀏覽器開啟
-          </a>
-          <!-- 語言按鈕（/js/lang.js，同首頁）：地球圖示＋目前語言；選項文字固定用各自的語言，不加 data-en -->
+          <!-- 語言按鈕（/js/lang.js，同首頁）：地球圖示＋目前語言（手機只留地球圖示）；選項文字固定用各自的語言，不加 data-en -->
           <div class="ir-about">
             <button type="button" id="langBtn" class="ir-about-btn ir-lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Language / 語言" title="Language / 語言">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z"/></svg>
@@ -402,13 +417,6 @@
             <div id="langMenu" class="ir-about-menu" hidden>
               <a href="#" data-set-lang="en" lang="en">English</a>
               <a href="#" data-set-lang="zh-TW" lang="zh-Hant-TW">繁體中文</a>
-            </div>
-          </div>
-          <!-- 「關於」選單（三頁一致，同首頁右上角）：關於開發者顯示在本頁內容框（#about 分頁，載入 /about.html，聯絡方式也在該頁） -->
-          <div class="ir-about">
-            <button type="button" id="aboutBtn" class="ir-about-btn" aria-haspopup="true" aria-expanded="false" data-en="About ▾">關於 ▾</button>
-            <div id="aboutMenu" class="ir-about-menu" hidden>
-              <a href="#about" data-tab="about" data-en="About the Developer">關於開發者</a>
             </div>
           </div>
         </nav>
@@ -497,7 +505,7 @@
           <li
             data-en="<strong>Easy swaps:</strong> On Solana, Jupiter finds the best route for market or limit swaps; on BNB Chain and Ethereum, swaps go through your multi-chain wallet."
           >
-            <strong>簡易交換：</strong>Solana 串接 Jupiter 自動找最佳路徑，支援市價與限價；BNB Chain、Ethereum 透過多鏈錢包交換。
+            <strong>資產交換：</strong>Solana 串接 Jupiter 自動找最佳路徑，支援市價與限價；BNB Chain、Ethereum 可透過多鏈錢包進行市價交換。
           </li>
           <li
             data-en="<strong>Works with your wallet:</strong> IRVault is not a wallet. It never accesses your seed phrase or private keys; sends and swaps are done in the wallet you already use."
@@ -523,9 +531,9 @@
         </ul>
         <div
           class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800 leading-relaxed"
-          data-en='<strong>Note:</strong> For faster, more reliable operation, be sure to get free Helius and Jupiter API keys. See <a href="#apikey" data-tab="apikey" class="underline">Tools → API Key</a>.'
+          data-en='<strong>Note:</strong> For faster, more reliable operation, be sure to get free Helius and Jupiter API keys. See <a href="#apikey" data-tab="apikey" class="underline">Settings → API Keys</a>.'
         >
-          <strong>備註：</strong>為了讓 IRVault 操作更快、更穩定，請務必申請免費的 Helius 與 Jupiter API Key，申請方式請見<a href="#apikey" data-tab="apikey" class="underline">輔助功能 → API Key</a>。
+          <strong>備註：</strong>為了讓 IRVault 操作更快、更穩定，請務必申請免費的 Helius 與 Jupiter API Key，申請方式請見<a href="#apikey" data-tab="apikey" class="underline">系統設定 → API Key</a>。
         </div>
       </section>
 
@@ -548,7 +556,7 @@
               <b data-en="Send">傳送</b>
               <small data-en="Solana, BNB Chain, Ethereum">Solana、BNB Chain、Ethereum</small>
             </a>
-            <a href="#send" data-tab="send" class="ir-arch-node">
+            <a href="#receive" data-tab="receive" class="ir-arch-node">
               <span class="ir-arch-icon" aria-hidden="true">↓</span>
               <b data-en="Receive">接收</b>
               <small data-en="Depends on the receiving address">依收款地址支援</small>
@@ -558,22 +566,80 @@
               <b data-en="Swap">交換</b>
               <small data-en="Solana, BNB Chain, Ethereum">Solana、BNB Chain、Ethereum</small>
             </a>
-            <a href="#tools" data-tab="tools" class="ir-arch-node">
+            <a href="#settings" data-tab="settings" class="ir-arch-node">
               <span class="ir-arch-icon" aria-hidden="true">✦</span>
-              <b data-en="Tools">輔助功能</b>
-              <small data-en="Security &amp; wallets, API keys">安全與錢包、API Key</small>
+              <b data-en="Settings">系統設定</b>
+              <small data-en="Security, API keys">安全防護、API Key</small>
             </a>
           </div>
         </div>
       </section>
       </div>
 
-      <div class="guide-panel" id="panel-send" data-panel="send" hidden>
+      <!-- 資產管理：一頁依 App 操作順序排列；網址 #wallets、#send… 可直接跳到各段（App、總覽架構圖用） -->
+      <div class="guide-panel" id="panel-assets" data-panel="assets" hidden>
       <div class="space-y-6 mb-10">
-        <!-- 1. 傳送 -->
+        <!-- 錢包與地址 -->
+        <section id="wallets" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Wallets &amp; Addresses">錢包與地址</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Add wallets and addresses:</strong> Add all your wallets and asset addresses in one place, then send, receive and swap assets as needed."
+            >
+              <strong>加入錢包與地址：</strong>把您所有的錢包與資產地址加進來集中管理，依需要可以進行傳送、接收及交換資產。
+            </li>
+            <li
+              data-en='To show your Binance account (IRVault app only), see <a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Keys</a> for how to get a key.'
+            >
+              如要顯示幣安帳戶（限 IRVault App 使用），申請方式請見 <a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Key</a>。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 儀表板 -->
+        <section id="dashboard" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Dashboard">儀表板</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>All your assets at a glance:</strong> Shows the assets in every wallet, address and exchange account you added, all on one screen."
+            >
+              <strong>資產一目了然：</strong>把您加入的所有錢包、地址與交易平台上的資產，集中在同一個畫面顯示。
+            </li>
+            <li
+              data-en="<strong>Live balances:</strong> Balances are looked up live from the blockchain and exchanges, so you can see the current state of each wallet, each address or all your assets together."
+            >
+              <strong>即時餘額：</strong>餘額即時向區塊鏈與交易平台查詢，可以查看個別錢包、地址或整體資產的現況。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 代幣列表（原「輔助功能」的隱藏幣、檢查合約地址） -->
+        <section id="tokens" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Token List">代幣列表</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Hide tokens you don't need:</strong> Hide scam tokens or thinly traded assets yourself, so your home screen only shows the assets you care about."
+            >
+              <strong>隱藏不需要的幣：</strong>可以自己勾選隱藏詐騙代幣或交易量很小的資產，讓首頁只顯示您在意的資產。
+            </li>
+            <li
+              data-en="<strong>Check the contract address:</strong> Expand a token card to see its contract address on the blockchain, so you can tell look-alike fake tokens apart and avoid scams."
+            >
+              <strong>檢查合約地址：</strong>展開幣種卡片可以看到該幣在區塊鏈上的合約地址，用來分辨名稱相同的假幣，避免受騙。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 傳送 -->
         <section
-          id="section-send"
-          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+          id="send"
+          class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
         >
           <div
             class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
@@ -581,9 +647,9 @@
             <div class="flex items-center gap-2">
               <h3
                 class="text-base font-bold text-slate-900"
-                data-en="[Send] Feature Overview"
+                data-en="Send"
               >
-                【傳送】功能說明
+                傳送
               </h3>
             </div>
           </div>
@@ -621,10 +687,10 @@
           </div>
         </section>
 
-        <!-- 2. 接收 -->
+        <!-- 接收 -->
         <section
-          id="section-receive"
-          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+          id="receive"
+          class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
         >
           <div
             class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
@@ -632,9 +698,9 @@
             <div class="flex items-center gap-2">
               <h3
                 class="text-base font-bold text-slate-900"
-                data-en="[Receive] Feature Overview"
+                data-en="Receive"
               >
-                【接收】功能說明
+                接收
               </h3>
             </div>
           </div>
@@ -653,15 +719,11 @@
             </li>
           </ul>
         </section>
-      </div>
-      </div>
 
-      <div class="guide-panel" id="panel-swap" data-panel="swap" hidden>
-      <div class="space-y-6 mb-10">
-        <!-- 3. 交換 -->
+        <!-- 交換 -->
         <section
-          id="section-exchange"
-          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
+          id="swap"
+          class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
         >
           <div
             class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
@@ -669,87 +731,165 @@
             <div class="flex items-center gap-2">
               <h3
                 class="text-base font-bold text-slate-900"
-                data-en="[Swap] Feature Overview"
+                data-en="Swap"
               >
-                【交換】功能說明 (Swap)
+                交換
               </h3>
             </div>
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Best-route order execution on Solana:</strong> Connects to the Jupiter aggregator, calculating AMM and order-book depth across the network to automatically avoid low-liquidity pairs and reduce slippage."
+              data-en="<strong>Best route on Solana:</strong> Connects to Jupiter to compare quotes across trading venues and find the best way to swap, avoiding thinly traded routes where prices shift easily."
             >
-              <strong>SOL鏈最優路徑下單：</strong>串接 Jupiter
-              聚合協議，精算全網 AMM 與訂單簿深度，自動避開低流動性幣對降滑點。
+              <strong>Solana 自動找最佳路徑：</strong>串接 Jupiter，自動比較各交易管道的報價，找出最划算的換法，避開交易量太小、價格容易偏移的路線。
             </li>
             <li
-              data-en="<strong>Minimum Received guarantee:</strong> Clearly displays the minimum amount you'll receive after slippage, limiting the loss if MEV bots sandwich your trade."
+              data-en="<strong>Market and limit orders:</strong> On Solana, swap at the market price right away, or set your own price with a limit order. On BNB Chain and Ethereum, market swaps go through your multi-chain wallet."
             >
-              <strong>最低到手保證 (Minimum Received)：</strong
-              >清楚標示扣除滑點後的最低到手數量，降低 MEV
-              機器人夾單的風險。
+              <strong>市價與限價：</strong>Solana 可用市價立即交換，也可以自己設定價格掛限價單；BNB Chain、Ethereum 可透過多鏈錢包進行市價交換。
             </li>
             <li
-              data-en="<strong>Zero-balance lockout protection:</strong> When swapping out all of your SOL, the system automatically reserves a base amount for gas so your account can keep transacting."
+              data-en="<strong>Minimum received:</strong> Before you send, you see the least you will receive after slippage, so a sudden price move or bots trading ahead of you won't leave you worse off."
             >
-              <strong>防零餘額卡死機制：</strong>換出全部 SOL 時系統自動預留基礎
-              Gas 費，確保帳戶後續可正常交互。
+              <strong>最少可收到數量：</strong>送出前會標示扣除滑點後最少能收到多少，避免價格突然變動或被機器人搶先交易而吃虧。
             </li>
             <li
-              data-en="<strong>Customizable trade parameters:</strong> Freely adjust slippage tolerance and priority fee to suit your needs."
+              data-en="<strong>Network fee reserve:</strong> When you swap out all of your SOL, a small amount is kept to pay network fees, so your account can still make transactions later."
             >
-              <strong>自訂交易參數：</strong
-              >支援使用者依需求彈性設定滑點容忍度（Slippage）與加速優先手續費（Priority
-              Fee）。
+              <strong>自動保留手續費：</strong>把 SOL 全部換出時，會自動留下一點 SOL 支付網路手續費，避免帳戶之後無法再交易。
+            </li>
+            <li
+              data-en="<strong>Custom trade settings:</strong> Adjust the slippage tolerance (how much price movement you accept) and the priority fee that helps your transaction go through faster."
+            >
+              <strong>自訂交易參數：</strong>可依需要調整滑點容忍度（可接受的價格偏差），以及讓交易更快完成的優先手續費。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 交易紀錄 -->
+        <section id="history" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Transaction History">交易紀錄</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Look back at past transactions:</strong> See the records of your sends, receives and swaps, to check how each transaction went."
+            >
+              <strong>查看過去的交易：</strong>可以查看傳送、接收與交換的紀錄，確認每筆交易的狀況。
             </li>
           </ul>
         </section>
       </div>
       </div>
 
-      <div class="guide-panel" id="panel-tools" data-panel="tools" hidden>
+      <!-- 系統設定：照 App 設定頁（IRVault public/settings.html）的分組與項目逐一簡述，詳細內容連到「安全與錢包」「API Key」兩頁（這兩頁不放在選單上）。
+           2026-11-23 對照 App：沒有自訂 RPC 網址，「區塊鏈節點介接」只有 Helius、Jupiter API Key -->
+      <div class="guide-panel" id="panel-settings" data-panel="settings" hidden>
       <div class="space-y-6 mb-10">
-        <!-- 4. 輔助功能 -->
-        <section
-          id="section-auxiliary"
-          class="scroll-mt-20 p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300"
-        >
-          <div
-            class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3"
-          >
-            <div class="flex items-center gap-2">
-              <h3
-                class="text-base font-bold text-slate-900"
-                data-en="[Auxiliary Tools] Overview"
-              >
-                【輔助功能】說明
-              </h3>
-            </div>
+        <!-- 一般 -->
+        <section class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="General">一般</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li data-en="<strong>Language:</strong> Choose the language IRVault is shown in.">
+              <strong>語言：</strong>選擇 IRVault 畫面顯示的語言。
+            </li>
+            <li data-en="<strong>Theme:</strong> Follow system, Dark or Light. “Follow system” switches automatically with your phone's dark/light mode.">
+              <strong>介面主題：</strong>跟隨系統、深色、一般三種；「跟隨系統」會依手機的深色／淺色模式自動切換。
+            </li>
+            <li data-en="<strong>Font size:</strong> Standard, Large or Extra large, to make small text easier to read.">
+              <strong>字體大小：</strong>標準、大字體、最大字體三種，放大小字比較好閱讀。
+            </li>
+            <li data-en="<strong>Price change colors:</strong> Green up / red down (common for crypto), or red up / green down (common in East Asian stock markets).">
+              <strong>漲跌顏色：</strong>可選「綠漲紅跌」（加密貨幣常用）或「紅漲綠跌」（臺灣等東亞股市習慣）。
+            </li>
+            <li data-en="<strong>Small balance threshold:</strong> Set an amount in USD; when “Hide small balances” is checked on the home screen, tokens worth less than this are hidden.">
+              <strong>隱藏小額資產門檻：</strong>設定一個美元金額，在首頁勾選「隱藏小額資產」時，價值低於這個金額的代幣就不顯示。
+            </li>
+            <li data-en="<strong>Live price updates:</strong> Choose how often your assets refresh, from 5 seconds to 10 minutes (15 seconds by default).">
+              <strong>行情即時更新：</strong>設定資產多久更新一次，可從 5 秒到 10 分鐘（預設 15 秒）。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 安全與資料 -->
+        <section class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Security &amp; Data">安全與資料</h3>
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Hide spam tokens and assets:</strong> Manually hide phishing tokens or low-liquidity assets to keep your home screen clean and focused on what matters."
+              data-en='<strong>Security:</strong> Protect IRVault with a login password, fingerprint (biometrics) or Google Authenticator. See <a href="#safety" data-tab="safety" class="text-blue-600 hover:underline">Security &amp; Wallets</a>.'
             >
-              <strong>垃圾幣與資產自訂隱藏：</strong
-              >可手動勾選隱藏釣魚代幣或低流動性資產，保持首頁清爽只留重要持倉。
+              <strong>安全：</strong>可設定登入密碼、指紋辨識（生物辨識）或 Google Authenticator 來保護 IRVault。詳見<a href="#safety" data-tab="safety" class="text-blue-600 hover:underline">安全與錢包</a>。
             </li>
             <li
-              data-en="<strong>Contract address (CA) verification:</strong> Expand a token card to check its real on-chain contract address, to help avoid honeypot scams using the same token name."
+              data-en="<strong>Registration:</strong> Register so you can receive messages we send out. Connect your wallet and sign once to confirm the address is yours (signing costs no fees)."
             >
-              <strong>合約地址 (CA) 檢驗：</strong
-              >展開幣種卡片可直接檢驗真實鏈上合約地址，避免誤入同名貔貅盤（Honeypot）陷阱。
+              <strong>註冊：</strong>註冊後可以收到我們推送的訊息。需要先連接錢包並簽名一次，確認地址是您的（簽名不花手續費）。
             </li>
             <li
-              data-en="<strong>Read-only exchange integration (BYOK):</strong> Bring your own read-only API key to display your Binance spot and earn balances — the key is stored only on your device."
+              data-en="<strong>Backup &amp; restore:</strong> Before switching app versions or reinstalling, back up your local data (address book, token display preferences, etc.). The backup file is encrypted with a password you set, and the same password is needed to restore it."
             >
-              <strong>交易所唯讀整合 (BYOK)：</strong>支援自備唯讀的 API Key
-              讀取幣安現貨與理財餘額，金鑰僅儲存於您的設備本地。
+              <strong>資料備份與還原：</strong>換版本或重新安裝 App 前，建議先備份本機資料（通訊錄、代幣顯示設定等）。備份檔會用您設定的密碼加密，還原時要輸入相同密碼。
+            </li>
+          </ul>
+        </section>
+
+        <!-- 進階連線 -->
+        <section class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Advanced Connections">進階連線</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en='<strong>Blockchain node connection:</strong> Enter your Helius and Jupiter API keys. Be sure to get these free keys for faster, more reliable operation. See <a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Keys</a>.'
+            >
+              <strong>區塊鏈節點介接：</strong>填入 Helius 與 Jupiter API Key。請務必申請這兩個免費的 API Key，讓操作更快、更穩定。詳見<a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Key</a>。
             </li>
             <li
-              data-en="<strong>Custom RPC node switching:</strong> Switch to a private node endpoint to improve loading speed and stability during network congestion."
+              data-en='<strong>Exchange connection (IRVault app only):</strong> Enter your Binance read-only API key and secret, and set a local protection PIN (at least 6 digits) to show your Binance balances. See <a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Keys</a>.'
             >
-              <strong>自訂 RPC 節點切換：</strong
-              >支援切換私人節點端點以提升網路壅塞時的載入速度與穩定度。
+              <strong>交易平台介接（限 IRVault App 使用）：</strong>填入幣安唯讀的 API Key、Secret，並設定本機防護密碼（至少 6 位數），就能顯示幣安帳戶資產。詳見<a href="#apikey" data-tab="apikey" class="text-blue-600 hover:underline">API Key</a>。
+            </li>
+          </ul>
+        </section>
+      </div>
+      </div>
+
+      <!-- 「InfoRec ▾ → 註冊與 IREC」頁（官網、關於開發者是選單上另外的項目）。
+           InfoRec 註冊、IREC 憑證：2026-11-22 使用者決定放在 /irvault/（註冊主文件 §12 的例外）。
+           用字依主文件 §12.1：「線上註冊」、IREC 用「領取」；不寫免費、獎勵、價格等跟錢有關的字 -->
+      <div class="guide-panel" id="panel-inforec" data-panel="inforec" hidden>
+      <div class="space-y-6 mb-10">
+        <section id="register" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="InfoRec Registration">InfoRec 註冊</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="InfoRec, the information record management tool, can be registered online through IRVault. Once registered, you get software updates and access to advanced features."
+            >
+              InfoRec 資訊紀錄管理工具可透過 IRVault 線上註冊，註冊後可取得軟體更新，並使用相關進階功能。
+            </li>
+          </ul>
+        </section>
+
+        <section id="irec" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h3 class="text-base font-bold text-slate-900" data-en="Claim IREC Credits">領取 IREC</h3>
+          </div>
+          <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
+            <li
+              data-en="<strong>Promotion and encouragement:</strong> IREC credits unlock more InfoRec features and encourage people to make more use of InfoRec."
+            >
+              <strong>推廣與鼓勵：</strong>IREC 憑證可以解鎖 InfoRec 資訊紀錄管理工具更多功能，並鼓勵使用者多加運用 InfoRec。
+            </li>
+            <li
+              data-en="<strong>Who can claim:</strong> Solana Mobile phone users, registered InfoRec users and people who help promote InfoRec can claim IREC credits in IRVault."
+            >
+              <strong>誰可以領取：</strong>使用 Solana Mobile 手機、完成 InfoRec 註冊，或對 InfoRec 推廣有貢獻的人，都可以在 IRVault 領取 IREC 憑證。
             </li>
           </ul>
         </section>
@@ -757,21 +897,20 @@
       </div>
 
       <div class="guide-panel" id="panel-safety" data-panel="safety" hidden>
+      <a href="#settings" data-tab="settings" class="ir-back-link" data-en="← Settings">← 系統設定</a>
       <!-- 二、安全防護 -->
       <section class="mb-8">
         <h2
           class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
-          data-en='Security Protection (3 Password Options)'
+          data-en='Security Protection'
         >
-          安全防護（3 種密碼設定）
+          安全防護
         </h2>
         <div
           class="bg-white rounded-xl border border-slate-200 p-4 text-sm text-slate-700"
-          data-en="To prevent people around you from peeking at your balances or performing unauthorized actions, you can choose from 3 protection options as needed: <b>a custom password</b>, <b>Google Authenticator two-factor verification</b>, and <b>biometric / fingerprint unlock</b>."
+          data-en="To improve security, you can choose <b>a custom password</b>, <b>Google Authenticator two-factor verification</b> or <b>biometrics (fingerprint)</b> as needed."
         >
-          為防止身旁他人窺探您的資產餘額或進行未授權操作，使用者依需要選擇：<b>自訂密碼</b>、<b
-            >Google Authenticator 二次驗證</b
-          >、<b>生物辨識 / 指紋</b> 等 3 種防護功能。
+          您可以依需要選擇<b>自訂密碼</b>、<b>Google Authenticator 二次驗證</b>、<b>生物辨識（指紋）</b>來提升資訊安全。
         </div>
       </section>
 
@@ -781,24 +920,15 @@
           class="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2"
           data-en='What You Should Know Before Using It'
         >
-          使用前，你該知道的事
+          使用前，您該知道的事
         </h2>
 
         <div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>IRVault is a dashboard, not an exchange:</strong> It never holds or custodies any of your assets. Every balance shown is queried live from on-chain nodes and exchange APIs for the wallets or addresses you connected yourself under 'Wallets & Addresses.' All of IRVault's settings and records live only on your own device — your seed phrase and private keys always stay in your own wallet."
+              data-en="<strong>IRVault does not hold your assets:</strong> IRVault is not an exchange and never holds or keeps any of your assets. The balances you see are looked up live from the blockchain and exchanges, based on the wallets and addresses you added under “Wallets &amp; Addresses.” However, IRVault can send and swap assets together with your wallet, and these actions use your assets, so we recommend turning on the security protection above."
             >
-              <strong>IRVault 是儀表板，不是交易所：</strong
-              >它不持有、不保管您的任何資產。畫面上看到的餘額都是您自行在「錢包與地址」連接的錢包或(自己)地址，即時向鏈上節點與交易所
-              API 查詢而來，IRVault
-              所有的設定、記錄只存在您的設備之中，助記詞與私鑰永遠只留在您自己的錢包裡。
-            </li>
-            <li
-              data-en="<strong>Every wallet is strictly isolated:</strong> When you switch between wallets or addresses, each one's data is read independently — nothing is ever borrowed or mixed between caches."
-            >
-              <strong>每個錢包彼此嚴格獨立：</strong
-              >切換不同錢包或地址時，資料是各自獨立讀取，不會互相借用或混合快取。
+              <strong>IRVault 不保管您的資產：</strong>IRVault 不是交易所，不持有、也不保管您的任何資產。畫面上的餘額，是依您在「錢包與地址」加入的錢包或地址，即時向區塊鏈與交易平台查詢而來。但 IRVault 可以搭配您的錢包進行傳送與交換，這些操作會動用您的資產，因此建議開啟上方的安全防護。
             </li>
           </ul>
         </div>
@@ -806,9 +936,9 @@
         <!-- 4-1 常用錢包說明 -->
         <h3
           class="text-base font-bold text-slate-900 mt-6 mb-3 flex items-center gap-2"
-          data-en='Common Wallets'
+          data-en='Supported Wallets'
         >
-          常用錢包說明
+          支援的錢包
         </h3>
         <div
           class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 text-sm"
@@ -864,16 +994,16 @@
                     </td>
                     <td
                       class="py-2"
-                      data-en="Wallet apps supporting Solana and EVM-type addresses."
+                      data-en="Wallet apps that support several blockchains, such as Solana, BNB Chain and Ethereum."
                     >
-                      支援 SOL 鏈與 EVM 類地址的錢包 App。
+                      同時支援 Solana、BNB Chain、Ethereum 等多條區塊鏈的錢包 App。
                     </td>
                     <td class="py-2 pl-4">✓</td>
                     <td
                       class="py-2 pl-4"
-                      data-en="✓ (Solana only)"
+                      data-en="✓ (market only on BNB Chain and Ethereum)"
                     >
-                      ✓（僅限 SOL 鏈）
+                      ✓（BNB Chain、Ethereum 僅市價）
                     </td>
                   </tr>
                 </tbody>
@@ -886,13 +1016,12 @@
               <li
                 data-en="Your seed phrase and private keys always stay in your own wallet; IRVault never receives or stores them."
               >
-                助記詞與私鑰永遠只留在您自己的錢包裡，IRVault
-                不會取得也不會儲存。
+                助記詞與私鑰永遠只留在您自己的錢包裡，IRVault 不會取得，也不會儲存。
               </li>
               <li
-                data-en="If IRVault does not support the wallet you use, please report it in the IRVault community group so it can be tested and improved."
+                data-en="If the wallet you use does not work with IRVault, please report it in the IRVault community group so it can be tested and improved."
               >
-                如果 IRVault 無法支援您使用的錢包，歡迎到 IRVault 社群群組回報，以便測試及改善。
+                如果您使用的錢包無法搭配 IRVault，歡迎到 IRVault 社群群組回報，以便測試及改善。
               </li>
             </ul>
           </div>
@@ -901,34 +1030,33 @@
       </div>
 
       <div class="guide-panel" id="panel-apikey" data-panel="apikey" hidden>
+      <a href="#settings" data-tab="settings" class="ir-back-link" data-en="← Settings">← 系統設定</a>
       <section class="mb-10">
         <!-- 4-2 常見金鑰 (API Key) 申請簡介 -->
         <h3
           class="text-base font-bold text-slate-900 mt-6 mb-3 flex items-center gap-2"
-          data-en='Common API Key Setup'
+          data-en='Getting API Keys'
         >
-          常見金鑰 (API Key) 申請簡介
+          API Key 申請說明
         </h3>
         <p
           class="text-slate-600 text-sm mb-3"
-          data-en="All of the following are optional — IRVault works fine without them, though some parts of the experience may be a bit less smooth. Setup for all of these is in the [Settings] page."
+          data-en="For faster, more reliable operation, be sure to get free Helius and Jupiter API keys; get a Binance API key only if you need it. Once you have them, enter them in IRVault under [Settings]."
         >
-          以下都是「選填」項目，不申請也能正常使用
-          IRVault，只是部分體驗會打些折扣，設定入口都在【系統設定】頁面內。
+          為了讓 IRVault 操作更快、更穩定，請務必申請免費的 Helius 與 Jupiter API Key；幣安 API Key 則依需要申請。申請後到 IRVault 的【系統設定】填入即可。
         </p>
         <div
           class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 text-sm"
         >
           <div class="p-4">
-            <strong class="text-slate-900" data-en="Helius API Key (Free)"
-              >Helius API Key（免費）</strong
+            <strong class="text-slate-900" data-en="Helius API Key"
+              >Helius API Key</strong
             >
             <p
               class="text-slate-600 mt-1"
-              data-en='Speeds up and improves the completeness of Solana on-chain asset queries. If left blank, IRVault falls back to public nodes, which still work but may be slower or occasionally delayed during peak times. Sign up for free at <a href="https://helius.dev" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">helius.dev</a>.'
+              data-en='Apply for free at <a href="https://helius.dev" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">helius.dev</a>. This key makes Solana on-chain asset queries faster and more complete, avoiding the slow responses and delays of public nodes.'
             >
-              用來加速 Solana
-              鏈上資產查詢的速度與完整度。不填的話會自動改用公共節點，能正常運作，只是速度較慢、尖峰時段偶爾會有資料延遲。可至
+              請至
               <a
                 href="https://helius.dev"
                 target="_blank"
@@ -936,21 +1064,20 @@
                 class="text-blue-600 hover:underline"
                 >helius.dev</a
               >
-              免費註冊取得。
+              免費申請。此 API Key 可讓 Solana 鏈上資產查詢更快、更完整，避免使用公用節點造成回應緩慢及延遲的問題。
             </p>
           </div>
           <div class="p-4">
             <strong
               class="text-slate-900"
-              data-en="Jupiter API Key “One API Key” (Free)"
-              >Jupiter API Key「One API Key」（免費）</strong
+              data-en="Jupiter API Key “One API Key”"
+              >Jupiter API Key「One API Key」</strong
             >
             <p
               class="text-slate-600 mt-1"
-              data-en='Raises the rate limit for swap quotes and grid-order requests, avoiding “too many requests” errors during busy periods. Apply for free at <a href="https://portal.jup.ag" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">portal.jup.ag</a>.'
+              data-en='Apply for free at <a href="https://portal.jup.ag" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">portal.jup.ag</a>. It makes Solana swap quotes and orders run more smoothly; without it, you may see “too many requests” messages.'
             >
-              用來提高 Swap
-              報價與網格掛單的請求速率上限，避免忙碌時段跳出「請求過於頻繁」的提示。可至
+              請至
               <a
                 href="https://portal.jup.ag"
                 target="_blank"
@@ -958,18 +1085,18 @@
                 class="text-blue-600 hover:underline"
                 >portal.jup.ag</a
               >
-              免費申請。
+              免費申請。讓 Solana 交換報價與掛單更順暢，未申請可能會跳出「請求過於頻繁」的提示。
             </p>
           </div>
           <div class="p-4">
-            <strong class="text-slate-900" data-en="Binance API Key"
-              >幣安 (Binance) API Key</strong
+            <strong class="text-slate-900" data-en="Binance API Key (IRVault app only)"
+              >幣安 (Binance) API Key（限 IRVault App 使用）</strong
             >
             <p
               class="text-slate-600 mt-1"
-              data-en="If you want to read your Binance account balances, only read-only display is currently provided. When creating the key, be sure to <b>enable “Read” permission only</b>."
+              data-en="Apply for free on Binance. IRVault currently only shows your Binance account balances (read-only), so when creating the key you only need to enable the <b>“Read” permission</b> — there is no need to enable trading or withdrawal permissions."
             >
-              如果您想讀取您幣安帳戶的資產餘額，目前僅提供唯讀顯示，申請時請務必<b>只勾選「讀取」權限</b>。
+              請至幣安免費申請，因目前 IRVault 僅可唯讀顯示幣安帳戶的資產，因此建立 API Key 時只需勾選<b>「讀取」權限</b>，不必開啟交易或提領權限。
             </p>
           </div>
         </div>
@@ -1013,59 +1140,77 @@
       }
 
       // ===== 分頁籤 =====
-      // 所有分頁（overview 總覽沒有分頁籤，點「IRVault」或預設顯示）
-      const TAB_ORDER = ["overview", "send", "swap", "tools", "safety", "apikey", "about"];
-      // 收在「輔助功能 ▾」下拉選單裡的分頁
-      const TOOLS_GROUP = ["tools", "safety", "apikey"];
-      // 舊網址錨點相容（App 或外部連結若還指向舊的 #section-xxx）
+      // 網址 #hash 可以是分頁（#settings），也可以是分頁裡的一段（#send → 資產管理頁的「傳送」段）
+      // 所有分頁（overview 總覽沒有分頁籤，點「IRVault」或預設顯示；safety、apikey 不在選單上，從系統設定頁連過去）
+      const PANELS = ["overview", "assets", "settings", "safety", "apikey", "inforec", "about"];
+      // 分頁裡的段落 → 所屬分頁
+      const SECTIONS = {
+        wallets: "assets", dashboard: "assets", tokens: "assets", send: "assets",
+        receive: "assets", swap: "assets", history: "assets",
+        register: "inforec", irec: "inforec",
+      };
+      // 分頁 → 選單上要顯示為選取的項目（data-group）
+      const GROUP_OF = {
+        assets: "assets", settings: "settings", safety: "settings", apikey: "settings",
+        inforec: "inforec", about: "inforec",
+      };
+      // 舊網址相容（App 或外部連結若還指向舊的分頁或 #section-xxx）
       const LEGACY_HASH = {
         "section-main": "overview",
         "diagram-irvault": "overview",
         "section-send": "send",
-        "section-receive": "send",
+        "section-receive": "receive",
         "section-exchange": "swap",
-        "section-auxiliary": "tools",
+        "section-auxiliary": "tokens",
+        tools: "tokens",
       };
 
-      function tabFromHash() {
-        const h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-        if (TAB_ORDER.includes(h)) return h;
-        if (LEGACY_HASH[h]) return LEGACY_HASH[h];
-        return "overview";
+      function resolveTab(id) {
+        if (LEGACY_HASH[id]) id = LEGACY_HASH[id];
+        if (PANELS.includes(id)) return { id, panel: id, sec: null };
+        if (SECTIONS[id]) return { id, panel: SECTIONS[id], sec: id };
+        return { id: "overview", panel: "overview", sec: null };
       }
 
-      let onTabShown = null; // 分頁顯示後的額外處理（目前沒有用到）
+      function tabFromHash() {
+        return decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      }
 
-      function showTab(id, opts) {
+      function showTab(rawId, opts) {
         opts = opts || {};
+        const { id, panel, sec } = resolveTab(rawId);
         document.querySelectorAll(".guide-panel").forEach((p) => {
-          p.hidden = p.dataset.panel !== id;
+          p.hidden = p.dataset.panel !== panel;
           // 內容框第一次顯示時才載入
           const f = !p.hidden && p.querySelector("iframe[data-src]");
           if (f && !f.getAttribute("src")) f.src = f.dataset.src;
         });
-        document.getElementById("guideTitle").hidden = id !== "overview";
-        // 「輔助功能 ▾」：目前分頁是輔助功能、安全與錢包、API Key 其中之一時顯示為選取
-        const toolsBtn = document.getElementById("toolsBtn");
-        const inTools = TOOLS_GROUP.includes(id);
-        toolsBtn.classList.toggle("is-active", inTools);
-        if (inTools && toolsBtn.scrollIntoView) toolsBtn.scrollIntoView({ block: "nearest", inline: "center" });
-        document.querySelectorAll("#toolsMenu a").forEach((a) => {
-          a.classList.toggle("is-active", a.dataset.tab === id);
+        document.getElementById("guideTitle").hidden = panel !== "overview";
+        // 選單：所屬的項目顯示為選取
+        const group = GROUP_OF[panel];
+        document.querySelectorAll("#guide-tabs [data-group]").forEach((el) => {
+          const on = el.dataset.group === group;
+          el.classList.toggle("is-active", on);
+          if (on) el.setAttribute("aria-current", "page");
+          else el.removeAttribute("aria-current");
+          if (on && el.scrollIntoView) el.scrollIntoView({ block: "nearest", inline: "center" });
         });
-        document.querySelectorAll("#guide-tabs a").forEach((a) => {
-          const on = a.dataset.tab === id;
-          a.classList.toggle("is-active", on);
-          if (on) a.setAttribute("aria-current", "page");
-          else a.removeAttribute("aria-current");
-          if (on && a.scrollIntoView) a.scrollIntoView({ block: "nearest", inline: "center" });
+        document.querySelectorAll(".ir-tab-menu a[data-tab]").forEach((a) => {
+          a.classList.toggle("is-active", a.dataset.tab === id);
         });
         // 只換 #hash（保留 ?back= 等參數），不堆疊瀏覽紀錄，App 的返回鍵不會在分頁間打轉
         if (opts.updateUrl !== false && location.hash !== "#" + id) {
           history.replaceState(null, "", "#" + id);
         }
-        if (opts.scrollTop !== false) window.scrollTo({ top: 0 });
-        if (onTabShown) onTabShown(id);
+        const el = sec && document.getElementById(sec);
+        if (el) {
+          // 跳到該段並短暫加上光暈，讓使用者知道停在哪裡
+          el.scrollIntoView({ block: "start" });
+          el.classList.add("target-highlight");
+          setTimeout(() => el.classList.remove("target-highlight"), 1500);
+        } else if (opts.scrollTop !== false) {
+          window.scrollTo({ top: 0 });
+        }
       }
 
       document.addEventListener("DOMContentLoaded", async function () {
@@ -1078,17 +1223,16 @@
         const yearEl = document.getElementById("siteYear");
         if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        // 下拉選單：分頁列的「輔助功能 ▾」、右上角語言、「關於」。點按鈕開關（一次只開一個），點選項、點其他地方、捲動或按 Esc 關閉
+        // 下拉選單：分頁列的「InfoRec ▾」、右上角語言。點按鈕開關（一次只開一個），點選項、點其他地方、捲動或按 Esc 關閉
         const menus = [
-          [document.getElementById("toolsBtn"), document.getElementById("toolsMenu")],
+          [document.getElementById("inforecBtn"), document.getElementById("inforecMenu")],
           [document.getElementById("langBtn"), document.getElementById("langMenu")],
-          [document.getElementById("aboutBtn"), document.getElementById("aboutMenu")],
         ];
         const setMenu = (btn, menu, open) => {
           menu.hidden = !open;
           btn.setAttribute("aria-expanded", open ? "true" : "false");
-          // 「輔助功能 ▾」的選單放在分頁列外面（分頁列會左右捲動），開啟時定位在按鈕正下方，不超出畫面右邊
-          if (open && menu.id === "toolsMenu") {
+          // 分頁列的選單放在分頁列外面（分頁列會左右捲動），開啟時定位在按鈕正下方，不超出畫面右邊
+          if (open && menu.classList.contains("ir-tab-menu")) {
             const r = btn.getBoundingClientRect();
             menu.style.top = r.bottom + 6 + "px";
             menu.style.left = Math.max(8, Math.min(r.left, window.innerWidth - menu.offsetWidth - 8)) + "px";
@@ -1105,7 +1249,7 @@
           menu.addEventListener("click", () => setMenu(btn, menu, false));
         });
         document.addEventListener("click", (e) => {
-          if (!e.target.closest(".ir-about, #toolsBtn, #toolsMenu")) closeMenus();
+          if (!e.target.closest(".ir-about, .ir-tab-btn, .ir-tab-menu")) closeMenus();
         });
         window.addEventListener("scroll", closeMenus, { passive: true });
         document.getElementById("guide-tabs").addEventListener("scroll", closeMenus, { passive: true });
@@ -1113,7 +1257,7 @@
           if (e.key === "Escape") closeMenus();
         });
 
-        // 分頁籤：點選分頁、架構圖節點都走 showTab；點「IRVault」回總覽（#overview）
+        // 分頁籤：點選分頁、選單選項、架構圖節點都走 showTab；點「IRVault」回總覽（#overview）
         document.addEventListener("click", function (e) {
           const a = e.target.closest("a[data-tab]");
           if (!a) return;
@@ -1131,30 +1275,6 @@
           backBtn.href = backScheme + "://open";
           backBtn.setAttribute("aria-label", lang === "en" ? "Back to IRVault" : "返回 IRVault");
           backBtn.title = backBtn.getAttribute("aria-label");
-        }
-
-        const openBtn = document.getElementById("btn-open-browser");
-        // 🌟 只在 App 內 (Capacitor 或 Android WebView「; wv)」) 顯示；已在一般瀏覽器中則移除按鈕
-        const isInApp = !!window.Capacitor || /;\s*wv\)/i.test(navigator.userAgent);
-        if (openBtn && !isInApp) {
-          openBtn.remove();
-        } else if (openBtn) {
-          const currentUrl = window.location.href;
-          openBtn.href = currentUrl;
-          // 🌟 Capacitor WebView 內，同網域連結會被判定為「內部導向」而原地重新整理，不會跳出手機系統瀏覽器。
-          // 改用官方 @capacitor/browser 外掛強制交由系統瀏覽器開啟（intent:// URI 手法並非 Capacitor 正式支援方式，實測不可靠）。
-          const BrowserPlugin =
-            window.Capacitor &&
-            window.Capacitor.Plugins &&
-            window.Capacitor.Plugins.Browser;
-          if (BrowserPlugin) {
-            openBtn.addEventListener("click", function (e) {
-              e.preventDefault();
-              BrowserPlugin.open({ url: currentUrl }).catch(() => {
-                window.location.href = currentUrl;
-              });
-            });
-          }
         }
 
         // 依網址 #hash 開啟對應分頁（預設「總覽」）
