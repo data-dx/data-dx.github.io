@@ -515,9 +515,9 @@
           <!-- InfoRec 註冊、IREC 憑證：2026-11-22 使用者決定放在 /irvault/（註冊主文件 §12 的例外）。
                用字依主文件 §12.1：「線上註冊」、IREC 用「領取」；不寫免費、獎勵、價格等跟錢有關的字 -->
           <li
-            data-en="<strong>InfoRec registration:</strong> InfoRec, the information record management tool, can be registered online through IRVault."
+            data-en="<strong>InfoRec registration:</strong> InfoRec, the information record management tool, can be registered online through IRVault. Once registered, you get software updates and access to advanced features."
           >
-            <strong>InfoRec 註冊：</strong>InfoRec 資訊紀錄管理工具可透過 IRVault 線上註冊。
+            <strong>InfoRec 註冊：</strong>InfoRec 資訊紀錄管理工具可透過 IRVault 線上註冊，註冊後可取得軟體更新，並使用相關進階功能。
           </li>
           <li
             data-en="<strong>IREC credits:</strong><ol class='list-decimal pl-5 mt-1 space-y-1'><li><strong>Promotion and encouragement:</strong> Credits unlock more InfoRec features and encourage people to make more use of InfoRec.</li><li><strong>Claiming credits:</strong> Solana Mobile phone users, registered InfoRec users and people who help promote InfoRec can claim IREC credits.</li></ol>"
@@ -598,40 +598,30 @@
           </ul>
         </section>
 
-        <!-- 儀表板 -->
+        <!-- 資產總覽／My Assets（App 首頁；網址 #dashboard 不改，App 與舊連結用） -->
         <section id="dashboard" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
-            <h3 class="text-base font-bold text-slate-900" data-en="Dashboard">儀表板</h3>
+            <h3 class="text-base font-bold text-slate-900" data-en="My Assets">資產總覽</h3>
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>All your assets at a glance:</strong> Shows the assets in every wallet, address and exchange account you added, all on one screen."
+              data-en="<strong>All in one view:</strong> The assets in the wallets, addresses and exchange accounts you added are gathered on one screen, shown combined or one by one."
             >
-              <strong>資產一目了然：</strong>把您加入的所有錢包、地址與交易平台上的資產，集中在同一個畫面顯示。
-            </li>
-            <li
-              data-en="<strong>Live balances:</strong> Balances are looked up live from the blockchain and exchanges, so you can see the current state of each wallet, each address or all your assets together."
-            >
-              <strong>即時餘額：</strong>餘額即時向區塊鏈與交易平台查詢，可以查看個別錢包、地址或整體資產的現況。
+              <strong>整合呈現：</strong>把您加入的錢包、地址與交易平台上的資產集中在同一個畫面，可以整合顯示，也可以個別查看。
             </li>
           </ul>
         </section>
 
-        <!-- 代幣列表（原「輔助功能」的隱藏幣、檢查合約地址） -->
+        <!-- 代幣列表（同 App 選單名稱 menu_tokens；原「輔助功能」的隱藏幣） -->
         <section id="tokens" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
             <h3 class="text-base font-bold text-slate-900" data-en="Token List">代幣列表</h3>
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Hide tokens you don't need:</strong> Hide scam tokens or thinly traded assets yourself, so your home screen only shows the assets you care about."
+              data-en="<strong>Focus on what matters:</strong> Hide small balances and scam tokens so they don't get in the way, and see only the assets you care about."
             >
-              <strong>隱藏不需要的幣：</strong>可以自己勾選隱藏詐騙代幣或交易量很小的資產，讓首頁只顯示您在意的資產。
-            </li>
-            <li
-              data-en="<strong>Check the contract address:</strong> Expand a token card to see its contract address on the blockchain, so you can tell look-alike fake tokens apart and avoid scams."
-            >
-              <strong>檢查合約地址：</strong>展開幣種卡片可以看到該幣在區塊鏈上的合約地址，用來分辨名稱相同的假幣，避免受騙。
+              <strong>呈現重要資產：</strong>隱藏小額資產與詐騙幣，避免干擾，只呈現您想看的重點資產。
             </li>
           </ul>
         </section>
@@ -655,9 +645,9 @@
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Supported blockchains:</strong> Solana, BNB Chain and Ethereum (EVM chains through your multi-chain wallet)."
+              data-en="<strong>Supported blockchains:</strong> Solana and EVM chains (BNB Chain and Ethereum, through a multi-chain wallet such as OKX Wallet)."
             >
-              <strong>區塊鏈支援：</strong>Solana、BNB Chain、Ethereum（EVM 鏈透過多鏈錢包）。
+              <strong>區塊鏈支援：</strong>Solana、EVM 鏈（BNB Chain、Ethereum，可透過如 OKX Wallet 等多鏈錢包）。
             </li>
             <li
               data-en="<strong>Pick wallets and addresses:</strong> “Wallets &amp; Addresses” keeps all your wallets and asset addresses. Once added, they can be picked directly as sender or recipient, lowering the risk of sending to the wrong address."
@@ -666,17 +656,17 @@
               >「錢包與地址」可以管理您所有的錢包及資產地址，加入後傳送方與收款方都能直接選取，降低傳錯的風險。
             </li>
             <li
-              data-en="<strong>Address format check:</strong> If an address does not match the selected blockchain, it is flagged in red and cannot be sent."
+              data-en="<strong>Address format check:</strong> If an address does not match the selected blockchain, it is flagged in red and cannot be sent. A valid format does not mean the address is right, so please double-check before sending."
             >
               <strong>資產地址格式檢查：</strong
-              >地址與所選區塊鏈不符時，會以紅字提示且無法傳送。
+              >地址與所選區塊鏈不符時，會以紅字提示且無法傳送；但格式正確不代表地址一定對，送出前仍請自行確認。
             </li>
 
             <li
-              data-en="<strong>Wallet signing:</strong> Transactions are signed in the wallet you already use, so your private keys are never exposed."
+              data-en="<strong>Wallet signing:</strong> Sending, swapping and other actions never access your private keys; every transaction is signed in your own wallet."
             >
               <strong>錢包簽署：</strong
-              >透過您現有的錢包簽署，避免私鑰外洩。
+              >傳送、交換等操作都不會存取您的私鑰，所有交易都由您的錢包簽署。
             </li>
           </ul>
           <div
@@ -706,16 +696,16 @@
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Receiving QR code:</strong> Select a wallet and the asset to receive (e.g. SOL), and a QR code for the receiving address is generated. Scan it to transfer in."
+              data-en="<strong>Receive assets:</strong> Generate a receiving QR code from a wallet address you added. The sender just scans it to transfer, lowering the risk of a wrong address."
             >
-              <strong>收款 QR Code：</strong
-              >先選取錢包與接收的資產（如 SOL），就會產生收款地址的 QR Code，掃描即可轉入。
+              <strong>接收資產：</strong
+              >用已加入的錢包地址產生收款 QR Code，對方掃描就能轉入，降低地址錯誤的風險。
             </li>
 
             <li
-              data-en="<strong>Any coin:</strong> Depends on the receiving address. Receive BTC, DOGE, TRX and other coins."
+              data-en="<strong>Any coin:</strong> BTC, DOGE, TRX or any other crypto, as long as you have a receiving address for that coin."
             >
-              <strong>不限幣種：</strong>依收款地址支援，可收取 BTC、DOGE、TRX 等虛擬貨幣。
+              <strong>不限幣種：</strong>無論是 BTC、DOGE、TRX 或其他虛擬貨幣，只要有該幣的收款地址就能收取。
             </li>
           </ul>
         </section>
@@ -739,9 +729,9 @@
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Best route on Solana:</strong> Connects to Jupiter to compare quotes across trading venues and find the best way to swap, avoiding thinly traded routes where prices shift easily."
+              data-en="<strong>Best route, automatically:</strong> On Solana, IRVault connects to Jupiter to compare quotes across trading venues and find the best way to swap, avoiding thinly traded routes where prices shift easily."
             >
-              <strong>Solana 自動找最佳路徑：</strong>串接 Jupiter，自動比較各交易管道的報價，找出最划算的換法，避開交易量太小、價格容易偏移的路線。
+              <strong>自動找最佳路徑：</strong>Solana 鏈串接 Jupiter，自動比較各交易管道的報價，找出最划算的換法，避開交易量太小、價格容易偏移的路線。
             </li>
             <li
               data-en="<strong>Market and limit orders:</strong> On Solana, swap at the market price right away, or set your own price with a limit order. On BNB Chain and Ethereum, market swaps go through your multi-chain wallet."
@@ -749,33 +739,34 @@
               <strong>市價與限價：</strong>Solana 可用市價立即交換，也可以自己設定價格掛限價單；BNB Chain、Ethereum 可透過多鏈錢包進行市價交換。
             </li>
             <li
-              data-en="<strong>Minimum received:</strong> Before you send, you see the least you will receive after slippage, so a sudden price move or bots trading ahead of you won't leave you worse off."
+              data-en="<strong>Keeps enough for fees:</strong> When you swap out all of your SOL, a small amount is kept to pay network fees, so your account can still make transactions later."
             >
-              <strong>最少可收到數量：</strong>送出前會標示扣除滑點後最少能收到多少，避免價格突然變動或被機器人搶先交易而吃虧。
+              <strong>保留適當手續費：</strong>把 SOL 全部換出時，會自動留下一點 SOL 支付網路手續費，避免帳戶之後無法再交易。
             </li>
             <li
-              data-en="<strong>Network fee reserve:</strong> When you swap out all of your SOL, a small amount is kept to pay network fees, so your account can still make transactions later."
+              data-en="<strong>Custom slippage:</strong> Adjust the slippage tolerance (how much price movement you accept) as needed: lower means less price drift, higher means the trade is more likely to go through."
             >
-              <strong>自動保留手續費：</strong>把 SOL 全部換出時，會自動留下一點 SOL 支付網路手續費，避免帳戶之後無法再交易。
-            </li>
-            <li
-              data-en="<strong>Custom trade settings:</strong> Adjust the slippage tolerance (how much price movement you accept) and the priority fee that helps your transaction go through faster."
-            >
-              <strong>自訂交易參數：</strong>可依需要調整滑點容忍度（可接受的價格偏差），以及讓交易更快完成的優先手續費。
+              <strong>自訂交易滑點：</strong>可依需要調整滑點容忍度（可接受的價格偏差）：設小一點可減少價格偏差，設大一點較容易成交。
             </li>
           </ul>
         </section>
 
-        <!-- 交易紀錄 -->
+        <!-- 交易記錄（App 畫面名稱；2026-11-23 對照 App history.html：只查 Solana 錢包，EVM 與幣安不列；
+             分頁全部／發送／接收／交換；點一筆開 Solscan；沒填 Helius Key 為簡化版） -->
         <section id="history" class="ir-sec p-5 rounded-xl bg-white border border-slate-200 shadow-sm transition-all duration-300">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
-            <h3 class="text-base font-bold text-slate-900" data-en="Transaction History">交易紀錄</h3>
+            <h3 class="text-base font-bold text-slate-900" data-en="Transaction History">交易記錄</h3>
           </div>
           <ul class="space-y-2 text-sm text-slate-700 list-disc pl-5">
             <li
-              data-en="<strong>Look back at past transactions:</strong> See the records of your sends, receives and swaps, to check how each transaction went."
+              data-en="<strong>Transaction history:</strong> See the transactions of your Solana wallets and addresses, and tap any record to view its on-chain details (Solana only for now)."
             >
-              <strong>查看過去的交易：</strong>可以查看傳送、接收與交換的紀錄，確認每筆交易的狀況。
+              <strong>歷史記錄查詢：</strong>查看 Solana 錢包、地址的交易記錄，點選任一筆可查看鏈上資料（目前僅支援 Solana 鏈）。
+            </li>
+            <li
+              data-en="<strong>Full history:</strong> Please get and enter a free Helius API key to see your complete transaction history."
+            >
+              <strong>完整記錄：</strong>請申請並設定免費的 Helius API Key，以利取得完整的交易記錄。
             </li>
           </ul>
         </section>
