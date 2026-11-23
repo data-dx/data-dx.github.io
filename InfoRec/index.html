@@ -48,9 +48,9 @@
         <a
           class="navbar-brand fw-semibold me-auto me-md-3"
           href="#"
-          data-iframe-src="use/quick-start.html"
+          data-iframe-src="InfoRec/home.html"
         >
-          InfoRec <span class="ir-badge ms-2">桌面工具</span>
+          InfoRec
         </a>
 
         <button
@@ -74,75 +74,23 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                data-en="Guide"
               >
                 使用說明
               </a>
+              <!-- 使用說明只放三項＋關於開發者（2026-11-23）；其他說明頁（印表機、文件設定檔等）仍可用舊網址 ?page= 開啟 -->
               <ul class="dropdown-menu">
                 <li>
-                  <a
-                    class="dropdown-item fw-bold"
-                    href="use/quick-start.html"
-                    data-iframe-src="use/quick-start.html"
-                    >快速入門</a
-                  >
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/printselect.html"
-                    data-iframe-src="use/printselect.html"
-                    >印表機選擇</a
-                  >
+                  <a class="dropdown-item" href="download.html" data-iframe-src="download.html" data-en="Download">軟體下載</a>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/printing-orientation.html"
-                    data-iframe-src="use/printing-orientation.html"
-                    >印表機操作說明</a
-                  >
+                  <a class="dropdown-item" href="use/quick-start.html" data-iframe-src="use/quick-start.html" data-en="Getting Started">使用入門</a>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/print-layout.html"
-                    data-iframe-src="use/print-layout.html"
-                    >列印調整說明</a
-                  >
+                  <a class="dropdown-item" href="registration.html" data-iframe-src="registration.html" data-en="Registration">軟體註冊</a>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="registration.html"
-                    data-iframe-src="registration.html"
-                    >免費註冊說明</a
-                  >
-                </li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/doc-config.html"
-                    data-iframe-src="use/doc-config.html"
-                    >建置文件設定檔</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/docimage.html"
-                    data-iframe-src="use/docimage.html"
-                    >文件轉圖檔</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="use/formInput-design.html"
-                    data-iframe-src="use/formInput-design.html"
-                    >文件數位化建檔</a
-                  >
+                  <a class="dropdown-item" href="about.html" data-iframe-src="about.html" data-en="About">關於</a>
                 </li>
               </ul>
             </li>
@@ -154,6 +102,7 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                data-en="Interface"
               >
                 系統介面
               </a>
@@ -225,6 +174,7 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                data-en="Samples"
               >
                 文件範例
               </a>
@@ -306,30 +256,25 @@
           </ul>
 
           <div class="d-flex gap-2">
-            <!-- 關於選單（三頁一致：首頁、/InfoRec/、/irvault/）：關於開發者顯示在下方內容區（聯絡方式也在該頁）；InfoRec 網站還沒有英文版，先不放語言切換 -->
+            <!-- 語言按鈕（js/lang.js，同首頁）；下載、關於開發者已移到「使用說明」選單 -->
             <div class="dropdown">
               <button
-                class="btn btn-outline-light dropdown-toggle"
+                class="btn btn-outline-light dropdown-toggle ir-lang-btn"
                 type="button"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
                 aria-expanded="false"
+                aria-label="Language / 語言"
+                title="Language / 語言"
               >
-                關於
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z"/></svg>
+                <span data-lang-label></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-md-end">
-                <li>
-                  <a class="dropdown-item" href="about.html" data-iframe-src="about.html">關於開發者</a>
-                </li>
+                <li><a class="dropdown-item" href="#" data-set-lang="en" lang="en">English</a></li>
+                <li><a class="dropdown-item" href="#" data-set-lang="zh-TW" lang="zh-Hant-TW">繁體中文</a></li>
               </ul>
             </div>
-            <!-- 下載統一放右上角（與首頁一致），左邊「使用說明」不再放軟體下載 -->
-            <a
-              class="btn btn-primary"
-              href="download.html"
-              data-iframe-src="download.html"
-              >下載</a
-            >
           </div>
         </div>
       </div>
@@ -340,17 +285,12 @@
         <section id="heroBlock" class="ir-hero mb-0">
           <div class="row align-items-center g-3">
             <div class="col-12">
-              <h1 class="fw-semibold mb-2">
+              <h1 class="fw-semibold mb-2" data-en="Making document, data and printing workflows practical and under your control">
                 把「文件 + 資料 + 列印」流程，做得務實而可控
               </h1>
-              <!-- InfoRec 介紹（原在 updates.html 開頭，2026-11-21 移到這裡，避免首頁重複） -->
-              <p class="ir-muted mb-2">
-                <strong>InfoRec 資訊紀錄管理工具</strong>，旨在協助將雜亂的原始紀錄轉化為結構化資訊。
-                本系統已通過多種文件數位化與套印情境驗證，無論文件架構繁簡，皆能高效完成資料採集、自動套印與流程管理。
-              </p>
-              <p class="ir-muted mb-0">
-                本系統靈活適用於會計憑證、金融表單、行政文書及內外部填報需求，亦可作為進階的資料蒐集工具（類似自定義線上表單）。
-                使用者可自由定義編輯輸入格式、資料處理轉換方式及最終儲存格式，並支援紀錄匯出與分析應用。
+              <!-- 一句話介紹（與首頁 InfoRec 那句同一套說法）；完整介紹在首頁預設內容 InfoRec/home.html -->
+              <p class="ir-muted mb-0" data-en="InfoRec is a Windows desktop tool for organizing document records and printing forms, truly digitizing your records so they become a resource you can put to use.">
+                InfoRec 是 Windows 桌面工具，用來整理文件紀錄、套印表單，把資訊紀錄確實數位化，成為使用者可以再運用的資源。
               </p>
             </div>
           </div>
@@ -361,19 +301,18 @@
             id="contentFrame"
             name="content"
             class="ir-iframe ir-main-frame"
-            src="use/quick-start.html"
+            src="InfoRec/home.html"
             title="InfoRec content"
           ></iframe>
         </section>
         <!-- 頁尾文字包一層 div（同首頁），手機上才會正常換行，不會被排成好幾欄 -->
         <footer id="footerBlock" class="ir-footer">
           <div>
-          ©&nbsp;<span id="siteYear"></span>&nbsp;InfoRec 專案原創著作權人所有。
-          <a href="copyright.html" data-iframe-src="copyright.html"
-            >著作權與授權聲明</a
-          >
+          <!-- 與首頁、/irvault/ 同格式：© 年份 InfoRec Labs · 連結 · 連結 -->
+          © <span id="siteYear"></span> InfoRec Labs ·
+          <a href="copyright.html" data-iframe-src="copyright.html" data-en="Copyright &amp; License">著作權與授權聲明</a>
           ·
-          <a href="privacy.html" data-iframe-src="privacy.html">隱私權政策</a>
+          <a href="privacy.html" data-iframe-src="privacy.html" data-en="Privacy Policy">隱私權政策</a>
           </div>
         </footer>
       </div>
@@ -381,6 +320,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/site.js"></script>
+    <script src="js/lang.js"></script>
+    <script>
+      // 英文時把帶 data-en 的文字（選單、介紹、頁尾）換成英文（同首頁）；內容區說明頁還沒有英文版，仍顯示中文
+      (function () {
+        if (irLang() !== "en") return;
+        document.documentElement.lang = "en";
+        var toggler = document.querySelector(".navbar-toggler");
+        if (toggler) toggler.setAttribute("aria-label", "Toggle navigation");
+        document.querySelectorAll("[data-en]").forEach(function (el) {
+          el.innerHTML = el.dataset.en;
+        });
+      })();
+    </script>
 
     <script>
       (function () {
@@ -426,13 +378,13 @@
           new Date().getFullYear();
       }
 
-      // 內容區不是 /InfoRec/ 的預設內容「快速入門」（use/quick-start.html）時（2026-11-21 起與首頁分開，發展目標只在首頁），收起上方介紹（body.ir-subpage，規則在 css/site.css，與首頁共用）
+      // 內容區不是 /InfoRec/ 的預設內容（InfoRec/home.html）時，收起上方介紹（body.ir-subpage，規則在 css/site.css，與首頁共用）
       (function () {
         var frame = document.getElementById("contentFrame");
         if (!frame) return;
         function sync() {
           var src = (frame.getAttribute("src") || "").replace(/^\//, "");
-          document.body.classList.toggle("ir-subpage", src !== "" && src !== "use/quick-start.html");
+          document.body.classList.toggle("ir-subpage", src !== "" && src !== "InfoRec/home.html");
         }
         sync();
         new MutationObserver(sync).observe(frame, { attributes: true, attributeFilter: ["src"] });

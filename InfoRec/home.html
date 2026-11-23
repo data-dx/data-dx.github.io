@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>最新消息｜InfoRec</title>
+
+  <link rel="stylesheet" href="../css/site.css" />
+  <script src="../js/redirect.js"></script>
+</head>
+
+<body class="ir-content-body">
+  <main class="ir-page">
+    <!-- /InfoRec/ 首頁預設內容：InfoRec 介紹與發展目標 -->
+    <h1>最新消息</h1>
+
+    <hr />
+
+    <p>
+      <strong>InfoRec 資訊紀錄管理工具</strong>，旨在協助將雜亂的原始紀錄轉化為結構化資訊。
+      本系統已通過多種文件數位化與套印情境驗證，無論文件架構繁簡，皆能高效完成資料採集、自動套印與流程管理。
+    </p>
+    <p>
+      本系統靈活適用於會計憑證、金融表單、行政文書及內外部填報需求，亦可作為進階的資料蒐集工具（類似自訂線上表單）。
+      使用者可自由定義輸入格式、資料處理轉換方式及最終儲存格式，並支援紀錄匯出與分析應用。
+    </p>
+
+    <h2>2027 年發展目標</h2>
+    <ol class="mb-0">
+      <li>
+        <strong>工具發展：</strong>
+        持續支援與強化各類文件、表單的資訊紀錄蒐集，讓蒐集到的資訊成為可再運用的資源。
+      </li>
+      <li>
+        <strong>使用說明完善：</strong>
+        持續更新使用指南與教學，讓使用者能快速上手。
+      </li>
+      <li>
+        <strong>多國語言：</strong>
+        目前已內建 24 種語系，並依使用者需求持續擴充與校對。
+      </li>
+      <li>
+        <strong>社群交流與互助：</strong>
+        歡迎在社群群組分享使用心得與應用經驗，透過交流與互助，讓工具的應用持續成長。
+      </li>
+    </ol>
+  </main>
+
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
+</html>

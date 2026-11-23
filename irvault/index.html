@@ -1243,6 +1243,8 @@
           if (!e.target.closest(".ir-about, .ir-tab-btn, .ir-tab-menu")) closeMenus();
         });
         window.addEventListener("scroll", closeMenus, { passive: true });
+        // 點到「關於開發者」分頁的內嵌頁面（iframe）時，本頁收不到點擊，改看視窗失去焦點
+        window.addEventListener("blur", closeMenus);
         document.getElementById("guide-tabs").addEventListener("scroll", closeMenus, { passive: true });
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") closeMenus();

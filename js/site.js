@@ -114,6 +114,18 @@ function irSafePage(p){
     }catch(e){}
   }
 
+  // 頂部列下拉選單（Bootstrap）：點到下方內容區（iframe）時，外框收不到點擊，選單不會自己收起來。
+  // 點進 iframe 會讓外框視窗失去焦點（blur），這時把開著的下拉選單收起來。首頁、/InfoRec/ 共用。
+  function bindCloseMenusOnFrameClick(){
+    window.addEventListener('blur', function(){
+      if(!window.bootstrap || !bootstrap.Dropdown) return;
+      $all('[data-bs-toggle="dropdown"][aria-expanded="true"]').forEach(function(t){
+        var inst = bootstrap.Dropdown.getInstance(t);
+        if(inst) inst.hide();
+      });
+    });
+  }
+
   // ==========================================
   // 主程式初始化觸發
   // ==========================================
@@ -123,6 +135,7 @@ function irSafePage(p){
     initFromHash();
     bindNav();
     bindFocusButton();
+    bindCloseMenusOnFrameClick();
   });
 
 })();

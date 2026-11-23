@@ -247,6 +247,19 @@ body{
   font-size: 1.05rem;
 }
 
+/* 條文式說明頁（小標題＋段落，例如 privacy.html）：<main class="ir-page ir-doc">
+   標題上方留空、下方貼近內容，同一節的段落間距縮小，看得出哪些段落屬於哪個標題 */
+.ir-page.ir-doc h2{
+  margin: 1.9rem 0 .45rem;
+  line-height: 1.35;
+}
+.ir-page.ir-doc hr + h2{
+  margin-top: 1rem;
+}
+.ir-page.ir-doc p{
+  margin: 0 0 .3rem;
+}
+
 /* 引導段落（ir-lead）不縮排、稍淡 */
 .ir-page .ir-lead{
   font-size: 1.05rem;
@@ -499,6 +512,12 @@ body.ir-focus #footerBlock{
   .navbar .dropdown-item:hover{
     background-color: rgba(255,255,255,.08) !important;
     color: #fff !important;
+  }
+  /* 深色選單的分隔線：預設顏色太暗看不見，像多一個空行 */
+  .navbar .dropdown-divider{
+    border-top-color: rgba(255,255,255,.22) !important;
+    opacity: 1;
+    margin: .35rem .75rem;
   }
 
   /* Hero */

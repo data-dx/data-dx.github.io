@@ -45,6 +45,12 @@ function irSetLang(lang) {
       el.classList.toggle("ir-lang-current", on);
       if (on) el.setAttribute("aria-current", "true");
     });
+    // IRVault 使用條款、隱私權政策（另一個網站，讀不到本站語言）：網址加 #en／#zh-TW，開啟後顯示同一種語言
+    document.querySelectorAll('a[href^="https://inforec-auth.web.app/"]').forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (!/\/(terms|privacy)\.html/.test(href)) return;
+      a.setAttribute("href", href.split("#")[0] + "#" + cur);
+    });
   }
   document.addEventListener("click", function (e) {
     var el = e.target.closest && e.target.closest("[data-set-lang]");

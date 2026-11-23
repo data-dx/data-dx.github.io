@@ -3,88 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>快速上手：環境建置與首份列印測試｜InfoRec</title>
+  <title>使用入門｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
   <script src="../js/redirect.js"></script>
 </head>
 
-<body class="ir-page">
-
-  <h1>快速上手：環境建置</h1>
-  <hr>
-
-  <p class="ir-lead">
-    本文件旨在引導您快速完成 InfoRec 的環境佈署。我們假設您所需的文件設定檔已存在於官方雲端庫中，您可以直接下載使用；若找不到文件設定檔或有特殊文件設定需求，亦可自行設計或聯繫系統管理員協助處理。
-  </p>
-
-  <section class="mb-4">
-    <h2>一、說明背景</h2>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>使用入門</h1>
+    <hr />
+    <!-- 小標題＋段落＋步驟清單，與 privacy.html、copyright.html 同格式（ir-doc，規則在 css/site.css） -->
     <p>
-      中華郵政（郵局）具備據點普及與服務便捷的特性，其文件格式穩定且易於取得。因此，本說明以「郵局存款單」作為標準操作範例，協助您驗證系統環境。
+      以下以「郵政存簿儲金存款單」為例，說明從下載到印出第一張文件的步驟。所需文件設定檔可從網路下載；找不到時可自行設計，或與開發者聯絡。
     </p>
-  </section>
 
-  <section class="mb-4">
-    <h2>二、下載與啟動軟體</h2>
+    <h2>一、下載與啟動</h2>
     <ol>
-   <li><strong>下載：</strong>進入 InfoRec 官網，於「支援服務 > <a href="../download.html">軟體下載</a>」取得「資訊紀錄管理工具 (InfoRec.7z)」。</li>
-      <li><strong>解壓縮：</strong>將檔案解壓產生「InfoRec」資料夾置於電腦桌面。</li>
-      <li><strong>啟動：</strong>執行資料夾內的 <code>InfoRec.exe</code>。</li>
-<li><strong>個人化設定：</strong>首次啟動將自動進入「工具 > <a href="../InfoRec/FormPrefs.html">偏好設定</a>」視窗，請依需求設定語系、介面樣式(全螢幕)、字型、字型大小。</li>
+      <li>於「使用說明 &gt; <a href="../download.html">軟體下載</a>」下載 InfoRec.7z。</li>
+      <li>解壓縮後，執行「InfoRec」資料夾內的 <code>InfoRec.exe</code>。</li>
+      <li>首次啟動會開啟「工具 &gt; <a href="../InfoRec/FormPrefs.html">偏好設定</a>」，可設定語系、介面樣式、字型及字型大小。</li>
     </ol>
-  </section>
 
-  <section class="mb-4">
-    <h2>三、匯入文件設定檔</h2>
+    <h2>二、匯入文件設定檔</h2>
     <ol>
-      <li>進入「常用 > <a href="../InfoRec/formDocEx.html">文件交換</a>」視窗。</li>
-      <li><strong>取得文件：</strong>選擇「網路」分頁，系統將列出雲端庫中可供下載的設定檔。</li>
-      <li><strong>搜尋：</strong>於清單中尋找 <code>TW-FIN_700_21_1</code>。 (提示：於右下角「文件查詢」輸入 700 可快速定位)。</li>
-      <li><strong>匯入：</strong>點選「匯入」後，即可取得「郵政存簿儲金存款單」之設定。</li>
-      <li>完成後關閉視窗，返回主視窗。</li>
+      <li>開啟「常用 &gt; <a href="../InfoRec/formDocEx.html">文件交換</a>」，切換至「網路」分頁。</li>
+      <li>於右下角「文件查詢」輸入 700，找到 <code>TW-FIN_700_21_1</code>。</li>
+      <li>按「匯入」，完成後關閉視窗。</li>
     </ol>
-  </section>
 
-  <section class="mb-4">
-    <h2>四、選取文件表單(<a href="../InfoRec/Architecture.html">主視窗</a>)</h2>
+    <h2>三、選取文件</h2>
     <ol>
-      <li><strong>選擇來源：</strong>於「文件來源」下拉選單選擇「TW-FIN 700 中華郵政股份有限公司」。</li>
-      <li><strong>載入表單：</strong>點選 <code>TW-FIN_700_21_1</code>，系統將自動加載對應的輸入版面。</li>
+      <li>於<a href="../InfoRec/Architecture.html">主視窗</a>「文件來源」選擇「TW-FIN 700 中華郵政股份有限公司」。</li>
+      <li>點選 <code>TW-FIN_700_21_1</code>，載入輸入畫面。</li>
     </ol>
-  </section>
 
-  <section class="mb-4">
-    <h2>五、設定印表機</h2>
+    <h2>四、設定印表機</h2>
     <ol>
-      <li>進入「常用 > <a href="../InfoRec/FormPrinter.html">印表機</a>」視窗。</li>
-      <li>指定您欲使用的實體印表機並完成參數設定，確認後關閉視窗。</li>
+      <li>開啟「常用 &gt; <a href="../InfoRec/FormPrinter.html">印表機</a>」，選擇印表機並完成設定。</li>
     </ol>
-  </section>
 
-  <section class="mb-4">
-    <h2>六、設定資料主體與帳戶資料</h2>
-    <p>為了確保文件紀錄能精確回溯至特定對象（如個人、公司時或是其員工、或特定帳戶），請完成以下關聯設定：</p>
-    <ol>
-      <li><strong>建立主體：</strong>進入「資料 > <a href="../InfoRec/FormDataOwner.html">資料擁有者</a>」，新增一筆記錄處理者（個人或單位名稱）。</li>
-      <li><strong>關聯帳戶：</strong>進入「資料 > 資料擁有者 > 銀行資料」，先選定上述主體後，為其增加對應的銀行帳號（金融類文件專用）。</li>
-    </ol>
-  </section>
-
-<section class="mb-4">
-    <h2>七、列印測試</h2>
-    <ol>
-      <li><strong>輸入資料：</strong>於主畫面左側介面輸入相關資料（如日期、戶名、帳號及金額）。</li>
-      <li><strong>執行列印：</strong>確認無誤後，點擊「列印」按鈕。</li>
-     <li><strong>位置微調：</strong>若印出位置有偏差，請參考「<a href="print-layout.html">列印調整說明</a>」文件進行精確落點校正。</li>
-    </ol>
-  </section>
-
-  <section class="mb-4">
-    <h2>八、完成確認</h2>
+    <h2>五、設定資料擁有者</h2>
     <p>
-      若您已順利印出文字清晰、位置精準的「中華郵政存簿儲金存款單」，即代表您的 InfoRec 環境建置成功，已可正式投入實務使用。
+      文件紀錄依資料擁有者（個人或單位）歸檔，金融類文件另須設定銀行帳號。
     </p>
-  </section>
+    <ol>
+      <li>開啟「資料 &gt; <a href="../InfoRec/FormDataOwner.html">資料擁有者</a>」，新增個人或單位。</li>
+      <li>於「資料擁有者 &gt; 銀行資料」選取該資料擁有者，新增銀行帳號。</li>
+    </ol>
 
+    <h2>六、列印</h2>
+    <ol>
+      <li>於主視窗左側輸入日期、戶名、帳號及金額，按「列印」。</li>
+      <li>位置有偏差時，參考<a href="print-layout.html">列印調整說明</a>校正。</li>
+    </ol>
+    <p>
+      印出位置正確的存款單，即完成環境建置。
+    </p>
+  </main>
 </body>
 </html>
