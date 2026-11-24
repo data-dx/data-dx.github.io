@@ -3,118 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InfoRec｜免費註冊說明</title>
-  <link rel="stylesheet" href="../css/site.css">
-  <script src="../js/redirect.js"></script>
-  <style>
-    .btn-group-lang { position: absolute; top: 20px; right: 20px; z-index: 1000; }
-    .btn-lang { 
-      padding: 5px 12px; border: 1px solid #ccc; background: #fff; 
-      cursor: pointer; border-radius: 4px; font-size: 13px; margin-left: 5px; transition: 0.3s;
-    }
-    .btn-lang.active { background: #212529; color: #fff; border-color: #212529; }
-    .btn-lang:hover:not(.active) { background: #f8f9fa; }
-  </style>
+  <title>軟體註冊｜InfoRec</title>
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/redirect.js"></script>
 </head>
-<body class="ir-page">
 
-  <div class="btn-group-lang">
-    <button class="btn-lang active" onclick="location.href='license-activation-tw.html'">繁體中文</button>
-    <button class="btn-lang" onclick="location.href='license-activation-en.html'">English</button>
-    <button class="btn-lang" onclick="location.href='license-activation-cn.html'">简体中文</button>
-  </div>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>軟體註冊</h1>
+    <hr />
+    <!-- 小標題＋段落＋步驟清單，與 privacy.html 同格式（ir-doc，規則在 css/site.css）；畫面與按鈕名稱照 InfoRec 繁中語言檔 -->
+    <p>
+      InfoRec 註冊免費。試用 3 個月內列印滿 10 張即可註冊一年。
+    </p>
 
-  <h1>InfoRec 免費註冊說明</h1>
-  <hr>
+    <h2>線上註冊</h2>
+    <ol>
+      <li>「支援 &gt; 註冊」按「申請註冊」，填寫資料後按「送出申請」。</li>
+      <li>系統會彈出註冊視窗，請以 IRVault App 掃描 QR Code，或點擊連結以瀏覽器錢包擴充功能簽名，完成註冊（免費不扣款）。</li>
+      <li>回到「支援 &gt; 註冊」按「完成註冊」，重新啟動 InfoRec。</li>
+    </ol>
 
-  <p>InfoRec 註冊一律免費，不需要付款。下載後可完整試用 3 個月；試用期間實際列印滿 10 張，即可免費註冊一年；之後每年列印滿 30 張，即可免費續約。</p>
+    <h2>離線註冊</h2>
+    <ol>
+      <li>「支援 &gt; 註冊」按「申請註冊」，「註冊方式」選「離線註冊（寄申請檔）」，按「送出申請」。</li>
+      <li>系統會自動寄出註冊申請；電腦無法上網時，請將 InfoRec 資料夾內的申請檔 <code>Reg_*.txt</code> 寄至 <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>。</li>
+      <li>約 1～3 天，收到開發者通知或回寄的註冊檔後，按「完成註冊」，重新啟動 InfoRec。</li>
+    </ol>
 
-  <h2>註冊條件</h2>
-  <ul class="ul-l1">
-    <li><strong>試用：</strong>第一次啟動起 3 個月，功能完整。</li>
-    <li><strong>免費註冊：</strong>試用期間實際列印滿 10 張，可免費註冊一年。</li>
-    <li><strong>免費續約：</strong>註冊後一年內實際列印滿 30 張，可再免費註冊一年。到期前 30 天開放續約，新的到期日從原到期日接續延長。</li>
-    <li><strong>張數計算：</strong>實際送到印表機的頁數 × 份數。預覽不算；列印成 PDF、XPS、OneNote 等虛擬印表機也不算。</li>
-    <li><strong>查看進度：</strong>「申請註冊」視窗的「使用進度」會顯示到期日、剩餘天數與已印張數；張數不夠時「送出申請」無法按下，並提示還差幾張。</li>
-    <li><strong>沒有註冊或已到期：</strong>以社群版繼續使用，已有的文件設定檔（含官方）都可正常作業；匯入套印、網路下載文件設定檔與軟體更新，完成註冊後才能使用。</li>
-    <li><strong>網路版（多台電腦共用伺服器資料庫）與 CheckIssue：</strong>目前請來信 <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>，由我們代辦註冊。</li>
-  </ul>
+    <h2>備註</h2>
+    <p>
+      張數：實際送至印表機的頁數，預覽及虛擬印表機（PDF、XPS 等）不計入；進度可於「申請註冊」視窗查看。
+    </p>
+    <p>
+      未註冊或到期：以社群版繼續使用，已有的文件設定檔皆可作業；匯入套印、網路下載文件設定檔及軟體更新須具備有效註冊。
+    </p>
+    <p>
+      無法上網：收到註冊檔 <code>OK_Reg_*.txt</code> 後，勾選「匯入註冊檔」再按「完成註冊」。
+    </p>
+    <p>
+      換電腦：請將電腦名稱改為原名稱，或重新申請註冊；未註冊者仍可以社群版繼續使用。
+    </p>
+    <p>
+      進階選項：網路版、CheckIssue 金融業支票核發管理系統及其他進階功能，請來信申請。
+    </p>
+    <p>
+      IREC：完成線上註冊的錢包，可於 IRVault App 領取 IREC 憑證。
+    </p>
+  </main>
 
-  <h2>準備工作</h2>
-  <ol class="ol-l1">
-    <li>
-      <strong>下載 InfoRec（資訊紀錄管理系統）Windows 桌面工具</strong>
-      <p>請至下載頁面 <a href="https://www.inforec.dev/download.html">https://www.inforec.dev/download.html</a> 下載並執行 InfoRec.exe。</p>
-    </li>
-    <li>
-      <strong>選擇註冊方式</strong>
-      <ul class="ul-l1">
-        <li><strong>線上註冊（建議）：</strong>需要一個 Solana 錢包，例如電腦瀏覽器的 Solana 錢包擴充功能，或手機上的 IRVault App（Solana dApp Store）等 Solana 錢包。錢包只用來簽署一段文字、確認是您本人，<strong>不轉帳、不扣款，也不需要持有任何代幣</strong>。</li>
-        <li><strong>離線註冊（寄申請檔）：</strong>沒有錢包、或電腦不能上網時使用，由我們代辦。</li>
-      </ul>
-    </li>
-    <li>
-      <strong>參考說明：</strong><a href="InfoRec/FormSignUp.html">軟體授權與啟用</a>、<a href="InfoRec/FormAppReg.html">申請註冊</a>
-    </li>
-  </ol>
-
-  <h2>方式一：線上註冊（建議）</h2>
-  <ol class="ol-l1">
-    <li>
-      <strong>在桌面工具送出申請</strong>
-      <br>開啟 InfoRec.exe，點選「支援 &gt; 授權與啟用」，按「申請驗證」開啟「申請註冊」視窗。「驗證模式」選「線上註冊」，填寫註冊名稱、聯絡人、電子信箱等資料，選擇綁定的硬體（電腦名稱或隨身碟），按「送出申請」。
-    </li>
-    <li>
-      <strong>開啟註冊網頁</strong>
-      <br>系統會開啟一個引導頁：在這台電腦註冊，請按「在這台電腦開啟註冊頁」；用手機註冊，請以 IRVault App 或手機相機掃描頁面上的 QR Code。
-    </li>
-    <li>
-      <strong>連接錢包並簽名</strong>
-      <br>註冊網頁會顯示您的使用進度。確認已達條件後連接 Solana 錢包，簽署畫面上的文字（不花費任何費用），註冊即完成。
-    </li>
-    <li>
-      <strong>回到桌面工具完成註冊</strong>
-      <br>點選「支援 &gt; 授權與啟用」，按「執行驗證」，系統會從雲端取得註冊結果；完成後重新啟動 InfoRec 即可。
-    </li>
-  </ol>
-  <p>以線上註冊完成的錢包，可在 IRVault App 選單「領取 IREC」領取 IREC 點數。IREC 用來記錄使用與貢獻，與付款無關。</p>
-
-  <h2>方式二：離線註冊（寄申請檔，由我們代辦）</h2>
-  <p>適用於沒有錢包、或使用 InfoRec 的電腦無法上網的使用者。</p>
-  <ol class="ol-l1">
-    <li>
-      <strong>產生申請檔</strong>
-      <br>開啟 InfoRec.exe，點選「支援 &gt; 授權與啟用」，按「申請驗證」。「驗證模式」選「離線註冊（寄申請檔）」，填寫資料後按「送出申請」，系統會產生申請檔 <code>Reg_*.txt</code> 並開啟所在資料夾。
-    </li>
-    <li>
-      <strong>寄出申請檔</strong>
-      <br>請將申請檔寄到 <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>。我們核對使用進度後，代為完成註冊，並回寄授權檔 <code>OK_Reg_*.txt</code>。
-    </li>
-    <li>
-      <strong>在桌面工具完成註冊</strong>
-      <ul class="ul-l2">
-        <li>電腦可以上網：點選「支援 &gt; 授權與啟用」，直接按「執行驗證」即可從雲端取得註冊結果。</li>
-        <li>電腦不能上網：勾選「由檔案進行授權」，按「執行驗證」並選取收到的授權檔。</li>
-      </ul>
-      完成後重新啟動 InfoRec。
-    </li>
-  </ol>
-
-  <h2>注意事項</h2>
-  <ul class="ul-l1">
-    <li>
-      <strong>硬體綁定：</strong>註冊會綁定電腦名稱或隨身碟。資料庫搬到沒有註冊的電腦，仍可以社群版繼續使用；在新電腦重新註冊，或把新電腦名稱改成與原電腦相同（以電腦名稱註冊者），即可恢復完整功能。
-    </li>
-    <li>
-      <strong>到期日接續：</strong>續約時新的到期日從原到期日起算，提早續約不會損失剩餘天數。
-    </li>
-    <li>
-      <strong>舊版付費註冊：</strong>過去已完成付費註冊的使用者，授權照常有效，不受影響。
-    </li>
-    <li>
-      <strong>問題與協助：</strong>若有註冊或操作上的問題，請來信 <a href="mailto:inforec.dev@gmail.com">inforec.dev@gmail.com</a>。
-    </li>
-  </ul>
-
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
 </body>
 </html>

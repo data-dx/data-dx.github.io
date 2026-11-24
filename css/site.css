@@ -259,6 +259,22 @@ body{
 .ir-page.ir-doc p{
   margin: 0 0 .3rem;
 }
+/* 步驟清單緊貼上方標題或「備註：」，下方間距同段落；「備註：」不縮排 */
+.ir-page.ir-doc ol{
+  margin: 0 0 .3rem;
+}
+.ir-page.ir-doc p.ir-note{
+  text-indent: 0;
+}
+/* 一行式小節：標題字與 h2 同大小，說明接在同一行、一般大小 */
+.ir-page.ir-doc p.ir-item{
+  text-indent: 0;
+  margin-top: 1.4rem;
+}
+.ir-page.ir-doc p.ir-item > b{
+  font-size: 1.25rem;
+  margin-right: .2em;
+}
 
 /* 引導段落（ir-lead）不縮排、稍淡 */
 .ir-page .ir-lead{

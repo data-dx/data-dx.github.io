@@ -3,66 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>文件交換管理｜InfoRec</title>
+  <title>文件交換｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
-
   <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
 </head>
 
-<body class="ir-page">
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>文件交換</h1>
+    <hr />
+    <!-- 小標題＋段落，與 privacy.html 同格式（ir-doc，規則在 css/site.css）；寫給第一次使用的人：先說這個視窗做什麼，再分檔案匯入、官網匯入、匯出及刪除 -->
+    <p>
+      文件資料處理可以自行設定成一套處理流程；如果有現成的文件設定檔，直接引用就能省下大量時間。「常用 &gt; 文件交換」就是用來引用、匯出及刪除文件設定檔的地方。
+    </p>
+    <p>
+      引用文件設定檔有下列 2 種方式。
+    </p>
 
-  <h1>文件交換管理</h1>
-  <hr>
+    <h2>檔案匯入</h2>
+    <ol>
+      <li>取得文件設定檔（.zip），放置於 InfoRec 資料夾內。</li>
+      <li>「常用 &gt; 文件交換」按「匯入」，選取文件設定檔。</li>
+    </ol>
 
-  <p>本軟體在套印任何文件之前，必須建置或取得文件內容設定資料（文件輸入版面設定檔），並指定印表機相關設定（如選擇印表機、設定列印方向、邊界等）才能進行套印。</p>
+    <h2>官網匯入</h2>
+    <ol>
+      <li>「常用 &gt; 文件交換」的「來源」選「網路」，等待 3～5 秒，即可取得可下載的文件清單。</li>
+      <li>選取文件後按「匯入」，或直接雙擊該文件。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
+    </p>
+    <ol>
+      <li>文件較多時，可先依領域、來源代號、來源名稱或文件名稱查詢，再選取匯入。</li>
+      <li>官網匯入須具備有效註冊。</li>
+    </ol>
 
-  <ol class="ol-l1">
-    <li>匯入文件設定檔
-      <ul class="ul-l1">
-        <li>檔案匯入：
-          <ul class="ul-l2">
-            <li>將您取得或備份的設定檔匯入管理工具即可。</li>
-            <li>確認已指定「檔案」後，再點選「匯入」，打開您要匯入的設定檔後即可。</li>
-          </ul>
-        </li>
+    <p class="ir-item">
+      <b>匯出：</b>將「系統可用文件」中的文件匯出，進行備份或提供他人使用。
+    </p>
+    <p class="ir-item">
+      <b>刪除：</b>刪除不需要的文件設定檔（「來源」為「檔案」時才能刪除，網路清單僅供查看及下載）。
+    </p>
 
-        <li>網路匯入：
-          <ul class="ul-l2">
-            <li>專業支援廠商提供大量配置檔供使用者下載。</li>
-            <li>選擇「來源 → 網路」，等待清單下載後即可挑選檔案並匯入。</li>
-          </ul>
-        </li>
+    <figure>
+      <img class="winimg" src="images/FormDocEx.png" alt="文件交換視窗">
+      <figcaption class="TACenter">文件交換視窗</figcaption>
+    </figure>
+  </main>
 
-        <li>匯入注意事項：
-          <ul class="ul-l2">
-            <li>匯入設定檔會更新本機文件設定，不影響資料與記錄。</li>
-            <li>可同時進行列印方向、邊界等印表機相關設定。</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-
-    <li>匯出文件設定檔
-      <ul class="ul-l1">
-        <li>可備份給他人使用，免除重新設定。</li>
-        <li>匯出後會產生 ZIP 檔置於「inforec」資料夾，檔名含領域、來源、文件代號與版本，例如：<code>TWBank700211.zip</code></li>
-      </ul>
-    </li>
-
-    <li>自訂文件設定檔
-      <ul class="ul-l1">
-        <li>可由使用者或專業支援人員自行新增接口設計。</li>
-        <li>若找不到適用檔案，可洽專業人員協助完成文件套印設計。</li>
-        <li>細節可參考本站「文件內容設計」說明。</li>
-      </ul>
-    </li>
-  </ol>
-
-  <figure>
-    <img class="winimg" src="images/FormDocEx.png" alt="文件交換管理視窗">
-    <figcaption class="TACenter">文件交換管理視窗</figcaption>
-  </figure>
-
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
 </body>
 </html>
