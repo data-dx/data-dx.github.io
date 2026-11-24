@@ -1,79 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>工作頁｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
   <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
 </head>
-<body class="ir-page">
 
-  <h1>工作頁</h1>
-  <hr>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>工作頁</h1>
+    <hr />
+    <!-- 主視窗左邊的工作頁；分頁與欄位名稱照 InfoRec 繁中語言檔 [FormInfoRec]，列印記錄操作照 FrmInfoRec.pas（DBGRecord 點選／雙擊／Delete、btnRecRestore、lblPrtRecordClick） -->
+    <p>
+      工作頁位於主視窗左邊，有 4 個分頁。先在「可用文件」選好文件及資料擁有者，之後的輸入、列印及存檔都會套用這個組合。
+    </p>
 
-  <p class="ir-lead">
-    工作頁主要包含下列 4 個核心管理介面：
-  </p>
+    <h2>可用文件</h2>
+    <p>
+      選擇「文件來源」後，點選要使用的文件，再點選<a href="FormDataOwner.html">資料擁有者</a>（使用文件的個人或單位，例如支票的帳戶）。清單中沒有文件時，請先由「常用 &gt; <a href="FormDocEx.html">文件交換</a>」匯入。
+    </p>
+    <figure>
+      <img class="winimg" src="images/IR_tabDoc.png" alt="可用文件">
+      <figcaption class="TACenter">可用文件</figcaption>
+    </figure>
 
-  <ol class="ol-l1">
-    <li>
-      <strong>可用文件</strong>：使用本軟體進行任何作業之前，需要先選擇「<a href="FormDocEx.html">文件來源</a>」，再指定「<a href="FormDataOwner.html">資料擁有者</a>」（使用文件的主體）後，所有的動作，就會針對這個組合進行；例如輸入資料、存檔、登錄文件編號，未來輸入（列印）資料查詢。
-      <figure id="fig-tab-doc">
-        <img class="winimg" src="images/IR_tabDoc.png" alt="可用文件工作頁">
-        <figcaption>可用文件工作頁</figcaption>
-      </figure>
-    </li>
+    <h2>客戶資料</h2>
+    <p>
+      文件的往來對象，例如收票人、收件人；可依姓名關鍵字查詢。資料於「資料 &gt; <a href="FormCustomer.html">客戶管理</a>」維護。
+    </p>
+    <figure>
+      <img class="winimg" src="images/IR_tabCustomer.png" alt="客戶資料">
+      <figcaption class="TACenter">客戶資料</figcaption>
+    </figure>
 
-    <li>
-      <a href="FormCustomer.html"><strong>客戶資料</strong></a>：文件內容的相對人（例如：發票的收票人、信件的收信人）。
-      <figure id="fig-tab-customer">
-        <img class="winimg" src="images/IR_tabCustomer.png" alt="客戶資料工作頁">
-        <figcaption>客戶資料工作頁</figcaption>
-      </figure>
-    </li>
+    <h2>項目管理</h2>
+    <p>
+      輸入時常引用的項目，例如發票的品名、單位、單價，或會計科目。資料於「資料 &gt; <a href="FormItems.html">項目管理</a>」維護。
+    </p>
+    <figure>
+      <img class="winimg" src="images/IR_tabItems.png" alt="項目管理">
+      <figcaption class="TACenter">項目管理</figcaption>
+    </figure>
 
-    <li>
-      <a href="FormItems.html"><strong>項目管理</strong></a>：文件中需要引用的資訊，例如常用於發票的品名（代號、名稱單位、單價），或會計文件的科目、外幣（代號、名稱單位）。
-      <figure id="fig-tab-items">
-        <img class="winimg" src="images/IR_tabItems.png" alt="項目管理工作頁">
-        <figcaption>項目管理工作頁</figcaption>
-      </figure>
-    </li>
-
-    <li>
-      <strong>列印記錄</strong>：顯示列印（預覽）的歷史資料，便於叫出來重複使用，避免相同的資料重新輸入的問題。
-      <ul class="ul-l1">
-        <li><strong>欄位項目管理</strong>：列印記錄表格中呈現的欄位項目，可以由<a href="FormDocRecShowSet.html">紀錄顯示設定</a>進行管理。</li>
-        <li><strong>欄位寬度設定</strong>：點選<u>列印記錄</u>標籤後，可以拖拉或指定欄位改變欄位寬度，完成後，再按一次<u>列印記錄</u>標籤即可儲存欄寬設定。</li>
-        <li><strong>刪除列印記錄</strong>：直接在該筆紀錄用滑鼠左鍵按兩下即可刪除該筆資料。</li>
-      </ul>
-      <figure id="fig-tab-print-record">
-        <img class="winimg" src="images/IR_tabPrtRecord.png" alt="列印記錄工作頁">
-        <figcaption>列印記錄工作頁</figcaption>
-      </figure>
-    </li>
-  </ol>
-
-  <footer id="footerBlock" class="ir-footer">©&nbsp;<span id="siteYear"></span>&nbsp;InfoRec 專案原創著作權人所有。</footer>
+    <h2>列印記錄</h2>
+    <p>
+      列印過的資料會保留在這裡，相同內容不必重新輸入。
+    </p>
+    <ol>
+      <li>點選一筆記錄，資料即帶入輸入區域，可修改後再列印。</li>
+      <li>以「記錄查詢」依欄位、關鍵字查詢以前的記錄。</li>
+      <li>不需要的記錄，滑鼠雙擊或按 Delete 刪除（可按住 Ctrl、Shift 多選）；誤刪時按「取回」找回。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
+    </p>
+    <ol>
+      <li>表格顯示哪些欄位，於<a href="FormDocRecShowSet.html">紀錄顯示</a>設定。</li>
+      <li>調整欄寬：點選表格上方的「列印記錄」字樣，拖拉或輸入欄寬，完成後再點一次即儲存。</li>
+    </ol>
+    <figure>
+      <img class="winimg" src="images/IR_tabPrtRecord.png" alt="列印記錄">
+      <figcaption class="TACenter">列印記錄</figcaption>
+    </figure>
+  </main>
 
   <script>
-    (function() {
-      // 系統安全高度通知與動態防禦機制
-      function notifyHeight() {
-        if (window.parent && window.parent.postMessage) {
-          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
-        }
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
       }
-      window.addEventListener('load', notifyHeight);
-      window.addEventListener('resize', notifyHeight);
-      
-      // 年份自動更新
-      var yearEl = document.getElementById('siteYear');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
     })();
   </script>
 </body>

@@ -1,126 +1,54 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>文件紀錄管理｜InfoRec</title>
-    <link rel="stylesheet" href="../css/site.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>功能表｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+</head>
 
-    <script src="../js/redirect.js"></script>
-    <script src="../js/page-note.js"></script>
-  </head>
-
-  <body class="ir-page">
-    <h1>文件紀錄管理</h1>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>功能表</h1>
     <hr />
-
+    <!-- 主視窗上方的功能表；選單與項目名稱照 InfoRec 繁中語言檔 [FormInfoRec] MI* 及 FrmInfoRec.dfm 順序（一般使用者看不到的項目不寫）。原本此檔內容是文件記錄管理，已有 FormDocRecords.html -->
     <p>
-      有價值的文件紀錄，經過設計指定保存，後續可以讓這些紀錄產生價值或做為決定的依據。
+      功能表位於主視窗上方，依用途分為 6 個選單。剛開始使用時，只需要「常用」；其他選單用於整理資料、設計文件及查詢紀錄。
     </p>
 
-    <p>
-      當文件啟用「列印紀錄存檔」且編號已完成「文件領用登錄」時，列印後內容會自動存檔，可供日後查詢與報表輸出。
+    <ol>
+      <li><a href="MITCommon.html">常用</a>：文件交換、資料擁有者、印表機、匯入套印，日常套印最常用的功能。</li>
+      <li><a href="MITdata.html">資料</a>：資料擁有者、客戶管理、使用者管理、項目管理、資料交換，維護輸入時可引用的資料。</li>
+      <li><a href="MITDoc.html">文件</a>：文件管理、內容設計、輸入介面設計、文件交換、建立副本，設計或調整文件。</li>
+      <li><a href="MITRecords.html">紀錄</a>：文件領用登錄、文件記錄管理，依文件編號保存及查詢列印紀錄。</li>
+      <li><a href="MITTool.html">工具</a>：偏好設定、金融業支票核發管理系統。</li>
+      <li><a href="MITSupport.html">支援</a>：註冊、說明與協助、網站。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
     </p>
-
-    <h2>前置作業</h2>
-
-    <ol class="ol-l1">
-      <li>
-        啟用紀錄功能
-        <ul>
-          <li>說明：讓文件的填寫紀錄進行計劃性的儲存。</li>
-          <li>
-            位置：文件 ＞
-            <a href="FormDocInfo.html" target="_self">文件資訊管理</a>＞
-            進階設定 ＞ 功能設定，選取「文件領用登錄」
-          </li>
-        </ul>
-      </li>
-      <li>
-        登錄文件編號
-        <ul>
-          <li>說明：登錄文件編號，讓紀錄依編號進行存檔。</li>
-          <li>
-            位置：紀錄 ＞
-            <a href="FormDocIssLog.html" target="_self">文件領用登錄</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        指定儲存的紀錄欄位
-        <ul>
-          <li>說明：指定要儲存的特定欄位項目。</li>
-          <li>
-            位置：文件 ＞ 輸入管理設計 ＞
-            <a href="FormInfoRecSaveSet.html" target="_self">記錄儲存設計</a>
-          </li>
-        </ul>
-      </li>
+    <ol>
+      <li>部分項目須先於工作頁選定文件才能使用，例如印表機、內容設計。</li>
     </ol>
+  </main>
 
-    <ol class="ol-l1">
-      <li>
-        類型支援：
-        <ul class="ul-l1">
-          <li>支票類：依銀行帳號存檔與查詢。</li>
-          <li>發票類：依使用者代號存檔與查詢.</li>
-        </ul>
-      </li>
-
-      <li>
-        查詢／報表：
-        <ul class="ul-l1">
-          <li>
-            查詢依據：
-            <ul class="ul-l2">
-              <li>日期、文件編號、到期日、列印日、屬性、備註等。</li>
-            </ul>
-          </li>
-          <li>
-            報表輸出：
-            <ul class="ul-l2">
-              <li>日計表：依日期統計，如支票某日應付票款。</li>
-              <li>明細表：顯示指定範圍內每筆列印紀錄。</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        屬性修改：
-        <ul class="ul-l1">
-          <li>可變更表格屬性，便於自動帶入空白表格或作廢控管。</li>
-        </ul>
-      </li>
-
-      <li>
-        內容修改：
-        <ul class="ul-l1">
-          <li>可修改指定資料編號內容。</li>
-          <li>主畫面輸入列印區也能輸入編號後修改內容再列印存檔。</li>
-        </ul>
-      </li>
-
-      <li>
-        簽收回條：
-        <ul class="ul-l1">
-          <li>依文件（如支票）編號列印領款簽收單。</li>
-          <li>請先依編號查詢資料後列印。</li>
-          <li>請投入 A4 紙張，可列印兩張 A5 表格。</li>
-        </ul>
-      </li>
-    </ol>
-
-    <figure>
-      <img
-        class="winimg"
-        src="images/FormDocRecords.png"
-        alt="文件紀錄管理視窗"
-      />
-      <figcaption>文件紀錄管理視窗</figcaption>
-    </figure>
-  </body>
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
 </html>

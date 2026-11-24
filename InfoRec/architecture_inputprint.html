@@ -1,45 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>輸入列印區域｜InfoRec</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>輸入區域｜InfoRec</title>
   <link rel="stylesheet" href="../css/site.css">
   <script src="../js/redirect.js"></script>
-  <script src="../js/page-note.js"></script>
 </head>
-<body class="ir-page">
 
-  <h1>輸入列印區域</h1>
-  <hr>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>輸入區域</h1>
+    <hr />
+    <!-- 主視窗右邊的輸入區域；按鈕名稱照 InfoRec 繁中語言檔 [FormInfoRec]（列印、列印預覽、份數、縮放），位置照 FrmInfoRec.dfm 的 PanPrint、ScrollBox1 -->
+    <p>
+      輸入區域位於主視窗右邊，顯示目前文件的畫面。資料直接填在文件上對應的位置，所見即所印，填好即可預覽或列印。
+    </p>
 
-  <p class="ir-lead">
-    這個區域可以輸入資料、列印、預覽列印以及將資料儲存為紀錄。
-  </p>
+    <ol>
+      <li>於工作頁選好文件及資料擁有者，這裡即顯示該文件。</li>
+      <li>依序填入各欄資料；有代號的欄位可輸入代號或關鍵字，帶入客戶、項目等資料。</li>
+      <li>按上方「列印」；勾選「列印預覽」時，會先顯示預覽畫面。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
+    </p>
+    <ol>
+      <li>「份數」可設定列印張數；標籤類文件可指定起始格或印滿本頁。</li>
+      <li>螢幕解析度較低時，可拖拉與工作頁之間的分隔線，或調整「縮放」，讓文件完整顯示，方便輸入。</li>
+      <li>列印後的資料會存入工作頁的「<a href="Architecture_sheet.html">列印記錄</a>」。</li>
+    </ol>
 
-  <figure id="fig-architecture-io">
-    <img class="winimg" src="images/Architecture_IO.png" alt="輸入列印區域視窗">
-    <figcaption>輸入列印區域視窗</figcaption>
-  </figure>
-
-  <footer id="footerBlock" class="ir-footer">©&nbsp;<span id="siteYear"></span>&nbsp;InfoRec 專案原創著作權人所有。</footer>
+    <figure>
+      <img class="winimg" src="images/Architecture_IO.png" alt="輸入區域">
+      <figcaption class="TACenter">輸入區域</figcaption>
+    </figure>
+  </main>
 
   <script>
-    (function() {
-      // 系統安全高度通知與動態防禦機制
-      function notifyHeight() {
-        if (window.parent && window.parent.postMessage) {
-          window.parent.postMessage({ frameHeight: document.body.scrollHeight }, '*');
-        }
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
       }
-      window.addEventListener('load', notifyHeight);
-      window.addEventListener('resize', notifyHeight);
-      
-      // 年份自動更新
-      var yearEl = document.getElementById('siteYear');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
     })();
   </script>
 </body>

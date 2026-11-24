@@ -1,78 +1,68 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>印表機設定｜InfoRec</title>
-    <link rel="stylesheet" href="../css/site.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>印表機｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+</head>
 
-    <script src="../js/redirect.js"></script>
-    <script src="../js/page-note.js"></script>
-  </head>
-
-  <body class="ir-page">
-    <h1>印表機設定</h1>
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>印表機</h1>
     <hr />
-
+    <!-- 與 FormDocEx.html 同格式（ir-doc）；欄位名稱照 InfoRec 繁中語言檔 [FormPrinter]，行為照 Src/2_prt/FrmPrinter.pas（設定依文件及帳號分別儲存） -->
     <p>
-      文件要指定印表機才能套印，並配合印表機的特性執行相關設定，例如設定邊界距離、文字列印方向、並經由反覆測試及調整，才能正確執行套印。
+      文件列印前請先指定印表機。
     </p>
 
-    <ol class="ol-l1">
-      <li>
-        文件：
-        <ul class="ul-l1">
-          <li>顯示目前執行印表機設定的文件與資訊。</li>
-        </ul>
-      </li>
+    <ol>
+      <li>於工作頁點選文件，開啟「常用 &gt; 印表機」。</li>
+      <li>選擇「印表機」，其他項目可維持預設或依需要調整。</li>
+      <li>按「存檔」。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
+    </p>
+    <ol>
+      <li>列印位置有偏差時，調整「邊界」，詳見<a href="../use/print-layout.html">列印調整說明</a>。</li>
+      <li>出現紙張不符的警告時，「紙張大小」改選「文件大小」。</li>
+    </ol>
 
-      <li>
-        印表機相關設定：
-        <ul class="ul-l1">
-          <li>印表機：指定專用列印設備。</li>
-          <li>進紙匣：例如手動進紙。</li>
-
-          <li>
-            列印大小：
-            <ul class="ul-l2">
-              <li>預設為作業系統的印表機設定值。</li>
-              <li>若出現紙張不符警告，可改為「自訂」。</li>
-              <li>可於「裝置與印表機」設定自訂紙張大小。</li>
-              <li>某些印表機需關閉紙張偵測功能。</li>
-            </ul>
-          </li>
-
-          <li>雙面列印：預設單面。</li>
-
-          <li>
-            自動換頁：在單張單面或連續報表類型的文件，必需勾選才能正常套印。
-          </li>
-
-          <li>
-            列印方向：
-            <ul class="ul-l2">
-              <li>直印＝正常方向。</li>
-              <li>橫印＝文字旋轉 90°。</li>
-            </ul>
-          </li>
-
-          <li>
-            邊界：
-            <ul class="ul-l2">
-              <li>可將列印內容向任一方向偏移。</li>
-              <li>類似 Word 的邊界調整功能。</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+    <h2>功能說明</h2>
+    <ol>
+      <li>文件：顯示目前設定的文件資訊。</li>
+      <li>進紙匣：指定紙匣，例如手動進紙。</li>
+      <li>紙張大小：「印表機預設」或依文件尺寸的「文件大小」。</li>
+      <li>列印面：單面或雙面列印。</li>
+      <li>單張紙：一般紙張請勾選；使用連續報表紙時取消勾選。</li>
+      <li>列印方向：直印或橫印。</li>
+      <li>邊界：調整上、左數值，整體移動列印位置。</li>
     </ol>
 
     <figure>
-      <img class="winimg" src="images/FormPrinter.png" alt="印表機設定視窗" />
+      <img class="winimg" src="images/FormPrinter.png" alt="印表機設定視窗">
       <figcaption class="TACenter">印表機設定視窗</figcaption>
     </figure>
-  </body>
+  </main>
+
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
 </html>

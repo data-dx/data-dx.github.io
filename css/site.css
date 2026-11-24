@@ -951,3 +951,21 @@ body.ir-subpage #heroBlock{
   width: 17px;
   height: 17px;
 }
+
+/* 首頁、/InfoRec/ 上方選單：滑鼠移過出現圓角底色（同 IRVault 指南頂部列的分頁籤） */
+.navbar .nav-link{
+  border-radius: 999px;
+  transition: background .15s ease, color .15s ease;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible,
+.navbar .nav-link.show{
+  background: rgba(255,255,255,.12);
+  color: #fff;
+}
+@media (min-width: 768px){
+  .navbar-expand-md .navbar-nav .nav-link{
+    padding-left: .85rem;
+    padding-right: .85rem;
+  }
+}

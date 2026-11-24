@@ -1,70 +1,68 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>InfoRec 資訊紀錄管理工具｜InfoRec</title>
-    <link rel="stylesheet" href="../css/site.css" />
-    <script src="../js/redirect.js"></script>
-    <script src="../js/page-note.js"></script>
-  </head>
-  <body class="ir-page">
-    <h1>InfoRec 資訊紀錄管理工具</h1>
-    <hr />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>主視窗｜InfoRec</title>
+  <link rel="stylesheet" href="../css/site.css">
+  <script src="../js/redirect.js"></script>
+</head>
 
+<body class="ir-content-body">
+  <main class="ir-page ir-doc">
+    <h1>主視窗</h1>
+    <hr />
+    <!-- 與 FormDocEx.html 同格式（ir-doc）；區域名稱照 InfoRec 繁中語言檔 [FormInfoRec]；左右寬度依 FrmInfoRec.pas 的 Splitter1、AdjustDocumentViewport。系統架構圖另在 Architecture.html -->
     <p>
-      InfoRec
-      資訊紀錄管理工具，可分為功能表、工作頁、輸入列印等三個區域，說明如下。
+      主視窗是日常填寫及列印文件的地方：左邊「工作頁」選擇要用的文件，右邊「輸入區域」填寫內容並列印，上方「功能表」則是其他功能的入口。
     </p>
 
-    <ol class="ol-l1">
-      <li>
-        <a href="architecture_menu.html">功能表</a>：
-        軟體首頁之外的功能，均由功能表提供。功能表依常用、資料、文件、支援等數個項目分類。
-      </li>
-      <li>
-        <a href="Architecture_sheet.html">工作頁</a>：
-        進行資料輸入、列印前，需要先指定文件、文件的使用主體（使用人、銀行帳號）；提供對應的「工作頁」，顯示輸入參考資料及列印後的紀錄檢視。
-      </li>
-      <li>
-        <a href="architecture_inputprint.html">輸入列印</a>：
-        所有文件的資料輸入與列印作業，可在此區完成。為避免受限於螢幕或視窗大小限制，此區域也可以手動拖拉改變大小。
-      </li>
+    <ol>
+      <li>工作頁「可用文件」選擇「文件來源」，再點選要使用的文件。</li>
+      <li>點選「資料擁有者」。</li>
+      <li>於輸入區域填寫內容後，按「列印」。</li>
+    </ol>
+    <p class="ir-note">
+      備註：
+    </p>
+    <ol>
+      <li>文件若尚未指定印表機，請先於「常用 &gt; <a href="FormPrinter.html">印表機</a>」設定 1 次。</li>
+      <li>按 Enter 鍵即可移到下一個欄位；關閉「列印預覽」後，連續輸入、列印多份都不必用滑鼠，可提升工作效率。</li>
     </ol>
 
-    <figure id="img-homepage">
-      <img
-        class="winimg"
-        src="images/InfoRec.png"
-        alt="資訊紀錄管理工具 - 首頁"
-      />
-      <figcaption>資訊紀錄管理工具 - 首頁</figcaption>
+    <h2>區域說明</h2>
+    <ol>
+      <li><a href="architecture_menu.html">功能表</a>：常用、資料、文件、紀錄、工具、支援 6 個選單，設定與管理功能都在這裡。</li>
+      <li><a href="Architecture_sheet.html">工作頁</a>：選擇文件及資料擁有者，查看客戶、項目等參考資料，並可叫出以前的列印記錄重複使用。</li>
+      <li><a href="architecture_inputprint.html">輸入區域</a>：顯示文件畫面，直接在對應位置填入資料，再預覽或列印。</li>
+    </ol>
+
+    <p class="ir-item">
+      <b>調整寬度：</b>螢幕解析度較低時，可拖拉工作頁與輸入區域之間的分隔線，或調整輸入區域的「縮放」，讓文件完整顯示，方便輸入。
+    </p>
+
+    <figure>
+      <img class="winimg" src="images/InfoRec.png" alt="主視窗">
+      <figcaption class="TACenter">主視窗</figcaption>
     </figure>
+  </main>
 
-    <footer id="footerBlock" class="ir-footer">
-      ©&nbsp;<span id="siteYear"></span>&nbsp;InfoRec 專案原創著作權人所有。
-    </footer>
-
-    <script>
-      (function () {
-        // 系統安全高度通知與動態防禦機制
-        function notifyHeight() {
-          if (window.parent && window.parent.postMessage) {
-            window.parent.postMessage(
-              { frameHeight: document.body.scrollHeight },
-              "*",
-            );
-          }
-        }
-        window.addEventListener("load", notifyHeight);
-        window.addEventListener("resize", notifyHeight);
-
-        // 年份自動更新
-        var yearEl = document.getElementById("siteYear");
-        if (yearEl) {
-          yearEl.textContent = new Date().getFullYear();
-        }
-      })();
-    </script>
-  </body>
+  <script>
+    (function () {
+      function postHeight() {
+        try {
+          var h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          parent.postMessage({ type: 'inforec-iframe-height', height: h }, '*');
+        } catch (e) {}
+      }
+      window.addEventListener('load', postHeight);
+      window.addEventListener('resize', postHeight);
+      setTimeout(postHeight, 300);
+      setTimeout(postHeight, 900);
+    })();
+  </script>
+</body>
 </html>
